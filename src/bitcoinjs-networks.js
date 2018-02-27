@@ -2,6 +2,8 @@
   Bitcoinjs-lib network params file
 */
 
+// TODO: runtime extend for kmd assets
+
 const bitcoin = require('bitcoinjs-lib');
 
 let networks = exports;
@@ -97,6 +99,7 @@ networks.komodo = {
   scriptHash: 0x55,
   wif: 0xbc,
   dustThreshold: 1000,
+  kmdInterest: true,
 };
 
 networks.viacoin = {
@@ -205,6 +208,8 @@ networks.btg = {
   scriptHash: 0x17,
   wif: 0x80,
   dustThreshold: 1000,
+  isBtcFork: true,
+  forkName: 'btg',
 };
 
 networks.bch = {
@@ -217,6 +222,8 @@ networks.bch = {
   scriptHash: 0x5,
   wif: 0x80,
   dustThreshold: 1000,
+  isBtcFork: true,
+  forkName: 'bch',
 };
 
 networks.blk = {
@@ -254,6 +261,7 @@ networks.zcash = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.hush = {
@@ -266,6 +274,7 @@ networks.hush = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.zcl = {
@@ -278,6 +287,7 @@ networks.zcl = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.xmy = {
@@ -338,6 +348,7 @@ networks.btcz = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.grs = { // fails to gen a proper addr
