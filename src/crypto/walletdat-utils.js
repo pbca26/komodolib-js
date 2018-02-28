@@ -39,4 +39,4 @@ const parseWalletdat = (data) => {
   }
 }
 
-modules.export = parseWalletdat;
+module.exports = parseWalletdat;

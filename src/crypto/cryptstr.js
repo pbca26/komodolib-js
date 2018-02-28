@@ -1,3 +1,5 @@
+const aes256 = require('nodejs-aes256');
+
 const encrypt = (cipherKey, string, testPinStrength) => {
   // test pin security
   // - at least 1 char in upper case

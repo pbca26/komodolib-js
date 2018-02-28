@@ -23,7 +23,9 @@
     "url": "https://github.com/pbca26/agama-wallet-lib.git"
   },
   "scripts": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify-shim": "^3.8.14"
+  },
   "dependencies": {
     "bigi": "^1.4.2",
     "bip39": "^2.4.0",

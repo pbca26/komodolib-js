@@ -1,7 +1,7 @@
 const bitcoinJSForks = require('bitcoinforksjs-lib');
 const bitcoinZcash = require('bitcoinjs-lib-zcash');
 const bitcoinPos = require('bitcoinjs-lib-pos');
-const bitcoin = require('bitcoin');
+const bitcoin = require('bitcoinjs-lib');
 const utils = require('./utils');
 const coinselect = require('coinselect');
 
@@ -85,10 +85,9 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
 }
 
 // TODO: merge sendmany
-const data = (network, value, fee, outputAddress, changeAddress, utxoList)
+const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
   const btcFee = fee.perbyte ? fee.value : null; // TODO: coin non specific switch static/dynamic fee
-  let fee = network.txfee;
-  let value = Number(req.query.value);
+  fee = network.txfee;
 
   if (btcFee) {
     fee = 0;
@@ -192,9 +191,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList)
     const _maxSpend = utils.maxSpendBalance(utxoListFormatted);
 
     if (value > _maxSpend) {
-      const successObj = {
-        return `Spend value is too large. Max available amount is ${Number(((_maxSpend * 0.00000001).toFixed(8)))}`,
-      };
+      return `Spend value is too large. Max available amount is ${Number(((_maxSpend * 0.00000001).toFixed(8)))}`;
     } else {
       // account for KMD interest
       if (network.kmdInterest &&

@@ -104,9 +104,8 @@ const stringToWif = (string, network, iguana) => {
 }
 
 const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, includeChangeAddresses) => {
-  const seed = bip39.mnemonicToSeed(seed);
+  seed = bip39.mnemonicToSeed(seed);
   const hdMaster = bitcoin.HDNode.fromSeedBuffer(seed, network);
-  const matchPattern = match;
   const _defaultAddressDepth = addressDepth;
   const _defaultAccountCount = accountsCount;
   let _addresses = [];
@@ -128,7 +127,7 @@ const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, i
   }
 
   return _matchingKey ? _matchingKey : 'address is not found';
-});
+};
 
 module.exports = {
   bip39Search,
