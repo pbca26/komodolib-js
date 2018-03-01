@@ -1,4 +1,4 @@
-const kmdCalcInterest = (locktime, value) => { // value in sats
+module.exports = (locktime, value) => { // value in sats
   const timestampDiff = Math.floor(Date.now() / 1000) - locktime - 777;
   const hoursPassed = Math.floor(timestampDiff / 3600);
   const minutesPassed = Math.floor((timestampDiff - (hoursPassed * 3600)) / 60);
@@ -18,10 +18,8 @@ const kmdCalcInterest = (locktime, value) => { // value in sats
     // const hoursInOneYear = 365 * 24;
     // const hoursDiff = hoursInOneYear - hoursPassed;
 
-    interest = Math.floor(((Number(value) * 0.00000001) / 10512000) * timestampDiffMinutes);
+    interest = (((Number(value) * 0.00000001) / 10512000) * timestampDiffMinutes).toFixed(8);
   }
 
   return interest;
-}
-
-module.exports = kmdCalcInterest;
+};
