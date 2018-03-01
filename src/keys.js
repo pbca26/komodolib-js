@@ -69,7 +69,7 @@ const stringToWif = (string, network, iguana) => {
   let keys;
 
   // watchonly
-  if (seed.match('^[a-zA-Z0-9]{34}$')) {
+  if (string.match('^[a-zA-Z0-9]{34}$')) {
     return {
       priv: string,
       pub: string,
@@ -83,9 +83,9 @@ const stringToWif = (string, network, iguana) => {
     if (isWif) {
       try {
         if (network.isZcash) {
-          key = new bitcoinZcash.ECPair.fromWIF(wif, network, true);
+          key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
         } else {
-          key = new bitcoin.ECPair.fromWIF(wif, network, true);
+          key = new bitcoin.ECPair.fromWIF(string, network, true);
         }
 
         keys = {

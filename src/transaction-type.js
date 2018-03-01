@@ -123,7 +123,7 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
         outputAddresses: _addresses.outputs,
       }];
 
-      if (network === 'komodo') { // calc claimed interest amount
+      if (isKomodo) { // calc claimed interest amount
         const vinVoutDiff = _total.inputs - _total.outputs;
 
         if (vinVoutDiff < 0) {
@@ -168,4 +168,4 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
   return result;
 }
 
-modules.exports = transactionType;
+module.exports = transactionType;

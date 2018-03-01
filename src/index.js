@@ -9,6 +9,7 @@ const utils = require('./utils');
 const keys = require('./keys');
 const komodoInterest = require('./komodo-interest');
 const transactionBuilder = require('./transaction-builder');
+const transactionType = require('./transaction-type');
 const getMerkleRoot = require('./transaction-merkle');
 
 module.exports = {
@@ -22,6 +23,7 @@ module.exports = {
   utils,
   komodoInterest,
   transactionBuilder,
+  transactionType,
   getMerkleRoot,
   keys,
 };
