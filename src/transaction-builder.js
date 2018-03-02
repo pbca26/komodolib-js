@@ -17,13 +17,13 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     tx = new bitcoinPos.TransactionBuilder(network);
   } else if (network.isBtcFork) {
     tx = new bitcoinJSForks.TransactionBuilder(network);
-  } else {
-    tx = new bitcoin.TransactionBuilder(network);
     btcFork = {
       keyPair: bitcoinJSForks.ECPair.fromWIF(wif, network),
       pk: bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer()),
       spk: bitcoinJSForks.script.pubKeyHash.output.encode(bitcoinJSForks.crypto.hash160(bitcoinJSForks.ECPair.fromWIF(wif, network).getPublicKeyBuffer())),
     };
+  } else {
+    tx = new bitcoin.TransactionBuilder(network);
   }
 
   for (let i = 0; i < utxo.length; i++) {
@@ -87,7 +87,6 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
 // TODO: merge sendmany
 const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
   const btcFee = fee.perbyte ? fee.value : null; // TODO: coin non specific switch static/dynamic fee
-  fee = network.txfee;
 
   if (btcFee) {
     fee = 0;
@@ -133,7 +132,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     // default coin selection algo blackjack with fallback to accumulative
     // make a first run, calc approx tx fee
     // if ins and outs are empty reduce max spend by txfee
-    const firstRun = coinSelect(utxoListFormatted, targets, btcFee ? btcFee : 0);
+    const firstRun = coinselect(utxoListFormatted, targets, btcFee ? btcFee : 0);
     let inputs = firstRun.inputs;
     let outputs = firstRun.outputs;
 
@@ -144,7 +143,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     if (!outputs) {
       targets[0].value = targets[0].value - fee;
 
-      const secondRun = shepherd.coinSelect(utxoListFormatted, targets, 0);
+      const secondRun = coinselect(utxoListFormatted, targets, 0);
       inputs = secondRun.inputs;
       outputs = secondRun.outputs;
       fee = fee ? fee : secondRun.fee;
@@ -246,6 +245,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
           estimatedFee: _estimatedFee,
           balance: _maxSpendBalance,
           totalInterest,
+          utxoVerified,
         };
       }
     }
