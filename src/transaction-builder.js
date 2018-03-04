@@ -17,10 +17,11 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     tx = new bitcoinPos.TransactionBuilder(network);
   } else if (network.isBtcFork) {
     tx = new bitcoinJSForks.TransactionBuilder(network);
+    const keyPair = bitcoinJSForks.ECPair.fromWIF(wif, network);
     btcFork = {
-      keyPair: bitcoinJSForks.ECPair.fromWIF(wif, network),
+      keyPair,
       pk: bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer()),
-      spk: bitcoinJSForks.script.pubKeyHash.output.encode(bitcoinJSForks.crypto.hash160(bitcoinJSForks.ECPair.fromWIF(wif, network).getPublicKeyBuffer())),
+      spk: bitcoinJSForks.script.pubKeyHash.output.encode(bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer())),
     };
   } else {
     tx = new bitcoin.TransactionBuilder(network);
@@ -206,6 +207,13 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
           }
         } else {
           _change += totalInterest;
+        }
+
+        // double check kmd interest is combined into 1 output
+        if (outputAddress === changeAddress &&
+            _change > 0) {
+          value += _change - fee;
+          _change = 0;
         }
       }
 
