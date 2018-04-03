@@ -169,6 +169,17 @@ let electrumServers = {
       'electrum2.cipig.net:10022'
     ],
   },
+  utrum: { // !estimatefee
+    ip: 'electrum1.utrum.io',
+    port: 10088,
+    proto: 'tcp',
+    txfee: 10000,
+    abbr: 'OOT',
+    serverList: [
+      'electrum1.utrum.io:10088',
+      'electrum2.utrum.io:10088'
+    ],
+  },
   pizza: { // !estimatefee
     ip: 'electrum1.cipig.net',
     port: 10024,
