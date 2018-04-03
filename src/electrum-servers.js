@@ -169,7 +169,7 @@ let electrumServers = {
       'electrum2.cipig.net:10022'
     ],
   },
-  utrum: { // !estimatefee
+  oot: { // !estimatefee
     ip: 'electrum1.utrum.io',
     port: 10088,
     proto: 'tcp',

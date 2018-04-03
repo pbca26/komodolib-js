@@ -25,7 +25,8 @@ const _komodoCoins = [
   'BTCH',
   'VOTE',
   'BEER',
-  'PIZZA'
+  'PIZZA',
+  'OOT'
 ];
 
 const isKomodoCoin = (coin) => {
@@ -54,6 +55,7 @@ const explorerList = {
   COQUI: 'https://explorer.coqui.cash',
   MNZ: 'https://www.mnzexplorer.com',
   BTCH: 'http://www.btch.host',
+  OOT: 'https://explorer.utrum.io',
   BTC: 'https://blockchain.info',
   HUSH: 'https://explorer.myhush.org',
   PIZZA: 'http://pizza.komodochainz.info',
