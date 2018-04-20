@@ -35,6 +35,4 @@ const passphraseGenerator = {
 	},
 }
 
-module.exports = {
-	passphraseGenerator,
-};
+module.exports = passphraseGenerator;
