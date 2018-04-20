@@ -7,11 +7,8 @@
 const bitcoin = require('bitcoinjs-lib');
 
 let networks = exports;
-Object.keys(bitcoin.networks).forEach((key) => {
-  networks[key] = bitcoin.networks[key];
-});
 
-networks.litecoin = {
+networks.ltc = {
   messagePrefix: '\x19Litecoin Signed Message:\n',
   bip32: {
     public: 0x019da462,
@@ -36,7 +33,7 @@ networks.dnr = {
   isPoS: true,
 };
 
-networks.dogecoin = {
+networks.doge = {
   messagePrefix: '\x19Dogecoin Signed Message:\n',
   bip32: {
     public: 0x02facafd,
@@ -49,7 +46,7 @@ networks.dogecoin = {
 };
 
 // https://github.com/monacoinproject/monacoin/blob/master-0.10/src/chainparams.cpp#L161
-networks.monacoin = {
+networks.mona = {
   messagePrefix: '\x19Monacoin Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -100,7 +97,7 @@ networks.xzc = {
 };
 
 // https://raw.githubusercontent.com/jl777/komodo/beta/src/chainparams.cpp
-networks.komodo = {
+networks.kmd = {
   messagePrefix: '\x19Komodo Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -112,7 +109,7 @@ networks.komodo = {
   dustThreshold: 1000,
 };
 
-networks.viacoin = {
+networks.via = {
   messagePrefix: '\x19Viacoin Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -124,7 +121,7 @@ networks.viacoin = {
   dustThreshold: 1000,
 };
 
-networks.vertcoin = {
+networks.vert = {
   messagePrefix: '\x19Vertcoin Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -136,7 +133,7 @@ networks.vertcoin = {
   dustThreshold: 1000,
 };
 
-networks.namecoin = {
+networks.name = {
   messagePrefix: '\x19Namecoin Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -148,7 +145,7 @@ networks.namecoin = {
   dustThreshold: 1000,
 };
 
-networks.faircoin = {
+networks.fair = {
   messagePrefix: '\x19Faircoin Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -160,7 +157,7 @@ networks.faircoin = {
   dustThreshold: 1000,
 };
 
-networks.digibyte = {
+networks.dgb = {
   messagePrefix: '\x19Digibyte Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -184,7 +181,7 @@ networks.crown = {
   dustThreshold: 1000,
 };
 
-networks.argentum = {
+networks.arg = {
   messagePrefix: '\x19Argentum Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -257,7 +254,7 @@ networks.sib = {
   dustThreshold: 1000,
 };
 
-networks.zcash = {
+networks.zec = {
   messagePrefix: '\x19Zcash Signed Message:\n',
   bip32: {
     public: 0x0488b21e,
@@ -896,16 +893,4 @@ networks.acc = {
   dustThreshold: 1000,
 };
 
-networks.btc = networks.bitcoin;
-networks.crw = networks.crown;
-networks.dgb = networks.digibyte;
-networks.arg = networks.argentum;
-networks.zec = networks.zcash;
-networks.nmc = networks.namecoin;
-networks.ltc = networks.litecoin;
-networks.vtc = networks.vertcoin;
-networks.via = networks.viacoin;
-networks.fair = networks.faircoin;
-networks.doge = networks.dogecoin;
-networks.kmd = networks.komodo;
-networks.mona = networks.monacoin;
+networks.btc = bitcoin.networks.bitcoin;
