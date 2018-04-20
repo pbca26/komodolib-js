@@ -10,7 +10,8 @@ const addressVersionCheck = (network, address) => {
   try {
     const _b58check = network.isZcash ? bitcoinZcash.address.fromBase58Check(address) : bitcoin.address.fromBase58Check(address);
 
-    if (_b58check.version === network.pubKeyHash) {
+    if (_b58check.version === network.pubKeyHash ||
+        _b58check.version === network.scriptHash) {
       return true;
     } else {
       return false;
@@ -103,7 +104,7 @@ const stringToWif = (string, network, iguana) => {
   return _wifError ? 'error' : keys;
 }
 
-const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, includeChangeAddresses) => {
+const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, includeChangeAddresses, accountCountOffset, addressDepthOffset) => {
   seed = bip39.mnemonicToSeed(seed);
   const hdMaster = bitcoin.HDNode.fromSeedBuffer(seed, network);
   const _defaultAddressDepth = addressDepth;
@@ -111,9 +112,9 @@ const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, i
   let _addresses = [];
   let _matchingKey;
 
-  for (let i = 0; i < _defaultAccountCount; i++) {
+  for (let i = accountCountOffset || 0; i < _defaultAccountCount; i++) {
     for (let j = 0; j < includeChangeAddresses ? 2 : 1; j++) {
-      for (let k = 0; k < _defaultAddressDepth; k++) {
+      for (let k = addressDepthOffset || 0; k < _defaultAddressDepth; k++) {
         const _key = hdMaster.derivePath(`m/44'/141'/${i}'/${j}/${k}`);
 
         if (_key.keyPair.getAddress() === matchPattern) {
