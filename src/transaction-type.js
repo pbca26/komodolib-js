@@ -85,7 +85,8 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
     // vin + change, break into two tx
 
     // send to self
-    if (isSelfSend.inputs && isSelfSend.outputs) {
+    if (isSelfSend.inputs &&
+        isSelfSend.outputs) {
       result = {
         type: 'self',
         amount: Number(_sum.inputs - _sum.outputs).toFixed(8),
