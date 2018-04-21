@@ -93,7 +93,8 @@ networks.xzc = {
   pubKeyHash: 0x52,
   scriptHash: 0x07,
   wif: 0x52 + 128,
-  dustThreshold: 1000, // https://github.com/zcoinofficial/zcoin/blob/f755f95a036eedfef7c96bcfb6769cb79278939f/src/main.h#L59
+  dustThreshold: 1000, // https://github.com/zcoinofficial/zcoin/blob/f755f95a036eedfef7c96bcfb6769cb79278939f/src/main.h#L59,
+  isZcash: true,
 };
 
 // https://raw.githubusercontent.com/jl777/komodo/beta/src/chainparams.cpp
@@ -264,6 +265,7 @@ networks.zec = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.hush = {
@@ -276,6 +278,7 @@ networks.hush = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.zcl = {
@@ -288,6 +291,7 @@ networks.zcl = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.sng = {
@@ -300,6 +304,7 @@ networks.sng = {
   scriptHash: 0x1c2D,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.xmy = {
@@ -360,6 +365,7 @@ networks.btcz = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.grs = { // fails to gen a proper addr
@@ -408,6 +414,7 @@ networks.vot = {
   scriptHash: 0x1cbd,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.iop = {
@@ -444,6 +451,7 @@ networks.btcp = {
   scriptHash: 0x13AF,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 // https://github.com/zencashio/zen/blob/master/src/chainparams.cpp#L118
@@ -457,6 +465,7 @@ networks.zen = { // new address type
   scriptHash: 0x2086,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.sys = { // zec based
@@ -469,6 +478,7 @@ networks.sys = { // zec based
   scriptHash: 0x5,
   wif: 0x80,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.emc2 = {
@@ -634,6 +644,7 @@ networks.smart = { // wrong address generated
   scriptHash: 0x12,
   wif: 0xBF,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 // https://github.com/reddcoin-project/reddcoin/blob/master/src/chainparams.cpp#L79
