@@ -36,6 +36,27 @@ const bitcoinLib = {
 };
 let bitcoin;
 
+// zcash tx decode fallback
+const Buffer = require('safe-buffer').Buffer;
+const {
+  readSlice,
+  readInt32,
+  readUInt32,
+} = require('tx-decoder/src/buffer-utils');
+const {
+  compose,
+  addProp,
+} = require('tx-decoder/src/compose');
+const {
+  readInputs,
+  readInput,
+  readOutput,
+} = require('tx-decoder/src/tx-decoder');
+const crypto = require('crypto');
+const _sha256 = (data) => {
+  return crypto.createHash('sha256').update(data).digest();
+};
+
 const decodeFormat = (tx) => {
   const result = {
     txid: tx.getId(),
@@ -51,7 +72,7 @@ const decodeInput = (tx, network) => {
 
   tx.ins.forEach((input, n) => {
     const vin = {
-      txid: input.hash.reverse().toString('hex'),
+      txid: !input.hash.reverse ? input.hash : input.hash.reverse().toString('hex'),
       n: input.index,
       script: network.isPoS ? script.fromHex(input.hash) : bitcoin.script.toASM(input.script),
       sequence: input.sequence,
@@ -137,26 +158,45 @@ let transactionDecoder = (rawtx, network, debug) => {
         tx: _tx,
         network: network,
         format: decodeFormat(_tx),
-        inputs: decodeInput(_tx, network),
+        inputs: decodeInput(_tx),
         outputs: decodeOutput(_tx, network),
       };
     } catch (e) {
-      return false;
+      if (network.isZcash) {
+        const buffer = Buffer.from(rawtx, 'hex');
+
+        const decodeTx = buffer => (
+          compose([
+            addProp('version', readInt32),            // 4 bytes
+            addProp('ins', readInputs(readInput)),    // 1-9 bytes (VarInt), Input counter; Variable, Inputs
+            addProp('outs', readInputs(readOutput)),  // 1-9 bytes (VarInt), Output counter; Variable, Outputs
+            addProp('locktime', readUInt32)           // 4 bytes
+          ])({}, buffer)
+        );
+
+        const readHash = buffer => {
+          const [res, bufferLeft] = readSlice(32)(_sha256(_sha256(buffer)))
+          const hash = Buffer.from(res, 'hex').reverse().toString('hex')
+          return [hash, bufferLeft]
+        };
+
+        let decodedtx = decodeTx(buffer);
+        decodedtx[0].getId = () => {
+          return readHash(buffer)[0];
+        };
+
+        return {
+          tx: decodedtx[0],
+          network: network,
+          format: decodeFormat(decodedtx[0]),
+          inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0]),
+          outputs: decodeOutput(decodedtx[0], network),
+        };
+      } else {
+        return false;
+      }
     }
   }
 }
-
-/*transactionDecoder.prototype.decode = () => {
-  const self = this;
-  let result = {};
-
-  Object.keys(self.format).forEach((key) => {
-    result[key] = self.format[key];
-  });
-
-  result.outputs = self.outputs;
-
-  return result;
-}*/
 
 module.exports = transactionDecoder;
