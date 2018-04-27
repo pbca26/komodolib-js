@@ -26,7 +26,12 @@ const _komodoCoins = [
   'VOTE',
   'BEER',
   'PIZZA',
-  'OOT'
+  'OOT',
+  'NINJA',
+  'VOTE2018',
+  'GLXT',
+  'EQL',
+  'BNTN'
 ];
 
 const isKomodoCoin = (coin) => {
@@ -38,6 +43,7 @@ const isKomodoCoin = (coin) => {
 // TODO: add at least 2 explorers per coin
 const explorerList = {
   KMD: 'http://www.kmdexplorer.ru',
+  OOT: 'http://explorer.utrum.io',
   MSHARK: 'http://MSHARK.explorer.supernet.org',
   REVS: 'http://revs.explorer.supernet.org',
   SUPERNET: 'http://SUPERNET.explorer.supernet.org',
@@ -53,14 +59,18 @@ const explorerList = {
   WLC: 'http://WIRELESS.explorer.supernet.org',
   CHIPS: 'http://CHIPS1.explorer.supernet.org',
   COQUI: 'https://explorer.coqui.cash',
+  GLXT: 'http://glx.info',
+  EQL: 'http://178.62.240.191',
   MNZ: 'https://www.mnzexplorer.com',
   BTCH: 'http://www.btch.host',
-  OOT: 'https://explorer.utrum.io',
   BTC: 'https://blockchain.info',
   HUSH: 'https://explorer.myhush.org',
   PIZZA: 'http://pizza.komodochainz.info',
   BEER: 'http://beer.komodochainz.info',
+  NINJA: 'https://explorer.fund.ninja',
+  VOTE2018: 'http://88.99.226.252',
   QTUM: 'https://explorer.qtum.org',
+  DNR: 'http://denarius.name',
   LTC: 'https://live.blockcypher.com/ltc',
   DOGE: 'https://live.blockcypher.com/doge',
   DASH: 'https://live.blockcypher.com/dash',
@@ -70,9 +80,14 @@ const explorerList = {
   NMC: 'https://namecha.in',
   DGB: 'https://digiexplorer.info',
   CRW: 'http://ex.crownlab.eu',
+  ABY: 'http://explorer.artbyte.me',
+  GAME: 'https://blockexplorer.gamecredits.com',
+  MAC: 'http://explorer.machinecoin.org',
+  IOP: 'http://mainnet.iop.cash',
   BTG: 'https://btgexplorer.com',
   BCH: 'https://bitcoincash.blockexplorer.com',
   ZCL: 'http://explorer.zclmine.pro',
+  SNG: 'https://explorer.snowgem.org/',
   ZMY: 'https://myriadexplorer.com',
   BTX: 'http://explorer.bitcore.cc',
   BTCZ: 'https://explorer.bitcoinz.site',
@@ -87,4 +102,5 @@ const explorerList = {
 module.exports = {
   isKomodoCoin,
   explorerList,
+  kmdAssetChains: _komodoCoins,
 };

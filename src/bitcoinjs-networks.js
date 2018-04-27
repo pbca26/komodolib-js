@@ -108,6 +108,7 @@ networks.kmd = {
   scriptHash: 0x55,
   wif: 0xbc,
   dustThreshold: 1000,
+  isZcash: true,
 };
 
 networks.via = {
