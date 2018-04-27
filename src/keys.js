@@ -5,12 +5,14 @@ const bitcoinZcash = require('bitcoinjs-lib-zcash');
 const bitcoin = require('bitcoinjs-lib');
 const bitcoinPos = require('bitcoinjs-lib-pos');
 const bs58check = require('bs58check');
+const bip39 = require('bip39');
 
 const addressVersionCheck = (network, address) => {
   try {
     const _b58check = network.isZcash ? bitcoinZcash.address.fromBase58Check(address) : bitcoin.address.fromBase58Check(address);
 
-    if (_b58check.version === network.pubKeyHash) {
+    if (_b58check.version === network.pubKeyHash ||
+        _b58check.version === network.scriptHash) {
       return true;
     } else {
       return false;
@@ -103,24 +105,34 @@ const stringToWif = (string, network, iguana) => {
   return _wifError ? 'error' : keys;
 }
 
-const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, includeChangeAddresses) => {
+const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, includeChangeAddresses, addressDepthOffset, accountCountOffset) => {
   seed = bip39.mnemonicToSeed(seed);
   const hdMaster = bitcoin.HDNode.fromSeedBuffer(seed, network);
   const _defaultAddressDepth = addressDepth;
   const _defaultAccountCount = accountsCount;
   let _addresses = [];
-  let _matchingKey;
+  let _matchingKey = matchPattern ? [] : {};
+  accountCountOffset = !accountCountOffset ? 0 : accountCountOffset;
+  addressDepthOffset = !addressDepthOffset ? 0 : addressDepthOffset;
 
-  for (let i = 0; i < _defaultAccountCount; i++) {
-    for (let j = 0; j < includeChangeAddresses ? 2 : 1; j++) {
-      for (let k = 0; k < _defaultAddressDepth; k++) {
+  for (let i = Number(accountCountOffset); i < Number(accountCountOffset) + Number(_defaultAccountCount); i++) {
+    for (let j = 0; j < (includeChangeAddresses ? 2 : 1); j++) {
+      for (let k = Number(addressDepthOffset); k < Number(addressDepthOffset) + Number(_defaultAddressDepth); k++) {
         const _key = hdMaster.derivePath(`m/44'/141'/${i}'/${j}/${k}`);
 
-        if (_key.keyPair.getAddress() === matchPattern) {
-          _matchingKey = {
+        if (!matchPattern) {
+          _matchingKey.push({
+            path: `m/44'/141'/${i}'/${j}/${k}`,
             pub: _key.keyPair.getAddress(),
             priv: _key.keyPair.toWIF(),
-          };
+          });
+        } else {
+          if (_key.keyPair.getAddress() === matchPattern) {
+            _matchingKey = {
+              pub: _key.keyPair.getAddress(),
+              priv: _key.keyPair.toWIF(),
+            };
+          }
         }
       }
     }
