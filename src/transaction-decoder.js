@@ -189,7 +189,7 @@ let transactionDecoder = (rawtx, network, debug) => {
           tx: decodedtx[0],
           network: network,
           format: decodeFormat(decodedtx[0]),
-          inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0]),
+          inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0], network),
           outputs: decodeOutput(decodedtx[0], network),
         };
       } else {
