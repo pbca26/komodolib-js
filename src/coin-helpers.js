@@ -81,7 +81,7 @@ const explorerList = {
   DGB: 'https://digiexplorer.info',
   CRW: 'http://ex.crownlab.eu',
   ABY: 'http://explorer.artbyte.me',
-  GAME: 'https://blockexplorer.gamecredits.com',
+  GAME: 'https://blockexplorer.gamecredits.com/transactions/',
   MAC: 'http://explorer.machinecoin.org',
   IOP: 'http://mainnet.iop.cash',
   BTG: 'https://btgexplorer.com',
