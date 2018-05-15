@@ -42,8 +42,15 @@ const isKomodoCoin = (coin) => {
 
 // TODO: add at least 2 explorers per coin
 const explorerList = {
-  KMD: 'http://www.kmdexplorer.ru',
+  KMD: {
+    url: 'http://www.kmdexplorer.ru',
+    type: 'insight',
+  },
   OOT: 'http://explorer.utrum.io',
+  BNTN: {
+    url: 'http://chain.blocnation.io',
+    type: 'insight',
+  },
   MSHARK: 'http://MSHARK.explorer.supernet.org',
   REVS: 'http://revs.explorer.supernet.org',
   SUPERNET: 'http://SUPERNET.explorer.supernet.org',
@@ -59,7 +66,10 @@ const explorerList = {
   WLC: 'http://WIRELESS.explorer.supernet.org',
   CHIPS: 'http://CHIPS1.explorer.supernet.org',
   COQUI: 'https://explorer.coqui.cash',
-  GLXT: 'http://glx.info',
+  GLXT: {
+    url: 'http://glx.info',
+    type: 'insight',
+  },
   EQL: 'http://178.62.240.191',
   MNZ: 'https://www.mnzexplorer.com',
   BTCH: 'http://www.btch.host',
