@@ -1,6 +1,6 @@
 {
   "name": "agama-wallet-lib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Agama wallet library.",
   "keywords": [
     "agama wallet",
@@ -15,7 +15,8 @@
   "license": "MIT",
   "author": "SuperNET",
   "files": [
-    "index.js"
+    "index.js",
+    "src"
   ],
   "main": "index.js",
   "repository": {
