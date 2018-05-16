@@ -51,6 +51,14 @@ const explorerList = {
     url: 'http://chain.blocnation.io',
     type: 'insight',
   },
+  CHAIN: {
+    url: 'http://explorer.chainmakers.co',
+    type: 'insight',
+  },
+  GLXT: {
+    url: 'http://glx.info',
+    type: 'insight',
+  },
   MSHARK: 'http://MSHARK.explorer.supernet.org',
   REVS: 'http://revs.explorer.supernet.org',
   SUPERNET: 'http://SUPERNET.explorer.supernet.org',
@@ -66,10 +74,6 @@ const explorerList = {
   WLC: 'http://WIRELESS.explorer.supernet.org',
   CHIPS: 'http://CHIPS1.explorer.supernet.org',
   COQUI: 'https://explorer.coqui.cash',
-  GLXT: {
-    url: 'http://glx.info',
-    type: 'insight',
-  },
   EQL: 'http://178.62.240.191',
   MNZ: 'https://www.mnzexplorer.com',
   BTCH: 'http://www.btch.host',
