@@ -36,10 +36,8 @@
     "bitcoinjs-lib-zcash": "git://github.com/pbca26/bitcoinjs-lib#zcash",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",
-    "get-random-values": "^1.2.0",
     "js-sha256": "^0.7.1",
     "nodejs-aes256": "^1.0.1",
-    "seedrandom": "^2.4.3",
     "sha256": "^0.2.0",
     "tx-decoder": "git://github.com/pbca26/tx-decoder",
     "wif": "^2.0.6"
