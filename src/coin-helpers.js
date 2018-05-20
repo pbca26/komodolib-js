@@ -34,9 +34,13 @@ const _komodoCoins = [
   'BNTN'
 ];
 
-const isKomodoCoin = (coin) => {
+const isKomodoCoin = (coin, skipKMD) => {
   return (_komodoCoins.find((element) => {
-    return element === coin.toUpperCase();
+    if (skipKMD) {
+      return element === coin.toUpperCase() && coin.toUpperCase() !== 'KMD' && coin.toUpperCase() !== 'KOMODO';
+    } else {
+      return element === coin.toUpperCase();
+    }
   }));
 }
 
