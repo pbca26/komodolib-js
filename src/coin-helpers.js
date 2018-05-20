@@ -46,23 +46,11 @@ const isKomodoCoin = (coin, skipKMD) => {
 
 // TODO: add at least 2 explorers per coin
 const explorerList = {
-  KMD: {
-    url: 'http://www.kmdexplorer.ru',
-    type: 'insight',
-  },
+  KMD: 'http://www.kmdexplorer.ru',
   OOT: 'http://explorer.utrum.io',
-  BNTN: {
-    url: 'http://chain.blocnation.io',
-    type: 'insight',
-  },
-  CHAIN: {
-    url: 'http://explorer.chainmakers.co',
-    type: 'insight',
-  },
-  GLXT: {
-    url: 'http://glx.info',
-    type: 'insight',
-  },
+  BNTN: 'http://chain.blocnation.io',
+  CHAIN: 'http://explorer.chainmakers.co',
+  GLXT: 'http://glx.info',
   MSHARK: 'http://MSHARK.explorer.supernet.org',
   REVS: 'http://revs.explorer.supernet.org',
   SUPERNET: 'http://SUPERNET.explorer.supernet.org',
@@ -117,8 +105,14 @@ const explorerList = {
   FAIR: 'https://chain.fair.to/transaction?transaction=',
 };
 
+const explorerListExt = {
+  DEX: 'http://dex.explorer.komodo.services',
+  SUPERNET: 'http://supernet.explorer.komodo.services',
+};
+
 module.exports = {
   isKomodoCoin,
   explorerList,
+  explorerListExt,
   kmdAssetChains: _komodoCoins,
 };
