@@ -159,4 +159,6 @@ module.exports = {
   maxSpendBalance,
   fromSats,
   toSats,
+  isNumber,
+  isPositiveNumber,
 };
