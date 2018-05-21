@@ -905,4 +905,16 @@ networks.acc = {
   dustThreshold: 1000,
 };
 
+networks.bcbc = {
+  messagePrefix: '\x19Bitcoin CBC Signed Message:\n',
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4,
+  },
+  pubKeyHash: 0x0,
+  scriptHash: 0x5,
+  wif: 0x80,
+  dustThreshold: 1000,
+};
+
 networks.btc = bitcoin.networks.bitcoin;
