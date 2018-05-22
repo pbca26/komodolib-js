@@ -31,7 +31,8 @@ const _komodoCoins = [
   'VOTE2018',
   'GLXT',
   'EQL',
-  'BNTN'
+  'BNTN',
+  'PRLPAY'
 ];
 
 const isKomodoCoin = (coin, skipKMD) => {
@@ -51,6 +52,7 @@ const explorerList = {
   BNTN: 'http://chain.blocnation.io',
   CHAIN: 'http://explorer.chainmakers.co',
   GLXT: 'http://glx.info',
+  PRLPAY: 'http://explorer.prlpay.com',
   MSHARK: 'http://MSHARK.explorer.supernet.org',
   REVS: 'http://revs.explorer.supernet.org',
   SUPERNET: 'http://SUPERNET.explorer.supernet.org',

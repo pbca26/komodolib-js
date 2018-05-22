@@ -1,4 +1,15 @@
 let electrumServers = {
+  prlpay: { // !estimatefee
+    address: 'electrum1.prlpay.com',
+    port: 9681,
+    proto: 'tcp',
+    txfee: 10000,
+    abbr: 'PRLPAY',
+    serverList: [
+      'electrum1.prlpay.com:9681',
+      'electrum2.prlpay.com:9681'
+    ],
+  },
   kv: { // !estimatefee
     address: 'electrum1.cipig.net',
     port: 10016,
