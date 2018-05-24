@@ -660,15 +660,16 @@ let electrumServers = {
       'electrum2.cipig.net:10072'
     ],
   },
-  ftc: {
-    address: 'electrumx2.fujicoin.org',
+  fjc: {
+    address: 'electrumx1.fujicoin.org',
     port: 50001,
     proto: 'tcp',
     txfee: 100000,
-    abbr: 'GAME',
+    abbr: 'FJC',
     serverList: [
+      'electrumx1.fujicoin.org:50001',
       'electrumx2.fujicoin.org:50001',
-      'electrumx2.fujicoin.org:50001'
+      'electrumx3.fujicoin.org:50001'
     ],
   },
 };
