@@ -48,6 +48,7 @@ const isKomodoCoin = (coin, skipKMD) => {
 // TODO: add at least 2 explorers per coin
 const explorerList = {
   KMD: 'http://www.kmdexplorer.ru',
+  KV: 'http://kv.explorer.supernet.org',
   OOT: 'http://explorer.utrum.io',
   BNTN: 'http://chain.blocnation.io',
   CHAIN: 'http://explorer.chainmakers.co',
