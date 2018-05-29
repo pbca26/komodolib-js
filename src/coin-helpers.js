@@ -1,4 +1,4 @@
-const _komodoCoins = [
+const _komodoAssetChains = [
   'SUPERNET',
   'REVS',
   'PANGEA',
@@ -17,13 +17,9 @@ const _komodoCoins = [
   'MESH',
   'WLC',
   'MNZ',
-  'CHIPS',
-  'KMD',
-  'KOMODO',
   'AXO',
   'ETOMIC',
   'BTCH',
-  'VOTE',
   'BEER',
   'PIZZA',
   'OOT',
@@ -34,6 +30,12 @@ const _komodoCoins = [
   'BNTN',
   'PRLPAY'
 ];
+
+const _komodoCoins = _komodoAssetChains.concat([
+  'CHIPS',
+  'KMD',
+  'KOMODO'
+]);
 
 const isKomodoCoin = (coin, skipKMD) => {
   return (_komodoCoins.find((element) => {
@@ -117,5 +119,6 @@ module.exports = {
   isKomodoCoin,
   explorerList,
   explorerListExt,
-  kmdAssetChains: _komodoCoins,
+  kmdAssetChains: _komodoAssetChains,
+  kmdCoins: _komodoCoins, // all coins that share R-addresses
 };
