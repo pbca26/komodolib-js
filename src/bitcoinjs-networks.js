@@ -114,7 +114,7 @@ let networks = {
     wif: 0xc7,
     dustThreshold: 1000,
   },
-  vert: {
+  vtc: {
     messagePrefix: '\x19Vertcoin Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
@@ -125,7 +125,7 @@ let networks = {
     wif: 0x80,
     dustThreshold: 1000,
   },
-  name: {
+  nmc: {
     messagePrefix: '\x19Namecoin Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
@@ -158,7 +158,7 @@ let networks = {
     wif: 0x80,
     dustThreshold: 1000,
   },
-  crown: {
+  crw: {
     messagePrefix: '\x19Crown Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
@@ -408,20 +408,20 @@ let networks = {
     dustThreshold: 1000,
   },
   btcp: {
-    messagePrefix: '\x19BitcoinPrivate Signed Message:\n',
+    messagePrefix: '\x18BitcoinPrivate Signed Message:\n',
     bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4,
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
     },
     pubKeyHash: 0x1325,
     scriptHash: 0x13AF,
     wif: 0x80,
     dustThreshold: 1000,
-    isZcash: true,
+    // isZcash: true,
   },
   // https://github.com/zencashio/zen/blob/master/src/chainparams.cpp#L118
   zen: { // new address type
-    messagePrefix: '\x19Zencashio Signed Message:\n',
+    messagePrefix: '\x19Zencas Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -440,20 +440,20 @@ let networks = {
     },
     pubKeyHash: 0x3F,
     scriptHash: 0x5,
-    wif: 0x80,
+    // wif: 0x80,
+    wif: 0xbf,    
     dustThreshold: 1000,
     isZcash: true,
   },
   emc2: {
-    messagePrefix: '\x19Einsteinium Signed Message:\n',
+    messagePrefix: '\x18Einsteinium Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
     },
     pubKeyHash: 0x21,
-    scriptHash: 0x5,
-    wif: 0x37,
-    dustThreshold: 1000,
+    scriptHash: 0x05,
+    wif: 0xa1,
   },
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
@@ -467,20 +467,8 @@ let networks = {
     wif: 0x55,
     dustThreshold: 1000,
   },
-  // https://github.com/EuropecoinEUORG/Europecoin-V3/blob/master/src/chainparams.cpp#L139
-  erc: {
-    messagePrefix: '\x19Europecoin Signed Message:\n',
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4,
-    },
-    pubKeyHash: 0x21,
-    scriptHash: 0x5,
-    wif: 0x28 + 128,
-    dustThreshold: 1000,
-  },
   // https://github.com/lbryio/lbrycrd/blob/master/src/chainparams.cpp#L176
-  lbc: {
+  /*lbc: {
     messagePrefix: '\x19LBRY Credits Signed Message:\n',
     bip32: {
       public: 0x019C354f,
@@ -490,6 +478,16 @@ let networks = {
     scriptHash: 0x7a,
     wif: 0x1c,
     dustThreshold: 1000,
+  },*/
+  lbc: {
+    messagePrefix: '\x18LBRYcrd Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x55,
+    scriptHash: 0x7a,
+    wif: 0x1c,
   },
   // https://github.com/LIMXTEC/BitSend/blob/master/src/chainparams.cpp#L136
   bsd: {
@@ -512,6 +510,7 @@ let networks = {
     },
     pubKeyHash: 0x26,
     scriptHash: 0xA,
+    // scriptHash: 0x0a,
     wif: 0xC6,
     dustThreshold: 1000,
   },
@@ -527,16 +526,15 @@ let networks = {
     wif: 0xB0,
     dustThreshold: 1000,
   },
-  // https://github.com/Whitecoin-org/whitecoin/blob/master/src/chainparams.cpp#L91
-  xwc: { // wrong address generated
-    messagePrefix: '\x19Whitecoin Signed Message:\n',
+  wc: { // xwc
+    messagePrefix: '\x18Whitecoin Signed Message:\n',
     bip32: {
-      public: 0x043587CF,
-      private: 0x04358394,
+      public: 0x04887F1E,
+      private: 0x048894ED,
     },
-    pubKeyHash: 0x6F,
-    scriptHash: 0xC4,
-    wif: 0xEF,
+    pubKeyHash: 0x49,
+    scriptHash: 0x57,
+    wif: 0xc9,
     dustThreshold: 1000,
   },
   // https://github.com/vivocoin/vivo/blob/master/src/chainparams.cpp#L133
@@ -552,38 +550,15 @@ let networks = {
     dustThreshold: 1000,
   },
   xvg: {
-    messagePrefix: '\x19Verge Signed Message:\n',
+    messagePrefix: '\x18VERGE Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
     },
     pubKeyHash: 0x1e,
-    scriptHash: 0x9e,
-    wif: 0x6,
-    dustThreshold: 1000,
-  },
-  vcash: { // wrong address generated
-    messagePrefix: '\x19Vcash Signed Message:\n',
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4,
-    },
-    pubKeyHash: 0x47,
-    scriptHash: 0xc7,
-    wif: 0x6,
-    dustThreshold: 1000,
-  },
-  // https://github.com/unobtanium-official/Unobtanium/blob/master/src/chainparams.cpp#L157
-  uno: {
-    messagePrefix: '\x19Unobtanium Signed Message:\n',
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4,
-    },
-    pubKeyHash: 0x82,
-    scriptHash: 0x1E,
-    wif: 0xBF,
-    dustThreshold: 1000,
+    scriptHash: 0x21,
+    wif: 0x9e,
+    dustThreshold: 1000,    
   },
   smart: { // wrong address generated
     messagePrefix: '\x19Smartcash Signed Message:\n',
@@ -641,7 +616,8 @@ let networks = {
     },
     pubKeyHash: 0x37,
     scriptHash: 0x1C,
-    wif: 0xB7,
+    // wif: 0xB7,
+    wif: 0x03,    
     dustThreshold: 1000,
   },
   neos: {
@@ -676,10 +652,11 @@ let networks = {
     },
     pubKeyHash: 0x4B,
     scriptHash: 0x5,
+    // scriptHash: 0x05,
     wif: 0x80,
     dustThreshold: 1000,
   },
-  lcc: {
+  /*lcc: {
     messagePrefix: '\x19Litecoin Cash Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
@@ -689,6 +666,17 @@ let networks = {
     scriptHash: 0x5,
     wif: 0x32,
     dustThreshold: 1000,
+  },*/
+  lcc: {
+    messagePrefix: '\x18Litecoin Cash Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x1c,
+    scriptHash: 0x05,
+    wif: 0xb0,
+    dustThreshold: 1000,    
   },
   // https://github.com/Gulden/gulden-official/blob/master/src/chainparams.cpp#L128
   nlg: {
@@ -700,6 +688,7 @@ let networks = {
     pubKeyHash: 0x26,
     scriptHash: 0x62,
     wif: 0x26 + 128,
+    // wif: 0x62,
     dustThreshold: 1000,
   },
   // https://github.com/fujicoin/fujicoin/blob/master/src/chainparams.cpp#L132
@@ -734,6 +723,7 @@ let networks = {
       private: 0x0488DAEE,
     },
     pubKeyHash: 0xE,
+    // pubKeyHash: 0x0e,
     scriptHash: 0x5,
     wif: 0x8E,
     dustThreshold: 1000,
@@ -845,6 +835,567 @@ let networks = {
     wif: 0x80,
     dustThreshold: 1000,
   },
-}
+  // https://raw.githubusercontent.com/iancoleman/bip39/master/src/js/bitcoinjs-extensions.js
+  sdc: {
+    messagePrefix: '\x18Shadow Signed Message:\n',
+    bip32: {
+      public: 0xEE80286A,
+      private: 0xEE8031E8
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0x7d,
+    wif: 0xbf,
+  },
+  mzc: {
+    messagePrefix: '\x18Mazacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x32,
+    scriptHash: 0x09,
+    wif: 0xe0
+  },
+  ppc: {
+    messagePrefix: '\x18Peercoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x00, // TODO set this correctly
+    wif: 0xb7
+  },
+  axe: {
+    messagePrefix: '\x18AXE Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x10, // TODO set this correctly
+    wif: 0xcc
+  },
+  slm: {
+    messagePrefix: '\x18Slimcoin Signed Message:\n',
+    bip32: {
+      public: 0xef6adf10,
+      private: 0xef69ea80
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0x7d,
+    wif: 0x46
+  },
+  nebl: {
+    messagePrefix: '\x18Neblio Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x35,
+    scriptHash: 0x70,
+    wif: 0xb5
+  },
+  jbs: {
+    messagePrefix: '\x19Jumbucks Signed Message:\n',
+    bip32: {
+      public: 0x037a689a,
+      private: 0x037a6460
+    },
+    pubKeyHash: 0x2b,
+    scriptHash: 0x05,
+    wif: 0xab
+  },
+  zet: {
+    messagePrefix: '\x18Zetacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x50,
+    scriptHash: 0x09,
+    wif: 0xe0
+  },
+  onx: {
+    messagePrefix: '\x18Onixcoin Signed Message:\n',
+    bip32: {
+      public: 0x049d7cb2,
+      private: 0x049d7878
+    },
+    pubKeyHash: 0x4B,
+    scriptHash: 0x05,
+    wif: 0x80
+  },
+  usnbt: {
+    messagePrefix: '\x18Nu Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x1a,
+    wif: 0x96,
+  },
+  beet: {
+    messagePrefix: '\x19Beetlecoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x1A,
+    scriptHash: 0x55,
+    wif: 0x99,
+  },
+  ac: {
+    messagePrefix: '\x18AsiaCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x17,
+    scriptHash: 0x08,
+    wif: 0x97,
+  },
+  bela: {
+    messagePrefix: '\x18BelaCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x05,
+    wif: 0x99,
+  },
+  xbc: {
+    messagePrefix: '\x18BitcoinPlus Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x08,
+    wif: 0x99,
+  },
+  brit: {
+    messagePrefix: '\x18BritCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x55,
+    wif: 0x99,
+  },
+  cdn: {
+    messagePrefix: '\x18Canada eCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x1c,
+    scriptHash: 0x05,
+    wif: 0x9c,
+  },
+  ccn: {
+    messagePrefix: '\x18Cannacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x1c,
+    scriptHash: 0x05,
+    wif: 0x9c,
+  },
+  cmp: {
+    messagePrefix: '\x18CompCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x1c,
+    scriptHash: 0x55,
+    wif: 0x9c,
+  },
+  defcoin: { // get servers
+    messagePrefix: '\x18Defcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x1e,
+    scriptHash: 0x05,
+    wif: 0x9e,
+  },
+  dgc: {
+    messagePrefix: '\x18Digitalcoin Signed Message:\n',
+    bip32: {
+      public: 0x9e0488B2,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x1e,
+    scriptHash: 0x05,
+    wif: 0x9e,
+  },
+  ecn: {
+    messagePrefix: '\x18eCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x5c,
+    scriptHash: 0x14,
+    wif: 0xdc,
+  },
+  edrc: {
+    messagePrefix: '\x18EDRcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x5d,
+    scriptHash: 0x1c,
+    wif: 0xdd,
+  },
+  erc: {
+    messagePrefix: '\x18Europecoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x21,
+    scriptHash: 0x05,
+    wif: 0xa8,
+  },
+  frst: {
+    messagePrefix: '\x18FirstCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x23,
+    scriptHash: 0x05,
+    wif: 0xa3,
+  },
+  gcr: {
+    messagePrefix: '\x18GCR Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x26,
+    scriptHash: 0x61,
+    wif: 0x9a,
+  },
+  grc: {
+    messagePrefix: '\x18Gridcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3e,
+    scriptHash: 0x55,
+    wif: 0xbe,
+  },
+  hnc: {
+    messagePrefix: '\x18helleniccoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x30,
+    scriptHash: 0x05,
+    wif: 0xb0,
+  },
+  thc: {
+    messagePrefix: '\x18Hempcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x28,
+    scriptHash: 0x08,
+    wif: 0xa8,
+  },
+  insn: {
+    messagePrefix: '\x18INSaNe Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x66,
+    scriptHash: 0x39,
+    wif: 0x37,
+  },
+  ixc: {
+    messagePrefix: '\x18Ixcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x8a,
+    scriptHash: 0x05,
+    wif: 0x80,
+  },
+  kobo: {
+    messagePrefix: '\x18Kobocoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x23,
+    scriptHash: 0x1c,
+    wif: 0xa3,
+  },
+  ldcn: {
+    messagePrefix: '\x18Landcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x30,
+    scriptHash: 0x7a,
+    wif: 0xb0,
+  },
+  linx: {
+    messagePrefix: '\x18LinX Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x4b,
+    scriptHash: 0x05,
+    wif: 0xcb,
+  },
+  lynx: {
+    messagePrefix: '\x18Lynx Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x2d,
+    scriptHash: 0x32,
+    wif: 0xad,
+  },
+  nro: {
+    messagePrefix: '\x18PPCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x35,
+    scriptHash: 0x75,
+    wif: 0xb5,
+  },
+  nyc: {
+    messagePrefix: '\x18Newyorkc Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x16,
+    wif: 0xbc,
+  },
+  nvc: {
+    messagePrefix: '\x18NovaCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x08,
+    scriptHash: 0x14,
+    wif: 0x88,
+  },
+  nsr: {
+    messagePrefix: '\x18Nu Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0x40,
+    wif: 0x95,
+  },
+  psb: {
+    messagePrefix: '\x18Pesobit Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x55,
+    wif: 0xb7,
+  },
+  pink: {
+    messagePrefix: '\x18Pinkcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x03,
+    scriptHash: 0x1c,
+    wif: 0x83,
+  },
+  posw: {
+    messagePrefix: '\x18Poswcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x55,
+    wif: 0xb7,
+  },
+  pot: {
+    messagePrefix: '\x18Potcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x05,
+    wif: 0xb7,
+  },
+  put: {
+    messagePrefix: '\x18PutinCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x14,
+    wif: 0xb7,
+  },
+  rvr: {
+    messagePrefix: '\x18Voxels Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x46,
+    scriptHash: 0x05,
+    wif: 0xc6,
+  },
+  rby: {
+    messagePrefix: '\x18Rubycoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+  },
+  smly: {
+    messagePrefix: '\x18Smileycoin Signed Message:\n',
+    bip32: {
+      public: 0x1E562D9A,
+      private: 0x1E5631BC,
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x05,
+    wif: 0x05,
+  },
+  slr: {
+    messagePrefix: '\x18SolarCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x12,
+    scriptHash: 0x05,
+    wif: 0x92,
+  },
+  strat: {
+    messagePrefix: '\x18Stratis Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0x7d,
+    wif: 0xbf,
+  },
+  toa: {
+    messagePrefix: '\x18TOA Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x41,
+    scriptHash: 0x17,
+    wif: 0xc1,
+  },
+  usc: {
+    messagePrefix: '\x18UltimateSecureCash Signed Message:\n',
+    bip32: {
+      public: 0xEE80286A,
+      private: 0xEE8031E8,
+    },
+    pubKeyHash: 0x44,
+    scriptHash: 0x7d,
+    wif: 0xbf,
+  },
+  uno: {
+    messagePrefix: '\x18Unobtanium Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x82,
+    scriptHash: 0x1e,
+    wif: 0xe0,
+  },
+  xvc: {
+    messagePrefix: '\x18Vcash Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x47,
+    scriptHash: 0x08,
+    wif: 0xc7,
+  },
+  vpn: {
+    messagePrefix: '\x18VpnCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x47,
+    scriptHash: 0x05,
+    wif: 0xc7,
+  },
+  wc: {
+    messagePrefix: '\x18WinCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x49,
+    scriptHash: 0x1c,
+    wif: 0xc9,
+  },
+  xuez: {
+    messagePrefix: '\x18Xuez Signed Message:\n',
+    bip32: {
+      public: 0x022d2533,
+      private: 0x0221312b
+    },
+    pubKeyHash: 0x4b,
+    scriptHash: 0x12,
+    wif: 0xd4
+  },
+  etk: {
+    messagePrefix: '\x18Enegicoin Signed Message:\n',
+    bip32: {
+      public: 0x03B8C856,
+      private: 0xD7DC6E9F,
+    },
+    pubKeyHash: 0x21,
+    scriptHash: 0x35,
+    wif: 0x6a,
+  },
+};
 
 module.exports = networks;
