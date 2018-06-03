@@ -441,7 +441,7 @@ let networks = {
     pubKeyHash: 0x3F,
     scriptHash: 0x5,
     // wif: 0x80,
-    wif: 0xbf,    
+    wif: 0xbf,
     dustThreshold: 1000,
     isZcash: true,
   },
@@ -558,7 +558,7 @@ let networks = {
     pubKeyHash: 0x1e,
     scriptHash: 0x21,
     wif: 0x9e,
-    dustThreshold: 1000,    
+    dustThreshold: 1000,
   },
   smart: { // wrong address generated
     messagePrefix: '\x19Smartcash Signed Message:\n',
@@ -617,7 +617,7 @@ let networks = {
     pubKeyHash: 0x37,
     scriptHash: 0x1C,
     // wif: 0xB7,
-    wif: 0x03,    
+    wif: 0x03,
     dustThreshold: 1000,
   },
   neos: {
@@ -676,7 +676,7 @@ let networks = {
     pubKeyHash: 0x1c,
     scriptHash: 0x05,
     wif: 0xb0,
-    dustThreshold: 1000,    
+    dustThreshold: 1000,
   },
   // https://github.com/Gulden/gulden-official/blob/master/src/chainparams.cpp#L128
   nlg: {
@@ -753,13 +753,13 @@ let networks = {
     dustThreshold: 1000,
   },
   // https://github.com/CooleRRSA/crave/blob/master/src/chainparams.cpp#L99
-  crave: { // wrong address generated, another fork is used?
+  crave: {
     messagePrefix: '\x19Crave Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
     },
-    pubKeyHash: 0x1B,
+    pubKeyHash: 0x46,
     scriptHash: 0x55,
     wif: 0x99,
     dustThreshold: 1000,
@@ -837,7 +837,7 @@ let networks = {
   },
   // https://raw.githubusercontent.com/iancoleman/bip39/master/src/js/bitcoinjs-extensions.js
   sdc: {
-    messagePrefix: '\x18Shadow Signed Message:\n',
+    messagePrefix: '\x18ShadowCash Signed Message:\n',
     bip32: {
       public: 0xEE80286A,
       private: 0xEE8031E8
@@ -1016,7 +1016,7 @@ let networks = {
     scriptHash: 0x55,
     wif: 0x9c,
   },
-  defcoin: { // get servers
+  defc: { // get servers
     messagePrefix: '\x18Defcoin Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
@@ -1266,7 +1266,7 @@ let networks = {
     scriptHash: 0x14,
     wif: 0xb7,
   },
-  rvr: {
+  vox: { // rvr
     messagePrefix: '\x18Voxels Signed Message:\n',
     bip32: {
       public: 0x0488B21E,
@@ -1386,8 +1386,8 @@ let networks = {
     scriptHash: 0x12,
     wif: 0xd4
   },
-  etk: {
-    messagePrefix: '\x18Enegicoin Signed Message:\n',
+  nrg: { // etk?
+    messagePrefix: '\x18Energicoin Signed Message:\n',
     bip32: {
       public: 0x03B8C856,
       private: 0xD7DC6E9F,
