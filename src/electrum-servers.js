@@ -1,688 +1,434 @@
 let electrumServers = {
-  prlpay: { // !estimatefee
-    address: 'electrum1.prlpay.com',
-    port: 9681,
-    proto: 'tcp',
+  prlpay: {
     txfee: 10000,
-    abbr: 'PRLPAY',
     serverList: [
-      'electrum1.prlpay.com:9681',
-      'electrum2.prlpay.com:9681'
+      'electrum1.prlpay.com:9681:tcp',
+      'electrum2.prlpay.com:9681:tcp'
     ],
   },
-  kv: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10016,
-    proto: 'tcp',
+  kv: {
     txfee: 10000,
-    abbr: 'KV',
     serverList: [
-      'electrum1.cipig.net:10016',
-      'electrum2.cipig.net:10016'
+      'electrum1.cipig.net:10016:tcp',
+      'electrum2.cipig.net:10016:tcp'
     ],
   },
-  bntn: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10026,
-    proto: 'tcp',
+  bntn: {
     txfee: 10000,
-    abbr: 'BNTN',
     serverList: [
-      'electrum1.cipig.net:10026',
-      'electrum2.cipig.net:10026'
+      'electrum1.cipig.net:10026:tcp',
+      'electrum2.cipig.net:10026:tcp'
     ],
   },
-  eql: { // !estimatefee
-    address:'159.65.91.235',
-    port: 10801,
-    proto: 'tcp',
+  eql: {
     txfee: 10000,
-    abbr: 'EQL',
     serverList: [
-      '159.65.91.235:10801',
-      '167.99.204.42:10801'
+      '159.65.91.235:10801:tcp',
+      '167.99.204.42:10801:tcp'
     ],
   },
-  oot: { // !estimatefee
-    address: 'electrum1.utrum.io',
-    port: 10088,
-    proto: 'tcp',
+  oot: {
     txfee: 10000,
-    abbr: 'OOT',
     serverList: [
-      'electrum1.utrum.io:10088',
-      'electrum2.utrum.io:10088'
+      'electrum1.utrum.io:10088:tcp',
+      'electrum2.utrum.io:10088:tcp'
     ],
   },
-  coqui: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10011,
-    proto: 'tcp',
+  coqui: {
     txfee: 10000,
-    abbr: 'COQUI',
     serverList: [
       'electrum1.cipig.net:10011',
       'electrum2.cipig.net:10011'
     ],
   },
-  chain: { // !estimatefee
-    address: 'electrum1.chainmakers.co',
-    port: 55417,
-    proto: 'tcp',
+  chain: {
     txfee: 10000,
-    abbr: 'CHAIN',
     serverList: [
-      'electrum1.chainmakers.co:55417',
-      'electrum2.chainmakers.co:55417'
+      'electrum1.chainmakers.co:55417:tcp',
+      'electrum2.chainmakers.co:55417:tcp'
     ],
   },
-  glxt: { // !estimatefee
-    address: 'electrum1.glx.co',
-    port: 60012,
-    proto: 'tcp',
+  glxt: {
     txfee: 10000,
-    abbr: 'GLXT',
     serverList: [
-      'electrum1.glx.co:60012',
-      'electrum2.glx.co:60012'
+      'electrum1.glx.co:60012:tcp',
+      'electrum2.glx.co:60012:tcp'
     ],
   },
-  revs: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10003,
-    proto: 'tcp',
+  revs: {
     txfee: 10000,
-    abbr: 'REVS',
     serverList: [
-      'electrum1.cipig.net:10003',
-      'electrum2.cipig.net:10003'
+      'electrum1.cipig.net:10003:tcp',
+      'electrum2.cipig.net:10003:tcp'
     ],
   },
-  supernet: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10005,
-    proto: 'tcp',
+  supernet: {
     txfee: 10000,
-    abbr: 'SUPERNET',
     serverList: [
-      'electrum1.cipig.net:10005',
-      'electrum2.cipig.net:10005'
+      'electrum1.cipig.net:10005:tcp',
+      'electrum2.cipig.net:10005:tcp'
     ],
   },
-  dex: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10006,
-    proto: 'tcp',
+  dex: {
     txfee: 10000,
-    abbr: 'DEX',
     serverList: [
-      'electrum1.cipig.net:10006',
-      'electrum2.cipig.net:10006'
+      'electrum1.cipig.net:10006:tcp',
+      'electrum2.cipig.net:10006:tcp'
     ],
   },
-  bots: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10007,
-    proto: 'tcp',
+  bots: {
     txfee: 10000,
-    abbr: 'BOTS',
     serverList: [
-      'electrum1.cipig.net:10007',
-      'electrum2.cipig.net:10007'
+      'electrum1.cipig.net:10007:tcp',
+      'electrum2.cipig.net:10007:tcp'
     ],
   },
-  crypto: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10008,
-    proto: 'tcp',
+  crypto: {
     txfee: 10000,
-    abbr: 'CRYPTO',
     serverList: [
-      'electrum1.cipig.net:10008',
-      'electrum2.cipig.net:10008'
+      'electrum1.cipig.net:10008:tcp',
+      'electrum2.cipig.net:10008:tcp'
     ],
   },
-  dnr: { // !estimatefee
-    address: 'denarius.tech',
-    port: 50001,
-    proto: 'tcp',
+  dnr: {
     txfee: 10000,
-    abbr: 'DNR',
     serverList: [
-      '144.202.95.223:50001',
-      '45.77.137.111:50001'
+      '144.202.95.223:50001:tcp',
+      '45.77.137.111:50001:tcp'
     ],
   },
-  hodl: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10009,
-    proto: 'tcp',
+  hodl: {
     txfee: 10000,
-    abbr: 'HODL',
     serverList: [
-      'electrum1.cipig.net:10009',
-      'electrum2.cipig.net:10009'
+      'electrum1.cipig.net:10009:tcp',
+      'electrum2.cipig.net:10009:tcp'
     ],
   },
-  pangea: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10010,
-    proto: 'tcp',
+  pangea: {
     txfee: 10000,
-    abbr: 'PANGEA',
     serverList: [
-      'electrum1.cipig.net:10010',
-      'electrum2.cipig.net:10010'
+      'electrum1.cipig.net:10010:tcp',
+      'electrum2.cipig.net:10010:tcp'
     ],
   },
-  bet: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10012,
-    proto: 'tcp',
+  bet: {
     txfee: 10000,
-    abbr: 'BET',
     serverList: [
-      'electrum1.cipig.net:10012',
-      'electrum2.cipig.net:10012'
+      'electrum1.cipig.net:10012:tcp',
+      'electrum2.cipig.net:10012:tcp'
     ],
   },
-  mshark: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10013,
-    proto: 'tcp',
+  mshark: {
     txfee: 10000,
-    abbr: 'MSHARK',
     serverList: [
-      'electrum1.cipig.net:10013',
-      'electrum2.cipig.net:10013'
+      'electrum1.cipig.net:10013:tcp',
+      'electrum2.cipig.net:10013:tcp'
     ],
   },
-  mnz: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10002,
-    proto: 'tcp',
+  mnz: {
     txfee: 10000,
-    abbr: 'MNZ',
     serverList: [
-      'electrum1.cipig.net:10002',
-      'electrum2.cipig.net:10002'/*,
-      '18.216.195.109:10002',
-      '52.41.58.116:10002',
-      '52.67.48.29:10002',
-      '13.124.87.194:10002',
-      '52.63.107.102:10002'*/
+      'electrum1.cipig.net:10002:tcp',
+      'electrum2.cipig.net:10002:tcp'
     ],
   },
-  wlc: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10014,
-    proto: 'tcp',
+  wlc: {
     txfee: 10000,
-    abbr: 'WLC',
     serverList: [
-      'electrum1.cipig.net:10014',
-      'electrum2.cipig.net:10014'
+      'electrum1.cipig.net:10014:tcp',
+      'electrum2.cipig.net:10014:tcp'
     ],
   },
-  mgw: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10015,
-    proto: 'tcp',
+  mgw: {
     txfee: 10000,
-    abbr: 'MGW',
     serverList: [
-      'electrum1.cipig.net:10015',
-      'electrum2.cipig.net:10015'
+      'electrum1.cipig.net:10015:tcp',
+      'electrum2.cipig.net:10015:tcp'
     ],
   },
-  btch: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10020,
-    proto: 'tcp',
+  btch: {
     txfee: 10000,
-    abbr: 'BTCH',
     serverList: [
-      'electrum1.cipig.net:10020',
-      'electrum2.cipig.net:10020'
+      'electrum1.cipig.net:10020:tcp',
+      'electrum2.cipig.net:10020:tcp'
     ],
   },
-  beer: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10022,
-    proto: 'tcp',
+  beer: {
     txfee: 10000,
-    abbr: 'BEER',
     serverList: [
-      'electrum1.cipig.net:10022',
-      'electrum2.cipig.net:10022'
+      'electrum1.cipig.net:10022:tcp',
+      'electrum2.cipig.net:10022:tcp'
     ],
   },
-  pizza: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10024,
-    proto: 'tcp',
+  pizza: {
     txfee: 10000,
-    abbr: 'PIZZA',
     serverList: [
-      'electrum1.cipig.net:10024',
-      'electrum2.cipig.net:10024'
+      'electrum1.cipig.net:10024:tcp',
+      'electrum2.cipig.net:10024:tcp'
     ],
   },
-  vote2018: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10021,
-    proto: 'tcp',
+  vote2018: {
     txfee: 10000,
-    abbr: 'VOTE2018',
     serverList: [
-      'electrum1.cipig.net:10021',
-      'electrum2.cipig.net:10021'
+      'electrum1.cipig.net:10021:tcp',
+      'electrum2.cipig.net:10021:tcp'
     ],
   },
-  ninja: { // !estimatefee
-    address: 'electrum1.fund.ninja',
-    port: 50001,
-    proto: 'tcp',
+  ninja: {
     txfee: 10000,
-    abbr: 'NINJA',
     serverList: [
-      'electrum1.fund.ninja:50001',
-      'electrum2.fund.ninja:50001'
+      'electrum1.fund.ninja:50001:tcp',
+      'electrum2.fund.ninja:50001:tcp'
     ],
   },
-  jumblr: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10004,
-    proto: 'tcp',
+  jumblr: {
     txfee: 10000,
-    abbr: 'JUMBLR',
     serverList: [
-      'electrum1.cipig.net:10004',
-      'electrum2.cipig.net:10004'
+      'electrum1.cipig.net:10004:tcp',
+      'electrum2.cipig.net:10004:tcp'
     ],
   },
-  komodo: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10001,
-    proto: 'tcp',
+  kmd: {
     txfee: 10000,
-    abbr: 'KMD',
     serverList: [
-      'electrum1.cipig.net:10001',
-      'electrum2.cipig.net:10001',
+      'electrum1.cipig.net:10001:tcp',
+      'electrum2.cipig.net:10001:tcp',
     ],
   },
-  dogecoin: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10060,
-    proto: 'tcp',
+  doge: {
     txfee: 100000000,
-    abbr: 'DOGE',
     serverList: [
-      'electrum1.cipig.net:10060',
-      'electrum2.cipig.net:10060'
+      'electrum1.cipig.net:10060:tcp',
+      'electrum2.cipig.net:10060:tcp'
     ],
   },
-  viacoin: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10067,
-    proto: 'tcp',
+  via: {
     txfee: 100000,
-    abbr: 'VIA',
     serverList: [
-      'electrum1.cipig.net:10067',
-      'electrum2.cipig.net:10067'
+      'electrum1.cipig.net:10067:tcp',
+      'electrum2.cipig.net:10067:tcp'
     ],
   },
-  vertcoin: {
-    address: 'electrum1.cipig.net',
-    port: 10071,
-    proto: 'tcp',
+  vtc: {
     txfee: 100000,
-    abbr: 'VTC',
     serverList: [
-      'electrum1.cipig.net:10071',
-      'electrum2.cipig.net:10071'
+      'electrum1.cipig.net:10071:tcp',
+      'electrum2.cipig.net:10071:tcp'
     ],
   },
-  namecoin: {
-    address: 'electrum1.cipig.net',
-    port: 10066,
-    proto: 'tcp',
+  nmc: {
     txfee: 100000,
-    abbr: 'NMC',
     serverList: [
-      'electrum1.cipig.net:10066',
-      'electrum2.cipig.net:10066'
+      'electrum1.cipig.net:10066:tcp',
+      'electrum2.cipig.net:10066:tcp'
     ],
   },
-  monacoin: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10070,
-    proto: 'tcp',
+  mona: {
     txfee: 100000,
-    abbr: 'MONA',
     serverList: [
-      'electrum1.cipig.net:10070',
-      'electrum2.cipig.net:10070'
+      'electrum1.cipig.net:10070:tcp',
+      'electrum2.cipig.net:10070:tcp'
     ],
   },
-  litecoin: {
-    address: 'electrum1.cipig.net',
-    port: 10065,
-    proto: 'tcp',
+  ltc: {
     txfee: 100000,
-    abbr: 'LTC',
     serverList: [
-      'electrum1.cipig.net:10065',
-      'electrum2.cipig.net:10065'
+      'electrum1.cipig.net:10065:tcp',
+      'electrum2.cipig.net:10065:tcp'
     ],
   },
-  faircoin: {
-    address: 'electrum1.cipig.net',
-    port: 10063,
-    proto: 'tcp',
+  fair: {
     txfee: 1000000,
-    abbr: 'FAIR',
     serverList: [
-      'electrum1.cipig.net:10063',
-      'electrum2.cipig.net:10063'
+      'electrum1.cipig.net:10063:tcp',
+      'electrum2.cipig.net:10063:tcp'
     ],
   },
   dgb: {
-    address: 'electrum1.cipig.net',
-    port: 10059,
-    proto: 'tcp',
     txfee: 100000,
-    abbr: 'DGB',
     serverList: [
-      'electrum1.cipig.net:10059',
-      'electrum2.cipig.net:10059'
+      'electrum1.cipig.net:10059:tcp',
+      'electrum2.cipig.net:10059:tcp'
     ],
   },
   dash: {
-    address: 'electrum1.cipig.net',
-    port: 10061,
-    proto: 'tcp',
     txfee: 10000,
-    abbr: 'DASH',
     serverList: [
-      'electrum1.cipig.net:10061',
-      'electrum2.cipig.net:10061'
+      'electrum1.cipig.net:10061:tcp',
+      'electrum2.cipig.net:10061:tcp'
     ],
   },
-  crown: {
-    address: 'electrum1.cipig.net',
-    port: 10069,
-    proto: 'tcp',
+  crw: {
     txfee: 10000,
-    abbr: 'CRW',
     serverList: [
-      'electrum1.cipig.net:10069',
-      'electrum2.cipig.net:10069'
+      'electrum1.cipig.net:10069:tcp',
+      'electrum2.cipig.net:10069:tcp'
     ],
   },
   btc: {
-    address: 'e-x.not.fyi',
-    port: 50001,
-    proto: 'tcp',
-    abbr: 'BTC',
     serverList: [
-      'electrum1.cipig.net:10000',
-      'electrum2.cipig.net:10000',
-      'mooo.not.fyi:50011',
-      'e-x.not.fyi:50001',
-      'vps.hsmiths.com:50001',
-      'us.electrum.be:50001',
-      'electrumx.bot.nu:50001',
-      'btc.asis.io:50001',
-      'electrum.backplanedns.org:50001',
-      'electrum.festivaldelhumor.org:50001'
+      'electrum1.cipig.net:10000:tcp',
+      'electrum2.cipig.net:10000:tcp',
+      'mooo.not.fyi:50011:tcp',
+      'e-x.not.fyi:50001:tcp',
+      'vps.hsmiths.com:50001:tcp',
+      'us.electrum.be:50001:tcp',
+      'electrumx.bot.nu:50001:tcp',
+      'btc.asis.io:50001:tcp',
+      'electrum.backplanedns.org:50001:tcp',
+      'electrum.festivaldelhumor.org:50001:tcp'
     ],
   },
   btg: {
-    address: '173.212.225.176',
-    port: 10052,
-    proto: 'tcp',
-    abbr: 'BTG',
     txfee: 10000,
     serverList: [
-      '173.212.225.176:10052',
-      '94.130.224.11:10052'
+      '173.212.225.176:10052:tcp',
+      '94.130.224.11:10052:tcp'
     ],
   },
-  blk: { // pos
-    address: 'electrum1.cipig.net',
-    port: 10054,
-    proto: 'tcp',
-    abbr: 'BLK',
+  blk: {
     txfee: 10000,
     serverList: [
-      'electrum1.cipig.net:10054',
-      'electrum2.cipig.net:10054'
+      'electrum1.cipig.net:10054:tcp',
+      'electrum2.cipig.net:10054:tcp'
     ],
   },
   sib: {
-    address: 'electrum1.cipig.net',
-    port: 10050,
-    proto: 'tcp',
-    abbr: 'SIB',
     txfee: 10000,
     serverList: [
-      'electrum1.cipig.net:10050',
-      'electrum2.cipig.net:10050'
+      'electrum1.cipig.net:10050:tcp',
+      'electrum2.cipig.net:10050:tcp'
     ],
   },
   bch: {
-    address: 'electrum1.cipig.net',
-    port: 10051,
-    proto: 'tcp',
-    abbr: 'BCH',
     txfee: 10000,
     serverList: [
-      'electrum1.cipig.net:10051',
-      'electrum2.cipig.net:10051'
+      'electrum1.cipig.net:10051:tcp',
+      'electrum2.cipig.net:10051:tcp'
     ],
   },
-  argentum: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10068,
-    proto: 'tcp',
+  argentum: {
     txfee: 50000,
-    abbr: 'ARG',
     serverList: [
-      'electrum1.cipig.net:10068',
-      'electrum2.cipig.net:10068'
+      'electrum1.cipig.net:10068:tcp',
+      'electrum2.cipig.net:10068:tcp'
     ],
   },
-  chips: { // !estimatefee
-    address: 'electrum1.cipig.net',
-    port: 10053,
-    proto: 'tcp',
+  chips: {
     txfee: 10000,
-    abbr: 'CHIPS',
     serverList: [
-      'electrum1.cipig.net:10053',
-      'electrum2.cipig.net:10053'
+      'electrum1.cipig.net:10053:tcp',
+      'electrum2.cipig.net:10053:tcp'
     ],
   },
   zec: {
-    address: 'electrum1.cipig.net',
-    port: 10058,
-    proto: 'tcp',
     txfee: 10000,
-    abbr: 'ZEC',
     serverList: [
-      'electrum1.cipig.net:10058',
-      'electrum2.cipig.net:10058'
+      'electrum1.cipig.net:10058:tcp',
+      'electrum2.cipig.net:10058:tcp'
     ],
   },
   hush: {
-    address: 'electrum1.cipig.net',
-    port: 10064,
-    proto: 'tcp',
     txfee: 10000,
-    abbr: 'HUSH',
     serverList: [
-      'electrum1.cipig.net:10064',
-      'electrum2.cipig.net:10064'
+      'electrum1.cipig.net:10064:tcp',
+      'electrum2.cipig.net:10064:tcp'
     ],
   },
-  sng: { // ssl 50002
-    address: 'electrumsvr.snowgem.org',
-    port: 50001,
-    proto: 'tcp',
+  sng: {
     txfee: 10000,
-    abbr: 'SNG',
     serverList: [
-      'electrumsvr.snowgem.org:50001',
-      'electrumsvr.snowgem.org:50001'
+      'electrumsvr.snowgem.org:50001:tcp',
+      'electrumsvr.snowgem.org:50001:tcp',
+      'electrumsvr.snowgem.org:50002:ssl',
+      'electrumsvr.snowgem.org:50002:ssl'
     ],
   },
   xmy: {
-    address: 'cetus.cryptap.us',
-    port: 50004,
-    proto: 'ssl',
     txfee: 5000,
-    abbr: 'XMY',
     serverList: [
-      'cetus.cryptap.us:50004',
-      'kraken.cryptap.us:50004'
+      'cetus.cryptap.us:50004:ssl',
+      'kraken.cryptap.us:50004:ssl'
     ],
   },
   zcl: {
-    address: 'electrum1.cipig.net',
-    port: 50055,
-    proto: 'tcp',
     txfee: 1000,
-    abbr: 'ZCL',
     serverList: [
-      'electrum1.cipig.net:10055',
-      'electrum2.cipig.net:10055'
+      'electrum1.cipig.net:10055:tcp',
+      'electrum2.cipig.net:10055:tcp'
     ],
   },
   hodlc: {
-    address: 'hodl.amit177.cf',
-    port: 17989,
-    proto: 'tcp',
     txfee: 5000,
-    abbr: 'HODLC',
     serverList: [
-      'hodl.amit177.cf:17989',
-      'hodl2.amit177.cf:17898'
+      'hodl.amit177.cf:17989:tcp',
+      'hodl2.amit177.cf:17898:tcp'
     ],
   },
   btx: {
-    address: 'electrum1.cipig.net',
-    port: 10057,
-    proto: 'tcp',
     txfee: 50000,
-    abbr: 'BTX',
     serverList: [
-      'electrum1.cipig.net:10057',
-      'electrum2.cipig.net:10057'
+      'electrum1.cipig.net:10057:tcp',
+      'electrum2.cipig.net:10057:tcp'
     ],
   },
   btcz: {
-    address: 'electrum1.cipig.net',
-    port: 10056,
-    proto: 'tcp',
     txfee: 10000,
-    abbr: 'BTCZ',
     serverList: [
-      'electrum1.cipig.net:10056',
-      'electrum2.cipig.net:10056'
+      'electrum1.cipig.net:10056:tcp',
+      'electrum2.cipig.net:10056:tcp'
     ],
   },
   grs: {
-    address: 'electrum10.groestlcoin.org',
-    port: 50001,
-    proto: 'tcp',
     txfee: 50000,
-    abbr: 'GRS',
     serverList: [
-      'electrum10.groestlcoin.org:50001',
-      'electrum11.groestlcoin.org:50001'
+      'electrum10.groestlcoin.org:50001:tcp',
+      'electrum11.groestlcoin.org:50001:tcp'
     ],
   },
   qtum: {
-    address: 's1.qtum.info',
-    port: 50001,
-    proto: 'tcp',
     txfee: 400000,
-    abbr: 'QTUM',
     serverList: [
-      's1.qtum.info:50001',
-      's2.qtum.info:50001'
+      's1.qtum.info:50001:tcp',
+      's2.qtum.info:50001:tcp'
     ],
   },
   btcp: {
-    address: 'electrum.btcprivate.org',
-    port: 5222,
-    proto: 'tcp',
     txfee: 10000,
-    abbr: 'BTCP',
     serverList: [
-      'electrum.btcprivate.org:5222',
-      'electrum2.btcprivate.org:5222'
+      'electrum.btcprivate.org:5222:tcp',
+      'electrum2.btcprivate.org:5222:tcp'
     ],
   },
   emc2: {
-    address: 'electrum1.cipig.net',
-    port: 10062,
-    proto: 'tcp',
     txfee: 100000,
-    abbr: 'EMC2',
     serverList: [
-      'electrum1.cipig.net:10062',
-      'electrum2.cipig.net:10062'
+      'electrum1.cipig.net:10062:tcp',
+      'electrum2.cipig.net:10062:tcp'
     ],
   },
   bcbc: {
-    address: 'bsmn0.cleanblockchain.io',
-    port: 50001,
-    proto: 'tcp',
     txfee: 10000,
-    abbr: 'BCBC',
     serverList: [
-      'bsmn0.cleanblockchain.io:50001',
-      'bsmn1.cleanblockchain.io:50001'
+      'bsmn0.cleanblockchain.io:50001:tcp',
+      'bsmn1.cleanblockchain.io:50001:tcp'
     ],
   },
   game: {
-    address: 'electrum1.cipig.net',
-    port: 10072,
-    proto: 'tcp',
     txfee: 100000,
-    abbr: 'GAME',
     serverList: [
-      'electrum1.cipig.net:10072',
-      'electrum2.cipig.net:10072'
+      'electrum1.cipig.net:10072:tcp',
+      'electrum2.cipig.net:10072:tcp'
     ],
   },
   fjc: {
-    address: 'electrumx1.fujicoin.org',
-    port: 50001,
-    proto: 'tcp',
     txfee: 100000,
-    abbr: 'FJC',
     serverList: [
-      'electrumx1.fujicoin.org:50001',
-      'electrumx2.fujicoin.org:50001',
-      'electrumx3.fujicoin.org:50001'
+      'electrumx1.fujicoin.org:50001:tcp',
+      'electrumx2.fujicoin.org:50001:tcp',
+      'electrumx3.fujicoin.org:50001:tcp'
     ],
   },
 };
-
-electrumServers.kmd = electrumServers.komodo;
-electrumServers.crw = electrumServers.crown;
-electrumServers.fair = electrumServers.faircoin;
-electrumServers.arg = electrumServers.argentum;
-electrumServers.ltc = electrumServers.litecoin;
-electrumServers.mona = electrumServers.litecoin;
-electrumServers.nmc = electrumServers.namecoin;
-electrumServers.vtc = electrumServers.vertcoin;
-electrumServers.via = electrumServers.viacoin;
-electrumServers.doge = electrumServers.dogecoin;
 
 module.exports = electrumServers;
