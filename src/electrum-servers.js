@@ -307,7 +307,7 @@ let electrumServers = {
       'electrum2.cipig.net:10051:tcp'
     ],
   },
-  argentum: {
+  arg: {
     txfee: 50000,
     serverList: [
       'electrum1.cipig.net:10068:tcp',
