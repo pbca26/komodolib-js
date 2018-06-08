@@ -108,6 +108,28 @@ const explorerList = {
   BLK: 'https://explorer.coinpayments.net/transaction.php?chain=4&hash=',
   ARG: 'https://prohashing.com/explorer/Argentum/',
   FAIR: 'https://chain.fair.to/transaction?transaction=',
+  CRAVE: 'http://explorer.craveproject.net',
+  FTC: 'https://explorer.feathercoin.com',
+  NLG:  'https://guldenchain.com',
+  PIVX: 'http://www.presstab.pw/phpexplorer/PIVX/tx.php?tx=',
+  DMD: 'https://chainz.cryptoid.info/dmd/search.dws?q=',
+  EFL: 'https://chainz.cryptoid.info/efl/search.dws?q=',
+  BSD: 'https://chainz.cryptoid.info/bsd/search.dws?q=',
+  ERC: 'https://chainz.cryptoid.info/erc/search.dws?q=',
+  SYS: 'https://chainz.cryptoid.info/sys/search.dws?q=',
+  EMC2: 'https://chainz.cryptoid.info/emc2/search.dws?q=',
+  IXC: 'https://chainz.cryptoid.info/ixc/search.dws?q=',
+  DGC: 'https://chainz.cryptoid.info/dgc/search.dws?q=',
+  VOX: 'http://206.189.74.116:3001',
+  AUR: 'http://insight.auroracoin.is',
+  LBC: 'https://explorer.lbry.io',
+  ACC: 'http://explorer.getadcoin.com:5000',
+  VIVO: 'http://vivo.explorerz.top:3003',
+  GBX: 'http://explorer.gobyte.network:5001',
+  FJC: 'http://explorer.fujicoin.org',
+  LINX: 'http://explorer.mylinx.io/?',
+  CDN: 'https://explorer.canadaecoin.ca',
+  FLASH: 'https://explorer.flashcoin.io'
 };
 
 const explorerListExt = {

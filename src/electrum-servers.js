@@ -1,4 +1,4 @@
-let electrumServers = {
+const electrumServers = {
   prlpay: {
     txfee: 10000,
     serverList: [
