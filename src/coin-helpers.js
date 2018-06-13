@@ -30,6 +30,7 @@ const _komodoAssetChains = [
   'BNTN',
   'PRLPAY',
   'CHAIN'
+  'ZILLA'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -130,7 +131,8 @@ const explorerList = {
   FJC: 'http://explorer.fujicoin.org',
   LINX: 'http://explorer.mylinx.io/?',
   CDN: 'https://explorer.canadaecoin.ca',
-  FLASH: 'https://explorer.flashcoin.io'
+  FLASH: 'https://explorer.flashcoin.io',
+  ZILLA: 'http://zilla.explorer.dexstats.info/',
 };
 
 const explorerListExt = {
