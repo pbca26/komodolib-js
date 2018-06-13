@@ -8,20 +8,12 @@ const _encrypt = session.encrypt.bind(session);
 const _decrypt = session.decrypt.bind(session);
 const Promise = require('bluebird');
 
-const encrypt = (cipherKey, string, testPinStrength) => {
+const encrypt = (cipherKey, string) => {
   return new Promise((resolve, reject) => {
-    if (testPinStrength) { 
-      const passwdStrength = require('passwd-strength');
-      
-      if (passwdStrength(_pin) < 29) {
-        resolve(-1);
-      }
-    } else {
-      _encrypt(string, cipherKey)
-      .then((encryptedString) => {
-        resolve(encryptedString);
-      });
-    }
+    _encrypt(string, cipherKey)
+    .then((encryptedString) => {
+      resolve(encryptedString);
+    });
   });
 }
 

@@ -42,7 +42,7 @@
     "sha256": "^0.2.0",
     "tx-decoder": "git://github.com/pbca26/tx-decoder",
     "iocane": "^1.0.0",
-    "passwd-strength": "git+https://github.com/pbca26/passwd-strength.git",
+    "passwd-strength": "git://github.com/pbca26/passwd-strength",
     "wif": "^2.0.6"
   }
 }
