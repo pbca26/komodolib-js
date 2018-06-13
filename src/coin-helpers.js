@@ -28,7 +28,8 @@ const _komodoAssetChains = [
   'GLXT',
   'EQL',
   'BNTN',
-  'PRLPAY'
+  'PRLPAY',
+  'CHAIN'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
