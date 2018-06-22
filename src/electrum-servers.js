@@ -226,8 +226,10 @@ const electrumServers = {
   mona: {
     txfee: 100000,
     serverList: [
-      'electrum1.cipig.net:10070:tcp',
-      'electrum2.cipig.net:10070:tcp'
+      'electrumx1.monacoin.nl:50001:tcp',
+      'electrumx2.monacoin.nl:50001:tcp',
+      'electrumx1.monacoin.ninja:50001:tcp',
+      'electrumx2.monacoin.ninja:50001:tcp'
     ],
   },
   ltc: {
@@ -282,7 +284,8 @@ const electrumServers = {
   btg: {
     txfee: 10000,
     serverList: [
-      '173.212.225.176:10052:tcp',
+      'electroncash.ueo.ch:51001:tcp',
+      'electrum.imaginary.cash:50001:tcp',
       '94.130.224.11:10052:tcp'
     ],
   },
