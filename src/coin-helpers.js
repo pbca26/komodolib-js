@@ -28,7 +28,8 @@ const _komodoAssetChains = [
   'GLXT',
   'EQL',
   'BNTN',
-  'PRLPAY'
+  'PRLPAY',
+  'CHAIN'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -82,9 +83,9 @@ const explorerList = {
   VOTE2018: 'http://88.99.226.252',
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
-  LTC: 'https://live.blockcypher.com/ltc',
-  DOGE: 'https://live.blockcypher.com/doge',
-  DASH: 'https://live.blockcypher.com/dash',
+  LTC: 'https://live.blockcypher.com/ltc/tx/',
+  DOGE: 'https://live.blockcypher.com/doge/tx/',
+  DASH: 'https://live.blockcypher.com/dash/tx/',
   MONA: 'https://bchain.info/MONA',
   VIA: 'https://explorer.viacoin.org',
   VTC: 'http://explorer.vertcoin.info',
