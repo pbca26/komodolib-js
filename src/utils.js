@@ -50,10 +50,11 @@ const getRandomElectrumServer = (servers, excludeServer) => {
     const _randomServer = _servers[_randomServerId];
     const _serverDetails = _randomServer.split(':');
 
-    if (_serverDetails.length === 2) {
+    if (_serverDetails.length === 3) {
       return {
         ip: _serverDetails[0],
         port: _serverDetails[1],
+        proto: _serverDetails[2],
       };
     }
   } else {
@@ -62,6 +63,7 @@ const getRandomElectrumServer = (servers, excludeServer) => {
     return {
       ip: _serverDetails[0],
       port: _serverDetails[1],
+      proto: _serverDetails[2],
     };
   }
 }

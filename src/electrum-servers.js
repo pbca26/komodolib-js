@@ -263,8 +263,14 @@ const electrumServers = {
   crw: {
     txfee: 10000,
     serverList: [
-      'electrum1.cipig.net:10069:tcp',
-      'electrum2.cipig.net:10069:tcp'
+      'sgp-crwseed.crowndns.info:50001:tcp',
+      'blr-crwseed.crowndns.info:50001:tcp',
+      'sfo-crwseed.crowndns.info:50001:tcp',
+      'nyc-crwseed.crowndns.info:50001:tcp',
+      'ams-crwseed.crowndns.info:50001:tcp',
+      'tor-crwseed.crowndns.info:50001:tcp',
+      'lon-crwseed.crowndns.info:50001:tcp',
+      'fra-crwseed.crowndns.info:50001:tcp'
     ],
   },
   btc: {
@@ -286,7 +292,11 @@ const electrumServers = {
     serverList: [
       'electroncash.ueo.ch:51001:tcp',
       'electrum.imaginary.cash:50001:tcp',
-      '94.130.224.11:10052:tcp'
+      '94.130.224.11:10052:tcp',
+      'electrumx-eu.bitcoingold.org:50001:tcp',
+      'electrumx-us.bitcoingold.org:50001:tcp',
+      'electrumx-eu.btcgpu.org:50001:tcp',
+      'electrumx-us.btcgpu.org:50001:tcp'
     ],
   },
   blk: {
