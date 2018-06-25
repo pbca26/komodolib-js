@@ -1,4 +1,11 @@
 const electrumServers = {
+  zilla: {
+    txfee: 10000,
+    serverList: [
+      'electrum1.cipig.net:10028:tcp',
+      'electrum2.cipig.net:10028:tcp'
+    ],
+  },
   prlpay: {
     txfee: 10000,
     serverList: [

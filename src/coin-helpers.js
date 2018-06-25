@@ -132,7 +132,7 @@ const explorerList = {
   LINX: 'http://explorer.mylinx.io/?',
   CDN: 'https://explorer.canadaecoin.ca',
   FLASH: 'https://explorer.flashcoin.io',
-  ZILLA: 'http://zilla.explorer.dexstats.info/',
+  ZILLA: 'http://zilla.explorer.dexstats.info',
 };
 
 const explorerListExt = {
