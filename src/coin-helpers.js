@@ -29,7 +29,7 @@ const _komodoAssetChains = [
   'EQL',
   'BNTN',
   'PRLPAY',
-  'CHAIN'
+  'CHAIN',
   'ZILLA'
 ];
 

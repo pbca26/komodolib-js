@@ -44,8 +44,8 @@ const electrumServers = {
   coqui: {
     txfee: 10000,
     serverList: [
-      'electrum1.cipig.net:10011',
-      'electrum2.cipig.net:10011'
+      'electrum1.cipig.net:10011:tcp',
+      'electrum2.cipig.net:10011:tcp'
     ],
   },
   chain: {
