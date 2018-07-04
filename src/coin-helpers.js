@@ -80,7 +80,7 @@ const explorerList = {
   HUSH: 'https://explorer.myhush.org',
   PIZZA: 'http://pizza.komodochainz.info',
   BEER: 'http://beer.komodochainz.info',
-  NINJA: 'https://explorer.fund.ninja',
+  NINJA: 'https://ninja.kmdexplorer.io',
   VOTE2018: 'http://88.99.226.252',
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',

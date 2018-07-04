@@ -148,7 +148,7 @@ const fromSats = (value) => {
 }
 
 const toSats = (value) => {
-  return value.toFixed(8) * 100000000;
+  return Number(value).toFixed(8) * 100000000;
 }
 
 module.exports = {
