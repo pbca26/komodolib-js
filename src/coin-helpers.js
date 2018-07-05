@@ -30,7 +30,9 @@ const _komodoAssetChains = [
   'BNTN',
   'PRLPAY',
   'CHAIN',
-  'ZILLA'
+  'ZILLA',
+  'DSEC',
+  'VRSC'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -82,6 +84,8 @@ const explorerList = {
   BEER: 'http://beer.komodochainz.info',
   NINJA: 'https://ninja.kmdexplorer.io',
   VOTE2018: 'http://88.99.226.252',
+  DSEC: 'https://dsec.kmdexplorer.io',
+  VRSC: 'https://vrsc.kmdexplorer.io',
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
   LTC: 'https://live.blockcypher.com/ltc/tx/',
