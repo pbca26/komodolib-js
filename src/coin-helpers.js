@@ -137,6 +137,7 @@ const explorerList = {
   CDN: 'https://explorer.canadaecoin.ca',
   FLASH: 'https://explorer.flashcoin.io',
   ZILLA: 'http://zilla.explorer.dexstats.info',
+  XZC: 'https://explorer.zcoin.io',
 };
 
 const explorerListExt = {

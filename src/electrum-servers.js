@@ -449,6 +449,47 @@ const electrumServers = {
       'electrumx3.fujicoin.org:50001:tcp'
     ],
   },
+  ftc: {
+    txfee: 1000000,
+    serverList: [
+      'electrum1.cipig.net:10074:tcp',
+      'electrum2.cipig.net:10074:tcp',
+      'electrum3.cipig.net:10074:tcp'
+    ],
+  },
+  polis: {
+    txfee: 0, // fix
+    serverList: [
+      'electrum1.cipig.net:10075:tcp',
+      'electrum2.cipig.net:10075:tcp',
+      'electrum3.cipig.net:10075:tcp'
+    ],
+  },
+  xmcc: {
+    txfee: 10000,
+    serverList: [
+      'electrum1.cipig.net:10076:tcp',
+      'electrum2.cipig.net:10076:tcp',
+      'electrum3.cipig.net:10076:tcp'
+    ],
+  },
+  xzc: {
+    txfee: 10000,
+    serverList: [
+      'electrumx01.zcoin.io:50001:tcp',
+      'electrumx02.zcoin.io":50001:tcp',
+      '45.63.92.224:50001:tcp',
+      '45.77.67.235:50001:tcp'
+    ],
+  },
+  gbx: {
+    txfee: 10000,
+    serverList: [
+      'electrum1.cipig.net:10073:tcp',
+      'electrum2.cipig.net:10073:tcp',
+      'electrum3.cipig.net:10073:tcp'
+    ],
+  },
 };
 
 module.exports = electrumServers;
