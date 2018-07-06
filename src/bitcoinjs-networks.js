@@ -102,6 +102,7 @@ let networks = {
     wif: 0xbc,
     dustThreshold: 1000,
     isZcash: true,
+    kmdInterest: true,
   },
   via: {
     messagePrefix: '\x19Viacoin Signed Message:\n',
