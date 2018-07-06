@@ -202,6 +202,8 @@ let networks = {
     scriptHash: 0x17,
     wif: 0x80,
     dustThreshold: 1000,
+    forkName: 'btg',
+    isBtcFork: true,
   },
   bch: {
     messagePrefix: '\x19BitcoinCash Signed Message:\n',
@@ -213,6 +215,8 @@ let networks = {
     scriptHash: 0x5,
     wif: 0x80,
     dustThreshold: 1000,
+    forkName: 'bch',
+    isBtcFork: true,
   },
   blk: {
     messagePrefix: '\x19BlackCoin Signed Message:\n',
