@@ -1,6 +1,6 @@
 {
   "name": "agama-wallet-lib",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "Agama wallet library.",
   "keywords": [
     "agama wallet",
@@ -15,29 +15,34 @@
   "license": "MIT",
   "author": "SuperNET",
   "files": [
-    "index.js"
+    "index.js",
+    "src"
   ],
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/pbca26/agama-wallet-lib.git"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {
+    "browserify-shim": "^3.8.14"
   },
   "dependencies": {
     "bigi": "^1.4.2",
     "bip39": "^2.4.0",
-    "bitcoinforksjs-lib": "git://github.com/bitcoinjs/bitcoinjs-lib#opt-in-bitcoincash-sighash",
+    "bluebird": "^3.4.7",
+    "bitcoinforksjs-lib": "git://github.com/SuperNETorg/bitcoinjs-lib#opt-in-bitcoincash-sighash",
     "bitcoinjs-lib": "git://github.com/SuperNETorg/bitcoinjs-lib",
-    "bitcoinjs-lib-zcash": "git://github.com/pbca26/bitcoinjs-lib#zcash",
     "bitcoinjs-lib-pos": "git://github.com/KomodoPlatform/bitcoinjs-lib-pos",
+    "bitcoinjs-lib-zcash": "git://github.com/pbca26/bitcoinjs-lib#zcash",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",
     "js-sha256": "^0.7.1",
     "nodejs-aes256": "^1.0.1",
     "sha256": "^0.2.0",
+    "tx-decoder": "git://github.com/pbca26/tx-decoder",
+    "iocane": "^1.0.0",
+    "passwd-strength": "git://github.com/pbca26/passwd-strength",
     "wif": "^2.0.6"
   }
 }
