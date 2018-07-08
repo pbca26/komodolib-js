@@ -16,7 +16,8 @@
   "author": "SuperNET",
   "files": [
     "index.js",
-    "src"
+    "src",
+    "build"
   ],
   "main": "index.js",
   "repository": {
