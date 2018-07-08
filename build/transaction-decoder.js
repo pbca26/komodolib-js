@@ -43,16 +43,16 @@ var bitcoin = void 0;
 // zcash tx decode fallback
 var Buffer = require('safe-buffer').Buffer;
 
-var _require = require('tx-decoder/src/buffer-utils'),
+var _require = require('tx-decoder/build/buffer-utils'),
     readSlice = _require.readSlice,
     readInt32 = _require.readInt32,
     readUInt32 = _require.readUInt32;
 
-var _require2 = require('tx-decoder/src/compose'),
+var _require2 = require('tx-decoder/build/compose'),
     compose = _require2.compose,
     addProp = _require2.addProp;
 
-var _require3 = require('tx-decoder/src/tx-decoder'),
+var _require3 = require('tx-decoder/build/tx-decoder'),
     readInputs = _require3.readInputs,
     readInput = _require3.readInput,
     readOutput = _require3.readOutput;
