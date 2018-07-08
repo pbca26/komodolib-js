@@ -42,16 +42,16 @@ const {
   readSlice,
   readInt32,
   readUInt32,
-} = require('tx-decoder/src/buffer-utils');
+} = require('tx-decoder/build/buffer-utils');
 const {
   compose,
   addProp,
-} = require('tx-decoder/src/compose');
+} = require('tx-decoder/build/compose');
 const {
   readInputs,
   readInput,
   readOutput,
-} = require('tx-decoder/src/tx-decoder');
+} = require('tx-decoder/build/tx-decoder');
 const crypto = require('crypto');
 const _sha256 = (data) => {
   return crypto.createHash('sha256').update(data).digest();
