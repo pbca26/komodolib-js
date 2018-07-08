@@ -138,6 +138,7 @@ const explorerList = {
   FLASH: 'https://explorer.flashcoin.io',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   XZC: 'https://explorer.zcoin.io',
+  VRSC: 'https://explorer.veruscoin.io',
 };
 
 const explorerListExt = {
