@@ -13,3 +13,9 @@ browserify index.js --standalone agama > agamalib.js
 ### How to add kmd asset chain
 - add electrum servers list and tx fee in src/electrum-servers.js
 - add asset chain ticker and an explorer link in src/coin-helpers.js
+
+### How build for old browsers (ES5)
+npm run build
+
+example:
+`var fromSats = require('agama-wallet-lib/build/utils').fromSats;`

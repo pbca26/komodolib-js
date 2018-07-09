@@ -297,13 +297,9 @@ const electrumServers = {
   btg: {
     txfee: 10000,
     serverList: [
-      'electroncash.ueo.ch:51001:tcp',
-      'electrum.imaginary.cash:50001:tcp',
-      '94.130.224.11:10052:tcp',
-      'electrumx-eu.bitcoingold.org:50001:tcp',
-      'electrumx-us.bitcoingold.org:50001:tcp',
-      'electrumx-eu.btcgpu.org:50001:tcp',
-      'electrumx-us.btcgpu.org:50001:tcp'
+      'electrum1.cipig.net:10052:tcp',
+      'electrum2.cipig.net:10052:tcp',
+      'electrum3.cipig.net:10052:tcp'
     ],
   },
   blk: {
@@ -359,9 +355,9 @@ const electrumServers = {
     txfee: 10000,
     serverList: [
       'electrumsvr.snowgem.org:50001:tcp',
-      'electrumsvr.snowgem.org:50001:tcp',
+      'electrumsvr2.snowgem.org:50001:tcp',
       'electrumsvr.snowgem.org:50002:ssl',
-      'electrumsvr.snowgem.org:50002:ssl'
+      'electrumsvr2.snowgem.org:50002:ssl'
     ],
   },
   xmy: {
