@@ -73,7 +73,7 @@ const explorerList = {
   BOTS: 'https://bots.kmdexplorer.io',
   MGW: 'https://mgw.kmdexplorer.io',
   WLC: 'https://wlc.kmdexplorer.io',
-  CHIPS: 'http://CHIPS1.explorer.supernet.org',
+  CHIPS: 'https://explorer.chips.cash',
   COQUI: 'https://explorer.coqui.cash',
   EQL: 'http://178.62.240.191',
   MNZ: 'https://mnz.kmdexplorer.io',
