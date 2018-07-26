@@ -224,6 +224,9 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
         // double check no extra fee is applied
         if (vinSum - value - _change > fee) {
           _change += fee;
+        } else if (vinSum - value - _change === 0) {
+          // max amount spend edge case
+          value = value - fee;
         }
 
         // TODO: use individual dust thresholds
