@@ -267,6 +267,10 @@ var electrumServers = {
   mac: {
     txfee: 100000,
     serverList: ['electrum1.cipig.net:10077:tcp', 'electrum2.cipig.net:10077:tcp', 'electrum3.cipig.net:10077:tcp']
+  },
+  mnx: {
+    txfee: 10000,
+    serverList: ['electrum1.cipig.net:10079:tcp', 'electrum2.cipig.net:10079:tcp', 'electrum3.cipig.net:10079:tcp']
   }
 };
 
