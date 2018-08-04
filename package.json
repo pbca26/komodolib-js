@@ -8,9 +8,9 @@
     "komodo",
     "supernet"
   ],
-  "homepage": "https://github.com/pbca26/agama-wallet-lib",
+  "homepage": "https://github.com/VerusCoin/agama-wallet-lib",
   "bugs": {
-    "url": "https://github.com/pbca26/agama-wallet-lib/issues"
+    "url": "https://github.com/VerusCoin/agama-wallet-lib/issues"
   },
   "license": "MIT",
   "author": "SuperNET",
@@ -21,7 +21,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pbca26/agama-wallet-lib.git"
+    "url": "https://github.com/VerusCoin/agama-wallet-lib.git"
   },
   "scripts": {},
   "devDependencies": {
