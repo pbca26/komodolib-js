@@ -1,6 +1,6 @@
 {
   "name": "agama-wallet-lib",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "Agama wallet library.",
   "keywords": [
     "agama wallet",
@@ -15,29 +15,61 @@
   "license": "MIT",
   "author": "SuperNET",
   "files": [
-    "index.js"
+    "index.js",
+    "src",
+    "build"
   ],
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/pbca26/agama-wallet-lib.git"
   },
+  "engines": {
+    "node": ">= 4"
+  },
   "scripts": {
+    "build": "rm -rf build/* && ./node_modules/.bin/babel src --ignore spec.js,test.js,**/__tests__/*.js --out-dir build",
+    "test": "npm run test:tape",
+    "test:tape": "NODE_ENV=test ./node_modules/.bin/tape -r babel-register src/**/__tests__/**/index.js | tap-diff",
+    "test:coverage": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=lcov npm run test:tape; ./node_modules/.bin/nyc report ---reporter=text",
+    "release": "./node_modules/.bin/standard-version",
+    "version": "npm run release --commit-all",
+    "version:patch": "npm run release -- --release-as patch",
+    "version:minor": "npm run release -- --release-as minor",
+    "version:major": "npm run release -- --release-as major",
+    "push": "git push --follow-tags origin master && npm publish",
+    "deploy": "npm run version && npm run push",
+    "deploy:patch": "npm run version:patch && npm run push",
+    "deploy:minor": "npm run version:minor && npm run push",
+    "deploy:major": "npm run version:major && npm run push",
+    "preversion": "npm run test && npm run lint && npm run build",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "browserify-shim": "^3.8.14",
+    "nyc": "^12.0.2",
+    "standard-version": "^4.4.0",
+    "tap-diff": "^0.1.1",
+    "tape": "^4.9.1"
   },
   "dependencies": {
     "bigi": "^1.4.2",
     "bip39": "^2.4.0",
-    "bitcoinforksjs-lib": "git://github.com/bitcoinjs/bitcoinjs-lib#opt-in-bitcoincash-sighash",
+    "bitcoinforksjs-lib": "git://github.com/SuperNETorg/bitcoinjs-lib#opt-in-bitcoincash-sighash",
     "bitcoinjs-lib": "git://github.com/SuperNETorg/bitcoinjs-lib",
-    "bitcoinjs-lib-zcash": "git://github.com/pbca26/bitcoinjs-lib#zcash",
     "bitcoinjs-lib-pos": "git://github.com/KomodoPlatform/bitcoinjs-lib-pos",
+    "bitcoinjs-lib-zcash": "git://github.com/pbca26/bitcoinjs-lib#zcash",
+    "bluebird": "^3.4.7",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",
+    "iocane": "^1.0.0",
     "js-sha256": "^0.7.1",
     "nodejs-aes256": "^1.0.1",
+    "passwd-strength": "git://github.com/pbca26/passwd-strength",
     "sha256": "^0.2.0",
+    "tx-decoder": "git://github.com/pbca26/tx-decoder",
     "wif": "^2.0.6"
   }
 }

@@ -1,3 +1,3 @@
-const agamalib = require('src/index.js');
+const agamalib = require('./src/index.js');
 
 module.exports = agamalib;
