@@ -25,8 +25,7 @@ const secondsToString = (seconds, skipMultiply, showSeconds) => {
   return time;
 }
 
-const checkTimestamp = (dateToCheck) => {
-  const currentEpochTime = Date.now() / 1000;
+const checkTimestamp = (dateToCheck, currentEpochTime = Date.now() / 1000) => {
   const secondsElapsed = Number(currentEpochTime) - Number(dateToCheck / 1000);
 
   return Math.floor(secondsElapsed);
