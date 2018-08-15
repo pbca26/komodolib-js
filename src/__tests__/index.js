@@ -1,1 +1,1 @@
-require('./time.test')
+require('./time.test');

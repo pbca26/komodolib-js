@@ -148,7 +148,7 @@ const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, i
 const fromWif = (string, network) => {
   const decoded = wif.decode(string);
   const version = decoded.version;
-  
+
   if (!network) throw new Error('Unknown network version');
   if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
   if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');
@@ -162,10 +162,10 @@ const fromWif = (string, network) => {
     compressed: !decoded.compressed,
     network,
   });
-  
+
   if (network.wifAlt) {
     let altKP = [];
-    
+
     for (let i = 0; i < network.wifAlt.length; i++) {
       let _network = JSON.parse(JSON.stringify(network));
       _network.wif = network.wifAlt[i];
@@ -203,7 +203,7 @@ const fromWif = (string, network) => {
         version: network.wif,
       },
     };
-  }  
+  }
 };
 
 const pubkeyToAddress = (pubkey, network) => {

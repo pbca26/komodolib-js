@@ -53,9 +53,8 @@ const {
   readOutput,
 } = require('tx-decoder/build/tx-decoder');
 const crypto = require('crypto');
-const _sha256 = (data) => {
-  return crypto.createHash('sha256').update(data).digest();
-};
+
+const _sha256 = data => crypto.createHash('sha256').update(data).digest();
 
 const decodeFormat = (tx) => {
   const result = {
@@ -65,10 +64,10 @@ const decodeFormat = (tx) => {
   };
 
   return result;
-}
+};
 
 const decodeInput = (tx, network) => {
-  let result = [];
+  const result = [];
 
   tx.ins.forEach((input, n) => {
     const vin = {
@@ -82,14 +81,14 @@ const decodeInput = (tx, network) => {
   });
 
   return result;
-}
+};
 
 const decodeOutput = (tx, network) => {
   const format = (out, n, network) => {
-    let vout = {
+    const vout = {
       satoshi: out.value,
       value: (1e-8 * out.value).toFixed(8),
-      n: n,
+      n,
       scriptPubKey: {
         asm: network.isPoS ? bitcoinLib.bitcoin.script.toASM(out.script.chunks) : bitcoin.script.toASM(out.script),
         hex: network.isPoS ? out.script.toHex() : out.script.toString('hex'),
@@ -99,39 +98,39 @@ const decodeOutput = (tx, network) => {
     };
 
     switch (vout.scriptPubKey.type) {
-      case 'pubkeyhash':
-        if (network.isPoS) {
-          vout.scriptPubKey.addresses.push(bitcoinLib.bitcoinPos.address.fromOutputScript(out.script, network));
-        } else {
-          vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
-        }
-        break;
-      case 'pubkey':
-        const pubKeyBuffer = new Buffer(vout.scriptPubKey.asm.split(' ')[0], 'hex');
-        vout.scriptPubKey.addresses.push(bitcoin.ECPair.fromPublicKeyBuffer(pubKeyBuffer, network).getAddress());
-        break;
-      case 'scripthash':
-        if (network.isPoS) {
-          vout.scriptPubKey.addresses.push(bitcoinLib.bitcoinPos.address.fromOutputScript(out.script, network));
-        } else {
-          vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
-        }
-        break;
+    case 'pubkeyhash':
+      if (network.isPoS) {
+        vout.scriptPubKey.addresses.push(bitcoinLib.bitcoinPos.address.fromOutputScript(out.script, network));
+      } else {
+        vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
+      }
+      break;
+    case 'pubkey':
+      const pubKeyBuffer = new Buffer(vout.scriptPubKey.asm.split(' ')[0], 'hex');
+      vout.scriptPubKey.addresses.push(bitcoin.ECPair.fromPublicKeyBuffer(pubKeyBuffer, network).getAddress());
+      break;
+    case 'scripthash':
+      if (network.isPoS) {
+        vout.scriptPubKey.addresses.push(bitcoinLib.bitcoinPos.address.fromOutputScript(out.script, network));
+      } else {
+        vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
+      }
+      break;
     }
 
     return vout;
-  }
+  };
 
-  let result = [];
+  const result = [];
 
   tx.outs.forEach((out, n) => {
     result.push(format(out, n, network));
   });
 
   return result;
-}
+};
 
-let transactionDecoder = (rawtx, network, debug) => {
+const transactionDecoder = (rawtx, network, debug) => {
   if (network.isPoS) {
     bitcoin = bitcoinLib.bitcoinPos.main;
   } else if (network.isZcash) {
@@ -145,58 +144,54 @@ let transactionDecoder = (rawtx, network, debug) => {
 
     return {
       tx: _tx,
-      network: network,
+      network,
       format: decodeFormat(_tx),
       inputs: decodeInput(_tx, network),
       outputs: decodeOutput(_tx, network),
     };
-  } else {
-    if (network.isZcash) {
-      const buffer = Buffer.from(rawtx, 'hex');
-
-      const decodeTx = buffer => (
-        compose([
-          addProp('version', readInt32),            // 4 bytes
-          addProp('ins', readInputs(readInput)),    // 1-9 bytes (VarInt), Input counter; Variable, Inputs
-          addProp('outs', readInputs(readOutput)),  // 1-9 bytes (VarInt), Output counter; Variable, Outputs
-          addProp('locktime', readUInt32)           // 4 bytes
-        ])({}, buffer)
-      );
-
-      const readHash = buffer => {
-        const [res, bufferLeft] = readSlice(32)(_sha256(_sha256(buffer)))
-        const hash = Buffer.from(res, 'hex').reverse().toString('hex')
-        return [hash, bufferLeft]
-      };
-
-      let decodedtx = decodeTx(buffer);
-      decodedtx[0].getId = () => {
-        return readHash(buffer)[0];
-      };
-
-      return {
-        tx: decodedtx[0],
-        network: network,
-        format: decodeFormat(decodedtx[0]),
-        inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0], network),
-        outputs: decodeOutput(decodedtx[0], network),
-      };
-    } else {
-      try {
-        const _tx = network.isPoS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
-  
-        return {
-          tx: _tx,
-          network: network,
-          format: decodeFormat(_tx),
-          inputs: decodeInput(_tx, network),
-          outputs: decodeOutput(_tx, network),
-        };
-      } catch (e) {
-        return false;
-      }
-    }
   }
-}
+  if (network.isZcash) {
+    const buffer = Buffer.from(rawtx, 'hex');
+
+    const decodeTx = buffer => (
+      compose([
+        addProp('version', readInt32), // 4 bytes
+        addProp('ins', readInputs(readInput)), // 1-9 bytes (VarInt), Input counter; Variable, Inputs
+        addProp('outs', readInputs(readOutput)), // 1-9 bytes (VarInt), Output counter; Variable, Outputs
+        addProp('locktime', readUInt32), // 4 bytes
+      ])({}, buffer)
+    );
+
+    const readHash = (buffer) => {
+      const [res, bufferLeft] = readSlice(32)(_sha256(_sha256(buffer)));
+      const hash = Buffer.from(res, 'hex').reverse().toString('hex');
+      return [hash, bufferLeft];
+    };
+
+    const decodedtx = decodeTx(buffer);
+    decodedtx[0].getId = () => readHash(buffer)[0];
+
+    return {
+      tx: decodedtx[0],
+      network,
+      format: decodeFormat(decodedtx[0]),
+      inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0], network),
+      outputs: decodeOutput(decodedtx[0], network),
+    };
+  }
+  try {
+    const _tx = network.isPoS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
+
+    return {
+      tx: _tx,
+      network,
+      format: decodeFormat(_tx),
+      inputs: decodeInput(_tx, network),
+      outputs: decodeOutput(_tx, network),
+    };
+  } catch (e) {
+    return false;
+  }
+};
 
 module.exports = transactionDecoder;

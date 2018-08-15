@@ -1647,7 +1647,7 @@ const networks = {
       private: 0x0488ADE4,
     },
     pubKeyHash: 0x17,
-    scriptHash: 0x5,    
+    scriptHash: 0x5,
     wif: 0x97,
   },
   taj: {
@@ -1657,7 +1657,7 @@ const networks = {
       private: 0x0488ADE4,
     },
     pubKeyHash: 0x41,
-    scriptHash: 0x5,    
+    scriptHash: 0x5,
     wif: 0x6f,
   },
   lana: {
@@ -2110,7 +2110,7 @@ const networks = {
   },
   magicoin: {
     messagePrefix: '\u0018Magicoin Signed Message:\n',
-    pubKeyHash: 0x14, 
+    pubKeyHash: 0x14,
     wif: 0x94,
   },
   martexcoin: {

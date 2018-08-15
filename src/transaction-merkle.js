@@ -1,8 +1,7 @@
 const reverse = require('buffer-reverse');
 const crypto = require('crypto');
-const sha256 = (data) => {
-  return crypto.createHash('sha256').update(data).digest();
-}
+
+const sha256 = data => crypto.createHash('sha256').update(data).digest();
 
 const getMerkleRoot = (txid, proof, pos) => {
   let hash = txid;
@@ -23,6 +22,6 @@ const getMerkleRoot = (txid, proof, pos) => {
   }
 
   return hash;
-}
+};
 
 module.exports = getMerkleRoot;

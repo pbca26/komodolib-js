@@ -1,4 +1,4 @@
-/******************************************************************************
+/** ****************************************************************************
  * Copyright © 2016 The Waves Core Developers.                             	  *
  *                                                                            *
  * See the LICENSE files at     											  											*
@@ -12,15 +12,13 @@
  *                                                                            *
  * Removal or modification of this copyright notice is prohibited.            *
  *                                                                            *
- ******************************************************************************/
+ ***************************************************************************** */
 
 const bip39 = require('bip39');
 
 const passphraseGenerator = {
-	generatePassPhrase: (bitsval) => {
-		return bip39.generateMnemonic(bitsval);
-	},
-	
+  generatePassPhrase: bitsval => bip39.generateMnemonic(bitsval),
+
   // checks if it's possible that the pass phrase words supplied as the first parameter
   // were generated with the number of bits supplied as the second parameter
   isPassPhraseValid: (passPhraseWords, bits) => {
@@ -28,11 +26,9 @@ const passphraseGenerator = {
     // mirrors the generatePassPhrase function above
     const wordsCount = bits / 32 * 3;
     return passPhraseWords && passPhraseWords.length === wordsCount;
-	},
-	
-	arePassPhraseWordsValid: (passphrase) => {
-		return bip39.validateMnemonic(passphrase);
-	},
-}
+  },
+
+  arePassPhraseWordsValid: passphrase => bip39.validateMnemonic(passphrase),
+};
 
 module.exports = passphraseGenerator;
