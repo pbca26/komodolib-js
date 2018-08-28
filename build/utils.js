@@ -78,28 +78,10 @@ var isPositiveNumber = function isPositiveNumber(value) {
 };
 
 // display rounding
-var formatValue = function formatValue(_formatValue) {
-  var _valueToStr = _formatValue.toString();
-
-  if (_valueToStr.indexOf('.') === -1) {
-    return _formatValue;
-  } else {
-    if (_valueToStr) {
-      var _decimal = _valueToStr.substr(_valueToStr.indexOf('.') + 1, _valueToStr.length);
-      var newVal = _valueToStr.substr(0, _valueToStr.indexOf('.') + 1);
-
-      for (var i = 0; i < _decimal.length; i++) {
-        if (_decimal[i] === '0') {
-          newVal = newVal + _decimal[i];
-        } else {
-          newVal = newVal + _decimal[i];
-          break;
-        }
-      }
-
-      return newVal;
-    }
-  }
+// ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
+var formatValue = function formatValue(value) {
+  var c = Math.pow(10, 8);
+  return Math.trunc(value * c) / c;
 };
 
 var formatBytes = function formatBytes(bytes, decimals) {
