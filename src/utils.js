@@ -77,10 +77,22 @@ const isPositiveNumber = (value) => {
 }
 
 // display rounding
-// ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
 const formatValue = (value) => {
-  const c = Math.pow(10, 8);
-  return Math.trunc(value * c) / c;
+  if (value.toString().indexOf('.') === -1) {
+    return value;
+  } else {
+    // ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
+    const c = Math.pow(10, 8); // 8 decimal places
+    const newVal = Math.trunc(value * c) / c;
+    const str = newVal.toString();
+    const splitNum = str.split('.');
+
+    if (Number(splitNum[0]) !== 0) {
+      return newVal.toFixed(4);
+    } else {
+      return newVal;
+    }
+  }
 }
 
 const formatBytes = (bytes, decimals) => {

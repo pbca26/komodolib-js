@@ -78,10 +78,22 @@ var isPositiveNumber = function isPositiveNumber(value) {
 };
 
 // display rounding
-// ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
 var formatValue = function formatValue(value) {
-  var c = Math.pow(10, 8);
-  return Math.trunc(value * c) / c;
+  if (value.toString().indexOf('.') === -1) {
+    return value;
+  } else {
+    // ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
+    var c = Math.pow(10, 8); // 8 decimal places
+    var newVal = Math.trunc(value * c) / c;
+    var str = newVal.toString();
+    var splitNum = str.split('.');
+
+    if (Number(splitNum[0]) !== 0) {
+      return newVal.toFixed(4);
+    } else {
+      return newVal;
+    }
+  }
 };
 
 var formatBytes = function formatBytes(bytes, decimals) {
