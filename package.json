@@ -21,7 +21,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VerusCoin/agama-wallet-lib"
+    "url": "https://github.com/VerusCoin/agama-wallet-lib.git"
   },
   "scripts": {},
   "devDependencies": {
@@ -34,7 +34,7 @@
     "bitcoinforksjs-lib": "git+https://github.com/SuperNETorg/bitcoinjs-lib.git#opt-in-bitcoincash-sighash",
     "bitcoinjs-lib": "git+https://github.com/SuperNETorg/bitcoinjs-lib.git",
     "bitcoinjs-lib-pos": "git+https://github.com/KomodoPlatform/bitcoinjs-lib-pos.git",
-    "bitcoinjs-lib-zcash": "git+https://github.com/pbca26/bitcoinjs-lib#zcash.git",
+    "bitcoinjs-lib-zcash": "git+https://github.com/pbca26/bitcoinjs-lib.git#zcash",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",
     "js-sha256": "^0.7.1",
