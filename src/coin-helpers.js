@@ -33,7 +33,8 @@ const _komodoAssetChains = [
   'ZILLA',
   'DSEC',
   'VRSC',
-  'MGNX'
+  'MGNX',
+  'CALL'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -139,7 +140,8 @@ const explorerList = {
   FLASH: 'https://explorer.flashcoin.io',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   XZC: 'https://explorer.zcoin.io',
-  MGNX: 'http://mgnx.explorer.dexstats.info/'
+  MGNX: 'http://mgnx.explorer.dexstats.info/',
+  CALL: 'https://call.explorer.mycapitalco.in/'
 };
 
 const explorerListExt = {
