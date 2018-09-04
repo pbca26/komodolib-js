@@ -495,6 +495,13 @@ const electrumServers = {
       'electrum3.cipig.net:10079:tcp'
     ],
   },
+  call: {
+    txfee: 10000,
+    serverList: [
+      'electrum1.mycapitalco.in:10000:tcp',
+      'electrum2.mycapitalco.in:10000:tcp'
+    ],
+  },
 };
 
 module.exports = electrumServers;
