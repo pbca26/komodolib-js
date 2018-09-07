@@ -271,6 +271,14 @@ var electrumServers = {
   mnx: {
     txfee: 10000,
     serverList: ['electrum1.cipig.net:10079:tcp', 'electrum2.cipig.net:10079:tcp', 'electrum3.cipig.net:10079:tcp']
+  },
+  call: {
+    txfee: 10000,
+    serverList: ['electrum1.mycapitalco.in:10000:tcp', 'electrum2.mycapitalco.in:10000:tcp']
+  },
+  ccl: {
+    txfee: 10000,
+    serverList: ['electrum1.cipig.net:10029:tcp', 'electrum2.cipig.net:10029:tcp', 'electrum3.cipig.net:10029:tcp']
   }
 };
 

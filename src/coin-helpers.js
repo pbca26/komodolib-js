@@ -35,7 +35,8 @@ const _komodoAssetChains = [
   'VRSC',
   'MGNX',
   'CALL',
-  'CCL'
+  'CCL',
+  'PIRATE',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -57,6 +58,12 @@ const isKomodoCoin = (coin, skipKMD) => {
 // TODO: add at least 2 explorers per coin
 const explorerList = {
   KMD: 'https://www.kmdexplorer.io',
+  // KMD asset chains
+  ZILLA: 'http://zilla.explorer.dexstats.info',
+  MGNX: 'http://mgnx.explorer.dexstats.info',
+  CALL: 'https://call.explorer.mycapitalco.in',
+  CCL: 'http://ccl.explorer.dexstats.info',
+  PIRATE: 'http://pirate.explorer.dexstats.info',
   KV: 'https://kv.kmdexplorer.io',
   OOT: 'http://explorer.utrum.io',
   BNTN: 'http://chain.blocnation.io',
@@ -89,6 +96,7 @@ const explorerList = {
   VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
   VRSC: 'https://vrsc.kmdexplorer.io',
+  // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
   LTC: 'https://live.blockcypher.com/ltc/tx/',
@@ -139,11 +147,7 @@ const explorerList = {
   LINX: 'http://explorer.mylinx.io/?',
   CDN: 'https://explorer.canadaecoin.ca',
   FLASH: 'https://explorer.flashcoin.io',
-  ZILLA: 'http://zilla.explorer.dexstats.info',
   XZC: 'https://explorer.zcoin.io',
-  MGNX: 'http://mgnx.explorer.dexstats.info',
-  CALL: 'https://call.explorer.mycapitalco.in',
-  CCL: 'http://ccl.explorer.dexstats.info/tx',
 };
 
 const explorerListExt = {
