@@ -160,6 +160,13 @@ const electrumServers = {
       'electrum2.cipig.net:10020:tcp'
     ],
   },
+  vrsc: {
+    txfee: 10000,
+    serverList: [
+      'el0.vrsc.0x03.services:10000:tcp',
+      'el1.vrsc.0x03.services:10000:tcp'
+    ],
+  },
   beer: {
     txfee: 10000,
     serverList: [
