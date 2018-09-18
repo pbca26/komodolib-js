@@ -77,25 +77,19 @@ const isPositiveNumber = (value) => {
 }
 
 // display rounding
-const formatValue = (formatValue) => {
-  const _valueToStr = formatValue.toString();
-
-  if (_valueToStr.indexOf('.') === -1) {
-    return formatValue;
+const formatValue = (value) => {
+  if (value.toString().indexOf('.') === -1) {
+    return value;
   } else {
-    if (_valueToStr) {
-      const _decimal = _valueToStr.substr(_valueToStr.indexOf('.') + 1, _valueToStr.length);
-      let newVal = _valueToStr.substr(0, _valueToStr.indexOf('.') + 1);
+    // ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
+    const c = Math.pow(10, 8); // 8 decimal places
+    const newVal = Math.trunc(value * c) / c;
+    const str = newVal.toString();
+    const splitNum = str.split('.');
 
-      for (let i = 0; i < _decimal.length; i++) {
-        if (_decimal[i] === '0') {
-          newVal = newVal + _decimal[i];
-        } else {
-          newVal = newVal + _decimal[i];
-          break;
-        }
-      }
-
+    if (Number(splitNum[0]) !== 0) {
+      return newVal.toFixed(4);
+    } else {
       return newVal;
     }
   }
@@ -151,6 +145,11 @@ const toSats = (value) => {
   return Number(value).toFixed(8) * 100000000;
 }
 
+// https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
+const sortObject = (o) => {
+  return Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
+}
+
 module.exports = {
   formatValue,
   formatBytes,
@@ -163,4 +162,5 @@ module.exports = {
   toSats,
   isNumber,
   isPositiveNumber,
+  sortObject,
 };

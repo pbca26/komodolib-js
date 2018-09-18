@@ -15,6 +15,9 @@ browserify index.js --standalone agama > agamalib.js
 - add asset chain ticker and an explorer link in src/coin-helpers.js
 
 ### How build for old browsers (ES5)
+install babel
+npm install babel-preset-es2015
+
 npm run build
 
 example:
