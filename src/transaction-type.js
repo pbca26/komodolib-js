@@ -132,7 +132,10 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
         }
       }
     }
-  } else if (_sum.inputs === 0 && _sum.outputs > 0) {
+  } else if (
+    _sum.inputs === 0 &&
+    _sum.outputs > 0
+  ) {
     result = {
       type: 'received',
       amount: Number(_sum.outputs.toFixed(8)),
@@ -143,7 +146,10 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
       inputAddresses: _addresses.inputs,
       outputAddresses: _addresses.outputs,
     };
-  } else if (_sum.inputs > 0 && _sum.outputs === 0) {
+  } else if (
+    _sum.inputs > 0 &&
+    _sum.outputs === 0
+  ) {
     result = {
       type: 'sent',
       amount: Number(_sum.inputs.toFixed(8)),

@@ -1,7 +1,7 @@
 "use strict";
 
 // TODO: tiptime != 0 && nLockTime < tiptime
-module.exports = function (locktime, value, height) {
+var komodoInterest = function komodoInterest(locktime, value, height) {
   // value in sats
   var KOMODO_ENDOFERA = 7777777;
   var LOCKTIME_THRESHOLD = 500000000;
@@ -35,3 +35,5 @@ module.exports = function (locktime, value, height) {
 
   return interest;
 };
+
+module.exports = komodoInterest;

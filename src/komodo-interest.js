@@ -1,5 +1,5 @@
 // TODO: tiptime != 0 && nLockTime < tiptime
-module.exports = (locktime, value, height) => { // value in sats
+const komodoInterest = (locktime, value, height) => { // value in sats
   const KOMODO_ENDOFERA = 7777777;
   const LOCKTIME_THRESHOLD = 500000000;
   const timestampDiff = Math.floor(Date.now() / 1000) - locktime - 777;
@@ -34,3 +34,5 @@ module.exports = (locktime, value, height) => { // value in sats
 
   return interest;
 };
+
+module.exports = komodoInterest;
