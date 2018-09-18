@@ -136,6 +136,13 @@ var toSats = function toSats(value) {
   return Number(value).toFixed(8) * 100000000;
 };
 
+// https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
+var sortObject = function sortObject(o) {
+  return Object.keys(o).sort().reduce(function (r, k) {
+    return r[k] = o[k], r;
+  }, {});
+};
+
 module.exports = {
   formatValue: formatValue,
   formatBytes: formatBytes,
@@ -147,5 +154,6 @@ module.exports = {
   fromSats: fromSats,
   toSats: toSats,
   isNumber: isNumber,
-  isPositiveNumber: isPositiveNumber
+  isPositiveNumber: isPositiveNumber,
+  sortObject: sortObject
 };
