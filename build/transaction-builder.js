@@ -106,15 +106,15 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
         utxoListFormatted.push({
           txid: utxoList[i].txid,
           vout: utxoList[i].vout,
-          value: Number(utxoList[i].amountSats),
-          interestSats: Number(utxoList[i].interestSats),
+          value: Number(utxoList[i].amountSats || utxoList[i].value),
+          interestSats: Number(utxoList[i].interestSats || utxoList[i].interest || 0),
           verified: utxoList[i].verified ? utxoList[i].verified : false
         });
       } else {
         utxoListFormatted.push({
           txid: utxoList[i].txid,
           vout: utxoList[i].vout,
-          value: Number(utxoList[i].amountSats),
+          value: Number(utxoList[i].amountSats || utxoList[i].value),
           verified: utxoList[i].verified ? utxoList[i].verified : false
         });
       }

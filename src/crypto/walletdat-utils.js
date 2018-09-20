@@ -1,4 +1,6 @@
 const wif = require('wif');
+const bitcoinNetworks = require('../bitcoinjs-networks');
+const bitcoin = require('bitcoinjs-lib');
 
 // data in wallet.dat format
 const parseWalletdat = (data) => {
@@ -20,7 +22,7 @@ const parseWalletdat = (data) => {
       const keyObj = wif.decode(key);
       const wifKey = wif.encode(keyObj);
 
-      const keyPair = shepherd.bitcoinJS.ECPair.fromWIF(wifKey, shepherd.electrumJSNetworks.komodo);
+      const keyPair = bitcoin.ECPair.fromWIF(wifKey, bitcoinNetworks.kmd);
       const _keyPair = {
         priv: keyPair.toWIF(),
         pub: keyPair.getAddress(),
