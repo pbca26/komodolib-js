@@ -89,7 +89,9 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
         isSelfSend.outputs) {
       result = {
         type: 'self',
-        amount: Number(_sum.inputs - _sum.outputs).toFixed(8),
+        amount: _sum.inputs === _sum.outputs ? _sum.outputs : Number(_sum.inputs - _sum.outputs).toFixed(8),
+        amountIn: Number(_sum.inputs).toFixed(8),
+        amountOut: Number(_sum.outputs).toFixed(8),
         address: targetAddress,
         timestamp: tx.timestamp,
         txid: tx.format.txid,
@@ -106,7 +108,9 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
     } else {
       result = [{ // reorder since tx sort by default is from newest to oldest
         type: 'sent',
-        amount: Number(_sum.inputs.toFixed(8)),
+        amount: Number(_sum.inputs).toFixed(8),
+        amountIn: Number(_sum.inputs).toFixed(8),
+        amountOut: Number(_sum.outputs).toFixed(8),
         address: _addresses.outputs[0],
         timestamp: tx.timestamp,
         txid: tx.format.txid,
@@ -115,7 +119,9 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
         outputAddresses: _addresses.outputs,
       }, {
         type: 'received',
-        amount: Number(_sum.outputs.toFixed(8)),
+        amount: Number(_sum.outputs).toFixed(8),
+        amountIn: Number(_sum.inputs).toFixed(8),
+        amountOut: Number(_sum.outputs).toFixed(8),
         address: targetAddress,
         timestamp: tx.timestamp,
         txid: tx.format.txid,
@@ -139,6 +145,8 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
     result = {
       type: 'received',
       amount: Number(_sum.outputs.toFixed(8)),
+      amountIn: Number(_sum.inputs).toFixed(8),
+      amountOut: Number(_sum.outputs).toFixed(8),
       address: targetAddress,
       timestamp: tx.timestamp,
       txid: tx.format.txid,
