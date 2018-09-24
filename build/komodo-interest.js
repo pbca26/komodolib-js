@@ -1,10 +1,11 @@
 "use strict";
 
 // TODO: tiptime != 0 && nLockTime < tiptime
+var KOMODO_ENDOFERA = 7777777;
+var LOCKTIME_THRESHOLD = 500000000;
+
 var komodoInterest = function komodoInterest(locktime, value, height) {
   // value in sats
-  var KOMODO_ENDOFERA = 7777777;
-  var LOCKTIME_THRESHOLD = 500000000;
   var timestampDiff = Math.floor(Date.now() / 1000) - locktime - 777;
   var hoursPassed = Math.floor(timestampDiff / 3600);
   var minutesPassed = Math.floor((timestampDiff - hoursPassed * 3600) / 60);
@@ -28,7 +29,7 @@ var komodoInterest = function komodoInterest(locktime, value, height) {
         // const hoursInOneYear = 365 * 24;
         // const hoursDiff = hoursInOneYear - hoursPassed;
 
-        interest = (Number(value) * 0.00000001 / 10512000 * timestampDiffMinutes).toFixed(8);
+        interest = Number((Number(value) * 0.00000001 / 10512000 * timestampDiffMinutes).toFixed(8));
       }
     }
   }
