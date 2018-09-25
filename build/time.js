@@ -21,9 +21,9 @@ var checkTimestamp = function checkTimestamp(dateToCheck) {
   return Math.floor(secondsElapsed);
 };
 
-var secondsElapsedToString = function secondsElapsedToString(timestamp) {
+var secondsElapsedToString = function secondsElapsedToString(timestamp, srcInSeconds) {
   // in seconds
-  var secondsElapsed = checkTimestamp(timestamp);
+  var secondsElapsed = srcInSeconds ? srcInSeconds : checkTimestamp(timestamp);
   var hours = Math.floor(timestamp / 3600);
   var minutes = Math.floor((timestamp - hours * 3600) / 60);
   var seconds = timestamp - hours * 3600 - minutes * 60;

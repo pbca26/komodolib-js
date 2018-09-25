@@ -32,8 +32,8 @@ const checkTimestamp = (dateToCheck) => {
   return Math.floor(secondsElapsed);
 }
 
-const secondsElapsedToString = (timestamp) => { // in seconds
-  const secondsElapsed = checkTimestamp(timestamp);
+const secondsElapsedToString = (timestamp, srcInSeconds) => { // in seconds
+  const secondsElapsed = srcInSeconds ? srcInSeconds : checkTimestamp(timestamp);
   const hours = Math.floor(timestamp / 3600);
   const minutes = Math.floor((timestamp - (hours * 3600)) / 60);
   const seconds = timestamp - (hours * 3600) - (minutes * 60);
