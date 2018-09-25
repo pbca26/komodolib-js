@@ -21,15 +21,51 @@ var checkTimestamp = function checkTimestamp(dateToCheck) {
   return Math.floor(secondsElapsed);
 };
 
+// src: https://stackoverflow.com/questions/8942895/convert-a-number-of-days-to-days-months-and-years-with-jquery/8943500
 var secondsElapsedToString = function secondsElapsedToString(timestamp, srcInSeconds) {
   // in seconds
-  var secondsElapsed = srcInSeconds ? srcInSeconds : checkTimestamp(timestamp);
-  var hours = Math.floor(timestamp / 3600);
-  var minutes = Math.floor((timestamp - hours * 3600) / 60);
-  var seconds = timestamp - hours * 3600 - minutes * 60;
-  var returnTimeVal = (hours > 0 ? hours + ' hour(s) ' : '') + (minutes > 0 ? minutes + ' minute(s) ' : '') + (seconds > 0 ? seconds + ' second(s) ' : '');
+  var secondsElapsed = srcInSeconds ? timestamp : checkTimestamp(timestamp);
+  var str = '';
+  // Map lengths of `secondsElapsed` to different time periods
+  var oneDay = 24 * 3600;
+  var values = [{
+    str: ' year',
+    num: 365 * oneDay
+  }, {
+    str: ' month',
+    num: 30 * oneDay
+  }, {
+    str: ' week',
+    num: 7 * oneDay
+  }, {
+    str: ' day',
+    num: 1 * oneDay
+  }, {
+    str: ' hour',
+    num: 3600
+  }, {
+    str: ' minute',
+    num: 60
+  }, {
+    str: ' second',
+    num: 1
+  }];
 
-  return returnTimeVal;
+  // Iterate over the values...
+  for (var i = 0; i < values.length; i++) {
+    var _value = Math.floor(secondsElapsed / values[i].num);
+
+    // ... and find the largest time value that fits into the secondsElapsed
+    if (_value >= 1) {
+      // If we match, add to the string ('s' is for pluralization)
+      str += _value + values[i].str + (_value > 1 ? 's' : '') + ' ';
+
+      // and subtract from the secondsElapsed
+      secondsElapsed -= _value * values[i].num;
+    }
+  }
+
+  return str;
 };
 
 module.exports = {
