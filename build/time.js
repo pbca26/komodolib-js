@@ -15,7 +15,7 @@ var secondsToString = function secondsToString(seconds, skipMultiply, showSecond
 };
 
 var checkTimestamp = function checkTimestamp(dateToCheck) {
-  var currentEpochTime = Date.now() / 1000;
+  var currentEpochTime = Math.floor(Date.now() / 1000);
   var secondsElapsed = Number(currentEpochTime) - Number(dateToCheck / 1000);
 
   return Math.floor(secondsElapsed);
