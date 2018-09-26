@@ -3,7 +3,8 @@
 */
 
 // TODO: runtime extend for kmd assets
-
+// wifAlt can be used for different coin versions that underwent major code base changes
+// this is an experimental option that can lead to key pair derivation errors
 const bitcoin = require('bitcoinjs-lib');
 
 let networks = {
@@ -446,7 +447,7 @@ let networks = {
     pubKeyHash: 0x3F,
     scriptHash: 0x5,
     wif: 0xbf,
-    wifAlt: 0x80,
+    wifAlt: [0x80],
     dustThreshold: 1000,
     isZcash: true,
   },
@@ -459,7 +460,7 @@ let networks = {
     pubKeyHash: 0x21,
     scriptHash: 0x05,
     wif: 0xa1,
-    wifAlt: 0xB0,
+    wifAlt: [0xB0],
   },
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
@@ -505,7 +506,6 @@ let networks = {
     },
     pubKeyHash: 0x26,
     scriptHash: 0xA,
-    // scriptHash: 0x0a,
     wif: 0xC6,
     dustThreshold: 1000,
   },
@@ -611,8 +611,8 @@ let networks = {
     },
     pubKeyHash: 0x37,
     scriptHash: 0x1C,
-    // wif: 0xB7,
     wif: 0x03,
+    wifAlt: [0xB7],
     dustThreshold: 1000,
   },
   neos: {
@@ -647,7 +647,6 @@ let networks = {
     },
     pubKeyHash: 0x4B,
     scriptHash: 0x5,
-    // scriptHash: 0x05,
     wif: 0x80,
     dustThreshold: 1000,
   },
@@ -672,7 +671,7 @@ let networks = {
     pubKeyHash: 0x26,
     scriptHash: 0x62,
     wif: 0x26 + 128,
-    // wif: 0x62,
+    wifAlt: [0x62],
     dustThreshold: 1000,
   },
   // https://github.com/fujicoin/fujicoin/blob/master/src/chainparams.cpp#L132
@@ -838,7 +837,7 @@ let networks = {
     },
     pubKeyHash: 0x32,
     scriptHash: 0x09,
-    wif: 0xe0
+    wif: 0xe0,
   },
   ppc: {
     messagePrefix: '\x18Peercoin Signed Message:\n',
@@ -848,7 +847,7 @@ let networks = {
     },
     pubKeyHash: 0x37,
     scriptHash: 0x00, // TODO set this correctly
-    wif: 0xb7
+    wif: 0xb7,
   },
   axe: {
     messagePrefix: '\x18AXE Signed Message:\n',
@@ -858,7 +857,7 @@ let networks = {
     },
     pubKeyHash: 0x37,
     scriptHash: 0x10, // TODO set this correctly
-    wif: 0xcc
+    wif: 0xcc,
   },
   slm: {
     messagePrefix: '\x18Slimcoin Signed Message:\n',
@@ -868,7 +867,7 @@ let networks = {
     },
     pubKeyHash: 0x3f,
     scriptHash: 0x7d,
-    wif: 0x46
+    wif: 0x46,
   },
   nebl: {
     messagePrefix: '\x18Neblio Signed Message:\n',
@@ -878,7 +877,7 @@ let networks = {
     },
     pubKeyHash: 0x35,
     scriptHash: 0x70,
-    wif: 0xb5
+    wif: 0xb5,
   },
   jbs: {
     messagePrefix: '\x19Jumbucks Signed Message:\n',
@@ -888,7 +887,7 @@ let networks = {
     },
     pubKeyHash: 0x2b,
     scriptHash: 0x05,
-    wif: 0xab
+    wif: 0xab,
   },
   zet: {
     messagePrefix: '\x18Zetacoin Signed Message:\n',
@@ -898,7 +897,7 @@ let networks = {
     },
     pubKeyHash: 0x50,
     scriptHash: 0x09,
-    wif: 0xe0
+    wif: 0xe0,
   },
   onx: {
     messagePrefix: '\x18Onixcoin Signed Message:\n',
@@ -908,7 +907,7 @@ let networks = {
     },
     pubKeyHash: 0x4B,
     scriptHash: 0x05,
-    wif: 0x80
+    wif: 0x80,
   },
   usnbt: {
     messagePrefix: '\x18Nu Signed Message:\n',
@@ -1379,6 +1378,76 @@ let networks = {
     pubKeyHash: 0x21,
     scriptHash: 0x35,
     wif: 0x6a,
+  },
+  excc: {
+    messagePrefix: 'ExchangeCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x21B9,
+    scriptHash: 0x34AF,
+    wif: 0x80,
+  },
+  xax: {
+    messagePrefix: '\x18Artax Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x17,
+    scriptHash: 0x1CBD,
+    wif: 0x97,
+  },
+  stt: {
+    messagePrefix: '\x18Stash Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x4c,
+    scriptHash: 0x10,
+    wif: 0xcc,
+  },
+  sls: {
+    messagePrefix: '\x18Salus Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0xc4,
+    wif: 0xbf,
+  },
+  mec: {
+    messagePrefix: '\x18Megacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x32,
+    scriptHash: 0x05,
+    wif: 0xB2,
+  },
+  cesc: {
+    messagePrefix: '\x18Cryptoescudo Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x1c,
+    scriptHash: 0x05,
+    wif: 0x9c,
+  },
+  btdx: {
+    messagePrefix: '\x18BitCloud Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x05,
+    wif: 0x99,
   },
 };
 
