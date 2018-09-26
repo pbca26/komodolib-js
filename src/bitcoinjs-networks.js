@@ -459,6 +459,7 @@ let networks = {
     pubKeyHash: 0x21,
     scriptHash: 0x05,
     wif: 0xa1,
+    wifAlt: 0xB0,
   },
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
