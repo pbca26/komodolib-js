@@ -445,8 +445,8 @@ let networks = {
     },
     pubKeyHash: 0x3F,
     scriptHash: 0x5,
-    // wif: 0x80,
     wif: 0xbf,
+    wifAlt: 0x80,
     dustThreshold: 1000,
     isZcash: true,
   },
@@ -474,17 +474,6 @@ let networks = {
     dustThreshold: 1000,
   },
   // https://github.com/lbryio/lbrycrd/blob/master/src/chainparams.cpp#L176
-  /*lbc: {
-    messagePrefix: '\x19LBRY Credits Signed Message:\n',
-    bip32: {
-      public: 0x019C354f,
-      private: 0x019C3118,
-    },
-    pubKeyHash: 0x55,
-    scriptHash: 0x7a,
-    wif: 0x1c,
-    dustThreshold: 1000,
-  },*/
   lbc: {
     messagePrefix: '\x18LBRYcrd Signed Message:\n',
     bip32: {
@@ -662,17 +651,6 @@ let networks = {
     wif: 0x80,
     dustThreshold: 1000,
   },
-  /*lcc: {
-    messagePrefix: '\x19Litecoin Cash Signed Message:\n',
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4,
-    },
-    pubKeyHash: 0x1C,
-    scriptHash: 0x5,
-    wif: 0x32,
-    dustThreshold: 1000,
-  },*/
   lcc: {
     messagePrefix: '\x18Litecoin Cash Signed Message:\n',
     bip32: {
