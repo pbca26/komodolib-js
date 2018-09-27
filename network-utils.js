@@ -196,5 +196,5 @@ for (let key in networks) {
   _newParams.scriptHash = networks[key].scriptHash.toString(16);
   _newParams.wif = networks[key].wif.toString(16);
   
-  console.log(_newParams);
+  console.log(key + ': ' + JSON.stringify(_newParams));
 }
