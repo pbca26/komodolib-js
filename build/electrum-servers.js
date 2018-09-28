@@ -123,7 +123,7 @@ var electrumServers = {
   },
   via: {
     txfee: 100000,
-    serverList: ['electrum1.cipig.net:10067:tcp', 'electrum2.cipig.net:10067:tcp']
+    serverList: ['viax1.bitops.me:50001:tcp', 'viax2.bitops.me:50001:tcp', 'viax3.bitops.me:50001.tcp']
   },
   vtc: {
     txfee: 100000,
