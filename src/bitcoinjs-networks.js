@@ -1640,6 +1640,56 @@ const networks = {
     scriptHash: 0x5,
     wif: 0xb0,
   },
+  arco: {
+    messagePrefix: '\u0018Aquariuscoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x17,
+    scriptHash: 0x5,    
+    wif: 0x97,
+  },
+  taj: {
+    messagePrefix: '\u0018Tajcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x41,
+    scriptHash: 0x5,    
+    wif: 0x6f,
+  },
+  lana: {
+    messagePrefix: '\u0018Lanacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x30,
+    scriptHash: 0x5,
+    wif: 0xb0,
+  },
+  neva: {
+    messagePrefix: '\u0018Nevacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x35,
+    scriptHash: 0x5,
+    wif: 0xb1,
+  },
+  netko: {
+    messagePrefix: '\u0018Netkocoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x35,
+    scriptHash: 0x5,
+    wif: 0xB1,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
@@ -1685,11 +1735,6 @@ const networks = {
   },
   apexcoin: {
     messagePrefix: '\u0018Apexcoin Signed Message:\n',
-    pubKeyHash: 0x17,
-    wif: 0x97,
-  },
-  aquariuscoin: {
-    messagePrefix: '\u0018Aquariuscoin Signed Message:\n',
     pubKeyHash: 0x17,
     wif: 0x97,
   },
@@ -2038,11 +2083,6 @@ const networks = {
     pubKeyHash: 0x2d,
     wif: 0xad,
   },
-  lanacoin: {
-    messagePrefix: '\u0018Lanacoin Signed Message:\n',
-    pubKeyHash: 0x30,
-    wif: 0xb0,
-  },
   latium: {
     messagePrefix: '\u0018Latium Signed Message:\n',
     pubKeyHash: 0x17,
@@ -2108,11 +2148,6 @@ const networks = {
     pubKeyHash: 0x03,
     wif: 0x83,
   },
-  myriadcoin: {
-    messagePrefix: '\u0018Myriadcoin Signed Message:\n',
-    pubKeyHash: 0x32,
-    wif: 0xb2,
-  },
   needlecoin: {
     messagePrefix: '\u0018NeedleCoin Signed Message:\n',
     pubKeyHash: 0x35,
@@ -2122,11 +2157,6 @@ const networks = {
     messagePrefix: '\u0018NeetCoin Signed Message:\n',
     pubKeyHash: 0x35,
     wif: 0xb5,
-  },
-  nevacoin: {
-    messagePrefix: '\u0018Nevacoin Signed Message:\n',
-    pubKeyHash: 0x35,
-    wif: 0xb1,
   },
   nubits: {
     messagePrefix: '\u0018Nubits Signed Message:\n',
@@ -2242,11 +2272,6 @@ const networks = {
     messagePrefix: '\u0018SwagBucks Signed Message:\n',
     pubKeyHash: 0x3f,
     wif: 0x99,
-  },
-  tajcoin: {
-    messagePrefix: '\u0018Tajcoin Signed Message:\n',
-    pubKeyHash: 0x41,
-    wif: 0x6f,
   },
   titcoin: {
     messagePrefix: '\u0018Titcoin Signed Message:\n',

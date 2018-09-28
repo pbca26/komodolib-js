@@ -517,6 +517,42 @@ const electrumServers = {
       'el1.vrsc.0x03.services:10000:tcp'
     ],
   },
+  // src: CryptoWallet.si
+  arco: {
+    txfee: 0.0001,
+    serverList: [
+      'node1.cryptowallet.si:5095:tcp',
+      'node2.cryptowallet.si:5095:tcp',
+    ],
+  },
+  lana: {
+    txfee: 0.000001,
+    serverList: [
+      'node1.cryptowallet.si:5097:tcp',
+      'node2.cryptowallet.si:5097:tcp',
+    ],
+  },
+  neva: {
+    txfee: 0.000001,
+    serverList: [
+      'node1.cryptowallet.si:5096:tcp',
+      'node2.cryptowallet.si:5096:tcp',
+    ],
+  },
+  netko: {
+    txfee: 0.000001,
+    serverList: [
+      'node1.cryptowallet.si:5108:tcp',
+      'node2.cryptowallet.si:5108:tcp',
+    ],
+  },
+  taj: {
+    txfee: 0.000001,
+    serverList: [
+      'node1.cryptowallet.si:5098:tcp',
+      'node2.cryptowallet.si:5098:tcp',
+    ],
+  },
 };
 
 module.exports = electrumServers;

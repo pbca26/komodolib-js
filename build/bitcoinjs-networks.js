@@ -1604,6 +1604,51 @@ var networks = (_networks = {
   pubKeyHash: 0x19,
   scriptHash: 0x5,
   wif: 0xb0
+}), _defineProperty(_networks, 'arco', {
+  messagePrefix: '\x18Aquariuscoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x17,
+  scriptHash: 0x5,
+  wif: 0x97
+}), _defineProperty(_networks, 'taj', {
+  messagePrefix: '\x18Tajcoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x41,
+  scriptHash: 0x5,
+  wif: 0x6f
+}), _defineProperty(_networks, 'lana', {
+  messagePrefix: '\x18Lanacoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x30,
+  scriptHash: 0x5,
+  wif: 0xb0
+}), _defineProperty(_networks, 'neva', {
+  messagePrefix: '\x18Nevacoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x35,
+  scriptHash: 0x5,
+  wif: 0xb1
+}), _defineProperty(_networks, 'netko', {
+  messagePrefix: '\x18Netkocoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x35,
+  scriptHash: 0x5,
+  wif: 0xB1
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
@@ -1638,10 +1683,6 @@ var networks = (_networks = {
   wif: 0x97
 }), _defineProperty(_networks, 'apexcoin', {
   messagePrefix: '\x18Apexcoin Signed Message:\n',
-  pubKeyHash: 0x17,
-  wif: 0x97
-}), _defineProperty(_networks, 'aquariuscoin', {
-  messagePrefix: '\x18Aquariuscoin Signed Message:\n',
   pubKeyHash: 0x17,
   wif: 0x97
 }), _defineProperty(_networks, 'bbqcoin', {
@@ -1920,10 +1961,6 @@ var networks = (_networks = {
   messagePrefix: '\x18KittehCoin Signed Message:\n',
   pubKeyHash: 0x2d,
   wif: 0xad
-}), _defineProperty(_networks, 'lanacoin', {
-  messagePrefix: '\x18Lanacoin Signed Message:\n',
-  pubKeyHash: 0x30,
-  wif: 0xb0
 }), _defineProperty(_networks, 'latium', {
   messagePrefix: '\x18Latium Signed Message:\n',
   pubKeyHash: 0x17,
@@ -1976,10 +2013,6 @@ var networks = (_networks = {
   messagePrefix: '\x18Monocle Signed Message:\n',
   pubKeyHash: 0x03,
   wif: 0x83
-}), _defineProperty(_networks, 'myriadcoin', {
-  messagePrefix: '\x18Myriadcoin Signed Message:\n',
-  pubKeyHash: 0x32,
-  wif: 0xb2
 }), _defineProperty(_networks, 'needlecoin', {
   messagePrefix: '\x18NeedleCoin Signed Message:\n',
   pubKeyHash: 0x35,
@@ -1988,10 +2021,6 @@ var networks = (_networks = {
   messagePrefix: '\x18NeetCoin Signed Message:\n',
   pubKeyHash: 0x35,
   wif: 0xb5
-}), _defineProperty(_networks, 'nevacoin', {
-  messagePrefix: '\x18Nevacoin Signed Message:\n',
-  pubKeyHash: 0x35,
-  wif: 0xb1
 }), _defineProperty(_networks, 'nubits', {
   messagePrefix: '\x18Nubits Signed Message:\n',
   pubKeyHash: 0x19,
@@ -2084,10 +2113,6 @@ var networks = (_networks = {
   messagePrefix: '\x18SwagBucks Signed Message:\n',
   pubKeyHash: 0x3f,
   wif: 0x99
-}), _defineProperty(_networks, 'tajcoin', {
-  messagePrefix: '\x18Tajcoin Signed Message:\n',
-  pubKeyHash: 0x41,
-  wif: 0x6f
 }), _defineProperty(_networks, 'titcoin', {
   messagePrefix: '\x18Titcoin Signed Message:\n',
   pubKeyHash: 0x00,
