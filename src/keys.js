@@ -203,6 +203,18 @@ const fromWif = (string, network) => {
   }  
 };
 
+const pubkeyToAddress = (pubkey, network) => {
+  try {
+    const publicKey = new Buffer(pubkey, 'hex');
+    const publicKeyHash = bitcoin.crypto.hash160(publicKey);
+    const address =  network.isZcash ? bitcoinZcash.address.toBase58Check(publicKeyHash, network.pubKeyHash) : bitcoin.address.toBase58Check(publicKeyHash, network.pubKeyHash);
+
+    return address;
+  } catch (e) {
+    return false;
+  }
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -210,4 +222,5 @@ module.exports = {
   seedToWif,
   stringToWif,
   fromWif,
+  pubkeyToAddress,
 };

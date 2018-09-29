@@ -204,11 +204,24 @@ var fromWif = function fromWif(string, network) {
   }
 };
 
+var pubkeyToAddress = function pubkeyToAddress(pubkey, network) {
+  try {
+    var publicKey = new Buffer(pubkey, 'hex');
+    var publicKeyHash = bitcoin.crypto.hash160(publicKey);
+    var address = network.isZcash ? bitcoinZcash.address.toBase58Check(publicKeyHash, network.pubKeyHash) : bitcoin.address.toBase58Check(publicKeyHash, network.pubKeyHash);
+
+    return address;
+  } catch (e) {
+    return false;
+  }
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
   wifToWif: wifToWif,
   seedToWif: seedToWif,
   stringToWif: stringToWif,
-  fromWif: fromWif
+  fromWif: fromWif,
+  pubkeyToAddress: pubkeyToAddress
 };
