@@ -34,6 +34,7 @@ const wifToWif = (wif, network) => {
   return {
     pub: key.getAddress(),
     priv: key.toWIF(),
+    pubHex: key.getPublicKeyBuffer().toString('hex'),
   };
 }
 
@@ -59,6 +60,7 @@ const seedToWif = (seed, network, iguana) => {
   const keys = {
     pub: keyPair.getAddress(),
     priv: keyPair.toWIF(),
+    pubHex: keyPair.getPublicKeyBuffer().toString('hex'),
   };
 
   return keys;
@@ -93,6 +95,7 @@ const stringToWif = (string, network, iguana) => {
         keys = {
           priv: key.toWIF(),
           pub: key.getAddress(),
+          pubHex: key.getPublicKeyBuffer().toString('hex'),
         };
       } catch (e) {
         _wifError = true;

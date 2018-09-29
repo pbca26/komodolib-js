@@ -34,7 +34,8 @@ var wifToWif = function wifToWif(wif, network) {
 
   return {
     pub: key.getAddress(),
-    priv: key.toWIF()
+    priv: key.toWIF(),
+    pubHex: key.getPublicKeyBuffer().toString('hex')
   };
 };
 
@@ -59,7 +60,8 @@ var seedToWif = function seedToWif(seed, network, iguana) {
 
   var keys = {
     pub: keyPair.getAddress(),
-    priv: keyPair.toWIF()
+    priv: keyPair.toWIF(),
+    pubHex: keyPair.getPublicKeyBuffer().toString('hex')
   };
 
   return keys;
@@ -93,7 +95,8 @@ var stringToWif = function stringToWif(string, network, iguana) {
 
         keys = {
           priv: key.toWIF(),
-          pub: key.getAddress()
+          pub: key.getAddress(),
+          pubHex: key.getPublicKeyBuffer().toString('hex')
         };
       } catch (e) {
         _wifError = true;
