@@ -141,10 +141,73 @@ const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, i
   return _matchingKey ? _matchingKey : 'address is not found';
 };
 
+// src: https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/src/ecpair.js#L62
+const fromWif = (string, network) => {
+  const decoded = wif.decode(string);
+  const version = decoded.version;
+  
+  if (!network) throw new Error('Unknown network version');
+  if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
+  if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');
+
+  const d = bigi.fromBuffer(decoded.privateKey);
+
+  const masterKP = network.isZcash ? new bitcoinZcash.ECPair(d, null, {
+    compressed: !decoded.compressed,
+    network,
+  }) : new bitcoin.ECPair(d, null, {
+    compressed: !decoded.compressed,
+    network,
+  });
+  
+  if (network.wifAlt) {
+    let altKP = [];
+    
+    for (let i = 0; i < network.wifAlt.length; i++) {
+      let _network = JSON.parse(JSON.stringify(network));
+      _network.wif = network.wifAlt[i];
+
+      const _altKP = network.isZcash ? new bitcoinZcash.ECPair(d, null, {
+        compressed: !decoded.compressed,
+        network: _network,
+      }) : new bitcoin.ECPair(d, null, {
+        compressed: !decoded.compressed,
+        network: _network,
+      });
+
+      altKP.push({
+        pub: _altKP.getAddress(),
+        priv: _altKP.toWIF(),
+        version: network.wifAlt[i],
+      });
+    }
+
+    return {
+      inputKey: decoded,
+      master: {
+        pub: masterKP.getAddress(),
+        priv: masterKP.toWIF(),
+        version: network.wif,
+      },
+      alt: altKP,
+    };
+  } else {
+    return {
+      inputKey: decoded,
+      master: {
+        pub: masterKP.getAddress(),
+        priv: masterKP.toWIF(),
+        version: network.wif,
+      },
+    };
+  }  
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
   wifToWif,
   seedToWif,
   stringToWif,
+  fromWif,
 };
