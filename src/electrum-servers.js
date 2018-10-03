@@ -520,40 +520,113 @@ const electrumServers = {
   },
   // src: CryptoWallet.si
   arco: {
-    txfee: 0.0001,
+    txfee: 10000,
     serverList: [
       'node1.cryptowallet.si:5095:tcp',
       'node2.cryptowallet.si:5095:tcp',
     ],
   },
   lana: {
-    txfee: 0.000001,
+    txfee: 100,
     serverList: [
       'node1.cryptowallet.si:5097:tcp',
       'node2.cryptowallet.si:5097:tcp',
     ],
   },
   neva: {
-    txfee: 0.000001,
+    txfee: 100,
     serverList: [
       'node1.cryptowallet.si:5096:tcp',
       'node2.cryptowallet.si:5096:tcp',
     ],
   },
   netko: {
-    txfee: 0.000001,
+    txfee: 100,
     serverList: [
       'node1.cryptowallet.si:5108:tcp',
       'node2.cryptowallet.si:5108:tcp',
     ],
   },
   taj: {
-    txfee: 0.000001,
+    txfee: 100,
     serverList: [
       'node1.cryptowallet.si:5098:tcp',
       'node2.cryptowallet.si:5098:tcp',
     ],
   },
+  xvg: {
+    txfee: 10000,
+    serverList: [
+      'e1.verge-electrum.com:50002:tcp',
+      'e2.verge-electrum.com:50002:tcp',
+      'e1.verge-electrum.com:50003:ssl',
+      'e2.verge-electrum.com:50003:ssl',
+      '46.163.118.201:50002:ssl',
+    ],
+  },
+  cesc: {
+    txfee: 0, // todo
+    serverList: [
+      'electrum1.cryptoescudo.org:50001:tcp',
+      'electrum2.cryptoescudo.org:50001:tcp',
+      'electrum3.cryptoescudo.org:50001:tcp',
+    ],
+  },
+  mue: {
+    txfee: 0, // todo,
+    serverList: [
+      '181.214.148.6:50001:tcp',
+      '37.59.209.76:50001:tcp',
+      '181.214.148.6:50002:tcp',
+    ],
+  },
+  uno: {
+    txfee: 10000,
+    serverList: [
+      'electrum1.unobtanium.uno:50006:ssl',
+      'electrum2.unobtanium.uno:50006:ssl',
+      'nigeria1.unobtanium.uno:50006:ssl',
+      'nigeria2.unobtanium.uno:50006:ssl',
+    ],
+  },
+  koto: {
+    txfee: 0, // todo
+    serverList: [
+      'kotocoin.info:50001:tcp',
+      'kotocoin.info:50002:ssl',
+      'fr3.kotocoin.info:50002:ssl',
+      'fr.kotocoin.info:50001:tcp',
+      'fr.kotocoin.info:50002:ssl',
+      'electrum.okoto.xyz:50002:ssl',
+      'fr3.kotocoin.info:50001:tcp',
+      'electrumx-koto.tamami-foundation.org:50002:ssl',
+      'electrum.kotocoin.info:50002:ssl',
+      'electrum.kotocoin.info:50001:tcp',
+      'electrumx-koto.tamami-foundation.org:50001:tcp',
+    ],
+  },
+  rdd: {
+    txfee: 0, // todo
+    serverList: [
+      'reddcoin.corgi.party:50002:ssl', // (?)
+      'corgicoe4n4bmchm.onion:50001:tcp',
+    ],
+  },
+  pak: {
+    txfee: 0, // todo
+    serverList: [
+      '108.61.246.159:50001:tcp',
+    ],
+  },
+  cpc: {
+    txfee: 0, // todo
+    serverList: [
+      'electrum2.capricoin.org:50011:tcp',
+      'electrum2.capricoin.org:50012:ssl',
+      'electrum1.capricoin.org:50012:ssl',
+      'electrum1.capricoin.org:50011:tcp',
+    ],
+  }
 };
 
 module.exports = electrumServers;
