@@ -1445,7 +1445,7 @@ var networks = (_networks = {
   pubKeyHash: 0x19,
   scriptHash: 0x05,
   wif: 0x99
-}), _defineProperty(_networks, '1337', {
+}), _defineProperty(_networks, 1337, {
   messagePrefix: '\x18Elite Signed Message:\n',
   pubKeyHash: 0x30,
   scriptHash: 0x1c,

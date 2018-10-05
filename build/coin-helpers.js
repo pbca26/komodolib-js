@@ -8,9 +8,8 @@ var isKomodoCoin = function isKomodoCoin(coin, skipKMD) {
   return _komodoCoins.find(function (element) {
     if (skipKMD) {
       return element === coin.toUpperCase() && coin.toUpperCase() !== 'KMD' && coin.toUpperCase() !== 'KOMODO';
-    } else {
-      return element === coin.toUpperCase();
     }
+    return element === coin.toUpperCase();
   });
 };
 
