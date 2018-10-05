@@ -28,32 +28,31 @@ NodeJS TCP/SSL lib to facilitate connection to Electrum servers
 const tls = require('tls');
 const net = require('net');
 const EventEmitter = require('events').EventEmitter;
+
 const SOCKET_MAX_TIMEOUT = 10000;
 
-const makeRequest = (method, params, id) => {
-  return JSON.stringify({
-    jsonrpc : '2.0',
-    method : method,
-    params : params,
-    id : id,
-  });
-}
+const makeRequest = (method, params, id) => JSON.stringify({
+  jsonrpc: '2.0',
+  method,
+  params,
+  id,
+});
 
 const createRecursiveParser = (maxDepth, delimiter) => {
   const MAX_DEPTH = maxDepth;
   const DELIMITER = delimiter;
-  const recursiveParser = function(n, buffer, callback) {
+  const recursiveParser = function (n, buffer, callback) {
     if (buffer.length === 0) {
       return {
         code: 0,
-        buffer: buffer,
+        buffer,
       };
     }
 
     if (n > MAX_DEPTH) {
       return {
         code: 1,
-        buffer: buffer,
+        buffer,
       };
     }
 
@@ -62,30 +61,28 @@ const createRecursiveParser = (maxDepth, delimiter) => {
     if (xs.length === 1) {
       return {
         code: 0,
-        buffer: buffer,
+        buffer,
       };
     }
 
     callback(xs.shift(), n);
 
     return recursiveParser(n + 1, xs.join(DELIMITER), callback);
-  }
+  };
 
   return recursiveParser;
-}
+};
 
-const createPromiseResult = (resolve, reject) => {
-  return (err, result) => {
-    if (err) {
-      console.log('electrum error:');
-      console.log(err);
-      resolve(err);
-      // reject(err);
-    } else {
-      resolve(result);
-    }
+const createPromiseResult = (resolve, reject) => (err, result) => {
+  if (err) {
+    console.log('electrum error:');
+    console.log(err);
+    resolve(err);
+    // reject(err);
+  } else {
+    resolve(result);
   }
-}
+};
 
 class MessageParser {
   constructor(callback) {
@@ -127,7 +124,7 @@ const getSocket = (protocol, options) => {
   }
 
   throw new Error('unknown protocol');
-}
+};
 
 const initSocket = (self, protocol, options) => {
   const conn = getSocket(protocol, options);
@@ -158,7 +155,7 @@ const initSocket = (self, protocol, options) => {
   });
 
   return conn;
-}
+};
 
 class Client {
   constructor(port, host, protocol = 'tcp', options = void 0) {
@@ -182,7 +179,7 @@ class Client {
     this.status = 1;
 
     return new Promise((resolve, reject) => {
-      const errorHandler = (e) => reject(e)
+      const errorHandler = e => reject(e);
 
       this.conn.connect(this.port, this.host, () => {
         this.conn.removeListener('error', errorHandler);
@@ -194,7 +191,7 @@ class Client {
 
   close() {
     if (!this.status) {
-      return
+      return;
     }
 
     this.conn.end();
@@ -237,12 +234,10 @@ class Client {
 
     if (msg instanceof Array) {
       // don't support batch request
+    } else if (msg.id !== void 0) {
+      this.response(msg);
     } else {
-      if (msg.id !== void 0) {
-        this.response(msg);
-      } else {
-        this.subscribe.emit(msg.method, msg.params);
-      }
+      this.subscribe.emit(msg.method, msg.params);
     }
   }
 
@@ -278,7 +273,7 @@ class ElectrumConnect extends Client {
       'server.peers.subscribe',
       'blockchain.numblocks.subscribe',
       'blockchain.headers.subscribe',
-      'blockchain.address.subscribe'
+      'blockchain.address.subscribe',
     ];
 
     list.forEach(event => this.subscribe.removeAllListeners(event));

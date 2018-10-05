@@ -11,11 +11,11 @@ const komodoInterest = (locktime, value, height) => { // value in sats
   let interest = 0;
 
   // calc interest
-  if (height < KOMODO_ENDOFERA &&
-      locktime >= LOCKTIME_THRESHOLD) {
+  if (height < KOMODO_ENDOFERA
+      && locktime >= LOCKTIME_THRESHOLD) {
     if (timestampDiffMinutes >= 60) {
-      if (height >= 1000000 &&
-          timestampDiffMinutes > 31 * 24 * 60) {
+      if (height >= 1000000
+          && timestampDiffMinutes > 31 * 24 * 60) {
         timestampDiffMinutes = 31 * 24 * 60;
       } else {
         if (timestampDiffMinutes > 365 * 24 * 60) {

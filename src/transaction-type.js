@@ -139,8 +139,8 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
       }
     }
   } else if (
-    _sum.inputs === 0 &&
-    _sum.outputs > 0
+    _sum.inputs === 0
+    && _sum.outputs > 0
   ) {
     result = {
       type: 'received',
@@ -155,8 +155,8 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
       outputAddresses: _addresses.outputs,
     };
   } else if (
-    _sum.inputs > 0 &&
-    _sum.outputs === 0
+    _sum.inputs > 0
+    && _sum.outputs === 0
   ) {
     result = {
       type: 'sent',
