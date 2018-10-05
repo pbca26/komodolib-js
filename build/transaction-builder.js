@@ -4,8 +4,8 @@ var bitcoinJSForks = require('bitcoinforksjs-lib');
 var bitcoinZcash = require('bitcoinjs-lib-zcash');
 var bitcoinPos = require('bitcoinjs-lib-pos');
 var bitcoin = require('bitcoinjs-lib');
-var utils = require('./utils');
 var coinselect = require('coinselect');
+var utils = require('./utils');
 
 // single sig
 var transaction = function transaction(sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, opreturn) {
@@ -131,7 +131,7 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     // default coin selection algo blackjack with fallback to accumulative
     // make a first run, calc approx tx fee
     // if ins and outs are empty reduce max spend by txfee
-    var firstRun = coinselect(utxoListFormatted, targets, btcFee ? btcFee : 0);
+    var firstRun = coinselect(utxoListFormatted, targets, btcFee || 0);
     var inputs = firstRun.inputs;
     var outputs = firstRun.outputs;
 
@@ -145,7 +145,7 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
       var secondRun = coinselect(utxoListFormatted, targets, 0);
       inputs = secondRun.inputs;
       outputs = secondRun.outputs;
-      fee = fee ? fee : secondRun.fee;
+      fee = fee || secondRun.fee;
     }
 
     var _change = 0;
@@ -160,10 +160,8 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
 
     if (btcFee) {
       value = outputs[0].value;
-    } else {
-      if (_change > 0) {
-        value = outputs[0].value - fee;
-      }
+    } else if (_change > 0) {
+      value = outputs[0].value - fee;
     }
 
     // check if any outputs are unverified
@@ -187,73 +185,70 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
 
     if (value > _maxSpend) {
       return 'Spend value is too large. Max available amount is ' + Number((_maxSpend * 0.00000001).toFixed(8));
-    } else {
-      // account for KMD interest
-      if (network.kmdInterest && totalInterest > 0) {
-        // account for extra vout
+    }
+    // account for KMD interest
+    if (network.kmdInterest && totalInterest > 0) {
+      // account for extra vout
 
-        if (_maxSpend - fee === value) {
-          _change = totalInterest - _change;
+      if (_maxSpend - fee === value) {
+        _change = totalInterest - _change;
 
-          if (outputAddress === changeAddress) {
-            value += _change;
-            _change = 0;
-          }
-        } else {
-          _change += totalInterest;
-        }
-
-        // double check kmd interest is combined into 1 output
-        if (outputAddress === changeAddress && _change > 0) {
-          value += _change - fee;
+        if (outputAddress === changeAddress) {
+          value += _change;
           _change = 0;
         }
+      } else {
+        _change += totalInterest;
       }
 
-      if (!inputs && !outputs) {
-        return 'Can\'t find best fit utxo. Try lower amount.';
-      } else {
-        var vinSum = 0;
-
-        for (var _i4 = 0; _i4 < inputs.length; _i4++) {
-          vinSum += inputs[_i4].value;
-        }
-
-        var _estimatedFee = vinSum - outputs[0].value - _change;
-
-        // double check no extra fee is applied
-        if (vinSum - value - _change > fee) {
-          _change += fee;
-        } else if (vinSum - value - _change === 0) {
-          // max amount spend edge case
-          value = value - fee;
-        }
-
-        // TODO: use individual dust thresholds
-        if (_change > 0 && _change <= 1000) {
-          _change = 0;
-        }
-
-        return {
-          outputAddress: outputAddress,
-          changeAddress: changeAddress,
-          network: network,
-          change: _change,
-          value: value,
-          inputs: inputs,
-          outputs: outputs,
-          targets: targets,
-          fee: fee,
-          estimatedFee: _estimatedFee,
-          balance: _maxSpendBalance,
-          totalInterest: totalInterest,
-          utxoVerified: utxoVerified
-        };
+      // double check kmd interest is combined into 1 output
+      if (outputAddress === changeAddress && _change > 0) {
+        value += _change - fee;
+        _change = 0;
       }
     }
-  } else {
-    return 'no valid utxos';
+
+    if (!inputs && !outputs) {
+      return 'Can\'t find best fit utxo. Try lower amount.';
+    }
+    var vinSum = 0;
+
+    for (var _i4 = 0; _i4 < inputs.length; _i4++) {
+      vinSum += inputs[_i4].value;
+    }
+
+    var _estimatedFee = vinSum - outputs[0].value - _change;
+
+    // double check no extra fee is applied
+    if (vinSum - value - _change > fee) {
+      _change += fee;
+    } else if (vinSum - value - _change === 0) {
+      // max amount spend edge case
+      value -= fee;
+    }
+
+    // TODO: use individual dust thresholds
+    if (_change > 0 && _change <= 1000) {
+      _change = 0;
+    }
+
+    return {
+      outputAddress: outputAddress,
+      changeAddress: changeAddress,
+      network: network,
+      change: _change,
+      value: value,
+      inputs: inputs,
+      outputs: outputs,
+      targets: targets,
+      fee: fee,
+      estimatedFee: _estimatedFee,
+      balance: _maxSpendBalance,
+      totalInterest: totalInterest,
+      utxoVerified: utxoVerified
+    };
   }
+  return 'no valid utxos';
 };
 
 module.exports = {

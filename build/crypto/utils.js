@@ -5,7 +5,7 @@ var maskPubAddress = function maskPubAddress(pub) {
   var masked = '';
 
   for (var i = 0; i < pub.length - 3 * 2; i++) {
-    masked = masked + '*';
+    masked += '*';
   }
 
   return pub[0] + pub[1] + pub[2] + masked + pub[pub.length - 3] + pub[pub.length - 2] + pub[pub.length - 1];

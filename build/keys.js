@@ -15,9 +15,8 @@ var addressVersionCheck = function addressVersionCheck(network, address) {
 
     if (_b58check.version === network.pubKeyHash || _b58check.version === network.scriptHash) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   } catch (e) {
     return 'Invalid pub address';
   }
@@ -79,31 +78,30 @@ var stringToWif = function stringToWif(string, network, iguana) {
       priv: string,
       pub: string
     };
-  } else {
+  }
+  try {
+    bs58check.decode(string);
+    isWif = true;
+  } catch (e) {}
+
+  if (isWif) {
     try {
-      bs58check.decode(string);
-      isWif = true;
-    } catch (e) {}
-
-    if (isWif) {
-      try {
-        if (network.isZcash) {
-          key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
-        } else {
-          key = new bitcoin.ECPair.fromWIF(string, network, true);
-        }
-
-        keys = {
-          priv: key.toWIF(),
-          pub: key.getAddress(),
-          pubHex: key.getPublicKeyBuffer().toString('hex')
-        };
-      } catch (e) {
-        _wifError = true;
+      if (network.isZcash) {
+        key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
+      } else {
+        key = new bitcoin.ECPair.fromWIF(string, network, true);
       }
-    } else {
-      keys = seedToWif(string, network, iguana);
+
+      keys = {
+        priv: key.toWIF(),
+        pub: key.getAddress(),
+        pubHex: key.getPublicKeyBuffer().toString('hex')
+      };
+    } catch (e) {
+      _wifError = true;
     }
+  } else {
+    keys = seedToWif(string, network, iguana);
   }
 
   return _wifError ? 'error' : keys;
@@ -130,19 +128,17 @@ var bip39Search = function bip39Search(seed, network, matchPattern, addressDepth
             pub: _key.keyPair.getAddress(),
             priv: _key.keyPair.toWIF()
           });
-        } else {
-          if (_key.keyPair.getAddress() === matchPattern) {
-            _matchingKey = {
-              pub: _key.keyPair.getAddress(),
-              priv: _key.keyPair.toWIF()
-            };
-          }
+        } else if (_key.keyPair.getAddress() === matchPattern) {
+          _matchingKey = {
+            pub: _key.keyPair.getAddress(),
+            priv: _key.keyPair.toWIF()
+          };
         }
       }
     }
   }
 
-  return _matchingKey ? _matchingKey : 'address is not found';
+  return _matchingKey || 'address is not found';
 };
 
 // src: https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/src/ecpair.js#L62
@@ -195,16 +191,15 @@ var fromWif = function fromWif(string, network) {
       },
       alt: altKP
     };
-  } else {
-    return {
-      inputKey: decoded,
-      master: {
-        pub: masterKP.getAddress(),
-        priv: masterKP.toWIF(),
-        version: network.wif
-      }
-    };
   }
+  return {
+    inputKey: decoded,
+    master: {
+      pub: masterKP.getAddress(),
+      priv: masterKP.toWIF(),
+      version: network.wif
+    }
+  };
 };
 
 var pubkeyToAddress = function pubkeyToAddress(pubkey, network) {

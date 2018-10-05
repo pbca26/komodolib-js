@@ -13,7 +13,7 @@ const networks = {
     messagePrefix: '\x19Litecoin Signed Message:\n',
     bip32: {
       public: 0x019da462,
-      private: 0x019d9cfe
+      private: 0x019d9cfe,
     },
     pubKeyHash: 0x30,
     scriptHash: 0x32,
@@ -823,7 +823,7 @@ const networks = {
     messagePrefix: '\x18ShadowCash Signed Message:\n',
     bip32: {
       public: 0xEE80286A,
-      private: 0xEE8031E8
+      private: 0xEE8031E8,
     },
     pubKeyHash: 0x3f,
     scriptHash: 0x7d,
@@ -833,7 +833,7 @@ const networks = {
     messagePrefix: '\x18Mazacoin Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x32,
     scriptHash: 0x09,
@@ -843,7 +843,7 @@ const networks = {
     messagePrefix: '\x18Peercoin Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x37,
     scriptHash: 0x00, // TODO set this correctly
@@ -853,7 +853,7 @@ const networks = {
     messagePrefix: '\x18AXE Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x37,
     scriptHash: 0x10, // TODO set this correctly
@@ -863,7 +863,7 @@ const networks = {
     messagePrefix: '\x18Slimcoin Signed Message:\n',
     bip32: {
       public: 0xef6adf10,
-      private: 0xef69ea80
+      private: 0xef69ea80,
     },
     pubKeyHash: 0x3f,
     scriptHash: 0x7d,
@@ -873,7 +873,7 @@ const networks = {
     messagePrefix: '\x18Neblio Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x35,
     scriptHash: 0x70,
@@ -883,7 +883,7 @@ const networks = {
     messagePrefix: '\x19Jumbucks Signed Message:\n',
     bip32: {
       public: 0x037a689a,
-      private: 0x037a6460
+      private: 0x037a6460,
     },
     pubKeyHash: 0x2b,
     scriptHash: 0x05,
@@ -893,7 +893,7 @@ const networks = {
     messagePrefix: '\x18Zetacoin Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x50,
     scriptHash: 0x09,
@@ -903,7 +903,7 @@ const networks = {
     messagePrefix: '\x18Onixcoin Signed Message:\n',
     bip32: {
       public: 0x049d7cb2,
-      private: 0x049d7878
+      private: 0x049d7878,
     },
     pubKeyHash: 0x4B,
     scriptHash: 0x05,
@@ -913,7 +913,7 @@ const networks = {
     messagePrefix: '\x18Nu Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x19,
     scriptHash: 0x1a,
@@ -923,7 +923,7 @@ const networks = {
     messagePrefix: '\x19Beetlecoin Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x1A,
     scriptHash: 0x55,
@@ -1363,11 +1363,11 @@ const networks = {
     messagePrefix: '\x18Xuez Signed Message:\n',
     bip32: {
       public: 0x022d2533,
-      private: 0x0221312b
+      private: 0x0221312b,
     },
     pubKeyHash: 0x4b,
     scriptHash: 0x12,
-    wif: 0xd4
+    wif: 0xd4,
   },
   nrg: { // etk?
     messagePrefix: '\x18Energicoin Signed Message:\n',
@@ -1403,7 +1403,7 @@ const networks = {
     messagePrefix: '\x18Stash Signed Message:\n',
     bip32: {
       public: 0x0488b21e,
-      private: 0x0488ade4
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x4c,
     scriptHash: 0x10,
@@ -1451,7 +1451,7 @@ const networks = {
   },
   // coins missing bip32 info
   // src: https://github.com/priestc/altcore-lib/blob/altcore/lib/network_list.js
-  '1337': {
+  1337: {
     messagePrefix: '\u0018Elite Signed Message:\n',
     pubKeyHash: 0x30,
     scriptHash: 0x1c,
@@ -1647,7 +1647,7 @@ const networks = {
       private: 0x0488ADE4,
     },
     pubKeyHash: 0x17,
-    scriptHash: 0x5,    
+    scriptHash: 0x5,
     wif: 0x97,
   },
   taj: {
@@ -1657,7 +1657,7 @@ const networks = {
       private: 0x0488ADE4,
     },
     pubKeyHash: 0x41,
-    scriptHash: 0x5,    
+    scriptHash: 0x5,
     wif: 0x6f,
   },
   lana: {
@@ -2110,7 +2110,7 @@ const networks = {
   },
   magicoin: {
     messagePrefix: '\u0018Magicoin Signed Message:\n',
-    pubKeyHash: 0x14, 
+    pubKeyHash: 0x14,
     wif: 0x94,
   },
   martexcoin: {
