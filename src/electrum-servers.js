@@ -380,6 +380,29 @@ let _electrumServers = {
     'electrum1.capricoin.org:50012:ssl',
     'electrum1.capricoin.org:50011:tcp',
   ],
+  rap: [
+    'electrum.our-rapture.com:50001:tcp:',
+    'electrum2.our-rapture.com:50001:tcp',
+  ],
+  qmc: [
+    '45.32.185.157:50001:tcp',
+    '95.179.134.215:50001:tcp',
+  ],
+  smart: [
+    'electrum1.smartcash.cc:50001:tcp',
+    'electrum2.smartcash.cc:50001:tcp',
+    'electrum3.smartcash.cc:50001:tcp',
+    'electrum4.smartcash.cc:50001:tcp',
+  ],
+  pac: [
+    'electrum.paccoin.io:50001:tcp',
+    'electro-pac.paccoin.io:50001:tcp',
+  ],
+  stak: [
+    'ex001-stak.qxu.io:50001:tcp',
+    'ex002-stak.qxu.io:50001:tcp',
+    'electrumx.straks.info:50001:tcp',
+  ],
 };
 
 let electrumServers = [];
