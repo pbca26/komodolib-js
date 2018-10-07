@@ -134,6 +134,9 @@ const explorerList = {
   EMC2: 'https://chainz.cryptoid.info/emc2/search.dws?q=',
   IXC: 'https://chainz.cryptoid.info/ixc/search.dws?q=',
   DGC: 'https://chainz.cryptoid.info/dgc/search.dws?q=',
+  XMY: 'https://chainz.cryptoid.info/xmy/search.dws?q=',
+  MUE: 'https://chainz.cryptoid.info/mue/search.dws?q=',
+  UNO: 'https://chainz.cryptoid.info/uno/search.dws?q=',
   VOX: 'http://206.189.74.116:3001',
   AUR: 'http://insight.auroracoin.is',
   LBC: 'https://explorer.lbry.io',
@@ -145,6 +148,16 @@ const explorerList = {
   CDN: 'https://explorer.canadaecoin.ca',
   FLASH: 'https://explorer.flashcoin.io',
   XZC: 'https://explorer.zcoin.io',
+  XMCC: 'http://block.monacocoin.net:8080/tx/',
+  STAK: 'https://straks.info/transaction/',
+  SMART: 'https://explorer3.smartcash.cc/tx/',
+  RAP: 'http://explorer.our-rapture.com/tx/',
+  QMC: 'http://54.38.145.192:8080/tx/',
+  POLIS: 'https://explorer.polispay.org/tx/',
+  PAC: 'http://usa.pacblockexplorer.com:3002/tx/',
+  MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
+  BCBC: 'http://be.cleanblockchain.org/tx/',
+  RDD: 'https://live.reddcoin.com',
 };
 
 const explorerListExt = {
