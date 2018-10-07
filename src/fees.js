@@ -94,4 +94,4 @@ const fees = {
   cpc: 0, // todo
 };
 
-export default fees;
+module.exports = fees;

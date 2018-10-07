@@ -12,7 +12,7 @@ const secondsToString = (seconds, skipMultiply, showSeconds) => {
     'Sep',
     'Oct',
     'Nov',
-    'Dec'
+    'Dec',
   ];
   const year = a.getFullYear();
   const month = months[a.getMonth()];
