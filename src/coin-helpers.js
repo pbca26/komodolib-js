@@ -42,18 +42,15 @@ const _komodoAssetChains = [
 const _komodoCoins = _komodoAssetChains.concat([
   'CHIPS',
   'KMD',
-  'KOMODO'
+  'KOMODO',
 ]);
 
-const isKomodoCoin = (coin, skipKMD) => {
-  return (_komodoCoins.find((element) => {
-    if (skipKMD) {
-      return element === coin.toUpperCase() && coin.toUpperCase() !== 'KMD' && coin.toUpperCase() !== 'KOMODO';
-    } else {
-      return element === coin.toUpperCase();
-    }
-  }));
-}
+const isKomodoCoin = (coin, skipKMD) => (_komodoCoins.find((element) => {
+  if (skipKMD) {
+    return element === coin.toUpperCase() && coin.toUpperCase() !== 'KMD' && coin.toUpperCase() !== 'KOMODO';
+  }
+  return element === coin.toUpperCase();
+}));
 
 // TODO: add at least 2 explorers per coin
 const explorerList = {
@@ -127,7 +124,7 @@ const explorerList = {
   FAIR: 'https://chain.fair.to/transaction?transaction=',
   CRAVE: 'http://explorer.craveproject.net',
   FTC: 'https://explorer.feathercoin.com',
-  NLG:  'https://guldenchain.com',
+  NLG: 'https://guldenchain.com',
   PIVX: 'http://www.presstab.pw/phpexplorer/PIVX/tx.php?tx=',
   DMD: 'https://chainz.cryptoid.info/dmd/search.dws?q=',
   EFL: 'https://chainz.cryptoid.info/efl/search.dws?q=',

@@ -20,17 +20,16 @@ const secondsToString = (seconds, skipMultiply, showSeconds) => {
   const hour = a.getHours() < 10 ? `0${a.getHours()}` : a.getHours();
   const min = a.getMinutes() < 10 ? `0${a.getMinutes()}` : a.getMinutes();
   const sec = a.getSeconds();
-  const time = `${date} ${month} ${year} ${hour}:${min}${(showSeconds ? ':' + sec : '')}`;
+  const time = `${date} ${month} ${year} ${hour}:${min}${(showSeconds ? `:${sec}` : '')}`;
 
   return time;
-}
+};
 
-const checkTimestamp = (dateToCheck) => {
-  const currentEpochTime = Math.floor(Date.now() / 1000);
+const checkTimestamp = (dateToCheck, currentEpochTime = Date.now() / 1000) => {
   const secondsElapsed = Number(currentEpochTime) - Number(dateToCheck / 1000);
 
   return Math.floor(secondsElapsed);
-}
+};
 
 // src: https://stackoverflow.com/questions/8942895/convert-a-number-of-days-to-days-months-and-years-with-jquery/8943500
 const secondsElapsedToString = (timestamp, srcInSeconds) => { // in seconds
@@ -63,12 +62,12 @@ const secondsElapsedToString = (timestamp, srcInSeconds) => { // in seconds
 
   // Iterate over the values...
   for (let i = 0; i < values.length; i++) {
-    let _value = Math.floor(secondsElapsed / values[i].num);
+    const _value = Math.floor(secondsElapsed / values[i].num);
 
     // ... and find the largest time value that fits into the secondsElapsed
     if (_value >= 1) {
       // If we match, add to the string ('s' is for pluralization)
-      str += _value + values[i].str + (_value > 1 ? 's' : '') + ' ';
+      str += `${_value + values[i].str + (_value > 1 ? 's' : '')} `;
 
       // and subtract from the secondsElapsed
       secondsElapsed -= _value * values[i].num;
@@ -76,10 +75,10 @@ const secondsElapsedToString = (timestamp, srcInSeconds) => { // in seconds
   }
 
   return str;
-}
+};
 
 module.exports = {
   secondsToString,
   checkTimestamp,
-  secondsElapsedToString
+  secondsElapsedToString,
 };

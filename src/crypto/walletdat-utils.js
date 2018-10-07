@@ -1,6 +1,6 @@
 const wif = require('wif');
-const bitcoinNetworks = require('../bitcoinjs-networks');
 const bitcoin = require('bitcoinjs-lib');
+const bitcoinNetworks = require('../bitcoinjs-networks');
 
 // data in wallet.dat format
 const parseWalletdat = (data) => {
@@ -10,35 +10,34 @@ const parseWalletdat = (data) => {
 
   if (!privateKeys) {
     return 'wallet is encrypted?';
-  } else {
-    let _keys = [];
-    privateKeys = privateKeys.map(x => x.replace('\x30\x81\xD3\x02\x01\x01\x04\x20', ''));
-    privateKeys = privateKeys.filter((v, i, a) => a.indexOf(v) === i);
+  }
+  const _keys = [];
+  privateKeys = privateKeys.map(x => x.replace('\x30\x81\xD3\x02\x01\x01\x04\x20', ''));
+  privateKeys = privateKeys.filter((v, i, a) => a.indexOf(v) === i);
 
-    for (let i = 0; i < privateKeys.length; i++) {
-      // TODO: optimize
-      const privateKey = new Buffer(Buffer.from(privateKeys[i], 'latin1').toString('hex'), 'hex');
-      const key = wif.encode(0xbc, privateKey, true);
-      const keyObj = wif.decode(key);
-      const wifKey = wif.encode(keyObj);
+  for (let i = 0; i < privateKeys.length; i++) {
+    // TODO: optimize
+    const privateKey = new Buffer(Buffer.from(privateKeys[i], 'latin1').toString('hex'), 'hex');
+    const key = wif.encode(0xbc, privateKey, true);
+    const keyObj = wif.decode(key);
+    const wifKey = wif.encode(keyObj);
 
-      const keyPair = bitcoin.ECPair.fromWIF(wifKey, bitcoinNetworks.kmd);
-      const _keyPair = {
-        priv: keyPair.toWIF(),
-        pub: keyPair.getAddress(),
-      };
+    const keyPair = bitcoin.ECPair.fromWIF(wifKey, bitcoinNetworks.kmd);
+    const _keyPair = {
+      priv: keyPair.toWIF(),
+      pub: keyPair.getAddress(),
+    };
 
-      if (search) {
-        if (_keyPair.pub.indexOf(search) > -1) {
-          _keys.push(_keyPair);
-        }
-      } else {
+    if (search) {
+      if (_keyPair.pub.indexOf(search) > -1) {
         _keys.push(_keyPair);
       }
+    } else {
+      _keys.push(_keyPair);
     }
-
-    return _keys;
   }
-}
+
+  return _keys;
+};
 
 module.exports = parseWalletdat;

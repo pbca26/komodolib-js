@@ -3,11 +3,11 @@ const maskPubAddress = (pub) => {
   let masked = '';
 
   for (let i = 0; i < pub.length - 3 * 2; i++) {
-    masked = masked + '*';
+    masked += '*';
   }
 
   return pub[0] + pub[1] + pub[2] + masked + pub[pub.length - 3] + pub[pub.length - 2] + pub[pub.length - 1];
-}
+};
 
 const hex2str = (hex) => {
   const _hex = hex.toString(); // force conversion
@@ -18,7 +18,7 @@ const hex2str = (hex) => {
   }
 
   return str;
-}
+};
 
 module.exports = {
   maskPubAddress,
