@@ -3,6 +3,10 @@ const fees = require('./fees');
 // TODO: add a script to sync electrum severs list from https://github.com/jl777/coins/tree/master/electrums
 
 let _electrumServers = {
+  dion: [
+    '104.238.176.229:50001:tcp',
+    '51.75.124.36:50001:tcp'
+  ],
   zilla: [
     'electrum1.cipig.net:10028:tcp',
     'electrum2.cipig.net:10028:tcp',
