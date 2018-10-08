@@ -98,13 +98,13 @@ var _electrumServers = {
   stak: ['ex001-stak.qxu.io:50001:tcp', 'ex002-stak.qxu.io:50001:tcp', 'electrumx.straks.info:50001:tcp']
 };
 
-var electrumServers = [];
+var electrumServers = {};
 
 for (var key in _electrumServers) {
-  electrumServers.push({
+  electrumServers[key] = {
     txfee: fees[key] ? fees[key] : 0,
     serverList: _electrumServers[key]
-  });
+  };
 }
 
 module.exports = electrumServers;

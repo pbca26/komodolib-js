@@ -406,13 +406,13 @@ let _electrumServers = {
   ],
 };
 
-let electrumServers = [];
+let electrumServers = {};
 
 for (let key in _electrumServers) {
-  electrumServers.push({
+  electrumServers[key] = {
     txfee: fees[key] ? fees[key] : 0,
     serverList: _electrumServers[key],
-  });
+  };
 }
 
 module.exports = electrumServers;
