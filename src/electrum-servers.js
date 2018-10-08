@@ -129,8 +129,8 @@ let _electrumServers = {
     'viax3.bitops.me:50001.tcp',
   ],
   vtc: [
-    'electrum1.cipig.net:10071:tcp',
-    'electrum2.cipig.net:10071:tcp',
+    'fr1.vtconline.org:55001:tcp',
+    'uk1.vtconline.org:55001:tcp',
   ],
   nmc: [
     'electrum1.cipig.net:10066:tcp',
@@ -174,9 +174,10 @@ let _electrumServers = {
     'electrum3.cipig.net:10000:tcp',
   ],
   btg: [
-    'electrum1.cipig.net:10052:tcp',
-    'electrum2.cipig.net:10052:tcp',
-    'electrum3.cipig.net:10052:tcp',
+    'electrumx-eu.bitcoingold.org:50001:tcp',
+    'electrumx-us.bitcoingold.org:50001:tcp',
+    'electrumx-eu.btcgpu.org:50001:tcp',
+    'electrumx-us.btcgpu.org:50001:tcp',
   ],
   blk: [
     'electrum1.cipig.net:10054:tcp',
