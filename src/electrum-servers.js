@@ -384,6 +384,7 @@ let _electrumServers = {
   rap: [
     'electrum.our-rapture.com:50001:tcp:',
     'electrum2.our-rapture.com:50001:tcp',
+    '194.87.145.250:50016:ssl',
   ],
   qmc: [
     '45.32.185.157:50001:tcp',
@@ -403,6 +404,25 @@ let _electrumServers = {
     'ex001-stak.qxu.io:50001:tcp',
     'ex002-stak.qxu.io:50001:tcp',
     'electrumx.straks.info:50001:tcp',
+  ],
+  // src: altcoin wallet
+  goa: [ // goacoin
+    '194.87.145.250:50002:ssl'
+  ],
+  inn: [ // innova
+    '194.87.145.250:50004:ssl'
+  ],
+  crc: [ // crowd
+    '194.87.145.250:50006:ssl'
+  ],
+  tzc: [ // trezarcoin
+    '194.87.145.250:50018:ssl'
+  ],
+  eny: [ // emergencycoin
+    '194.87.145.250:50028:ssl'
+  ],
+  xsc: [ // sobercoin
+    '194.87.145.250:50030:ssl'
   ],
 };
 
