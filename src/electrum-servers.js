@@ -256,11 +256,17 @@ let _electrumServers = {
   game: [
     'electrum1.cipig.net:10072:tcp',
     'electrum2.cipig.net:10072:tcp',
+    '5.196.70.166:50001:tcp',
+    'gmc.cryptocloudhosting.org:50002:tcp',
+    'gamecredits.net:50002:tcp',
   ],
   fjc: [
     'electrumx1.fujicoin.org:50001:tcp',
     'electrumx2.fujicoin.org:50001:tcp',
     'electrumx3.fujicoin.org:50001:tcp',
+    'electrumx1.fujicoin.org:50002:ssl',
+    'electrumx2.fujicoin.org:50002:ssl',
+    'electrumx3.fujicoin.org:50002:ssl',
   ],
   ftc: [
     'electrum1.cipig.net:10074:tcp',
