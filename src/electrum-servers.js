@@ -4,8 +4,9 @@ const fees = require('./fees');
 
 let _electrumServers = {
   dion: [
-    '104.238.176.229:50001:tcp',
-    '51.75.124.36:50001:tcp',
+    'electrum1.cipig.net:10030:tcp',
+    'electrum2.cipig.net:10030:tcp',
+    'electrum3.cipig.net:10030:tcp',
   ],
   zilla: [
     'electrum1.cipig.net:10028:tcp',
