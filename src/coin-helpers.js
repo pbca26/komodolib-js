@@ -37,6 +37,7 @@ const _komodoAssetChains = [
   'CALL',
   'CCL',
   'PIRATE',
+  'KOIN',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -158,6 +159,7 @@ const explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
+  KOIN: 'http://3.0.32.41:3001/',
 };
 
 const explorerListExt = {
