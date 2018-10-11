@@ -315,14 +315,26 @@ let _electrumServers = {
   arco: [
     'node1.cryptowallet.si:5095:tcp',
     'node2.cryptowallet.si:5095:tcp',
+    'electrum1.aquariuscoin.com:5095:tcp',
+    'electrum2.aquariuscoin.com:5095:tcp',
+    'electrum3.aquariuscoin.com:5095:tcp',
+    'electrum4.aquariuscoin.com:5095:tcp',
   ],
   lana: [
     'node1.cryptowallet.si:5097:tcp',
     'node2.cryptowallet.si:5097:tcp',
+    'electrum1.lanacoin.com:5097:tcp',
+    'electrum2.lanacoin.com:5097:tcp',
+    'electrum3.lanacoin.com:5097:tcp',
+    'electrum4.lanacoin.com:5097:tcp',
   ],
   neva: [
     'node1.cryptowallet.si:5096:tcp',
     'node2.cryptowallet.si:5096:tcp',
+    'electrum1.nevacoin.net:5096:tcp',
+    'electrum2.nevacoin.net:5096:tcp',
+    'electrum3.nevacoin.net:5096:tcp',
+    'electrum4.nevacoin.net:5096:tcp',
   ],
   netko: [
     'node1.cryptowallet.si:5108:tcp',
@@ -331,6 +343,10 @@ let _electrumServers = {
   taj: [
     'node1.cryptowallet.si:5098:tcp',
     'node2.cryptowallet.si:5098:tcp',
+    'electrum1.tajcoin.tech:5098:tcp',
+    'electrum2.tajcoin.tech:5098:tcp',
+    'electrum3.tajcoin.tech:5098:tcp',
+    'electrum4.tajcoin.tech:5098:tcp',
   ],
   xvg: [
     'e1.verge-electrum.com:50002:tcp',
