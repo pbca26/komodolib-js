@@ -467,6 +467,21 @@ let _electrumServers = {
     'server3.payoto.com:5037:tcp',
     'server4.payoto.com:5037:tcp',
   ],
+  bitb: [
+    'electrum1.bitbean.org:5088:tcp',
+    'electrum2.bitbean.org:5088:tcp',
+  ],
+  bsd: [
+    '188.68.52.172:50001:tcp',
+  ],
+  vox: [
+    'voxels-1.crypto-expert.com:5048:tcp',
+    'voxels-2.crypto-expert.com:5048:tcp',
+  ],
+  silk: [
+    'silkcoin-1.crypto-expert.com:5049:tcp',
+    'silkcoin-2.crypto-expert.com:5049:tcp',
+  ],
 };
 
 let electrumServers = {};
