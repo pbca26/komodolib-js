@@ -376,10 +376,10 @@ let _electrumServers = {
     '108.61.246.159:50001:tcp',
   ],
   cpc: [
-    'electrum2.capricoin.org:50011:tcp',
-    'electrum2.capricoin.org:50012:ssl',
-    'electrum1.capricoin.org:50012:ssl',
     'electrum1.capricoin.org:50011:tcp',
+    'electrum2.capricoin.org:50011:tcp',
+    'electrum1.capricoin.org:50012:ssl',
+    'electrum2.capricoin.org:50012:ssl',
   ],
   rap: [
     'electrum.our-rapture.com:50001:tcp:',
@@ -407,22 +407,49 @@ let _electrumServers = {
   ],
   // src: altcoin wallet
   goa: [ // goacoin
-    '194.87.145.250:50002:ssl'
+    '194.87.145.250:50002:ssl',
   ],
   inn: [ // innova
-    '194.87.145.250:50004:ssl'
+    '194.87.145.250:50004:ssl',
   ],
   crc: [ // crowd
-    '194.87.145.250:50006:ssl'
+    '194.87.145.250:50006:ssl',
   ],
   tzc: [ // trezarcoin
-    '194.87.145.250:50018:ssl'
+    '194.87.145.250:50018:ssl',
   ],
   eny: [ // emergencycoin
-    '194.87.145.250:50028:ssl'
+    '194.87.145.250:50028:ssl',
   ],
   xsc: [ // sobercoin
-    '194.87.145.250:50030:ssl'
+    '194.87.145.250:50030:ssl',
+  ],
+  vcash: [
+    'ex01.vcash.info:50001:ssl', // ssl?
+  ],
+  piggy: [
+    'electrum.piggy-coin.com:54485:tcp', // ssl?
+    'piggy.electrum.blockpunk.com:54485:tcp'
+  ],
+  onix: [ // onixcoin
+    '159.203.80.31:23000:tcp', // ssl?
+    '159.203.80.31:23001:tcp',
+  ],
+  lkr: [ // lkrcoin
+    '190.202.15.196:23000:tcp', // ssl?
+    '190.202.15.196:23001:tcp',
+  ],
+  arepa: [ // arepacoin
+    '107.150.6.159:50001:tcp', // ssl?
+    '107.150.6.159:50002:tcp',
+  ],
+  aib: [
+    'aib-cce-1.iobond.com:5037:tcp',
+    'aib-cce-2.iobond.com:5037:tcp',
+    'server1.payoto.com:5037:tcp',
+    'server2.payoto.com:5037:tcp',
+    'server3.payoto.com:5037:tcp',
+    'server4.payoto.com:5037:tcp',
   ],
 };
 
