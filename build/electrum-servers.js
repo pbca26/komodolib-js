@@ -147,7 +147,8 @@ var _electrumServers = {
   ebst: ['electrum1.eboost.fun:50001:tcp', 'electrum2.eboost.fun:50001:tcp', 'electrum3.eboost.fun:50001:tcp'],
   ufo: ['electrumx1.ufobject.com:50001:tcp', 'electrumx2.ufobject.com:50001:tcp', 'electrumx3.ufobject.com:50001:tcp', 'electrumx4.ufobject.com:50001:tcp', 'electrumx5.ufobject.com:50001:tcp'],
   lcc: ['electrum1.litecoinca.sh:50001:tcp', 'electrum1.litecoinca.sh:50010:ssl', 'electrum2.litecoinca.sh:50001:tcp', 'electrum2.litecoinca.sh:50010:ssl'],
-  btcnano: ['wallet1.btcnano.org:10550:tcp', 'wallet1.btcnano.org:10561:ssl', 'wallet2.btcnano.org:50001:tcp', 'wallet2.btcnano.org:50002:ssl']
+  btcnano: ['wallet1.btcnano.org:10550:tcp', 'wallet1.btcnano.org:10561:ssl', 'wallet2.btcnano.org:50001:tcp', 'wallet2.btcnano.org:50002:ssl'],
+  kreds: ['199.247.21.0:50001:tcp']
 };
 
 var electrumServers = {};

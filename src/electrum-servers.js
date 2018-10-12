@@ -584,6 +584,9 @@ let _electrumServers = {
     'wallet2.btcnano.org:50001:tcp',
     'wallet2.btcnano.org:50002:ssl',
   ],
+  kreds: [
+    '199.247.21.0:50001:tcp',
+  ],
 };
 
 let electrumServers = {};
