@@ -501,15 +501,32 @@ let _electrumServers = {
     'electrum1.auroracoin.is:50001:tcp',
     'electrum2.auroracoin.is:50001:tcp',
   ],
-  bta: [
-    'electrum-bta.xyz:50001:tcp',
-  ],
   pot: [
     'elect1.potcoin.com:50001:tcp',
     'elect2.potcoin.com:50001:tcp',
   ],
   richx: [
     'richcoin.us:5038:tcp',
+  ],
+  ac: [
+    '185.81.167.185:30001:tcp',
+    '185.81.165.138:30001:tcp',
+  ],
+  ok: [
+    '162.248.142.89:5040:tcp',
+    '167.88.40.231:5040:tcp',
+  ],
+  efl: [
+    'electrum1.egulden.org:5037:tcp',
+    'electrum2.egulden.org:5037:tcp',
+  ],
+  cdn: [
+    'alberta.canadaecoin.net:5033:tcp',
+    'ontario.canadaecoin.net:5033:tcp',
+  ],
+  pkb: [
+    'electrum-pkb.net:50001:tcp',
+    'electrum.eu1.parkbyte.com:50001:tcp',
   ],
 };
 
