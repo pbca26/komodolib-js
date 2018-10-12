@@ -37,6 +37,7 @@ const _komodoAssetChains = [
   'CALL',
   'CCL',
   'PIRATE',
+  'DION',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
