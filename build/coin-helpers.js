@@ -1,6 +1,6 @@
 'use strict';
 
-var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'MNZ', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CALL', 'CCL', 'PIRATE'];
+var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'MNZ', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CALL', 'CCL', 'PIRATE', 'KOIN'];
 
 var _komodoCoins = _komodoAssetChains.concat(['CHIPS', 'KMD', 'KOMODO']);
 
@@ -118,7 +118,8 @@ var explorerList = {
   PAC: 'http://usa.pacblockexplorer.com:3002/tx/',
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
-  RDD: 'https://live.reddcoin.com'
+  RDD: 'https://live.reddcoin.com',
+  KOIN: 'http://3.0.32.41:3001/'
 };
 
 var explorerListExt = {

@@ -528,6 +528,62 @@ let _electrumServers = {
     'electrum-pkb.net:50001:tcp',
     'electrum.eu1.parkbyte.com:50001:tcp',
   ],
+  neos: [
+    'el1.neoscoin.com:50005:tcp',
+    'electrum.infernopool.com:50005',
+  ],
+  uis: [
+    '10.16.55.40:50001:tcp',
+  ],
+  dsr: [ // todo: verify it's dsr electrum
+    '35.185.122.226:50003:tcp',
+    '35.196.94.57:50003:tcp',
+    '35.185.122.226:50002:ssl',
+  ],
+  axe: [
+    '198.143.186.117:50001:tcp',
+    '198.143.186.117:50002:ssl',
+  ],
+  nyc: [ // verify
+    '159.65.47.19:50001:tcp',
+    '159.65.47.19:50002:ssl',
+  ],
+  grlc: [
+    'garlium.kenzierocks.me:50001:tcp',
+    'ske.wtf:50003:tcp',
+    'electrum.garli.co.in:50001:tcp',
+    'electrum.garli.co.in:50002:ssl',
+    'garlium.garlicpool.org:50001:tcp',
+    'garlium.garlicpool.org:50002:ssl',
+    'tuxprint.com:50001:tcp',
+    'tuxprint.com:50002:ssl',
+    'garlium.rshaw.space:50001:tcp',
+    'garlium.rshaw.space:50002:ssl',
+  ],
+  ebst: [
+    'electrum1.eboost.fun:50001:tcp',
+    'electrum2.eboost.fun:50001:tcp',
+    'electrum3.eboost.fun:50001:tcp',
+  ],
+  ufo: [
+    'electrumx1.ufobject.com:50001:tcp',
+    'electrumx2.ufobject.com:50001:tcp',
+    'electrumx3.ufobject.com:50001:tcp',
+    'electrumx4.ufobject.com:50001:tcp',
+    'electrumx5.ufobject.com:50001:tcp',
+  ],
+  lcc: [
+    'electrum1.litecoinca.sh:50001:tcp',
+    'electrum1.litecoinca.sh:50010:ssl',
+    'electrum2.litecoinca.sh:50001:tcp',
+    'electrum2.litecoinca.sh:50010:ssl',
+  ],
+  btcnano: [
+    'wallet1.btcnano.org:10550:tcp',
+    'wallet1.btcnano.org:10561:ssl',
+    'wallet2.btcnano.org:50001:tcp',
+    'wallet2.btcnano.org:50002:ssl',
+  ],
 };
 
 let electrumServers = {};
