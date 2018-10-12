@@ -360,6 +360,7 @@ let _electrumServers = {
     'e1.verge-electrum.com:50003:ssl',
     'e2.verge-electrum.com:50003:ssl',
     '46.163.118.201:50002:ssl',
+    'electrum-verge.xyz:50001:tcp',
   ],
   cesc: [
     'electrum1.cryptoescudo.org:50001:tcp',
@@ -487,6 +488,28 @@ let _electrumServers = {
   silk: [
     'silkcoin-1.crypto-expert.com:5049:tcp',
     'silkcoin-2.crypto-expert.com:5049:tcp',
+  ],
+  nav: [
+    'mobile.navcoin.org:50001:tcp',
+    'mobile2.navcoin.org:50001:tcp',
+  ],
+  nlg: [
+    'electrum1.gulden.com:5038:tcp',
+    'electrum2.gulden.com:5038:tcp',
+  ],
+  aur: [
+    'electrum1.auroracoin.is:50001:tcp',
+    'electrum2.auroracoin.is:50001:tcp',
+  ],
+  bta: [
+    'electrum-bta.xyz:50001:tcp',
+  ],
+  pot: [
+    'elect1.potcoin.com:50001:tcp',
+    'elect2.potcoin.com:50001:tcp',
+  ],
+  richx: [
+    'richcoin.us:5038:tcp',
   ],
 };
 
