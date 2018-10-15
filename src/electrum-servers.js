@@ -182,6 +182,7 @@ let _electrumServers = {
   blk: [
     'electrum1.cipig.net:10054:tcp',
     'electrum2.cipig.net:10054:tcp',
+    'electrum3.cipig.net:10054:tcp',
   ],
   sib: [
     'electrum1.cipig.net:10050:tcp',
@@ -194,6 +195,7 @@ let _electrumServers = {
   arg: [
     'electrum1.cipig.net:10068:tcp',
     'electrum2.cipig.net:10068:tcp',
+    'electrum3.cipig.net:10068:tcp',
   ],
   chips: [
     'electrum1.cipig.net:10053:tcp',

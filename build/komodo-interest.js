@@ -31,7 +31,7 @@ var komodoInterest = function komodoInterest(locktime, value, height, inSats) {
     }
 
     timestampDiffMinutes -= 59;
-    interest = Number((value / 10512000 * timestampDiffMinutes * (inSats ? 1 : 0.00000001)).toFixed(inSats ? 0 : 8));
+    interest = Number((Math.floor(value / 10512000) * timestampDiffMinutes * (inSats ? 1 : 0.00000001)).toFixed(inSats ? 0 : 8));
   }
 
   return interest;
