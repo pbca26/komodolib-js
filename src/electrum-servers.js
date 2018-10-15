@@ -280,22 +280,6 @@ let _electrumServers = {
     'electrum2.cipig.net:10074:tcp',
     'electrum3.cipig.net:10074:tcp',
   ],
-  polis: [
-    'electrum1.cipig.net:10075:tcp',
-    'electrum2.cipig.net:10075:tcp',
-    'electrum3.cipig.net:10075:tcp',
-  ],
-  xmcc: [
-    'electrum1.cipig.net:10076:tcp',
-    'electrum2.cipig.net:10076:tcp',
-    'electrum3.cipig.net:10076:tcp',
-  ],
-  xzc: [
-    'electrumx01.zcoin.io:50001:tcp',
-    'electrumx02.zcoin.io":50001:tcp',
-    '45.63.92.224:50001:tcp',
-    '45.77.67.235:50001:tcp',
-  ],
   gbx: [
     'electrum1.cipig.net:10073:tcp',
     'electrum2.cipig.net:10073:tcp',
@@ -324,6 +308,27 @@ let _electrumServers = {
     'el0.vrsc.0x03.services:10000:tcp',
     'el1.vrsc.0x03.services:10000:tcp',
   ],
+  rdd: [
+    '82.196.12.14:50001:tcp',
+    '82.196.12.14:50002:ssl',
+  ],
+  polis: [
+    'electrum1.cipig.net:10075:tcp',
+    'electrum2.cipig.net:10075:tcp',
+    'electrum3.cipig.net:10075:tcp',
+  ],
+  xmcc: [
+    'electrum1.cipig.net:10076:tcp',
+    'electrum2.cipig.net:10076:tcp',
+    'electrum3.cipig.net:10076:tcp',
+  ],
+  xzc: [
+    'electrumx01.zcoin.io:50001:tcp',
+    'electrumx02.zcoin.io":50001:tcp',
+    '45.63.92.224:50001:tcp',
+    '45.77.67.235:50001:tcp',
+  ],
+  // unverified to work
   // src: CryptoWallet.si
   arco: [
     'node1.cryptowallet.si:5095:tcp',
@@ -397,10 +402,6 @@ let _electrumServers = {
     'electrum.kotocoin.info:50002:ssl',
     'electrum.kotocoin.info:50001:tcp',
     'electrumx-koto.tamami-foundation.org:50001:tcp',
-  ],
-  rdd: [
-    'reddcoin.corgi.party:50002:ssl', // (?)
-    'corgicoe4n4bmchm.onion:50001:tcp',
   ],
   pak: [
     '108.61.246.159:50001:tcp',

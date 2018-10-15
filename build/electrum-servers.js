@@ -5,6 +5,7 @@ var fees = require('./fees');
 // TODO: add a script to sync electrum severs list from https://github.com/jl777/coins/tree/master/electrums
 
 var _electrumServers = {
+  dion: ['electrum1.cipig.net:10030:tcp', 'electrum2.cipig.net:10030:tcp', 'electrum3.cipig.net:10030:tcp'],
   zilla: ['electrum1.cipig.net:10028:tcp', 'electrum2.cipig.net:10028:tcp'],
   prlpay: ['electrum1.prlpay.com:9681:tcp', 'electrum2.prlpay.com:9681:tcp'],
   kv: ['electrum1.cipig.net:10016:tcp', 'electrum2.cipig.net:10016:tcp'],
@@ -67,15 +68,17 @@ var _electrumServers = {
   game: ['electrum1.cipig.net:10072:tcp', 'electrum2.cipig.net:10072:tcp', '5.196.70.166:50001:tcp', 'gmc.cryptocloudhosting.org:50002:tcp', 'gamecredits.net:50002:tcp'],
   fjc: ['electrumx1.fujicoin.org:50001:tcp', 'electrumx2.fujicoin.org:50001:tcp', 'electrumx3.fujicoin.org:50001:tcp', 'electrumx1.fujicoin.org:50002:ssl', 'electrumx2.fujicoin.org:50002:ssl', 'electrumx3.fujicoin.org:50002:ssl'],
   ftc: ['electrum1.cipig.net:10074:tcp', 'electrum2.cipig.net:10074:tcp', 'electrum3.cipig.net:10074:tcp'],
-  polis: ['electrum1.cipig.net:10075:tcp', 'electrum2.cipig.net:10075:tcp', 'electrum3.cipig.net:10075:tcp'],
-  xmcc: ['electrum1.cipig.net:10076:tcp', 'electrum2.cipig.net:10076:tcp', 'electrum3.cipig.net:10076:tcp'],
-  xzc: ['electrumx01.zcoin.io:50001:tcp', 'electrumx02.zcoin.io":50001:tcp', '45.63.92.224:50001:tcp', '45.77.67.235:50001:tcp'],
   gbx: ['electrum1.cipig.net:10073:tcp', 'electrum2.cipig.net:10073:tcp', 'electrum3.cipig.net:10073:tcp'],
   mac: ['electrum1.cipig.net:10077:tcp', 'electrum2.cipig.net:10077:tcp', 'electrum3.cipig.net:10077:tcp'],
   mnx: ['electrum1.cipig.net:10079:tcp', 'electrum2.cipig.net:10079:tcp', 'electrum3.cipig.net:10079:tcp'],
   call: ['electrum1.mycapitalco.in:10000:tcp', 'electrum2.mycapitalco.in:10000:tcp'],
   ccl: ['electrum1.cipig.net:10029:tcp', 'electrum2.cipig.net:10029:tcp', 'electrum3.cipig.net:10029:tcp'],
   vrsc: ['el0.vrsc.0x03.services:10000:tcp', 'el1.vrsc.0x03.services:10000:tcp'],
+  rdd: ['82.196.12.14:50001:tcp', '82.196.12.14:50002:ssl'],
+  polis: ['electrum1.cipig.net:10075:tcp', 'electrum2.cipig.net:10075:tcp', 'electrum3.cipig.net:10075:tcp'],
+  xmcc: ['electrum1.cipig.net:10076:tcp', 'electrum2.cipig.net:10076:tcp', 'electrum3.cipig.net:10076:tcp'],
+  xzc: ['electrumx01.zcoin.io:50001:tcp', 'electrumx02.zcoin.io":50001:tcp', '45.63.92.224:50001:tcp', '45.77.67.235:50001:tcp'],
+  // unverified to work
   // src: CryptoWallet.si
   arco: ['node1.cryptowallet.si:5095:tcp', 'node2.cryptowallet.si:5095:tcp', 'electrum1.aquariuscoin.com:5095:tcp', 'electrum2.aquariuscoin.com:5095:tcp', 'electrum3.aquariuscoin.com:5095:tcp', 'electrum4.aquariuscoin.com:5095:tcp'],
   lana: ['node1.cryptowallet.si:5097:tcp', 'node2.cryptowallet.si:5097:tcp', 'electrum1.lanacoin.com:5097:tcp', 'electrum2.lanacoin.com:5097:tcp', 'electrum3.lanacoin.com:5097:tcp', 'electrum4.lanacoin.com:5097:tcp'],
@@ -87,8 +90,6 @@ var _electrumServers = {
   mue: ['181.214.148.6:50001:tcp', '37.59.209.76:50001:tcp', '181.214.148.6:50002:tcp'],
   uno: ['electrum1.unobtanium.uno:50006:ssl', 'electrum2.unobtanium.uno:50006:ssl', 'nigeria1.unobtanium.uno:50006:ssl', 'nigeria2.unobtanium.uno:50006:ssl'],
   koto: ['kotocoin.info:50001:tcp', 'kotocoin.info:50002:ssl', 'fr3.kotocoin.info:50002:ssl', 'fr.kotocoin.info:50001:tcp', 'fr.kotocoin.info:50002:ssl', 'electrum.okoto.xyz:50002:ssl', 'fr3.kotocoin.info:50001:tcp', 'electrumx-koto.tamami-foundation.org:50002:ssl', 'electrum.kotocoin.info:50002:ssl', 'electrum.kotocoin.info:50001:tcp', 'electrumx-koto.tamami-foundation.org:50001:tcp'],
-  rdd: ['reddcoin.corgi.party:50002:ssl', // (?)
-  'corgicoe4n4bmchm.onion:50001:tcp'],
   pak: ['108.61.246.159:50001:tcp'],
   cpc: ['electrum1.capricoin.org:50011:tcp', 'electrum2.capricoin.org:50011:tcp', 'electrum1.capricoin.org:50012:ssl', 'electrum2.capricoin.org:50012:ssl'],
   rap: ['electrum.our-rapture.com:50001:tcp:', 'electrum2.our-rapture.com:50001:tcp', '194.87.145.250:50016:ssl'],

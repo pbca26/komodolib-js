@@ -44,3 +44,5 @@ Thumbs.db
 .npmrc
 agamalib.js
 coverage
+
+package-lock
