@@ -41,6 +41,7 @@ const fees = {
   call: KMD_STD_FEE,
   ccl: KMD_STD_FEE,
   vrsc: KMD_STD_FEE,
+  dion: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
