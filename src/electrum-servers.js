@@ -37,13 +37,14 @@ let _electrumServers = {
     'electrum2.cipig.net:10011:tcp',
   ],
   chain: [
-    'electrum1.chainmakers.co:55417:tcp',
-    'electrum2.chainmakers.co:55417:tcp',
+    'electrum1.cipig.net:10032:tcp',
+    'electrum2.cipig.net:10032:tcp',
+    'electrum3.cipig.net:10032:tcp',
   ],
-   kmdice: [
+  kmdice: [
     'electrum1.cipig.net:10031:tcp',
     'electrum2.cipig.net:10031:tcp',
-    'electrum3.cipig.net:10031:tcp'
+    'electrum3.cipig.net:10031:tcp',
   ],
   glxt: [
     'electrum1.glx.co:60012:tcp',
