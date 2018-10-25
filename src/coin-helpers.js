@@ -158,6 +158,7 @@ const explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
+  KOIN: 'http://live.block.koinon.li/',
 };
 
 const explorerListExt = {
