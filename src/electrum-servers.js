@@ -8,6 +8,10 @@ let _electrumServers = {
     'electrum2.cipig.net:10030:tcp',
     'electrum3.cipig.net:10030:tcp',
   ],
+  PTX: [
+    'electrum1.patenttx.com:8081:tcp',
+    'electrum2.patenttx.com:8081:tcp',
+  ],
   zilla: [
     'electrum1.cipig.net:10028:tcp',
     'electrum2.cipig.net:10028:tcp',
