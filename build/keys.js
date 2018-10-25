@@ -142,13 +142,16 @@ var bip39Search = function bip39Search(seed, network, matchPattern, addressDepth
 };
 
 // src: https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/src/ecpair.js#L62
-var fromWif = function fromWif(string, network) {
+var fromWif = function fromWif(string, network, versionCheck) {
   var decoded = wif.decode(string);
   var version = decoded.version;
 
   if (!network) throw new Error('Unknown network version');
-  if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
-  if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');
+
+  if (versionCheck) {
+    if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
+    if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');
+  }
 
   var d = bigi.fromBuffer(decoded.privateKey);
 
