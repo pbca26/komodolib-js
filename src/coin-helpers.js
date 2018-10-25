@@ -40,6 +40,7 @@ const _komodoAssetChains = [
   'PIRATE',
   'KOIN',
   'DION',
+  'PTX',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -60,6 +61,7 @@ const explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
   DION: 'https://explorer.dionpay.com',
+  PTX: 'http://explorer1.patenttx.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
   CALL: 'https://call.explorer.mycapitalco.in',
