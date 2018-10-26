@@ -118,7 +118,10 @@ var explorerList = {
   PAC: 'http://usa.pacblockexplorer.com:3002/tx/',
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
-  RDD: 'https://live.reddcoin.com'
+  RDD: 'https://live.reddcoin.com',
+  KOIN: 'http://live.block.koinon.li/',
+  ETH: 'https://ropsten.etherscan.io/tx/',
+  ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/'
 };
 
 var explorerListExt = {
