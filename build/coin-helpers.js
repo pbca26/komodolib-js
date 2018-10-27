@@ -120,7 +120,7 @@ var explorerList = {
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
   KOIN: 'http://live.block.koinon.li/',
-  ETH: 'https://ropsten.etherscan.io/tx/',
+  ETH: 'https://etherscan.io/tx/',
   ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/'
 };
 
