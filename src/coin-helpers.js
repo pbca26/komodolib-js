@@ -7,7 +7,6 @@ const _komodoAssetChains = [
   'BET',
   'CRYPTO',
   'COQUI',
-  'KMDICE',
   'HODL',
   'MSHARK',
   'BOTS',
@@ -38,8 +37,6 @@ const _komodoAssetChains = [
   'CALL',
   'CCL',
   'PIRATE',
-  'KOIN',
-  'DION',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -59,7 +56,6 @@ const isKomodoCoin = (coin, skipKMD) => (_komodoCoins.find((element) => {
 const explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
-  DION: 'https://explorer.dionpay.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
   CALL: 'https://call.explorer.mycapitalco.in',
@@ -68,7 +64,6 @@ const explorerList = {
   KV: 'https://kv.kmdexplorer.io',
   OOT: 'http://explorer.utrum.io',
   BNTN: 'http://chain.blocnation.io',
-  KMDICE: 'https://kmdice.explorer.dexstats.info',
   CHAIN: 'http://explorer.chainmakers.co',
   GLXT: 'http://glx.info',
   PRLPAY: 'http://explorer.prlpay.com',
@@ -87,7 +82,7 @@ const explorerList = {
   WLC: 'https://wlc.kmdexplorer.io',
   CHIPS: 'https://explorer.chips.cash',
   COQUI: 'https://explorer.coqui.cash',
-  EQL: 'http://eql.explorer.dexstats.info',
+  EQL: 'http://178.62.240.191',
   MNZ: 'https://mnz.kmdexplorer.io',
   BTCH: 'https://btch.kmdexplorer.io',
   BTC: 'https://blockchain.info',
@@ -163,7 +158,9 @@ const explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
-  KOIN: 'http://3.0.32.41:3001/',
+  KOIN: 'http://live.block.koinon.li/',
+  ETH: 'https://ropsten.etherscan.io/tx/',
+  ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/',
 };
 
 const explorerListExt = {

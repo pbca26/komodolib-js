@@ -1,6 +1,6 @@
 'use strict';
 
-var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'MNZ', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CALL', 'CCL', 'PIRATE', 'KOIN', 'DION'];
+var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'MNZ', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CALL', 'CCL', 'PIRATE'];
 
 var _komodoCoins = _komodoAssetChains.concat(['CHIPS', 'KMD', 'KOMODO']);
 
@@ -17,7 +17,6 @@ var isKomodoCoin = function isKomodoCoin(coin, skipKMD) {
 var explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
-  DION: 'https://explorer.dionpay.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
   CALL: 'https://call.explorer.mycapitalco.in',
@@ -120,7 +119,9 @@ var explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
-  KOIN: 'http://3.0.32.41:3001/'
+  KOIN: 'http://live.block.koinon.li/',
+  ETH: 'https://ropsten.etherscan.io/tx/',
+  ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/'
 };
 
 var explorerListExt = {
