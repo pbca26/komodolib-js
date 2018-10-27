@@ -16,6 +16,10 @@ let _electrumServers = {
     'electrum1.prlpay.com:9681:tcp',
     'electrum2.prlpay.com:9681:tcp',
   ],
+  pgt: [
+    'agama.komodo.build:10002:tcp',
+    'agama2.komodo.build:10002:tcp',
+  ],
   kv: [
     'electrum1.cipig.net:10016:tcp',
     'electrum2.cipig.net:10016:tcp',
