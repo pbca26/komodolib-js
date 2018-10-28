@@ -7,6 +7,7 @@
 
 const KMD_STD_FEE = 10000; // kmd main/chips/asset chains
 const fees = {
+  // btc compatible coins, fees in satoshis
   // kmd/chips/asset chains
   kmd: KMD_STD_FEE,
   chips: KMD_STD_FEE,
@@ -94,6 +95,9 @@ const fees = {
   rdd: 0, // todo
   pak: 0, // todo
   cpc: 0, // todo
+  // eth, gas limit in wei
+  eth: 21000,
+  eth_ropsten: 21000,
 };
 
 module.exports = fees;
