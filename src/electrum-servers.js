@@ -164,18 +164,15 @@ const electrumServers = {
     txfee: 10000,
     serverList: [
       'el0.vrsc.0x03.services:10000:tcp',
-      'el1.vrsc.0x03.services:10000:tcp',
-      'el2.vrsc.0x03.services:10000:tcp',
+      'el1.vrsc.0x03.services:10000:tcp'
     ],
   },
-  /*
   verustest: {
     txfee: 10000,
     serverList: [
-      '',
+      'veruscoin-dev.0x03.services:11000:tcp',
     ],
   },
-  */
   beer: {
     txfee: 10000,
     serverList: [
