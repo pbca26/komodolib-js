@@ -168,6 +168,14 @@ const electrumServers = {
       'el2.vrsc.0x03.services:10000:tcp',
     ],
   },
+  /*
+  verustest: {
+    txfee: 10000,
+    serverList: [
+      '',
+    ],
+  },
+  */
   beer: {
     txfee: 10000,
     serverList: [
