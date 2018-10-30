@@ -38,6 +38,9 @@ const _komodoAssetChains = [
   'CALL',
   'CCL',
   'PIRATE',
+  'KOIN',
+  'DION',
+  'KMDICE',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -95,6 +98,9 @@ const explorerList = {
   VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
   VRSC: 'https://vrsc.kmdexplorer.io',
+  KOIN: 'http://live.block.koinon.li/',
+  DION: 'https://explorer.dionpay.com',
+  KMDICE: 'https://kmdice.explorer.dexstats.info',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
@@ -160,7 +166,6 @@ const explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
-  KOIN: 'http://live.block.koinon.li/',
   ETH: 'https://etherscan.io/tx/',
   ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/',
 };

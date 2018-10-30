@@ -1,6 +1,6 @@
 {
   "name": "agama-wallet-lib",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Agama wallet library",
   "keywords": [
     "agama wallet",
@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "bigi": "^1.4.2",
+    "bip32": "^1.0.2",
     "bip39": "^2.4.0",
     "bitcoinforksjs-lib": "git://github.com/SuperNETorg/bitcoinjs-lib#opt-in-bitcoincash-sighash",
     "bitcoinjs-lib": "git://github.com/SuperNETorg/bitcoinjs-lib",
@@ -71,6 +72,8 @@
     "bluebird": "^3.4.7",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",
+    "ethereumjs-util": "^6.0.0",
+    "ethers": "git://github.com/pbca26/ethers.js",
     "iocane": "^1.0.0",
     "js-sha256": "^0.7.1",
     "nodejs-aes256": "^1.0.1",
