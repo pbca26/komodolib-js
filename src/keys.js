@@ -6,6 +6,8 @@ const bitcoin = require('bitcoinjs-lib');
 const bitcoinPos = require('bitcoinjs-lib-pos');
 const bs58check = require('bs58check');
 const bip39 = require('bip39');
+const ethers = require('ethers');
+const ethUtil = require('ethereumjs-util');
 
 const addressVersionCheck = (network, address) => {
   try {
@@ -217,6 +219,26 @@ const pubkeyToAddress = (pubkey, network) => {
   }
 };
 
+// priv can be a valid priv key or a seed
+const etherKeys = (priv, iguana) => {
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(priv))) {
+    return new ethers.Wallet(priv);
+  }
+
+  const hash = sha256.create().update(priv);
+  bytes = hash.array();
+
+  if (iguana) {
+    bytes[0] &= 248;
+    bytes[31] &= 127;
+    bytes[31] |= 64;
+  }
+
+  const _wallet = new ethers.Wallet(ethUtil.bufferToHex(bytes));
+    
+  return _wallet;
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -225,4 +247,5 @@ module.exports = {
   stringToWif,
   fromWif,
   pubkeyToAddress,
+  etherKeys,
 };
