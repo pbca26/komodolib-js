@@ -8,6 +8,7 @@ var bitcoin = require('bitcoinjs-lib');
 var bitcoinPos = require('bitcoinjs-lib-pos');
 var bs58check = require('bs58check');
 var bip39 = require('bip39');
+var bip32 = require('bip32');
 var ethers = require('ethers');
 var ethUtil = require('ethereumjs-util');
 
@@ -239,6 +240,16 @@ var etherKeys = function etherKeys(priv, iguana) {
   return _wallet;
 };
 
+// https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
+// btc forks only
+var xpub = function xpub(seed) {
+  var _seed = bip39.mnemonicToSeed(seed);
+  var node = bip32.fromSeed(_seed);
+  var string = node.neutered().toBase58();
+
+  return string;
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -247,5 +258,6 @@ module.exports = {
   stringToWif: stringToWif,
   fromWif: fromWif,
   pubkeyToAddress: pubkeyToAddress,
-  etherKeys: etherKeys
+  etherKeys: etherKeys,
+  xpub: xpub
 };

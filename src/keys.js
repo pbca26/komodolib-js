@@ -6,6 +6,7 @@ const bitcoin = require('bitcoinjs-lib');
 const bitcoinPos = require('bitcoinjs-lib-pos');
 const bs58check = require('bs58check');
 const bip39 = require('bip39');
+const bip32 = require('bip32');
 const ethers = require('ethers');
 const ethUtil = require('ethereumjs-util');
 
@@ -239,6 +240,16 @@ const etherKeys = (priv, iguana) => {
   return _wallet;
 };
 
+// https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
+// btc forks only
+const xpub = (seed) => {
+  const _seed = bip39.mnemonicToSeed(seed);
+  const node = bip32.fromSeed(_seed);
+  const string = node.neutered().toBase58();
+
+  return string;
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -248,4 +259,5 @@ module.exports = {
   fromWif,
   pubkeyToAddress,
   etherKeys,
+  xpub,
 };
