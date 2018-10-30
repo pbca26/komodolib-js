@@ -1,5 +1,6 @@
 const aes256 = require('nodejs-aes256');
 const iocane = require('iocane');
+
 const session = iocane.createSession()
   .use('cbc')
   .setDerivationRounds(300000);
@@ -8,22 +9,20 @@ const _encrypt = session.encrypt.bind(session);
 const _decrypt = session.decrypt.bind(session);
 const Promise = require('bluebird');
 
-const encrypt = (cipherKey, string, testPinStrength) => {
-  return new Promise((resolve, reject) => {
-    if (testPinStrength) { 
-      const passwdStrength = require('passwd-strength');
-      
-      if (passwdStrength(_pin) < 29) {
-        resolve(-1);
-      }
-    } else {
-      _encrypt(string, cipherKey)
+const encrypt = (cipherKey, string, testPinStrength) => new Promise((resolve, reject) => {
+  if (testPinStrength) {
+    const passwdStrength = require('passwd-strength');
+
+    if (passwdStrength(_pin) < 29) {
+      resolve(-1);
+    }
+  } else {
+    _encrypt(string, cipherKey)
       .then((encryptedString) => {
         resolve(encryptedString);
       });
-    }
-  });
-}
+  }
+});
 
 const decrypt = (cipherKey, string) => {
   const encryptedKey = aes256.decrypt(cipherKey, string);
@@ -39,15 +38,15 @@ const decrypt = (cipherKey, string) => {
       });
     } else {
       _decrypt(string, cipherKey)
-      .then((decryptedKey) => {
-        resolve({ string: decryptedKey });
-      })
-      .catch((err) => {
-        resolve(false);
-      });
-    }    
+        .then((decryptedKey) => {
+          resolve({ string: decryptedKey });
+        })
+        .catch((err) => {
+          resolve(false);
+        });
+    }
   });
-}
+};
 
 module.exports = {
   encrypt,

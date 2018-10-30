@@ -58,6 +58,7 @@ var _require3 = require('tx-decoder/build/tx-decoder'),
     readOutput = _require3.readOutput;
 
 var crypto = require('crypto');
+
 var _sha256 = function _sha256(data) {
   return crypto.createHash('sha256').update(data).digest();
 };
@@ -155,55 +156,53 @@ var transactionDecoder = function transactionDecoder(rawtx, network, debug) {
       inputs: decodeInput(_tx, network),
       outputs: decodeOutput(_tx, network)
     };
-  } else {
-    if (network.isZcash) {
-      var buffer = Buffer.from(rawtx, 'hex');
+  }
+  if (network.isZcash) {
+    var buffer = Buffer.from(rawtx, 'hex');
 
-      var decodeTx = function decodeTx(buffer) {
-        return compose([addProp('version', readInt32), // 4 bytes
-        addProp('ins', readInputs(readInput)), // 1-9 bytes (VarInt), Input counter; Variable, Inputs
-        addProp('outs', readInputs(readOutput)), // 1-9 bytes (VarInt), Output counter; Variable, Outputs
-        addProp('locktime', readUInt32) // 4 bytes
-        ])({}, buffer);
-      };
+    var decodeTx = function decodeTx(buffer) {
+      return compose([addProp('version', readInt32), // 4 bytes
+      addProp('ins', readInputs(readInput)), // 1-9 bytes (VarInt), Input counter; Variable, Inputs
+      addProp('outs', readInputs(readOutput)), // 1-9 bytes (VarInt), Output counter; Variable, Outputs
+      addProp('locktime', readUInt32)] // 4 bytes
+      )({}, buffer);
+    };
 
-      var readHash = function readHash(buffer) {
-        var _readSlice = readSlice(32)(_sha256(_sha256(buffer))),
-            _readSlice2 = _slicedToArray(_readSlice, 2),
-            res = _readSlice2[0],
-            bufferLeft = _readSlice2[1];
+    var readHash = function readHash(buffer) {
+      var _readSlice = readSlice(32)(_sha256(_sha256(buffer))),
+          _readSlice2 = _slicedToArray(_readSlice, 2),
+          res = _readSlice2[0],
+          bufferLeft = _readSlice2[1];
 
-        var hash = Buffer.from(res, 'hex').reverse().toString('hex');
-        return [hash, bufferLeft];
-      };
+      var hash = Buffer.from(res, 'hex').reverse().toString('hex');
+      return [hash, bufferLeft];
+    };
 
-      var decodedtx = decodeTx(buffer);
-      decodedtx[0].getId = function () {
-        return readHash(buffer)[0];
-      };
+    var decodedtx = decodeTx(buffer);
+    decodedtx[0].getId = function () {
+      return readHash(buffer)[0];
+    };
 
-      return {
-        tx: decodedtx[0],
-        network: network,
-        format: decodeFormat(decodedtx[0]),
-        inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0], network),
-        outputs: decodeOutput(decodedtx[0], network)
-      };
-    } else {
-      try {
-        var _tx2 = network.isPoS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
+    return {
+      tx: decodedtx[0],
+      network: network,
+      format: decodeFormat(decodedtx[0]),
+      inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0], network),
+      outputs: decodeOutput(decodedtx[0], network)
+    };
+  }
+  try {
+    var _tx2 = network.isPoS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
 
-        return {
-          tx: _tx2,
-          network: network,
-          format: decodeFormat(_tx2),
-          inputs: decodeInput(_tx2, network),
-          outputs: decodeOutput(_tx2, network)
-        };
-      } catch (e) {
-        return false;
-      }
-    }
+    return {
+      tx: _tx2,
+      network: network,
+      format: decodeFormat(_tx2),
+      inputs: decodeInput(_tx2, network),
+      outputs: decodeOutput(_tx2, network)
+    };
+  } catch (e) {
+    return false;
   }
 };
 

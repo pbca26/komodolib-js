@@ -2,6 +2,7 @@
 
 var reverse = require('buffer-reverse');
 var crypto = require('crypto');
+
 var sha256 = function sha256(data) {
   return crypto.createHash('sha256').update(data).digest();
 };

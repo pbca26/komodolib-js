@@ -13,19 +13,18 @@ var sort = function sort(data, sortKey, desc) {
 
       return 0;
     });
-  } else {
-    return data.sort(function (b, a) {
-      if (a[sortKey] < b[sortKey]) {
-        return -1;
-      }
-
-      if (a[sortKey] > b[sortKey]) {
-        return 1;
-      }
-
-      return 0;
-    });
   }
+  return data.sort(function (b, a) {
+    if (a[sortKey] < b[sortKey]) {
+      return -1;
+    }
+
+    if (a[sortKey] > b[sortKey]) {
+      return 1;
+    }
+
+    return 0;
+  });
 };
 
 var getRandomIntInclusive = function getRandomIntInclusive(min, max) {
@@ -81,19 +80,17 @@ var isPositiveNumber = function isPositiveNumber(value) {
 var formatValue = function formatValue(value) {
   if (value.toString().indexOf('.') === -1) {
     return value;
-  } else {
-    // ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
-    var c = Math.pow(10, 8); // 8 decimal places
-    var newVal = Math.trunc(value * c) / c;
-    var str = newVal.toString();
-    var splitNum = str.split('.');
-
-    if (Number(splitNum[0]) !== 0) {
-      return newVal.toFixed(4);
-    } else {
-      return newVal;
-    }
   }
+  // ref: https://stackoverflow.com/questions/3612744/remove-insignificant-trailing-zeros-from-a-number
+  var c = Math.pow(10, 8); // 8 decimal places
+  var newVal = Math.trunc(value * c) / c;
+  var str = newVal.toString();
+  var splitNum = str.split('.');
+
+  if (Number(splitNum[0]) !== 0) {
+    return newVal.toFixed(4);
+  }
+  return newVal;
 };
 
 var formatBytes = function formatBytes(bytes, decimals) {
@@ -110,7 +107,6 @@ var formatBytes = function formatBytes(bytes, decimals) {
 };
 
 var estimateTxSize = function estimateTxSize(numVins, numOuts) {
-  // in x 180 + out x 34 + 10 plus or minus in
   return numVins * 180 + numOuts * 34 + 11;
 };
 
@@ -123,9 +119,8 @@ var maxSpendBalance = function maxSpendBalance(utxoList, fee) {
 
   if (fee) {
     return Number(maxSpendBalance) - Number(fee);
-  } else {
-    return maxSpendBalance;
   }
+  return maxSpendBalance;
 };
 
 var fromSats = function fromSats(value) {
@@ -134,6 +129,13 @@ var fromSats = function fromSats(value) {
 
 var toSats = function toSats(value) {
   return Number(value).toFixed(8) * 100000000;
+};
+
+// https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
+var sortObject = function sortObject(o) {
+  return Object.keys(o).sort().reduce(function (r, k) {
+    return r[k] = o[k], r;
+  }, {});
 };
 
 module.exports = {
@@ -147,5 +149,6 @@ module.exports = {
   fromSats: fromSats,
   toSats: toSats,
   isNumber: isNumber,
-  isPositiveNumber: isPositiveNumber
+  isPositiveNumber: isPositiveNumber,
+  sortObject: sortObject
 };

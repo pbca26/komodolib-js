@@ -9,7 +9,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 */
 
 // TODO: runtime extend for kmd assets
-
+// wifAlt can be used for different coin versions that underwent major code base changes
+// this is an experimental option that can lead to key pair derivation errors
 var bitcoin = require('bitcoinjs-lib');
 
 var networks = (_networks = {
@@ -451,8 +452,8 @@ var networks = (_networks = {
     },
     pubKeyHash: 0x3F,
     scriptHash: 0x5,
-    // wif: 0x80,
     wif: 0xbf,
+    wifAlt: [0x80],
     dustThreshold: 1000,
     isZcash: true
   },
@@ -464,7 +465,8 @@ var networks = (_networks = {
     },
     pubKeyHash: 0x21,
     scriptHash: 0x05,
-    wif: 0xa1
+    wif: 0xa1,
+    wifAlt: [0xB0]
   },
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
@@ -479,17 +481,6 @@ var networks = (_networks = {
     dustThreshold: 1000
   },
   // https://github.com/lbryio/lbrycrd/blob/master/src/chainparams.cpp#L176
-  /*lbc: {
-    messagePrefix: '\x19LBRY Credits Signed Message:\n',
-    bip32: {
-      public: 0x019C354f,
-      private: 0x019C3118,
-    },
-    pubKeyHash: 0x55,
-    scriptHash: 0x7a,
-    wif: 0x1c,
-    dustThreshold: 1000,
-  },*/
   lbc: {
     messagePrefix: '\x18LBRYcrd Signed Message:\n',
     bip32: {
@@ -521,7 +512,6 @@ var networks = (_networks = {
     },
     pubKeyHash: 0x26,
     scriptHash: 0xA,
-    // scriptHash: 0x0a,
     wif: 0xC6,
     dustThreshold: 1000
   },
@@ -627,8 +617,8 @@ var networks = (_networks = {
     },
     pubKeyHash: 0x37,
     scriptHash: 0x1C,
-    // wif: 0xB7,
     wif: 0x03,
+    wifAlt: [0xB7],
     dustThreshold: 1000
   },
   neos: {
@@ -663,21 +653,9 @@ var networks = (_networks = {
     },
     pubKeyHash: 0x4B,
     scriptHash: 0x5,
-    // scriptHash: 0x05,
     wif: 0x80,
     dustThreshold: 1000
   },
-  /*lcc: {
-    messagePrefix: '\x19Litecoin Cash Signed Message:\n',
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4,
-    },
-    pubKeyHash: 0x1C,
-    scriptHash: 0x5,
-    wif: 0x32,
-    dustThreshold: 1000,
-  },*/
   lcc: {
     messagePrefix: '\x18Litecoin Cash Signed Message:\n',
     bip32: {
@@ -699,7 +677,7 @@ var networks = (_networks = {
     pubKeyHash: 0x26,
     scriptHash: 0x62,
     wif: 0x26 + 128,
-    // wif: 0x62,
+    wifAlt: [0x62],
     dustThreshold: 1000
   },
   // https://github.com/fujicoin/fujicoin/blob/master/src/chainparams.cpp#L132
@@ -1404,6 +1382,797 @@ var networks = (_networks = {
   pubKeyHash: 0x21,
   scriptHash: 0x35,
   wif: 0x6a
+}), _defineProperty(_networks, 'excc', {
+  messagePrefix: 'ExchangeCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x21B9,
+  scriptHash: 0x34AF,
+  wif: 0x80
+}), _defineProperty(_networks, 'xax', {
+  messagePrefix: '\x18Artax Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x17,
+  scriptHash: 0x1CBD,
+  wif: 0x97
+}), _defineProperty(_networks, 'stt', {
+  messagePrefix: '\x18Stash Signed Message:\n',
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4
+  },
+  pubKeyHash: 0x4c,
+  scriptHash: 0x10,
+  wif: 0xcc
+}), _defineProperty(_networks, 'sls', {
+  messagePrefix: '\x18Salus Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x3f,
+  scriptHash: 0xc4,
+  wif: 0xbf
+}), _defineProperty(_networks, 'mec', {
+  messagePrefix: '\x18Megacoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x32,
+  scriptHash: 0x05,
+  wif: 0xB2
+}), _defineProperty(_networks, 'cesc', {
+  messagePrefix: '\x18Cryptoescudo Signed Message:\n',
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4
+  },
+  pubKeyHash: 0x1c,
+  scriptHash: 0x05,
+  wif: 0x9c
+}), _defineProperty(_networks, 'btdx', {
+  messagePrefix: '\x18BitCloud Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x19,
+  scriptHash: 0x05,
+  wif: 0x99
+}), _defineProperty(_networks, 1337, {
+  messagePrefix: '\x18Elite Signed Message:\n',
+  pubKeyHash: 0x30,
+  scriptHash: 0x1c,
+  wif: 0xb0
+}), _defineProperty(_networks, 'bun', {
+  messagePrefix: '\x18BunnyCoin Signed Message:\n',
+  pubKeyHash: 0x1a,
+  scriptHash: 0x16,
+  wif: 0x9a,
+  headerHashAlgo: 'scrypt'
+}), _defineProperty(_networks, 'cat', {
+  messagePrefix: '\x18Catcoin Signed Message:\n',
+  pubKeyHash: 0x15,
+  scriptHash: 0x5,
+  wif: 0x95
+}), _defineProperty(_networks, 'cloak', {
+  messagePrefix: '\x18CloakCoin Signed Message:\n',
+  pubKeyHash: 0x1b,
+  scriptHash: 0x55,
+  wif: 0x9b
+}), _defineProperty(_networks, 'xcp', {
+  messagePrefix: '\x18CounterParty Signed Message:\n',
+  pubKeyHash: 0x0,
+  scriptHash: 0x5,
+  wif: 0x80
+}), _defineProperty(_networks, 'cj', {
+  messagePrefix: '\x18CryptoJacks Signed Message:\n',
+  pubKeyHash: 0x1c,
+  scriptHash: 0x5,
+  wif: 0x9c
+}), _defineProperty(_networks, 'note', {
+  messagePrefix: '\x18DNotes Signed Message:\n',
+  pubKeyHash: 0x1f,
+  scriptHash: 0x5,
+  wif: 0x9f
+}), _defineProperty(_networks, 'dime', {
+  messagePrefix: '\x18Dimecoin Signed Message:\n',
+  pubKeyHash: 0xf,
+  scriptHash: 0x9,
+  wif: 0x8f
+}), _defineProperty(_networks, 'dope', {
+  messagePrefix: '\x18Dopecoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x1e,
+  pubKeyHashAlt: 0x8,
+  scriptHash: 0x5,
+  wif: 0x9e
+}), _defineProperty(_networks, 'emc', {
+  messagePrefix: '\x18Emercoin Signed Message:\n',
+  pubKeyHash: 0x21,
+  scriptHash: 0x5,
+  wif: 0x80
+}), _defineProperty(_networks, 'flap', {
+  messagePrefix: '\x18FlappyCoin Signed Message:\n',
+  pubKeyHash: 0x23,
+  scriptHash: 0x5,
+  wif: 0xa3
+}), _defineProperty(_networks, 'geert', {
+  messagePrefix: '\x18Geertcoin Signed Message:\n',
+  pubKeyHash: 0x26,
+  scriptHash: 0x5,
+  wif: 0xb0
+}), _defineProperty(_networks, 'huc', {
+  messagePrefix: '\x18HunterCoin Signed Message:\n',
+  pubKeyHash: 0x28,
+  scriptHash: 0x5,
+  wif: 0xa8
+}), _defineProperty(_networks, 'leo', {
+  messagePrefix: '\x18LEOcoin Signed Message:\n',
+  pubKeyHash: 0x12,
+  scriptHash: 0x58,
+  wif: 0x90
+}), _defineProperty(_networks, 'lemon', {
+  messagePrefix: '\x18LemonCoin Signed Message:\n',
+  pubKeyHash: 0x30,
+  scriptHash: 0x5,
+  wif: 0xb0
+}), _defineProperty(_networks, 'mars', {
+  messagePrefix: '\x18MarsCoin Signed Message:\n',
+  pubKeyHash: 0x32,
+  scriptHash: 0x5,
+  wif: 0xb2,
+  headerHashAlgo: 'scrypt'
+}), _defineProperty(_networks, 'mgc', {
+  messagePrefix: '\x18MergeCoin Signed Message:\n',
+  pubKeyHash: 0x32,
+  scriptHash: 0x5,
+  wif: 0xb2,
+  transactionForm: 'ppc-timestamp',
+  isPoS: true // ?
+}), _defineProperty(_networks, 'moon', {
+  messagePrefix: '\x18Mooncoin Signed Message:\n',
+  pubKeyHash: 0x3,
+  scriptHash: 0x5,
+  wif: 0x83
+}), _defineProperty(_networks, 'nlc2', {
+  messagePrefix: '\x18NoLimitCoin Signed Message:\n',
+  pubKeyHash: 0x35,
+  scriptHash: 0x5c,
+  wif: 0xb5
+}), _defineProperty(_networks, 'pnd', {
+  messagePrefix: '\x18PandaCoin Signed Message:\n',
+  pubKeyHash: 0x37,
+  scriptHash: 0x5,
+  wif: 0xb7
+}), _defineProperty(_networks, 'part', {
+  messagePrefix: '\x18Particl Signed Message:\n',
+  pubKeyHash: 0x38,
+  scriptHash: 0x3c,
+  wif: 0x6c
+}), _defineProperty(_networks, 'ptc', {
+  messagePrefix: '\x18Pesetacoin Signed Message:\n',
+  pubKeyHash: 0x2f,
+  scriptHash: 0x5,
+  wif: 0xaf
+}), _defineProperty(_networks, 'xpm', {
+  messagePrefix: '\x18Primecoin Signed Message:\n',
+  pubKeyHash: 0x17,
+  scriptHash: 0x5,
+  wif: 0x97
+}), _defineProperty(_networks, 'qrk', {
+  messagePrefix: '\x18Quark Signed Message:\n',
+  pubKeyHash: 0x3a,
+  scriptHash: 0x5,
+  wif: 0xba
+}), _defineProperty(_networks, 'song', {
+  messagePrefix: '\x18SongCoin Signed Message:\n',
+  pubKeyHash: 0x3f,
+  scriptHash: 0x5,
+  wif: 0xbf
+}), _defineProperty(_networks, 'trc', {
+  messagePrefix: '\x18TerraCoin Signed Message:\n',
+  pubKeyHash: 0x0,
+  scriptHash: 0x5,
+  wif: 0x80
+}), _defineProperty(_networks, 'tes', {
+  messagePrefix: '\x18TeslaCoin Signed Message:\n',
+  pubKeyHash: 0xb,
+  scriptHash: 0x5,
+  wif: 0x8b
+}), _defineProperty(_networks, 'tx', {
+  messagePrefix: '\x18TransferCoin Signed Message:\n',
+  pubKeyHash: 0x42,
+  scriptHash: 0x5,
+  wif: 0x99
+}), _defineProperty(_networks, 'unify', {
+  messagePrefix: '\x18Unify Signed Message:\n',
+  pubKeyHash: 0x44,
+  scriptHash: 0x5,
+  wif: 0xc4
+}), _defineProperty(_networks, 'bvc', {
+  messagePrefix: '\x18BeaverCoin Signed Message:\n',
+  pubKeyHash: 0x19,
+  scriptHash: 0x5,
+  wif: 0xb0
+}), _defineProperty(_networks, 'arco', {
+  messagePrefix: '\x18Aquariuscoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x17,
+  scriptHash: 0x5,
+  wif: 0x97
+}), _defineProperty(_networks, 'taj', {
+  messagePrefix: '\x18Tajcoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x41,
+  scriptHash: 0x5,
+  wif: 0x6f
+}), _defineProperty(_networks, 'lana', {
+  messagePrefix: '\x18Lanacoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x30,
+  scriptHash: 0x5,
+  wif: 0xb0
+}), _defineProperty(_networks, 'neva', {
+  messagePrefix: '\x18Nevacoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x35,
+  scriptHash: 0x5,
+  wif: 0xb1
+}), _defineProperty(_networks, 'netko', {
+  messagePrefix: '\x18Netkocoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x35,
+  scriptHash: 0x5,
+  wif: 0xB1
+}), _defineProperty(_networks, '2give', {
+  messagePrefix: '\x182GIVE Signed Message:\n',
+  pubKeyHash: 0x27,
+  wif: 0xa7
+}), _defineProperty(_networks, '42coin', {
+  messagePrefix: '\x18242coin Signed Message:\n',
+  pubKeyHash: 0x08,
+  wif: 0x88
+}), _defineProperty(_networks, 'acoin', {
+  messagePrefix: '\x18Acoin Signed Message:\n',
+  pubKeyHash: 0x17,
+  wif: 0xe6
+}), _defineProperty(_networks, 'agacoin', {
+  messagePrefix: '\x18AGAcoin Signed Message:\n',
+  pubKeyHash: 0x53,
+  wif: 0xd3
+}), _defineProperty(_networks, 'alphacoin', {
+  messagePrefix: '\x18Alphacoin Signed Message:\n',
+  pubKeyHash: 0x52,
+  wif: 0xd2
+}), _defineProperty(_networks, 'alqo', {
+  messagePrefix: '\x18Alqo Signed Message:\n',
+  pubKeyHash: 0x17,
+  wif: 0xc1
+}), _defineProperty(_networks, 'animecoin', {
+  messagePrefix: '\x18Animecoin Signed Message:\n',
+  pubKeyHash: 0x17,
+  wif: 0x97
+}), _defineProperty(_networks, 'anoncoin', {
+  messagePrefix: '\x18Anoncoin Signed Message:\n',
+  pubKeyHash: 0x17,
+  wif: 0x97
+}), _defineProperty(_networks, 'apexcoin', {
+  messagePrefix: '\x18Apexcoin Signed Message:\n',
+  pubKeyHash: 0x17,
+  wif: 0x97
+}), _defineProperty(_networks, 'bbqcoin', {
+  messagePrefix: '\x18BBQcoin Signed Message:\n',
+  pubKeyHash: 0x55,
+  wif: 0xd5
+}), _defineProperty(_networks, 'biblepay', {
+  messagePrefix: '\x18Biblepay Signed Message:\n',
+  pubKeyHash: 0x19,
+  wif: 0xb6
+}), _defineProperty(_networks, 'birdcoin', {
+  messagePrefix: '\x18Birdcoin Signed Message:\n',
+  pubKeyHash: 0x2f,
+  wif: 0xaf
+}), _defineProperty(_networks, 'bitsynq', {
+  messagePrefix: '\x18BitSynq Signed Message:\n',
+  pubKeyHash: 0x3f,
+  wif: 0xbf
+}), _defineProperty(_networks, 'bitzeny', {
+  messagePrefix: '\x18BitZeny Signed Message:\n',
+  pubKeyHash: 0x51,
+  wif: 0x80
+}), _defineProperty(_networks, 'blackjack', {
+  messagePrefix: '\x18BlackJack Signed Message:\n',
+  pubKeyHash: 0x15,
+  wif: 0x95
+}), _defineProperty(_networks, 'blocknet', {
+  messagePrefix: '\x18BlockNet Signed Message:\n',
+  pubKeyHash: 0x1a,
+  wif: 0x9a
+}), _defineProperty(_networks, 'bolivarcoin', {
+  messagePrefix: '\x18BolivarCoin Signed Message:\n',
+  pubKeyHash: 0x55,
+  wif: 0xd5
+}), _defineProperty(_networks, 'boxycoin', {
+  messagePrefix: '\x18BoxyCoin Signed Message:\n',
+  pubKeyHash: 0x4b,
+  wif: 0xcb
+}), _defineProperty(_networks, 'cagecoin', {
+  messagePrefix: '\x18Cagecoin Signed Message:\n',
+  pubKeyHash: 0x1f,
+  wif: 0x9f
+}), _defineProperty(_networks, 'campuscoin', {
+  messagePrefix: '\x18CampusCoin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'canadaecoin', {
+  messagePrefix: '\x18CanadaeCoin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'cannabiscoin', {
+  messagePrefix: '\x18CannabisCoin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'capricoin', {
+  messagePrefix: '\x18Capricoin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'cassubiandetk', {
+  messagePrefix: '\x18CassubianDetk Signed Message:\n',
+  pubKeyHash: 0x1e,
+  wif: 0x9e
+}), _defineProperty(_networks, 'cashcoin', {
+  messagePrefix: '\x18CashCoin Signed Message:\n',
+  pubKeyHash: 0x22,
+  wif: 0xa2
+}), _defineProperty(_networks, 'chaincoin', {
+  messagePrefix: '\x18ChainCoin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'colossuscoinxt', {
+  messagePrefix: '\x18ColossusCoinXT Signed Message:\n',
+  pubKeyHash: 0x1e,
+  wif: 0xd4
+}), _defineProperty(_networks, 'condensate', {
+  messagePrefix: '\x18Condensate Signed Message:\n',
+  pubKeyHash: 0x3c,
+  wif: 0xbc
+}), _defineProperty(_networks, 'copico', {
+  messagePrefix: '\x18Copico Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x90
+}), _defineProperty(_networks, 'coppercoin', {
+  messagePrefix: '\x18CopperCoin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'corgicoin', {
+  messagePrefix: '\x18Corgicoin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'cryptobullion', {
+  messagePrefix: '\x18CryptoBullion Signed Message:\n',
+  pubKeyHash: 0x0b,
+  wif: 0x8b
+}), _defineProperty(_networks, 'cryptoclub', {
+  messagePrefix: '\x18CryptoClub Signed Message:\n',
+  pubKeyHash: 0x23,
+  wif: 0xa3
+}), _defineProperty(_networks, 'cryptoescudo', {
+  messagePrefix: '\x18Cryptoescudo Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'cryptonite', {
+  messagePrefix: '\x18Cryptonite Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x80
+}), _defineProperty(_networks, 'cryptowisdomcoin', {
+  messagePrefix: '\x18CryptoWisdomCoin Signed Message:\n',
+  pubKeyHash: 0x49,
+  wif: 0x87
+}), _defineProperty(_networks, 'c2coin', {
+  messagePrefix: '\x18C2coin Signed Message:\n',
+  pubKeyHash: 0x1c,
+  wif: 0x9c
+}), _defineProperty(_networks, 'deafdollars', {
+  messagePrefix: '\x18DeafDollars Signed Message:\n',
+  pubKeyHash: 0x30,
+  wif: 0xb0
+}), _defineProperty(_networks, 'deeponion', {
+  messagePrefix: '\x18DeepOnion Signed Message:\n',
+  pubKeyHash: 0x1f,
+  wif: 0x9f
+}), _defineProperty(_networks, 'deutsche_emark', {
+  messagePrefix: '\x18Deutsche eMark Signed Message:\n',
+  pubKeyHash: 0x35,
+  wif: 0xb5
+}), _defineProperty(_networks, 'devcoin', {
+  messagePrefix: '\x18Devcoin Signed Message:\n',
+  pubKeyHash: 0x00,
+  wif: 0x80
+}), _defineProperty(_networks, 'dogecoindark', {
+  messagePrefix: '\x18DogecoinDark Signed Message:\n',
+  pubKeyHash: 0x1e,
+  wif: 0x9e
+}), _defineProperty(_networks, 'ekrona', {
+  messagePrefix: '\x18eKrona Signed Message:\n',
+  pubKeyHash: 0x2d,
+  wif: 0xad
+}), _defineProperty(_networks, 'electra', {
+  messagePrefix: '\x18Electra Signed Message:\n',
+  pubKeyHash: 0x21,
+  wif: 0xa1
+}), _defineProperty(_networks, 'ember', {
+  messagePrefix: '\x18Ember Signed Message:\n',
+  pubKeyHash: 0x5c,
+  wif: 0x32
+}), _defineProperty(_networks, 'emerald', {
+  messagePrefix: '\x18Emerald Signed Message:\n',
+  pubKeyHash: 0x22,
+  wif: 0xa2
+}), _defineProperty(_networks, 'energycoin', {
+  messagePrefix: '\x18EnergyCoin Signed Message:\n',
+  pubKeyHash: 0x5c,
+  wif: 0xdc
+}), _defineProperty(_networks, 'espers', {
+  messagePrefix: '\x18Espers Signed Message:\n',
+  pubKeyHash: 0x21,
+  wif: 0x90
+}), _defineProperty(_networks, 'fastcoin', {
+  messagePrefix: '\x18Fastcoin Signed Message:\n',
+  pubKeyHash: 0x60,
+  wif: 0xe0
+}), _defineProperty(_networks, 'fibre', {
+  messagePrefix: '\x18Fibre Signed Message:\n',
+  pubKeyHash: 0x23,
+  wif: 0xa3
+}), _defineProperty(_networks, 'florincoin', {
+  messagePrefix: '\x18Florincoin Signed Message:\n',
+  pubKeyHash: 0x23,
+  wif: 0xb0
+}), _defineProperty(_networks, 'flurbo', {
+  messagePrefix: '\x18Flurbo Signed Message:\n',
+  pubKeyHash: 0x23,
+  wif: 0x30
+}), _defineProperty(_networks, 'fluttercoin', {
+  messagePrefix: '\x18Fluttercoin Signed Message:\n',
+  pubKeyHash: 0x23,
+  wif: 0xa3
+}), _defineProperty(_networks, 'frazcoin', {
+  messagePrefix: '\x18FrazCoin Signed Message:\n',
+  pubKeyHash: 0x23,
+  wif: 0xA3
+}), _defineProperty(_networks, 'freicoin', {
+  messagePrefix: '\x18Freicoin Signed Message:\n',
+  pubKeyHash: 0x00,
+  wif: 0x80
+}), _defineProperty(_networks, 'fudcoin', {
+  messagePrefix: '\x18FUDcoin Signed Message:\n',
+  pubKeyHash: 0x23,
+  wif: 0xa3
+}), _defineProperty(_networks, 'fuelcoin', {
+  messagePrefix: '\x18Fuelcoin Signed Message:\n',
+  pubKeyHash: 0x24,
+  wif: 0x80
+}), _defineProperty(_networks, 'gabencoin', {
+  messagePrefix: '\x18GabenCoin Signed Message:\n',
+  pubKeyHash: 0x10,
+  wif: 0x90
+}), _defineProperty(_networks, 'garlicoin', {
+  messagePrefix: '\x18Garlicoin Signed Message:\n',
+  pubKeyHash: 0x26,
+  wif: 0xb0
+}), _defineProperty(_networks, 'globalboost', {
+  messagePrefix: '\x18GlobalBoost Signed Message:\n',
+  pubKeyHash: 0x26,
+  wif: 0xa6
+}), _defineProperty(_networks, 'goodcoin', {
+  messagePrefix: '\x18Goodcoin Signed Message:\n',
+  pubKeyHash: 0x26,
+  wif: 0xa6
+}), _defineProperty(_networks, 'gridcoinresearch', {
+  messagePrefix: '\x18GridcoinResearch Signed Message:\n',
+  pubKeyHash: 0x3e,
+  wif: 0xbe
+}), _defineProperty(_networks, 'guncoin', {
+  messagePrefix: '\x18Guncoin Signed Message:\n',
+  pubKeyHash: 0x27,
+  wif: 0xa7
+}), _defineProperty(_networks, 'hamradiocoin', {
+  messagePrefix: '\x18HamRadioCoin Signed Message:\n',
+  pubKeyHash: 0x00,
+  wif: 0x80
+}), _defineProperty(_networks, 'hfrcoin', {
+  messagePrefix: '\x18HFRcoin Signed Message:\n',
+  pubKeyHash: 0x10,
+  wif: 0x90
+}), _defineProperty(_networks, 'htmlcoin', {
+  messagePrefix: '\x18HTMLCoin Signed Message:\n',
+  pubKeyHash: 0x29,
+  wif: 0xa9
+}), _defineProperty(_networks, 'hyperstake', {
+  messagePrefix: '\x18HyperStake Signed Message:\n',
+  pubKeyHash: 0x75,
+  wif: 0xf5
+}), _defineProperty(_networks, 'imperiumcoin', {
+  messagePrefix: '\x18ImperiumCoin Signed Message:\n',
+  pubKeyHash: 0x30,
+  wif: 0xb0
+}), _defineProperty(_networks, 'incakoin', {
+  messagePrefix: '\x18IncaKoin Signed Message:\n',
+  pubKeyHash: 0x35,
+  wif: 0xb5
+}), _defineProperty(_networks, 'incognitocoin', {
+  messagePrefix: '\x18IncognitoCoin Signed Message:\n',
+  pubKeyHash: 0x00,
+  wif: 0x80
+}), _defineProperty(_networks, 'influxcoin', {
+  messagePrefix: '\x18Influxcoin Signed Message:\n',
+  pubKeyHash: 0x66,
+  wif: 0xe6
+}), _defineProperty(_networks, 'Innox', {
+  messagePrefix: '\x18Innox Signed Message:\n',
+  pubKeyHash: 0x4b,
+  wif: 0xcb
+}), _defineProperty(_networks, 'iridiumcoin', {
+  messagePrefix: '\x18IridiumCoin Signed Message:\n',
+  pubKeyHash: 0x30,
+  wif: 0xb0
+}), _defineProperty(_networks, 'icash', {
+  messagePrefix: '\x18iCash Signed Message:\n',
+  pubKeyHash: 0x66,
+  wif: 0xcc
+}), _defineProperty(_networks, 'judgecoin', {
+  messagePrefix: '\x18Judgecoin Signed Message:\n',
+  pubKeyHash: 0x2b,
+  wif: 0xab
+}), _defineProperty(_networks, 'jumbucks', {
+  messagePrefix: '\x18Jumbucks Signed Message:\n',
+  pubKeyHash: 0x2b,
+  wif: 0xab
+}), _defineProperty(_networks, 'khcoin', {
+  messagePrefix: '\x18KHcoin Signed Message:\n',
+  pubKeyHash: 0x30,
+  wif: 0xb0
+}), _defineProperty(_networks, 'kittehcoin', {
+  messagePrefix: '\x18KittehCoin Signed Message:\n',
+  pubKeyHash: 0x2d,
+  wif: 0xad
+}), _defineProperty(_networks, 'latium', {
+  messagePrefix: '\x18Latium Signed Message:\n',
+  pubKeyHash: 0x17,
+  wif: 0x80
+}), _defineProperty(_networks, 'litedoge', {
+  messagePrefix: '\x18LiteDoge Signed Message:\n',
+  pubKeyHash: 0x5a,
+  wif: 0xab
+}), _defineProperty(_networks, 'lomocoin', {
+  messagePrefix: '\x18LoMoCoin Signed Message:\n',
+  pubKeyHash: 0x30,
+  wif: 0xb0
+}), _defineProperty(_networks, 'madbytecoin', {
+  messagePrefix: '\x18MadbyteCoin Signed Message:\n',
+  pubKeyHash: 0x32,
+  wif: 0x6e
+}), _defineProperty(_networks, 'magicinternetmoney', {
+  messagePrefix: '\x18MagicInternetMoney Signed Message:\n',
+  pubKeyHash: 0x30,
+  wif: 0xb0
+}), _defineProperty(_networks, 'magicoin', {
+  messagePrefix: '\x18Magicoin Signed Message:\n',
+  pubKeyHash: 0x14,
+  wif: 0x94
+}), _defineProperty(_networks, 'martexcoin', {
+  messagePrefix: '\x18MarteXcoin Signed Message:\n',
+  pubKeyHash: 0x32,
+  wif: 0xb2
+}), _defineProperty(_networks, 'masterdoge', {
+  messagePrefix: '\x18MasterDoge Signed Message:\n',
+  pubKeyHash: 0x33,
+  wif: 0x8b
+}), _defineProperty(_networks, 'mintcoin', {
+  messagePrefix: '\x18MintCoin Signed Message:\n',
+  pubKeyHash: 0x33,
+  wif: 0xb3
+}), _defineProperty(_networks, 'mobiuscoin', {
+  messagePrefix: '\x18MobiusCoin Signed Message:\n',
+  pubKeyHash: 0x00,
+  wif: 0x80
+}), _defineProperty(_networks, 'monetaryunit', {
+  messagePrefix: '\x18MonetaryUnit Signed Message:\n',
+  pubKeyHash: 0x10,
+  wif: 0x7e
+}), _defineProperty(_networks, 'monocle', {
+  messagePrefix: '\x18Monocle Signed Message:\n',
+  pubKeyHash: 0x32,
+  wif: 0xb2
+}), _defineProperty(_networks, 'mooncoin', {
+  messagePrefix: '\x18Monocle Signed Message:\n',
+  pubKeyHash: 0x03,
+  wif: 0x83
+}), _defineProperty(_networks, 'needlecoin', {
+  messagePrefix: '\x18NeedleCoin Signed Message:\n',
+  pubKeyHash: 0x35,
+  wif: 0xb5
+}), _defineProperty(_networks, 'neetcoin', {
+  messagePrefix: '\x18NeetCoin Signed Message:\n',
+  pubKeyHash: 0x35,
+  wif: 0xb5
+}), _defineProperty(_networks, 'nubits', {
+  messagePrefix: '\x18Nubits Signed Message:\n',
+  pubKeyHash: 0x19,
+  wif: 0xbf
+}), _defineProperty(_networks, 'nyancoin', {
+  messagePrefix: '\x18Nyancoin Signed Message:\n',
+  pubKeyHash: 0x2d,
+  wif: 0xad
+}), _defineProperty(_networks, 'ocupy', {
+  messagePrefix: '\x18Ocupy Signed Message:\n',
+  pubKeyHash: 0x73,
+  wif: 0xf3
+}), _defineProperty(_networks, 'omnicoin', {
+  messagePrefix: '\x18Omnicoin Signed Message:\n',
+  pubKeyHash: 0x73,
+  wif: 0xf3
+}), _defineProperty(_networks, 'onyxcoin', {
+  messagePrefix: '\x18Onyxcoin Signed Message:\n',
+  pubKeyHash: 0x73,
+  wif: 0xf3
+}), _defineProperty(_networks, 'paccoin', {
+  messagePrefix: '\x18PacCoin Signed Message:\n',
+  pubKeyHash: 0x18,
+  wif: 0x98
+}), _defineProperty(_networks, 'paycoin', {
+  messagePrefix: '\x18Paycoin Signed Message:\n',
+  pubKeyHash: 0x37,
+  wif: 0xb7
+}), _defineProperty(_networks, 'parkbyte', {
+  messagePrefix: '\x18ParkByte Signed Message:\n',
+  pubKeyHash: 0x37,
+  wif: 0xb7
+}), _defineProperty(_networks, 'phcoin', {
+  messagePrefix: '\x18PHCoin Signed Message:\n',
+  pubKeyHash: 0x37,
+  wif: 0xb7
+}), _defineProperty(_networks, 'phoenixcoin', {
+  messagePrefix: '\x18PhoenixCoin Signed Message:\n',
+  pubKeyHash: 0x38,
+  wif: 0xb8
+}), _defineProperty(_networks, 'piggycoin', {
+  messagePrefix: '\x18PiggyCoin Signed Message:\n',
+  pubKeyHash: 0x76,
+  wif: 0xf6
+}), _defineProperty(_networks, 'prospercoinclassic', {
+  messagePrefix: '\x18ProsperCoinClassic Signed Message:\n',
+  pubKeyHash: 0x3a,
+  wif: 0xba
+}), _defineProperty(_networks, 'qubitcoin', {
+  messagePrefix: '\x18Qubitcoin Signed Message:\n',
+  pubKeyHash: 0x26,
+  wif: 0xe0
+}), _defineProperty(_networks, 'riecoin', {
+  messagePrefix: '\x18Riecoin Signed Message:\n',
+  pubKeyHash: 0x3c,
+  wif: 0x80
+}), _defineProperty(_networks, 'rimbit', {
+  messagePrefix: '\x18Rimbit Signed Message:\n',
+  pubKeyHash: 0x3c,
+  wif: 0xbc
+}), _defineProperty(_networks, 'roicoin', {
+  messagePrefix: '\x18ROIcoin Signed Message:\n',
+  pubKeyHash: 0x3c,
+  wif: 0x80
+}), _defineProperty(_networks, 'rupaya', {
+  messagePrefix: '\x18Rupaya Signed Message:\n',
+  pubKeyHash: 0x3c,
+  wif: 0xbc
+}), _defineProperty(_networks, 'sambacoin', {
+  messagePrefix: '\x18Sambacoin Signed Message:\n',
+  pubKeyHash: 0x3e,
+  wif: 0xbe
+}), _defineProperty(_networks, 'seckcoin', {
+  messagePrefix: '\x18SecKCoin Signed Message:\n',
+  pubKeyHash: 0x3f,
+  wif: 0xbf
+}), _defineProperty(_networks, 'sixeleven', {
+  messagePrefix: '\x18SixEleven Signed Message:\n',
+  pubKeyHash: 0x34,
+  wif: 0x80
+}), _defineProperty(_networks, 'spreadcoin', {
+  messagePrefix: '\x18SpreadCoin Signed Message:\n',
+  pubKeyHash: 0x3f,
+  wif: 0xbf
+}), _defineProperty(_networks, 'stealthcoin', {
+  messagePrefix: '\x18StealthCoin Signed Message:\n',
+  pubKeyHash: 0x3e,
+  wif: 0xbe
+}), _defineProperty(_networks, 'swagbucks', {
+  messagePrefix: '\x18SwagBucks Signed Message:\n',
+  pubKeyHash: 0x3f,
+  wif: 0x99
+}), _defineProperty(_networks, 'titcoin', {
+  messagePrefix: '\x18Titcoin Signed Message:\n',
+  pubKeyHash: 0x00,
+  wif: 0x80
+}), _defineProperty(_networks, 'tittiecoin', {
+  messagePrefix: '\x18TittieCoin Signed Message:\n',
+  pubKeyHash: 0x41,
+  wif: 0xc1
+}), _defineProperty(_networks, 'topcoin', {
+  messagePrefix: '\x18Topcoin Signed Message:\n',
+  pubKeyHash: 0x42,
+  wif: 0xc2
+}), _defineProperty(_networks, 'treasurehuntcoin', {
+  messagePrefix: '\x18TreasureHuntCoin Signed Message:\n',
+  pubKeyHash: 0x32,
+  wif: 0xb2
+}), _defineProperty(_networks, 'trezarcoin', {
+  messagePrefix: '\x18TrezarCoin Signed Message:\n',
+  pubKeyHash: 0x42,
+  wif: 0xC2
+}), _defineProperty(_networks, 'usde', {
+  messagePrefix: '\x18USDe Signed Message:\n',
+  pubKeyHash: 0x26,
+  wif: 0xa6
+}), _defineProperty(_networks, 'versioncoin', {
+  messagePrefix: '\x18Versioncoin Signed Message:\n',
+  pubKeyHash: 0x46,
+  wif: 0xc6
+}), _defineProperty(_networks, 'vikingcoin', {
+  messagePrefix: '\x18VikingCoin Signed Message:\n',
+  pubKeyHash: 0x46,
+  wif: 0x56
+}), _defineProperty(_networks, 'w2coin', {
+  messagePrefix: '\x18W2Coin Signed Message:\n',
+  pubKeyHash: 0x49,
+  wif: 0xc9
+}), _defineProperty(_networks, 'wacoins', {
+  messagePrefix: '\x18WACoins Signed Message:\n',
+  pubKeyHash: 0x49,
+  wif: 0xc9
+}), _defineProperty(_networks, 'wankcoin', {
+  messagePrefix: '\x18WankCoin Signed Message:\n',
+  pubKeyHash: 0x00,
+  wif: 0x80
+}), _defineProperty(_networks, 'wearesatoshicoin', {
+  messagePrefix: '\x18WeAreSatoshiCoin Signed Message:\n',
+  pubKeyHash: 0x87,
+  wif: 0x97
+}), _defineProperty(_networks, 'worldcoin', {
+  messagePrefix: '\x18WorldCoin Signed Message:\n',
+  pubKeyHash: 0x49,
+  wif: 0xc9
+}), _defineProperty(_networks, 'xp', {
+  messagePrefix: '\x18XP Signed Message:\n',
+  pubKeyHash: 0x4b,
+  wif: 0xcb
+}), _defineProperty(_networks, 'yenten', {
+  messagePrefix: '\x18Yenten Signed Message:\n',
+  pubKeyHash: 0x4e,
+  wif: 0x7b
 }), _networks);
 
 module.exports = networks;

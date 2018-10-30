@@ -40,6 +40,7 @@ NodeJS TCP/SSL lib to facilitate connection to Electrum servers
 var tls = require('tls');
 var net = require('net');
 var EventEmitter = require('events').EventEmitter;
+
 var SOCKET_MAX_TIMEOUT = 10000;
 
 var makeRequest = function makeRequest(method, params, id) {
@@ -275,12 +276,10 @@ var Client = function () {
 
       if (msg instanceof Array) {
         // don't support batch request
+      } else if (msg.id !== void 0) {
+        this.response(msg);
       } else {
-        if (msg.id !== void 0) {
-          this.response(msg);
-        } else {
-          this.subscribe.emit(msg.method, msg.params);
-        }
+        this.subscribe.emit(msg.method, msg.params);
       }
     }
   }, {

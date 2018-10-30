@@ -2,6 +2,7 @@
 
 var aes256 = require('nodejs-aes256');
 var iocane = require('iocane');
+
 var session = iocane.createSession().use('cbc').setDerivationRounds(300000);
 
 var _encrypt = session.encrypt.bind(session);

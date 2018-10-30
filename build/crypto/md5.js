@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // ref: https://css-tricks.com/snippets/javascript/javascript-md5/
 
@@ -8,7 +8,15 @@ var md5 = function md5(string) {
   }
 
   function AddUnsigned(lX, lY) {
-    var lX4, lY4, lX8, lY8, lResult;
+    var lX4 = void 0;
+
+    var lY4 = void 0;
+
+    var lX8 = void 0;
+
+    var lY8 = void 0;
+
+    var lResult = void 0;
 
     lX8 = lX & 0x80000000;
     lY8 = lY & 0x80000000;
@@ -22,12 +30,10 @@ var md5 = function md5(string) {
     if (lX4 | lY4) {
       if (lResult & 0x40000000) {
         return lResult ^ 0xC0000000 ^ lX8 ^ lY8;
-      } else {
-        return lResult ^ 0x40000000 ^ lX8 ^ lY8;
       }
-    } else {
-      return lResult ^ lX8 ^ lY8;
+      return lResult ^ 0x40000000 ^ lX8 ^ lY8;
     }
+    return lResult ^ lX8 ^ lY8;
   }
 
   function F(x, y, z) {
@@ -46,25 +52,25 @@ var md5 = function md5(string) {
   function FF(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  };
+  }
 
   function GG(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  };
+  }
 
   function HH(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  };
+  }
 
   function II(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  };
+  }
 
   function ConvertToWordArray(string) {
-    var lWordCount;
+    var lWordCount = void 0;
     var lMessageLength = string.length;
     var lNumberOfWords_temp1 = lMessageLength + 8;
     var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - lNumberOfWords_temp1 % 64) / 64;
@@ -87,63 +93,57 @@ var md5 = function md5(string) {
     lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
 
     return lWordArray;
-  };
+  }
 
   function WordToHex(lValue) {
-    var WordToHexValue = "",
-        WordToHexValue_temp = "",
-        lByte,
-        lCount;
+    var WordToHexValue = '';
+
+    var WordToHexValue_temp = '';
+
+    var lByte = void 0;
+
+    var lCount = void 0;
 
     for (lCount = 0; lCount <= 3; lCount++) {
       lByte = lValue >>> lCount * 8 & 255;
-      WordToHexValue_temp = "0" + lByte.toString(16);
-      WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
+      WordToHexValue_temp = '0' + lByte.toString(16);
+      WordToHexValue += WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
     }
 
     return WordToHexValue;
-  };
+  }
 
   function Utf8Encode(string) {
-    string = string.replace(/\r\n/g, "\n");
-    var utftext = "";
+    string = string.replace(/\r\n/g, '\n');
+    var utftext = '';
 
     for (var n = 0; n < string.length; n++) {
-      var c = string.charCodeAt(n);
+      var _c = string.charCodeAt(n);
 
-      if (c < 128) {
-        utftext += String.fromCharCode(c);
-      } else if (c > 127 && c < 2048) {
-        utftext += String.fromCharCode(c >> 6 | 192);
-        utftext += String.fromCharCode(c & 63 | 128);
+      if (_c < 128) {
+        utftext += String.fromCharCode(_c);
+      } else if (_c > 127 && _c < 2048) {
+        utftext += String.fromCharCode(_c >> 6 | 192);
+        utftext += String.fromCharCode(_c & 63 | 128);
       } else {
-        utftext += String.fromCharCode(c >> 12 | 224);
-        utftext += String.fromCharCode(c >> 6 & 63 | 128);
-        utftext += String.fromCharCode(c & 63 | 128);
+        utftext += String.fromCharCode(_c >> 12 | 224);
+        utftext += String.fromCharCode(_c >> 6 & 63 | 128);
+        utftext += String.fromCharCode(_c & 63 | 128);
       }
     }
 
     return utftext;
-  };
+  }
 
   var x = Array();
-  var k, AA, BB, CC, DD, a, b, c, d;
-  var S11 = 7,
-      S12 = 12,
-      S13 = 17,
-      S14 = 22,
-      S21 = 5,
-      S22 = 9,
-      S23 = 14,
-      S24 = 20,
-      S31 = 4,
-      S32 = 11,
-      S33 = 16,
-      S34 = 23,
-      S41 = 6,
-      S42 = 10,
-      S43 = 15,
-      S44 = 21;
+  var k = void 0;var AA = void 0;var BB = void 0;var CC = void 0;var DD = void 0;var a = void 0;var b = void 0;var c = void 0;var d = void 0;
+  var S11 = 7;var S12 = 12;var S13 = 17;var S14 = 22;
+
+  var S21 = 5;var S22 = 9;var S23 = 14;var S24 = 20;
+
+  var S31 = 4;var S32 = 11;var S33 = 16;var S34 = 23;
+
+  var S41 = 6;var S42 = 10;var S43 = 15;var S44 = 21;
 
   string = Utf8Encode(string);
 
