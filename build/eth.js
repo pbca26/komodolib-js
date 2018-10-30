@@ -1,8 +1,11 @@
 'use strict';
 
-var ethers = require('ethers');
+var _require = require('ethers/utils/units'),
+    formatEther = _require.formatEther;
 
 // normalize eth transactions to btc like list
+
+
 var ethTransactionsToBtc = function ethTransactionsToBtc(transactions) {
   if (transactions.length) {
     for (var i = 0; i < transactions.length; i++) {
@@ -26,17 +29,17 @@ var ethTransactionsToBtc = function ethTransactionsToBtc(transactions) {
         txindex: transactions[i].transactionIndex,
         src: transactions[i].from,
         address: transactions[i].to,
-        amount: ethers.utils.formatEther(transactions[i].value),
+        amount: formatEther(transactions[i].value),
         amountWei: transactions[i].value,
-        gas: ethers.utils.formatEther(transactions[i].gas),
+        gas: formatEther(transactions[i].gas),
         gasWei: transactions[i].gas,
-        gasPrice: ethers.utils.formatEther(transactions[i].gasPrice),
+        gasPrice: formatEther(transactions[i].gasPrice),
         gasPriceWei: transactions[i].gasPrice,
-        cumulativeGasUsed: ethers.utils.formatEther(transactions[i].cumulativeGasUsed),
+        cumulativeGasUsed: formatEther(transactions[i].cumulativeGasUsed),
         cumulativeGasUsedWei: transactions[i].cumulativeGasUsed,
-        gasUsed: ethers.utils.formatEther(transactions[i].gasUsed),
+        gasUsed: formatEther(transactions[i].gasUsed),
         gasUsedWei: transactions[i].gasUsed,
-        fee: ethers.utils.formatEther(Number(transactions[i].gasPrice) * Number(transactions[i].gasUsed)),
+        fee: formatEther(Number(transactions[i].gasPrice) * Number(transactions[i].gasUsed)),
         feeWei: Number(transactions[i].gasPrice) * Number(transactions[i].gasUsed),
         error: transactions[i].isError,
         txreceipt_status: transactions[i].txreceipt_status,
