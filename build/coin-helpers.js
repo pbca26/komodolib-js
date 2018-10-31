@@ -1,6 +1,6 @@
 'use strict';
 
-var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'KMDICE', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'MNZ', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CALL', 'CCL', 'PIRATE', 'KOIN', 'DION'];
+var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'PGT', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'MNZ', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CALL', 'CCL', 'PIRATE', 'KOIN', 'DION', 'KMDICE'];
 
 var _komodoCoins = _komodoAssetChains.concat(['CHIPS', 'KMD', 'KOMODO']);
 
@@ -17,7 +17,6 @@ var isKomodoCoin = function isKomodoCoin(coin, skipKMD) {
 var explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
-  DION: 'https://explorer.dionpay.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
   CALL: 'https://call.explorer.mycapitalco.in',
@@ -26,10 +25,10 @@ var explorerList = {
   KV: 'https://kv.kmdexplorer.io',
   OOT: 'http://explorer.utrum.io',
   BNTN: 'http://chain.blocnation.io',
-  KMDICE: 'https://kmdice.explorer.dexstats.info',
   CHAIN: 'http://explorer.chainmakers.co',
   GLXT: 'http://glx.info',
   PRLPAY: 'http://explorer.prlpay.com',
+  PGT: 'https://pgt.komodo.build/',
   MSHARK: 'https://mshark.kmdexplorer.io',
   REVS: 'https://revs.kmdexplorer.io',
   SUPERNET: 'https://supernet.kmdexplorer.io',
@@ -45,7 +44,7 @@ var explorerList = {
   WLC: 'https://wlc.kmdexplorer.io',
   CHIPS: 'https://explorer.chips.cash',
   COQUI: 'https://explorer.coqui.cash',
-  EQL: 'http://eql.explorer.dexstats.info',
+  EQL: 'http://178.62.240.191',
   MNZ: 'https://mnz.kmdexplorer.io',
   BTCH: 'https://btch.kmdexplorer.io',
   BTC: 'https://blockchain.info',
@@ -56,6 +55,9 @@ var explorerList = {
   VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
   VRSC: 'https://vrsc.kmdexplorer.io',
+  KOIN: 'http://live.block.koinon.li/',
+  DION: 'https://explorer.dionpay.com',
+  KMDICE: 'https://kmdice.explorer.dexstats.info',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
@@ -121,7 +123,8 @@ var explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
-  KOIN: 'http://3.0.32.41:3001/'
+  ETH: 'https://etherscan.io/tx/',
+  ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/'
 };
 
 var explorerListExt = {

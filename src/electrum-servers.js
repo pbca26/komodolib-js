@@ -20,6 +20,10 @@ let _electrumServers = {
     'electrum1.prlpay.com:9681:tcp',
     'electrum2.prlpay.com:9681:tcp',
   ],
+  pgt: [
+    'agama.komodo.build:10002:tcp',
+    'agama2.komodo.build:10002:tcp',
+  ],
   kv: [
     'electrum1.cipig.net:10016:tcp',
     'electrum2.cipig.net:10016:tcp',
@@ -605,6 +609,9 @@ let _electrumServers = {
   kreds: [
     '199.247.21.0:50001:tcp',
   ],
+  mgnx: [
+    '45.76.37.100:50001:tcp' 
+ ]
 };
 
 let electrumServers = {};

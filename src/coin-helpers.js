@@ -2,12 +2,12 @@ const _komodoAssetChains = [
   'SUPERNET',
   'REVS',
   'PANGEA',
+  'PGT',
   'DEX',
   'JUMBLR',
   'BET',
   'CRYPTO',
   'COQUI',
-  'KMDICE',
   'HODL',
   'MSHARK',
   'BOTS',
@@ -40,7 +40,8 @@ const _komodoAssetChains = [
   'PIRATE',
   'KOIN',
   'DION',
-  'PTX',
+  'KMDICE',
+  'PTX'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -70,10 +71,10 @@ const explorerList = {
   KV: 'https://kv.kmdexplorer.io',
   OOT: 'http://explorer.utrum.io',
   BNTN: 'http://chain.blocnation.io',
-  KMDICE: 'https://kmdice.explorer.dexstats.info',
   CHAIN: 'http://explorer.chainmakers.co',
   GLXT: 'http://glx.info',
   PRLPAY: 'http://explorer.prlpay.com',
+  PGT: 'https://pgt.komodo.build/',
   MSHARK: 'https://mshark.kmdexplorer.io',
   REVS: 'https://revs.kmdexplorer.io',
   SUPERNET: 'https://supernet.kmdexplorer.io',
@@ -89,7 +90,7 @@ const explorerList = {
   WLC: 'https://wlc.kmdexplorer.io',
   CHIPS: 'https://explorer.chips.cash',
   COQUI: 'https://explorer.coqui.cash',
-  EQL: 'http://eql.explorer.dexstats.info',
+  EQL: 'http://178.62.240.191',
   MNZ: 'https://mnz.kmdexplorer.io',
   BTCH: 'https://btch.kmdexplorer.io',
   BTC: 'https://blockchain.info',
@@ -100,6 +101,10 @@ const explorerList = {
   VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
   VRSC: 'https://vrsc.kmdexplorer.io',
+  KOIN: 'http://live.block.koinon.li/',
+  DION: 'https://explorer.dionpay.com',
+  KMDICE: 'https://kmdice.explorer.dexstats.info',
+  PTX: 'http://explorer1.patenttx.com',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
@@ -165,7 +170,8 @@ const explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
-  KOIN: 'http://3.0.32.41:3001/',
+  ETH: 'https://etherscan.io/tx/',
+  ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/',
 };
 
 const explorerListExt = {

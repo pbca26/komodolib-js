@@ -8,6 +8,9 @@ var bitcoin = require('bitcoinjs-lib');
 var bitcoinPos = require('bitcoinjs-lib-pos');
 var bs58check = require('bs58check');
 var bip39 = require('bip39');
+var bip32 = require('bip32');
+var ethersWallet = require('ethers/wallet');
+var ethUtil = require('ethereumjs-util');
 
 var addressVersionCheck = function addressVersionCheck(network, address) {
   try {
@@ -142,13 +145,16 @@ var bip39Search = function bip39Search(seed, network, matchPattern, addressDepth
 };
 
 // src: https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/src/ecpair.js#L62
-var fromWif = function fromWif(string, network) {
+var fromWif = function fromWif(string, network, versionCheck) {
   var decoded = wif.decode(string);
   var version = decoded.version;
 
   if (!network) throw new Error('Unknown network version');
-  if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
-  if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');
+
+  if (versionCheck) {
+    if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
+    if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');
+  }
 
   var d = bigi.fromBuffer(decoded.privateKey);
 
@@ -214,6 +220,36 @@ var pubkeyToAddress = function pubkeyToAddress(pubkey, network) {
   }
 };
 
+// priv can be a valid priv key or a seed
+var etherKeys = function etherKeys(priv, iguana) {
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(priv))) {
+    return new ethersWallet.Wallet(priv);
+  }
+
+  var hash = sha256.create().update(priv);
+  bytes = hash.array();
+
+  if (iguana) {
+    bytes[0] &= 248;
+    bytes[31] &= 127;
+    bytes[31] |= 64;
+  }
+
+  var _wallet = new ethersWallet.Wallet(ethUtil.bufferToHex(bytes));
+
+  return _wallet;
+};
+
+// https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
+// btc forks only
+var xpub = function xpub(seed) {
+  var _seed = bip39.mnemonicToSeed(seed);
+  var node = bip32.fromSeed(_seed);
+  var string = node.neutered().toBase58();
+
+  return string;
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -221,5 +257,7 @@ module.exports = {
   seedToWif: seedToWif,
   stringToWif: stringToWif,
   fromWif: fromWif,
-  pubkeyToAddress: pubkeyToAddress
+  pubkeyToAddress: pubkeyToAddress,
+  etherKeys: etherKeys,
+  xpub: xpub
 };

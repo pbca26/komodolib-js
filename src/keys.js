@@ -6,6 +6,9 @@ const bitcoin = require('bitcoinjs-lib');
 const bitcoinPos = require('bitcoinjs-lib-pos');
 const bs58check = require('bs58check');
 const bip39 = require('bip39');
+const bip32 = require('bip32');
+const ethersWallet = require('ethers/wallet');
+const ethUtil = require('ethereumjs-util');
 
 const addressVersionCheck = (network, address) => {
   try {
@@ -142,13 +145,16 @@ const bip39Search = (seed, network, matchPattern, addressDepth, accountsCount, i
 };
 
 // src: https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/src/ecpair.js#L62
-const fromWif = (string, network) => {
+const fromWif = (string, network, versionCheck) => {
   const decoded = wif.decode(string);
   const version = decoded.version;
 
   if (!network) throw new Error('Unknown network version');
-  if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
-  if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');
+  
+  if (versionCheck) {
+    if (network.wifAlt && version !== network.wif && network.wifAlt.indexOf(version) === -1) throw new Error('Invalid network version');
+    if (!network.wifAlt && version !== network.wif) throw new Error('Invalid network version');  
+  }
 
   const d = bigi.fromBuffer(decoded.privateKey);
 
@@ -214,6 +220,36 @@ const pubkeyToAddress = (pubkey, network) => {
   }
 };
 
+// priv can be a valid priv key or a seed
+const etherKeys = (priv, iguana) => {
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(priv))) {
+    return new ethersWallet.Wallet(priv);
+  }
+
+  const hash = sha256.create().update(priv);
+  bytes = hash.array();
+
+  if (iguana) {
+    bytes[0] &= 248;
+    bytes[31] &= 127;
+    bytes[31] |= 64;
+  }
+
+  const _wallet = new ethersWallet.Wallet(ethUtil.bufferToHex(bytes));
+    
+  return _wallet;
+};
+
+// https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
+// btc forks only
+const xpub = (seed) => {
+  const _seed = bip39.mnemonicToSeed(seed);
+  const node = bip32.fromSeed(_seed);
+  const string = node.neutered().toBase58();
+
+  return string;
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -222,4 +258,6 @@ module.exports = {
   stringToWif,
   fromWif,
   pubkeyToAddress,
+  etherKeys,
+  xpub,
 };

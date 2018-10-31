@@ -9,6 +9,7 @@
 
 var KMD_STD_FEE = 10000; // kmd main/chips/asset chains
 var fees = {
+  // btc compatible coins, fees in satoshis
   // kmd/chips/asset chains
   kmd: KMD_STD_FEE,
   chips: KMD_STD_FEE,
@@ -29,6 +30,7 @@ var fees = {
   dnr: KMD_STD_FEE,
   hodl: KMD_STD_FEE,
   pangea: KMD_STD_FEE,
+  pgt: KMD_STD_FEE,
   bet: KMD_STD_FEE,
   mshark: KMD_STD_FEE,
   mnz: KMD_STD_FEE,
@@ -44,6 +46,7 @@ var fees = {
   ccl: KMD_STD_FEE,
   vrsc: KMD_STD_FEE,
   dion: KMD_STD_FEE,
+  kmdice: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
@@ -94,7 +97,10 @@ var fees = {
   koto: 0, // todo
   rdd: 0, // todo
   pak: 0, // todo
-  cpc: 0 // todo
+  cpc: 0, // todo
+  // eth, gas limit in wei
+  eth: 21000,
+  eth_ropsten: 21000
 };
 
 module.exports = fees;
