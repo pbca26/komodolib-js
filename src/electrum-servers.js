@@ -4,8 +4,8 @@ const fees = require('./fees');
 
 let _electrumServers = {
   ptx: [
-    'electrum1.patenttx.com:8081:tcp',
-    'electrum2.patenttx.com:8081:tcp',
+    'electrum1.patenttx.com:18081:tcp',
+    'electrum2.patenttx.com:18081:tcp',
   ],
   dion: [
     'electrum1.cipig.net:10030:tcp',
