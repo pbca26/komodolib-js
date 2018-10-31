@@ -45,6 +45,7 @@ const fees = {
   vrsc: KMD_STD_FEE,
   dion: KMD_STD_FEE,
   kmdice: KMD_STD_FEE,
+  ptx: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,

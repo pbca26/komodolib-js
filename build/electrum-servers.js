@@ -6,6 +6,7 @@ var fees = require('./fees');
 
 var _electrumServers = {
   dion: ['electrum1.cipig.net:10030:tcp', 'electrum2.cipig.net:10030:tcp', 'electrum3.cipig.net:10030:tcp'],
+  ptx: ['electrum1.patenttx.com:18081:tcp', 'electrum2.patenttx.com:18081:tcp'],
   zilla: ['electrum1.cipig.net:10028:tcp', 'electrum2.cipig.net:10028:tcp'],
   prlpay: ['electrum1.prlpay.com:9681:tcp', 'electrum2.prlpay.com:9681:tcp'],
   pgt: ['agama.komodo.build:10002:tcp', 'agama2.komodo.build:10002:tcp'],
@@ -151,7 +152,8 @@ var _electrumServers = {
   ufo: ['electrumx1.ufobject.com:50001:tcp', 'electrumx2.ufobject.com:50001:tcp', 'electrumx3.ufobject.com:50001:tcp', 'electrumx4.ufobject.com:50001:tcp', 'electrumx5.ufobject.com:50001:tcp'],
   lcc: ['electrum1.litecoinca.sh:50001:tcp', 'electrum1.litecoinca.sh:50010:ssl', 'electrum2.litecoinca.sh:50001:tcp', 'electrum2.litecoinca.sh:50010:ssl'],
   btcnano: ['wallet1.btcnano.org:10550:tcp', 'wallet1.btcnano.org:10561:ssl', 'wallet2.btcnano.org:50001:tcp', 'wallet2.btcnano.org:50002:ssl'],
-  kreds: ['199.247.21.0:50001:tcp']
+  kreds: ['199.247.21.0:50001:tcp'],
+  mgnx: ['45.76.37.100:50001:tcp']
 };
 
 var electrumServers = {};
