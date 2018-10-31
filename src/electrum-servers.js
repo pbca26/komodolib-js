@@ -1,5 +1,5 @@
 let electrumServers = {
-  coqui: { // !estimatefee
+  ptx: { // !estimatefee
     address: 'electrum1.patenttx.com',
     port: 18081,
     proto: 'tcp',
