@@ -61,6 +61,8 @@ const isKomodoCoin = (coin, skipKMD) => (_komodoCoins.find((element) => {
 const explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
+  DION: 'https://explorer.dionpay.com',
+  PTX: 'http://explorer1.patenttx.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
   CALL: 'https://call.explorer.mycapitalco.in',
