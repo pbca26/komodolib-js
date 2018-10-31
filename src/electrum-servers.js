@@ -605,6 +605,9 @@ let _electrumServers = {
   kreds: [
     '199.247.21.0:50001:tcp',
   ],
+  mgnx: [
+    '45.76.37.100:50001:tcp' 
+ ]
 };
 
 let electrumServers = {};
