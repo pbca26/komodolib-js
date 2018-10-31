@@ -1,4 +1,15 @@
 let electrumServers = {
+  ptx: { // !estimatefee
+    address: 'electrum1.patenttx.com',
+    port: 18081,
+    proto: 'tcp',
+    txfee: 10000,
+    abbr: 'PTX',
+    serverList: [
+      'electrum1.patenttx.com:18081',
+      'electrum2.patenttx.com:18081'
+    ],
+  },
   coqui: { // !estimatefee
     address: 'electrum1.cipig.net',
     port: 10011,
