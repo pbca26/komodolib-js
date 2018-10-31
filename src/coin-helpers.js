@@ -41,7 +41,7 @@ const _komodoAssetChains = [
   'KOIN',
   'DION',
   'KMDICE',
-  'PTX',
+  'PTX'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
