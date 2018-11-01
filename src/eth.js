@@ -1,7 +1,9 @@
 const { formatEther } = require('ethers/utils/units');
 
 // normalize eth transactions to btc like list
-const ethTransactionsToBtc = (transactions) => {
+const ethTransactionsToBtc = (transactions, address) => {
+  let _txs = [];
+
   if (transactions.length) {
     for (let i = 0; i < transactions.length; i++) {
       let type;

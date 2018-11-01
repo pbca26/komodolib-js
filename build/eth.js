@@ -6,7 +6,9 @@ var _require = require('ethers/utils/units'),
 // normalize eth transactions to btc like list
 
 
-var ethTransactionsToBtc = function ethTransactionsToBtc(transactions) {
+var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address) {
+  var _txs = [];
+
   if (transactions.length) {
     for (var i = 0; i < transactions.length; i++) {
       var type = void 0;
