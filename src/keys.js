@@ -9,6 +9,8 @@ const bip39 = require('bip39');
 const bip32 = require('bip32');
 const ethersWallet = require('ethers/wallet');
 const ethUtil = require('ethereumjs-util');
+const wif = require('wif');
+const bitcoinjsNetworks = require('./bitcoinjs-networks');
 
 const addressVersionCheck = (network, address) => {
   try {
@@ -250,6 +252,36 @@ const xpub = (seed) => {
   return string;
 };
 
+const btcToEthPriv = (_wif) => {
+  const decodedWif = wif.decode(_wif);
+  const ethWallet = new ethersWallet.Wallet(ethUtil.bufferToHex(decodedWif.privateKey));
+
+  return ethWallet.signingKey.privateKey;
+};
+
+const ethToBtcWif = (priv, network) => {
+  const buf = ethUtil.toBuffer(priv);
+  const d = bigi.fromBuffer(buf);
+  let _priv;
+
+  if (network) {
+    _priv = network.isZcash ? new bitcoinZcash.ECPair(d, null, {
+      compressed: true,
+      network,
+    }) : new bitcoin.ECPair(d, null, {
+      compressed: true,
+      network,
+    });
+  } else {
+    _priv = new bitcoin.ECPair(d, null, {
+      compressed: true,
+      network: bitcoinjsNetworks.btc,
+    });
+  }
+
+  return _priv.toWIF();
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -260,4 +292,6 @@ module.exports = {
   pubkeyToAddress,
   etherKeys,
   xpub,
+  btcToEthPriv,
+  ethToBtcWif,
 };
