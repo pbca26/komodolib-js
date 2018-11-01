@@ -78,10 +78,10 @@ let _electrumServers = {
     'electrum1.cipig.net:10008:tcp',
     'electrum2.cipig.net:10008:tcp',
   ],
-  dnr: [
+  /*dnr: [
     '144.202.95.223:50001:tcp',
     '45.77.137.111:50001:tcp',
-  ],
+  ],*/
   hodl: [
     'electrum1.cipig.net:10009:tcp',
     'electrum2.cipig.net:10009:tcp',

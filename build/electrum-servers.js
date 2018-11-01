@@ -23,7 +23,10 @@ var _electrumServers = {
   dex: ['electrum1.cipig.net:10006:tcp', 'electrum2.cipig.net:10006:tcp'],
   bots: ['electrum1.cipig.net:10007:tcp', 'electrum2.cipig.net:10007:tcp'],
   crypto: ['electrum1.cipig.net:10008:tcp', 'electrum2.cipig.net:10008:tcp'],
-  dnr: ['144.202.95.223:50001:tcp', '45.77.137.111:50001:tcp'],
+  /*dnr: [
+    '144.202.95.223:50001:tcp',
+    '45.77.137.111:50001:tcp',
+  ],*/
   hodl: ['electrum1.cipig.net:10009:tcp', 'electrum2.cipig.net:10009:tcp'],
   pangea: ['electrum1.cipig.net:10010:tcp', 'electrum2.cipig.net:10010:tcp'],
   bet: ['electrum1.cipig.net:10012:tcp', 'electrum2.cipig.net:10012:tcp'],
