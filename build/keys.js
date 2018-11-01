@@ -282,6 +282,19 @@ var ethToBtcWif = function ethToBtcWif(priv, network) {
   return _priv.toWIF();
 };
 
+var seedToPriv = function seedToPriv(string) {
+  try {
+    bs58check.decode(string);
+    return btcToEthPriv(string);
+  } catch (e) {}
+
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(string))) {
+    return ethToBtcWif(string);
+  }
+
+  return string;
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -293,5 +306,6 @@ module.exports = {
   etherKeys: etherKeys,
   xpub: xpub,
   btcToEthPriv: btcToEthPriv,
-  ethToBtcWif: ethToBtcWif
+  ethToBtcWif: ethToBtcWif,
+  seedToPriv: seedToPriv
 };

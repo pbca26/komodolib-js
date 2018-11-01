@@ -282,6 +282,19 @@ const ethToBtcWif = (priv, network) => {
   return _priv.toWIF();
 };
 
+const seedToPriv = (string) => {
+  try {
+    bs58check.decode(string);
+    return btcToEthPriv(string);
+  } catch (e) {}
+
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(string))) {
+    return ethToBtcWif(string);
+  }
+
+  return string;
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -294,4 +307,5 @@ module.exports = {
   xpub,
   btcToEthPriv,
   ethToBtcWif,
+  seedToPriv,
 };
