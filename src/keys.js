@@ -282,14 +282,14 @@ const ethToBtcWif = (priv, network) => {
   return _priv.toWIF();
 };
 
-const seedToPriv = (string) => {
+const seedToPriv = (string, dest) => {
   try {
     bs58check.decode(string);
-    return btcToEthPriv(string);
+    return dest === 'btc' ? string : btcToEthPriv(string);
   } catch (e) {}
 
   if (ethUtil.isValidPrivate(ethUtil.toBuffer(string))) {
-    return ethToBtcWif(string);
+    return dest === 'eth' ? string : ethToBtcWif(string);
   }
 
   return string;
