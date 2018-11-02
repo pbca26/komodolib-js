@@ -74,5 +74,7 @@ var maxSpend = function maxSpend(balance, fee, amount) {
 };
 
 module.exports = {
-  ethTransactionsToBtc: ethTransactionsToBtc
+  ethTransactionsToBtc: ethTransactionsToBtc,
+  ethGasStationRateToWei: ethGasStationRateToWei,
+  maxSpend: maxSpend
 };

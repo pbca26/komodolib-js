@@ -70,4 +70,6 @@ const maxSpend = (balance, fee, amount) => {
 
 module.exports = {
   ethTransactionsToBtc,
+  ethGasStationRateToWei,
+  maxSpend,
 };
