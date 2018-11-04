@@ -6,7 +6,7 @@ var _require = require('ethers/utils/units'),
 // normalize eth transactions to btc like list
 
 
-var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address) {
+var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, isErc20) {
   var _txs = [];
 
   if (transactions.length) {
@@ -21,7 +21,7 @@ var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address) 
         type = 'received';
       }
 
-      _txs.push({
+      var _txObj = {
         type: type,
         height: transactions[i].blockNumber,
         timestamp: transactions[i].timeStamp,
@@ -43,12 +43,21 @@ var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address) 
         gasUsedWei: transactions[i].gasUsed,
         fee: formatEther(Number(transactions[i].gasPrice) * Number(transactions[i].gasUsed)),
         feeWei: Number(transactions[i].gasPrice) * Number(transactions[i].gasUsed),
-        error: transactions[i].isError,
-        txreceipt_status: transactions[i].txreceipt_status,
         input: transactions[i].input,
         contractAddress: transactions[i].contractAddress,
         confirmations: transactions[i].confirmations
-      });
+      };
+
+      if (isErc20) {
+        _txObj.tokenName = transactions[i].tokenName;
+        _txObj.tokenSymbol = transactions[i].tokenSymbol;
+        _txObj.tokenDecimal = transactions[i].tokenDecimal;
+      } else {
+        _txObj.error = transactions[i].isError;
+        _txObj.txreceipt_status = transactions[i].txreceipt_status;
+      }
+
+      _txs.push(_txObj);
     }
   }
 
