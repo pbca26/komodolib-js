@@ -1,0 +1,7 @@
+const erc20ContractId = {
+  OMG: '0xd26114cd6EE289AccF82350c8d8487fedB8A0C07',
+  SNT: '0x744d70FDBE2Ba4CF95131626614a1763DF805B9E',
+  '0x': '0xE41d2489571d322189246DaFA5ebDe1F4699F498',
+};
+
+module.exports = erc20ContractId;
