@@ -1,4 +1,7 @@
-const { formatEther } = require('ethers/utils/units');
+const {
+  formatEther,
+  parseUnits,
+} = require('ethers/utils/units');
 
 // normalize eth transactions to btc like list
 const ethTransactionsToBtc = (transactions, address, isErc20) => {
@@ -64,7 +67,7 @@ const ethTransactionsToBtc = (transactions, address, isErc20) => {
 
 // http://gasstation.info/json/ethgasAPI.json rates are in 10gwei
 const ethGasStationRateToWei = (rate) => {
-  return Number(rate) / 10 * 1000000000;
+  return parseUnits(Number(rate / 10).toString(), 'gwei').toString();
 };
 
 const maxSpend = (balance, fee, amount) => {

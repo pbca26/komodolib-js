@@ -1,7 +1,8 @@
 'use strict';
 
 var _require = require('ethers/utils/units'),
-    formatEther = _require.formatEther;
+    formatEther = _require.formatEther,
+    parseUnits = _require.parseUnits;
 
 // normalize eth transactions to btc like list
 
@@ -69,7 +70,7 @@ var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, 
 
 // http://gasstation.info/json/ethgasAPI.json rates are in 10gwei
 var ethGasStationRateToWei = function ethGasStationRateToWei(rate) {
-  return Number(rate) / 10 * 1000000000;
+  return parseUnits(Number(rate / 10).toString(), 'gwei').toString();
 };
 
 var maxSpend = function maxSpend(balance, fee, amount) {
