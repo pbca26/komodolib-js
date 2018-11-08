@@ -68,8 +68,7 @@ const _decimals = {
 let decimals = {};
 
 for (let key in erc20ContractId) {
-  if (_decimals[key] &&
-      _decimals[key] === 0) {
+  if (_decimals[key] === 0) {
     decimals[key] = 0;
   } else {
     decimals[key] = _decimals[key] || 18;
