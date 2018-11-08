@@ -7,7 +7,7 @@ var _require = require('ethers/utils/units'),
 // normalize eth transactions to btc like list
 
 
-var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, isErc20) {
+var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, isErc20, decimals) {
   var _txs = [];
 
   if (transactions.length) {
@@ -53,6 +53,8 @@ var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, 
         _txObj.tokenName = transactions[i].tokenName;
         _txObj.tokenSymbol = transactions[i].tokenSymbol;
         _txObj.tokenDecimal = transactions[i].tokenDecimal;
+        _txObj.amount = formatEther(parseUnits(transactions[i].value, decimals).toString());
+        _txObj.amountWei = parseUnits(transactions[i].value, decimals).toString();
       } else {
         _txObj.error = transactions[i].isError;
         _txObj.txreceipt_status = transactions[i].txreceipt_status;
