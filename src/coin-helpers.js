@@ -41,7 +41,8 @@ const _komodoAssetChains = [
   'KOIN',
   'DION',
   'KMDICE',
-  'PTX'
+  'PTX',
+  'ZEX'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -105,6 +106,7 @@ const explorerList = {
   DION: 'https://explorer.dionpay.com',
   KMDICE: 'https://kmdice.explorer.dexstats.info',
   PTX: 'http://explorer1.patenttx.com',
+  ZEX: 'http://explorer.zaddex.com',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
