@@ -11,6 +11,7 @@ const networks = {
   btc: bitcoin.networks.bitcoin,
   ltc: {
     messagePrefix: '\x19Litecoin Signed Message:\n',
+    bip44: 2,
     bip32: {
       public: 0x019da462,
       private: 0x019d9cfe,
@@ -22,6 +23,7 @@ const networks = {
   },
   dnr: {
     messagePrefix: '\x19Denarius Signed Message:\n',
+    bip44: 116,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -34,6 +36,7 @@ const networks = {
   },
   doge: {
     messagePrefix: '\x19Dogecoin Signed Message:\n',
+    bip44: 3,
     bip32: {
       public: 0x02facafd,
       private: 0x02fac398,
@@ -46,6 +49,7 @@ const networks = {
   // https://github.com/monacoinproject/monacoin/blob/master-0.10/src/chainparams.cpp#L161
   mona: {
     messagePrefix: '\x19Monacoin Signed Message:\n',
+    bip44: 22,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -57,6 +61,7 @@ const networks = {
   },
   game: {
     messagePrefix: '\x19GameCredits Signed Message:\n',
+    bip44: 101,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -69,6 +74,7 @@ const networks = {
   // https://github.com/dashpay/dash/blob/master/src/chainparams.cpp#L171
   dash: {
     messagePrefix: '\x19DarkCoin Signed Message:\n',
+    bip44: 5,
     bip32: {
       public: 0x02fe52f8,
       private: 0x02fe52cc,
@@ -81,6 +87,7 @@ const networks = {
   // https://github.com/zcoinofficial/zcoin/blob/c93eccb39b07a6132cb3d787ac18be406b24c3fa/src/base58.h#L275
   xzc: {
     messagePrefix: '\x19ZCoin Signed Message:\n',
+    bip44: 136,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -94,6 +101,7 @@ const networks = {
   // https://raw.githubusercontent.com/jl777/komodo/beta/src/chainparams.cpp
   kmd: {
     messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -107,6 +115,7 @@ const networks = {
   },
   via: {
     messagePrefix: '\x19Viacoin Signed Message:\n',
+    bip44: 14,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -118,6 +127,7 @@ const networks = {
   },
   vtc: {
     messagePrefix: '\x19Vertcoin Signed Message:\n',
+    bip44: 28,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -129,6 +139,7 @@ const networks = {
   },
   nmc: {
     messagePrefix: '\x19Namecoin Signed Message:\n',
+    bip44: 7,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -151,6 +162,7 @@ const networks = {
   },
   dgb: {
     messagePrefix: '\x19Digibyte Signed Message:\n',
+    bip44: 20,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -162,6 +174,7 @@ const networks = {
   },
   crw: {
     messagePrefix: '\x19Crown Signed Message:\n',
+    bip44: 72,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -173,6 +186,7 @@ const networks = {
   },
   arg: {
     messagePrefix: '\x19Argentum Signed Message:\n',
+    bip44: 45,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -184,6 +198,7 @@ const networks = {
   },
   chips: {
     messagePrefix: '\x19Chips Signed Message:\n',
+    bip44: 141,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -195,6 +210,7 @@ const networks = {
   },
   btg: {
     messagePrefix: '\x19BitcoinGold Signed Message:\n',
+    bip44: 156,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -208,6 +224,7 @@ const networks = {
   },
   bch: {
     messagePrefix: '\x19BitcoinCash Signed Message:\n',
+    bip44: 145,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -221,6 +238,7 @@ const networks = {
   },
   blk: {
     messagePrefix: '\x19BlackCoin Signed Message:\n',
+    bip44: 10,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -244,6 +262,7 @@ const networks = {
   },
   zec: {
     messagePrefix: '\x19Zcash Signed Message:\n',
+    bip44: 133,
     bip32: {
       public: 0x0488b21e,
       private: 0x05358394,
@@ -256,6 +275,7 @@ const networks = {
   },
   hush: {
     messagePrefix: '\x19Hush Signed Message:\n',
+    bip44: 197,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -268,6 +288,7 @@ const networks = {
   },
   zcl: {
     messagePrefix: '\x19Zclassic Signed Message:\n',
+    bip44: 147,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -292,6 +313,7 @@ const networks = {
   },
   xmy: {
     messagePrefix: '\x19Myriad Signed Message:\n',
+    bip44: 90,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -314,6 +336,7 @@ const networks = {
   },
   qtum: {
     messagePrefix: '\x19Qtum Signed Message:\n',
+    bip44: 2301,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -325,6 +348,7 @@ const networks = {
   },
   btx: {
     messagePrefix: '\x19Bitcore Signed Message:\n',
+    bip44: 160,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -336,6 +360,7 @@ const networks = {
   },
   btcz: {
     messagePrefix: '\x19BitcoinZ Signed Message:\n',
+    bip44: 177,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -348,6 +373,7 @@ const networks = {
   },
   grs: { // fails to gen a proper addr
     messagePrefix: '\x19Groestlcoin Signed Message:\n',
+    bip44: 17,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -393,6 +419,7 @@ const networks = {
   },
   iop: {
     messagePrefix: '\x19IOP Signed Message:\n',
+    bip44: 66,
     bip32: {
       public: 0x2780915F,
       private: 0xAE3416F6,
@@ -415,6 +442,7 @@ const networks = {
   },
   btcp: {
     messagePrefix: '\x18BitcoinPrivate Signed Message:\n',
+    bip44: 183,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -428,6 +456,7 @@ const networks = {
   // https://github.com/zencashio/zen/blob/master/src/chainparams.cpp#L118
   zen: { // new address type
     messagePrefix: '\x19Zencas Signed Message:\n',
+    bip44: 121,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -440,6 +469,7 @@ const networks = {
   },
   sys: { // zec based
     messagePrefix: '\x19Syscoin Signed Message:\n',
+    bip44: 57,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -453,6 +483,7 @@ const networks = {
   },
   emc2: {
     messagePrefix: '\x18Einsteinium Signed Message:\n',
+    bip44: 41,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -465,6 +496,7 @@ const networks = {
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
     messagePrefix: '\x19Bata Signed Message:\n',
+    bip44: 89,
     bip32: {
       public: 0xA40C86FA,
       private: 0xA40B91BD,
@@ -477,6 +509,7 @@ const networks = {
   // https://github.com/lbryio/lbrycrd/blob/master/src/chainparams.cpp#L176
   lbc: {
     messagePrefix: '\x18LBRYcrd Signed Message:\n',
+    bip44: 140,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -488,6 +521,7 @@ const networks = {
   // https://github.com/LIMXTEC/BitSend/blob/master/src/chainparams.cpp#L136
   bsd: {
     messagePrefix: '\x19Bitsend Signed Message:\n',
+    bip44: 91,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -500,6 +534,7 @@ const networks = {
   // https://github.com/gobytecoin/gobyte/blob/master/src/chainparams.cpp#L127
   gbx: {
     messagePrefix: '\x19GoByte Signed Message:\n',
+    bip44: 176,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -512,6 +547,7 @@ const networks = {
   // https://github.com/Electronic-Gulden-Foundation/egulden/blob/master/src/chainparams.cpp#L139
   efl: {
     messagePrefix: '\x19E-Gulden Signed Message:\n',
+    bip44: 78,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -523,6 +559,7 @@ const networks = {
   },
   wc: { // xwc
     messagePrefix: '\x18Whitecoin Signed Message:\n',
+    bip44: 181,
     bip32: {
       public: 0x04887F1E,
       private: 0x048894ED,
@@ -535,6 +572,7 @@ const networks = {
   // https://github.com/vivocoin/vivo/blob/master/src/chainparams.cpp#L133
   vivo: {
     messagePrefix: '\x19Vivo Signed Message:\n',
+    bip44: 166,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -546,6 +584,7 @@ const networks = {
   },
   xvg: {
     messagePrefix: '\x18VERGE Signed Message:\n',
+    bip44: 77,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -557,6 +596,7 @@ const networks = {
   },
   smart: { // wrong address generated
     messagePrefix: '\x19Smartcash Signed Message:\n',
+    bip44: 224,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -570,6 +610,7 @@ const networks = {
   // https://github.com/reddcoin-project/reddcoin/blob/master/src/chainparams.cpp#L79
   rdd: {
     messagePrefix: '\x19Reddcoin Signed Message:\n',
+    bip44: 4,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -582,6 +623,7 @@ const networks = {
   // https://github.com/PIVX-Project/PIVX/blob/master/src/chainparams.cpp#L180
   pivx: {
     messagePrefix: '\x19Pivx Signed Message:\n',
+    bip44: 119,
     bip32: {
       public: 0x022D2533,
       private: 0x0221312B,
@@ -594,6 +636,7 @@ const networks = {
   // https://github.com/OmniLayer/omnicore/blob/master/src/chainparams.cpp#L128
   omni: {
     messagePrefix: '\x19OmniLayer Signed Message:\n',
+    bip44: 200,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -605,6 +648,7 @@ const networks = {
   },
   ok: {
     messagePrefix: '\x19OKCash Signed Message:\n',
+    bip44: 69,
     bip32: {
       public: 0x03CC23D7,
       private: 0x03CC1C73,
@@ -617,6 +661,7 @@ const networks = {
   },
   neos: {
     messagePrefix: '\x19Neoscoin Signed Message:\n',
+    bip44: 25,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -629,6 +674,7 @@ const networks = {
   // https://github.com/NAVCoin/navcoin-core/blob/master/src/chainparams.cpp#L160
   nav: {
     messagePrefix: '\x19Navcoin Signed Message:\n',
+    bip44: 130,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -641,6 +687,7 @@ const networks = {
   // https://github.com/minexcoin/minexcoin/blob/master/src/chainparams.cpp#L259
   mnx: {
     messagePrefix: '\x19Minexcoin Signed Message:\n',
+    bip44: 182,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -652,6 +699,7 @@ const networks = {
   },
   lcc: {
     messagePrefix: '\x18Litecoin Cash Signed Message:\n',
+    bip44: 192,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -664,6 +712,7 @@ const networks = {
   // https://github.com/Gulden/gulden-official/blob/master/src/chainparams.cpp#L128
   nlg: {
     messagePrefix: '\x19Gulden Cash Signed Message:\n',
+    bip44: 87,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -677,6 +726,7 @@ const networks = {
   // https://github.com/fujicoin/fujicoin/blob/master/src/chainparams.cpp#L132
   fjc: {
     messagePrefix: '\x19Fujicoin Signed Message:\n',
+    bip44: 75,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -689,6 +739,7 @@ const networks = {
   // https://github.com/flash-coin/bitcore-lib/commit/97d72267f3577173ee90d46b43553af801b214f2#diff-014a66be6f0ee0e90f9357d497267195R144
   flash: {
     messagePrefix: '\x19Flash Signed Message:\n',
+    bip44: 120,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -701,6 +752,7 @@ const networks = {
   // https://github.com/FeatherCoin/Feathercoin/blob/master-0.13/src/chainparams.cpp#L132
   ftc: {
     messagePrefix: '\x19FeatherCoin Signed Message:\n',
+    bip44: 8,
     bip32: {
       public: 0x048BC26,
       private: 0x0488DAEE,
@@ -714,6 +766,7 @@ const networks = {
   // https://github.com/exclfork/ExclusiveCoin/blob/master/src/chainparams.cpp#L82
   excl: {
     messagePrefix: '\x19ExclusiveCoin Signed Message:\n',
+    bip44: 190,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -726,6 +779,7 @@ const networks = {
   // https://github.com/DMDcoin/Diamond/blob/master/src/chainparams.cpp#L166
   dmd: {
     messagePrefix: '\x19Diamond Signed Message:\n',
+    bip44: 152,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -738,6 +792,7 @@ const networks = {
   // https://github.com/CooleRRSA/crave/blob/master/src/chainparams.cpp#L99
   crave: {
     messagePrefix: '\x19Crave Signed Message:\n',
+    bip44: 186,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -750,6 +805,7 @@ const networks = {
   // https://github.com/BitClubDev/ClubCoin/blob/master/src/chainparams.cpp#L114
   club: {
     messagePrefix: '\x19ClubCoin Signed Message:\n',
+    bip44: 79,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -762,6 +818,7 @@ const networks = {
   // https://github.com/nochowderforyou/clams/blob/master/src/chainparams.cpp#L93
   clam: {
     messagePrefix: '\x19Clams Signed Message:\n',
+    bip44: 23,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -774,6 +831,7 @@ const networks = {
   // https://github.com/bitcoin-atom/bitcoin-atom/blob/master/src/chainparams.cpp#L168
   bca: {
     messagePrefix: '\x19Bitcoin Atom Signed Message:\n',
+    bip44: 185,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -786,6 +844,7 @@ const networks = {
   // https://github.com/aurarad/Auroracoin/blob/master/src/chainparams.cpp#L77
   aur: {
     messagePrefix: '\x19Auroracoin Signed Message:\n',
+    bip44: 85,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -798,6 +857,7 @@ const networks = {
   // https://github.com/adcoin-project/AdCoin/blob/master/src/chainparams.cpp#L129
   acc: {
     messagePrefix: '\x19AdCoin Signed Message:\n',
+    bip44: 161,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -821,6 +881,7 @@ const networks = {
   // https://raw.githubusercontent.com/iancoleman/bip39/master/src/js/bitcoinjs-extensions.js
   sdc: {
     messagePrefix: '\x18ShadowCash Signed Message:\n',
+    bip44: 35,
     bip32: {
       public: 0xEE80286A,
       private: 0xEE8031E8,
@@ -831,6 +892,7 @@ const networks = {
   },
   mzc: {
     messagePrefix: '\x18Mazacoin Signed Message:\n',
+    bip44: 13,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -841,6 +903,7 @@ const networks = {
   },
   ppc: {
     messagePrefix: '\x18Peercoin Signed Message:\n',
+    bip44: 6,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -851,6 +914,7 @@ const networks = {
   },
   axe: {
     messagePrefix: '\x18AXE Signed Message:\n',
+    bip44: 4242,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -871,6 +935,7 @@ const networks = {
   },
   nebl: {
     messagePrefix: '\x18Neblio Signed Message:\n',
+    bip44: 146,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -881,6 +946,7 @@ const networks = {
   },
   jbs: {
     messagePrefix: '\x19Jumbucks Signed Message:\n',
+    bip44: 26,
     bip32: {
       public: 0x037a689a,
       private: 0x037a6460,
@@ -901,6 +967,7 @@ const networks = {
   },
   onx: {
     messagePrefix: '\x18Onixcoin Signed Message:\n',
+    bip44: 174,
     bip32: {
       public: 0x049d7cb2,
       private: 0x049d7878,
@@ -921,6 +988,7 @@ const networks = {
   },
   beet: {
     messagePrefix: '\x19Beetlecoin Signed Message:\n',
+    bip44: 800,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -931,6 +999,7 @@ const networks = {
   },
   ac: {
     messagePrefix: '\x18AsiaCoin Signed Message:\n',
+    bip44: 51,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -941,6 +1010,7 @@ const networks = {
   },
   bela: {
     messagePrefix: '\x18BelaCoin Signed Message:\n',
+    bip44: 73,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -951,6 +1021,7 @@ const networks = {
   },
   xbc: {
     messagePrefix: '\x18BitcoinPlus Signed Message:\n',
+    bip44: 65,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -961,6 +1032,7 @@ const networks = {
   },
   brit: {
     messagePrefix: '\x18BritCoin Signed Message:\n',
+    bip44: 70,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -971,6 +1043,7 @@ const networks = {
   },
   cdn: {
     messagePrefix: '\x18Canada eCoin Signed Message:\n',
+    bip44: 34,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -981,6 +1054,7 @@ const networks = {
   },
   ccn: {
     messagePrefix: '\x18Cannacoin Signed Message:\n',
+    bip44: 19,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -991,6 +1065,7 @@ const networks = {
   },
   cmp: {
     messagePrefix: '\x18CompCoin Signed Message:\n',
+    bip44: 71,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1011,6 +1086,7 @@ const networks = {
   },
   dgc: {
     messagePrefix: '\x18Digitalcoin Signed Message:\n',
+    bip44: 18,
     bip32: {
       public: 0x9e0488B2,
       private: 0x0488ADE4,
@@ -1021,6 +1097,7 @@ const networks = {
   },
   ecn: {
     messagePrefix: '\x18eCoin Signed Message:\n',
+    bip44: 115,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1031,6 +1108,7 @@ const networks = {
   },
   edrc: {
     messagePrefix: '\x18EDRcoin Signed Message:\n',
+    bip44: 56,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1041,6 +1119,7 @@ const networks = {
   },
   erc: {
     messagePrefix: '\x18Europecoin Signed Message:\n',
+    bip44: 151,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1051,6 +1130,7 @@ const networks = {
   },
   frst: {
     messagePrefix: '\x18FirstCoin Signed Message:\n',
+    bip44: 167,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1061,6 +1141,7 @@ const networks = {
   },
   gcr: {
     messagePrefix: '\x18GCR Signed Message:\n',
+    bip44: 49,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1071,6 +1152,7 @@ const networks = {
   },
   grc: {
     messagePrefix: '\x18Gridcoin Signed Message:\n',
+    bip44: 84,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1081,6 +1163,7 @@ const networks = {
   },
   hnc: {
     messagePrefix: '\x18helleniccoin Signed Message:\n',
+    bip44: 168,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1091,6 +1174,7 @@ const networks = {
   },
   thc: {
     messagePrefix: '\x18Hempcoin Signed Message:\n',
+    bip44: 113,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1101,6 +1185,7 @@ const networks = {
   },
   insn: {
     messagePrefix: '\x18INSaNe Signed Message:\n',
+    bip44: 68,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1111,6 +1196,7 @@ const networks = {
   },
   ixc: {
     messagePrefix: '\x18Ixcoin Signed Message:\n',
+    bip44: 86,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1121,6 +1207,7 @@ const networks = {
   },
   kobo: {
     messagePrefix: '\x18Kobocoin Signed Message:\n',
+    bip44: 196,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1131,6 +1218,7 @@ const networks = {
   },
   ldcn: {
     messagePrefix: '\x18Landcoin Signed Message:\n',
+    bip44: 63,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1141,6 +1229,7 @@ const networks = {
   },
   linx: {
     messagePrefix: '\x18LinX Signed Message:\n',
+    bip44: 114,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1161,6 +1250,7 @@ const networks = {
   },
   nro: {
     messagePrefix: '\x18PPCoin Signed Message:\n',
+    bip44: 110,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1171,6 +1261,7 @@ const networks = {
   },
   nyc: {
     messagePrefix: '\x18Newyorkc Signed Message:\n',
+    bip44: 179,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1181,6 +1272,7 @@ const networks = {
   },
   nvc: {
     messagePrefix: '\x18NovaCoin Signed Message:\n',
+    bip44: 50,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1191,6 +1283,7 @@ const networks = {
   },
   nsr: {
     messagePrefix: '\x18Nu Signed Message:\n',
+    bip44: 11,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1201,6 +1294,7 @@ const networks = {
   },
   psb: {
     messagePrefix: '\x18Pesobit Signed Message:\n',
+    bip44: 62,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1211,6 +1305,7 @@ const networks = {
   },
   pink: {
     messagePrefix: '\x18Pinkcoin Signed Message:\n',
+    bip44: 117,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1231,6 +1326,7 @@ const networks = {
   },
   pot: {
     messagePrefix: '\x18Potcoin Signed Message:\n',
+    bip44: 81,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1241,6 +1337,7 @@ const networks = {
   },
   put: {
     messagePrefix: '\x18PutinCoin Signed Message:\n',
+    bip44: 122,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1251,6 +1348,7 @@ const networks = {
   },
   vox: { // rvr
     messagePrefix: '\x18Voxels Signed Message:\n',
+    bip44: 129,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1261,6 +1359,7 @@ const networks = {
   },
   rby: {
     messagePrefix: '\x18Rubycoin Signed Message:\n',
+    bip44: 16,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1271,6 +1370,7 @@ const networks = {
   },
   smly: {
     messagePrefix: '\x18Smileycoin Signed Message:\n',
+    bip44: 59,
     bip32: {
       public: 0x1E562D9A,
       private: 0x1E5631BC,
@@ -1281,6 +1381,7 @@ const networks = {
   },
   slr: {
     messagePrefix: '\x18SolarCoin Signed Message:\n',
+    bip44: 58,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1291,6 +1392,7 @@ const networks = {
   },
   strat: {
     messagePrefix: '\x18Stratis Signed Message:\n',
+    bip44: 105,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1301,6 +1403,7 @@ const networks = {
   },
   toa: {
     messagePrefix: '\x18TOA Signed Message:\n',
+    bip44: 159,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4,
@@ -1311,6 +1414,7 @@ const networks = {
   },
   usc: {
     messagePrefix: '\x18UltimateSecureCash Signed Message:\n',
+    bip44: 112,
     bip32: {
       public: 0xEE80286A,
       private: 0xEE8031E8,
@@ -1321,6 +1425,7 @@ const networks = {
   },
   uno: {
     messagePrefix: '\x18Unobtanium Signed Message:\n',
+    bip44: 92,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1361,6 +1466,7 @@ const networks = {
   },
   xuez: {
     messagePrefix: '\x18Xuez Signed Message:\n',
+    bip44: 225,
     bip32: {
       public: 0x022d2533,
       private: 0x0221312b,
@@ -1371,6 +1477,7 @@ const networks = {
   },
   nrg: { // etk?
     messagePrefix: '\x18Energicoin Signed Message:\n',
+    bip44: 204,
     bip32: {
       public: 0x03B8C856,
       private: 0xD7DC6E9F,
@@ -1391,6 +1498,7 @@ const networks = {
   },
   xax: {
     messagePrefix: '\x18Artax Signed Message:\n',
+    bip44: 219,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1421,6 +1529,7 @@ const networks = {
   },
   mec: {
     messagePrefix: '\x18Megacoin Signed Message:\n',
+    bip44: 217,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1441,6 +1550,7 @@ const networks = {
   },
   btdx: {
     messagePrefix: '\x18BitCloud Signed Message:\n',
+    bip44: 218,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1478,6 +1588,7 @@ const networks = {
   },
   xcp: {
     messagePrefix: '\u0018CounterParty Signed Message:\n',
+    bip44: 9,
     pubKeyHash: 0x0,
     scriptHash: 0x5,
     wif: 0x80,
@@ -1502,6 +1613,7 @@ const networks = {
   },
   dope: {
     messagePrefix: '\u0018Dopecoin Signed Message:\n',
+    bip44: 53,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
@@ -1549,6 +1661,7 @@ const networks = {
   },
   mars: {
     messagePrefix: '\u0018MarsCoin Signed Message:\n',
+    bip44: 107,
     pubKeyHash: 0x32,
     scriptHash: 0x5,
     wif: 0xb2,
@@ -1570,36 +1683,42 @@ const networks = {
   },
   nlc2: {
     messagePrefix: '\u0018NoLimitCoin Signed Message:\n',
+    bip44: 149,
     pubKeyHash: 0x35,
     scriptHash: 0x5c,
     wif: 0xb5,
   },
   pnd: {
     messagePrefix: '\u0018PandaCoin Signed Message:\n',
+    bip44: 37,
     pubKeyHash: 0x37,
     scriptHash: 0x5,
     wif: 0xb7,
   },
   part: {
     messagePrefix: '\u0018Particl Signed Message:\n',
+    bip44: 44,
     pubKeyHash: 0x38,
     scriptHash: 0x3c,
     wif: 0x6c,
   },
   ptc: {
     messagePrefix: '\u0018Pesetacoin Signed Message:\n',
+    bip44: 109,
     pubKeyHash: 0x2f,
     scriptHash: 0x5,
     wif: 0xaf,
   },
   xpm: {
     messagePrefix: '\u0018Primecoin Signed Message:\n',
+    bip44: 24,
     pubKeyHash: 0x17,
     scriptHash: 0x5,
     wif: 0x97,
   },
   qrk: {
     messagePrefix: '\u0018Quark Signed Message:\n',
+    bip44: 82,
     pubKeyHash: 0x3a,
     scriptHash: 0x5,
     wif: 0xba,
@@ -1612,12 +1731,14 @@ const networks = {
   },
   trc: {
     messagePrefix: '\u0018TerraCoin Signed Message:\n',
+    bip44: 83,
     pubKeyHash: 0x0,
     scriptHash: 0x5,
     wif: 0x80,
   },
   tes: {
     messagePrefix: '\u0018TeslaCoin Signed Message:\n',
+    bip44: 1856,
     pubKeyHash: 0xb,
     scriptHash: 0x5,
     wif: 0x8b,
@@ -1630,6 +1751,7 @@ const networks = {
   },
   unify: {
     messagePrefix: '\u0018Unify Signed Message:\n',
+    bip44: 124,
     pubKeyHash: 0x44,
     scriptHash: 0x5,
     wif: 0xc4,
