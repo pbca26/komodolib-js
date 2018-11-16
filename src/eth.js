@@ -2,6 +2,9 @@ const {
   formatEther,
   parseUnits,
 } = require('ethers/utils/units');
+const standardABI = require('./erc20-standard-abi');
+const erc20ContractID = require('./eth-erc20-contract-id');
+const erc20Decimals = require('./eth-erc20-decimals');
 
 // normalize eth transactions to btc like list
 const ethTransactionsToBtc = (transactions, address, isErc20, decimals) => {
@@ -86,4 +89,7 @@ module.exports = {
   ethTransactionsToBtc,
   ethGasStationRateToWei,
   maxSpend,
+  standardABI,
+  erc20ContractID,
+  erc20Decimals,
 };
