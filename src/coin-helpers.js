@@ -35,7 +35,6 @@ const _komodoAssetChains = [
   'DSEC',
   'VRSC',
   'MGNX',
-  'CALL',
   'CCL',
   'PIRATE',
   'KOIN',
