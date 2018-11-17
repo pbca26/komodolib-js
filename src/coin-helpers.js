@@ -65,7 +65,6 @@ const explorerList = {
   PTX: 'http://explorer1.patenttx.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
-  CALL: 'https://call.explorer.mycapitalco.in',
   CCL: 'http://ccl.explorer.dexstats.info',
   PIRATE: 'http://pirate.explorer.dexstats.info',
   KV: 'https://kv.kmdexplorer.io',
