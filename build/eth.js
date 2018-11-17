@@ -4,9 +4,11 @@ var _require = require('ethers/utils/units'),
     formatEther = _require.formatEther,
     parseUnits = _require.parseUnits;
 
+var standardABI = require('./erc20-standard-abi');
+var erc20ContractID = require('./eth-erc20-contract-id');
+var erc20Decimals = require('./eth-erc20-decimals');
+
 // normalize eth transactions to btc like list
-
-
 var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, isErc20, decimals) {
   var _txs = [];
 
@@ -88,5 +90,8 @@ var maxSpend = function maxSpend(balance, fee, amount) {
 module.exports = {
   ethTransactionsToBtc: ethTransactionsToBtc,
   ethGasStationRateToWei: ethGasStationRateToWei,
-  maxSpend: maxSpend
+  maxSpend: maxSpend,
+  standardABI: standardABI,
+  erc20ContractID: erc20ContractID,
+  erc20Decimals: erc20Decimals
 };

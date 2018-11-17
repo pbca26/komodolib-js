@@ -71,7 +71,7 @@ var _electrumServers = {
   btcp: ['electrum.btcprivate.org:5222:tcp', 'electrum2.btcprivate.org:5222:tcp'],
   emc2: ['electrum1.cipig.net:10062:tcp', 'electrum2.cipig.net:10062:tcp'],
   bcbc: ['bsmn0.cleanblockchain.io:50001:tcp', 'bsmn1.cleanblockchain.io:50001:tcp'],
-  game: ['electrum1.cipig.net:10072:tcp', 'electrum2.cipig.net:10072:tcp', '5.196.70.166:50001:tcp', 'gmc.cryptocloudhosting.org:50002:tcp', 'gamecredits.net:50002:tcp'],
+  game: ['electrum1.cipig.net:10072:tcp', 'electrum2.cipig.net:10072:tcp'],
   fjc: ['electrumx1.fujicoin.org:50001:tcp', 'electrumx2.fujicoin.org:50001:tcp', 'electrumx3.fujicoin.org:50001:tcp', 'electrumx1.fujicoin.org:50002:ssl', 'electrumx2.fujicoin.org:50002:ssl', 'electrumx3.fujicoin.org:50002:ssl'],
   ftc: ['electrum1.cipig.net:10074:tcp', 'electrum2.cipig.net:10074:tcp', 'electrum3.cipig.net:10074:tcp'],
   gbx: ['electrum1.cipig.net:10073:tcp', 'electrum2.cipig.net:10073:tcp', 'electrum3.cipig.net:10073:tcp'],

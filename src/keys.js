@@ -244,10 +244,22 @@ const etherKeys = (priv, iguana) => {
 
 // https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
 // btc forks only
-const xpub = (seed) => {
+const xpub = (seed, options) => {
   const _seed = bip39.mnemonicToSeed(seed);
-  const node = bip32.fromSeed(_seed);
-  const string = node.neutered().toBase58();
+  const node = options && options.network ? bip32.fromSeed(_seed, options.network) : bip32.fromSeed(_seed);
+  let string;
+
+  if (options &&
+      options.bip32) {
+    string = node.neutered().toBase58();
+  } else {
+    if (options &&
+        options.path) {
+      string = node.derivePath(options.path).neutered().toBase58();
+    } else {
+      return 'missing path arg';
+    }
+  }
 
   return string;
 };

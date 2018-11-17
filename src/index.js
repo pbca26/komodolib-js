@@ -12,6 +12,7 @@ const transactionBuilder = require('./transaction-builder');
 const transactionType = require('./transaction-type');
 const getMerkleRoot = require('./transaction-merkle');
 const eth = require('./eth');
+const btcnetworksUtils = require('./bitcoinjs-networks-utils');
 
 module.exports = {
   eservers,
@@ -27,5 +28,5 @@ module.exports = {
   transactionType,
   getMerkleRoot,
   keys,
-  eth,
+  btcnetworksUtils,
 };

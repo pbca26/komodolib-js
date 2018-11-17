@@ -14,6 +14,7 @@ var transactionBuilder = require('./transaction-builder');
 var transactionType = require('./transaction-type');
 var getMerkleRoot = require('./transaction-merkle');
 var eth = require('./eth');
+var btcnetworksUtils = require('./bitcoinjs-networks-utils');
 
 module.exports = {
   eservers: eservers,
@@ -29,5 +30,5 @@ module.exports = {
   transactionType: transactionType,
   getMerkleRoot: getMerkleRoot,
   keys: keys,
-  eth: eth
+  btcnetworksUtils: btcnetworksUtils
 };
