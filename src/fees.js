@@ -40,7 +40,6 @@ const fees = {
   vote2018: KMD_STD_FEE,
   ninja: KMD_STD_FEE,
   jumblr: KMD_STD_FEE,
-  call: KMD_STD_FEE,
   ccl: KMD_STD_FEE,
   vrsc: KMD_STD_FEE,
   dion: KMD_STD_FEE,
