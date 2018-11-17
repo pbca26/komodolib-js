@@ -306,10 +306,6 @@ let _electrumServers = {
     'electrum2.cipig.net:10079:tcp',
     'electrum3.cipig.net:10079:tcp',
   ],
-  call: [
-    'electrum1.mycapitalco.in:10000:tcp',
-    'electrum2.mycapitalco.in:10000:tcp',
-  ],
   ccl: [
     'electrum1.cipig.net:10029:tcp',
     'electrum2.cipig.net:10029:tcp',
