@@ -229,7 +229,7 @@ var etherKeys = function etherKeys(priv, iguana) {
   }
 
   var hash = sha256.create().update(priv);
-  bytes = hash.array();
+  var bytes = hash.array();
 
   if (iguana) {
     bytes[0] &= 248;
