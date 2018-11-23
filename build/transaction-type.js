@@ -103,36 +103,47 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, skip
         }
       }
     } else {
-      result = [{ // reorder since tx sort by default is from newest to oldest
+      var _sent = { // reorder since tx sort by default is from newest to oldest
         type: 'sent',
-        amount: Number(_sum.inputs).toFixed(8),
+        amount: Number(_sum.inputs - _sum.outputs).toFixed(8),
         amountIn: Number(_sum.inputs).toFixed(8),
         amountOut: Number(_sum.outputs).toFixed(8),
+        totalIn: Number(_total.inputs).toFixed(8),
+        totalOut: Number(_total.outputs).toFixed(8),
         address: _addresses.outputs[0],
         timestamp: tx.timestamp,
         txid: tx.format.txid,
         confirmations: tx.confirmations,
-        inputAddresses: _addresses.inputs,
-        outputAddresses: _addresses.outputs
-      }, {
+        from: _addresses.inputs,
+        to: _addresses.outputs
+      };
+      var _received = {
         type: 'received',
         amount: Number(_sum.outputs).toFixed(8),
         amountIn: Number(_sum.inputs).toFixed(8),
         amountOut: Number(_sum.outputs).toFixed(8),
+        totalIn: Number(_total.inputs).toFixed(8),
+        totalOut: Number(_total.outputs).toFixed(8),
         address: targetAddress,
         timestamp: tx.timestamp,
         txid: tx.format.txid,
         confirmations: tx.confirmations,
-        inputAddresses: _addresses.inputs,
-        outputAddresses: _addresses.outputs
-      }];
+        from: _addresses.inputs,
+        to: _addresses.outputs
+      };
 
-      if (isKomodo) {
-        // calc claimed interest amount
-        var _vinVoutDiff = _total.inputs - _total.outputs;
+      result = [_sent, _received];
 
-        if (_vinVoutDiff < 0) {
-          result[1].interest = Number(_vinVoutDiff.toFixed(8));
+      if (_total.inputs === _sum.inputs && !isKomodo) {
+        result = _sent;
+      } else {
+        if (isKomodo) {
+          // calc claimed interest amount
+          var _vinVoutDiff = _total.inputs - _total.outputs;
+
+          if (_vinVoutDiff < 0) {
+            result[1].interest = Number(_vinVoutDiff.toFixed(8));
+          }
         }
       }
     }
