@@ -68,6 +68,7 @@ const fees = {
   xmy: 5000,
   zcl: 1000,
   hodlc: 5000,
+  suqa: 5000,
   btx: 50000,
   btcz: 10000,
   grs: 50000,
