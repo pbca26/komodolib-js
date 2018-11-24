@@ -6,8 +6,10 @@ var fees = require('./fees');
 
 var _electrumServers = {
   dion: ['electrum1.cipig.net:10030:tcp', 'electrum2.cipig.net:10030:tcp', 'electrum3.cipig.net:10030:tcp'],
+  ptx: ['electrum1.patenttx.com:18081:tcp', 'electrum2.patenttx.com:18081:tcp'],
   zilla: ['electrum1.cipig.net:10028:tcp', 'electrum2.cipig.net:10028:tcp'],
   prlpay: ['electrum1.prlpay.com:9681:tcp', 'electrum2.prlpay.com:9681:tcp'],
+  pgt: ['agama.komodo.build:10002:tcp', 'agama2.komodo.build:10002:tcp'],
   kv: ['electrum1.cipig.net:10016:tcp', 'electrum2.cipig.net:10016:tcp'],
   bntn: ['electrum1.cipig.net:10026:tcp', 'electrum2.cipig.net:10026:tcp'],
   eql: ['159.65.91.235:10801:tcp', '167.99.204.42:10801:tcp'],
@@ -21,7 +23,10 @@ var _electrumServers = {
   dex: ['electrum1.cipig.net:10006:tcp', 'electrum2.cipig.net:10006:tcp'],
   bots: ['electrum1.cipig.net:10007:tcp', 'electrum2.cipig.net:10007:tcp'],
   crypto: ['electrum1.cipig.net:10008:tcp', 'electrum2.cipig.net:10008:tcp'],
-  dnr: ['144.202.95.223:50001:tcp', '45.77.137.111:50001:tcp'],
+  /*dnr: [
+    '144.202.95.223:50001:tcp',
+    '45.77.137.111:50001:tcp',
+  ],*/
   hodl: ['electrum1.cipig.net:10009:tcp', 'electrum2.cipig.net:10009:tcp'],
   pangea: ['electrum1.cipig.net:10010:tcp', 'electrum2.cipig.net:10010:tcp'],
   bet: ['electrum1.cipig.net:10012:tcp', 'electrum2.cipig.net:10012:tcp'],
@@ -66,7 +71,7 @@ var _electrumServers = {
   btcp: ['electrum.btcprivate.org:5222:tcp', 'electrum2.btcprivate.org:5222:tcp'],
   emc2: ['electrum1.cipig.net:10062:tcp', 'electrum2.cipig.net:10062:tcp'],
   bcbc: ['bsmn0.cleanblockchain.io:50001:tcp', 'bsmn1.cleanblockchain.io:50001:tcp'],
-  game: ['electrum1.cipig.net:10072:tcp', 'electrum2.cipig.net:10072:tcp', '5.196.70.166:50001:tcp', 'gmc.cryptocloudhosting.org:50002:tcp', 'gamecredits.net:50002:tcp'],
+  game: ['electrum1.cipig.net:10072:tcp', 'electrum2.cipig.net:10072:tcp'],
   fjc: ['electrumx1.fujicoin.org:50001:tcp', 'electrumx2.fujicoin.org:50001:tcp', 'electrumx3.fujicoin.org:50001:tcp', 'electrumx1.fujicoin.org:50002:ssl', 'electrumx2.fujicoin.org:50002:ssl', 'electrumx3.fujicoin.org:50002:ssl'],
   ftc: ['electrum1.cipig.net:10074:tcp', 'electrum2.cipig.net:10074:tcp', 'electrum3.cipig.net:10074:tcp'],
   gbx: ['electrum1.cipig.net:10073:tcp', 'electrum2.cipig.net:10073:tcp', 'electrum3.cipig.net:10073:tcp'],
@@ -150,7 +155,8 @@ var _electrumServers = {
   ufo: ['electrumx1.ufobject.com:50001:tcp', 'electrumx2.ufobject.com:50001:tcp', 'electrumx3.ufobject.com:50001:tcp', 'electrumx4.ufobject.com:50001:tcp', 'electrumx5.ufobject.com:50001:tcp'],
   lcc: ['electrum1.litecoinca.sh:50001:tcp', 'electrum1.litecoinca.sh:50010:ssl', 'electrum2.litecoinca.sh:50001:tcp', 'electrum2.litecoinca.sh:50010:ssl'],
   btcnano: ['wallet1.btcnano.org:10550:tcp', 'wallet1.btcnano.org:10561:ssl', 'wallet2.btcnano.org:50001:tcp', 'wallet2.btcnano.org:50002:ssl'],
-  kreds: ['199.247.21.0:50001:tcp']
+  kreds: ['199.247.21.0:50001:tcp'],
+  mgnx: ['45.76.37.100:50001:tcp', '95.179.177.253:50001:tcp']
 };
 
 var electrumServers = {};

@@ -8,6 +8,10 @@ let _electrumServers = {
     'electrum2.cipig.net:10030:tcp',
     'electrum3.cipig.net:10030:tcp',
   ],
+  ptx: [
+    'electrum1.patenttx.com:18081:tcp',
+    'electrum2.patenttx.com:18081:tcp',
+  ],
   zilla: [
     'electrum1.cipig.net:10028:tcp',
     'electrum2.cipig.net:10028:tcp',
@@ -74,10 +78,10 @@ let _electrumServers = {
     'electrum1.cipig.net:10008:tcp',
     'electrum2.cipig.net:10008:tcp',
   ],
-  dnr: [
+  /*dnr: [
     '144.202.95.223:50001:tcp',
     '45.77.137.111:50001:tcp',
-  ],
+  ],*/
   hodl: [
     'electrum1.cipig.net:10009:tcp',
     'electrum2.cipig.net:10009:tcp',
@@ -273,9 +277,6 @@ let _electrumServers = {
   game: [
     'electrum1.cipig.net:10072:tcp',
     'electrum2.cipig.net:10072:tcp',
-    '5.196.70.166:50001:tcp',
-    'gmc.cryptocloudhosting.org:50002:tcp',
-    'gamecredits.net:50002:tcp',
   ],
   fjc: [
     'electrumx1.fujicoin.org:50001:tcp',
@@ -605,6 +606,10 @@ let _electrumServers = {
   kreds: [
     '199.247.21.0:50001:tcp',
   ],
+  mgnx: [
+    '45.76.37.100:50001:tcp',
+    '95.179.177.253:50001:tcp'	
+ ]
 };
 
 let electrumServers = {};

@@ -43,8 +43,8 @@ const getRandomElectrumServer = (servers, excludeServer) => {
   }
 
   // pick a random server to communicate with
-  if (_servers
-      && _servers.length > 0) {
+  if (_servers &&
+      _servers.length > 0) {
     const _randomServerId = getRandomIntInclusive(0, _servers.length - 1);
     const _randomServer = _servers[_randomServerId];
     const _serverDetails = _randomServer.split(':');

@@ -8,6 +8,11 @@ var bitcoin = require('bitcoinjs-lib');
 var bitcoinPos = require('bitcoinjs-lib-pos');
 var bs58check = require('bs58check');
 var bip39 = require('bip39');
+var bip32 = require('bip32');
+var ethersWallet = require('ethers/wallet');
+var ethUtil = require('ethereumjs-util');
+var wif = require('wif');
+var bitcoinjsNetworks = require('./bitcoinjs-networks');
 
 var addressVersionCheck = function addressVersionCheck(network, address) {
   try {
@@ -217,6 +222,89 @@ var pubkeyToAddress = function pubkeyToAddress(pubkey, network) {
   }
 };
 
+// priv can be a valid priv key or a seed
+var etherKeys = function etherKeys(priv, iguana) {
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(priv))) {
+    return new ethersWallet.Wallet(priv);
+  }
+
+  var hash = sha256.create().update(priv);
+  var bytes = hash.array();
+
+  if (iguana) {
+    bytes[0] &= 248;
+    bytes[31] &= 127;
+    bytes[31] |= 64;
+  }
+
+  var _wallet = new ethersWallet.Wallet(ethUtil.bufferToHex(bytes));
+
+  return _wallet;
+};
+
+// https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
+// btc forks only
+var xpub = function xpub(seed, options) {
+  var _seed = bip39.mnemonicToSeed(seed);
+  var node = options && options.network ? bip32.fromSeed(_seed, options.network) : bip32.fromSeed(_seed);
+  var string = void 0;
+
+  if (options && options.bip32) {
+    string = node.neutered().toBase58();
+  } else {
+    if (options && options.path) {
+      string = node.derivePath(options.path).neutered().toBase58();
+    } else {
+      return 'missing path arg';
+    }
+  }
+
+  return string;
+};
+
+var btcToEthPriv = function btcToEthPriv(_wif) {
+  var decodedWif = wif.decode(_wif);
+  var ethWallet = new ethersWallet.Wallet(ethUtil.bufferToHex(decodedWif.privateKey));
+
+  return ethWallet.signingKey.privateKey;
+};
+
+var ethToBtcWif = function ethToBtcWif(priv, network) {
+  var buf = ethUtil.toBuffer(priv);
+  var d = bigi.fromBuffer(buf);
+  var _priv = void 0;
+
+  if (network) {
+    _priv = network.isZcash ? new bitcoinZcash.ECPair(d, null, {
+      compressed: true,
+      network: network
+    }) : new bitcoin.ECPair(d, null, {
+      compressed: true,
+      network: network
+    });
+  } else {
+    _priv = new bitcoin.ECPair(d, null, {
+      compressed: true,
+      network: bitcoinjsNetworks.btc
+    });
+  }
+
+  return _priv.toWIF();
+};
+
+var seedToPriv = function seedToPriv(string, dest) {
+  try {
+    bs58check.decode(string);
+    return dest === 'btc' ? string : btcToEthPriv(string);
+  } catch (e) {}
+
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(string))) {
+    return dest === 'eth' ? string : ethToBtcWif(string);
+  }
+
+  return string;
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -224,5 +312,10 @@ module.exports = {
   seedToWif: seedToWif,
   stringToWif: stringToWif,
   fromWif: fromWif,
-  pubkeyToAddress: pubkeyToAddress
+  pubkeyToAddress: pubkeyToAddress,
+  etherKeys: etherKeys,
+  xpub: xpub,
+  btcToEthPriv: btcToEthPriv,
+  ethToBtcWif: ethToBtcWif,
+  seedToPriv: seedToPriv
 };

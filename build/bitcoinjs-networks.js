@@ -17,6 +17,7 @@ var networks = (_networks = {
   btc: bitcoin.networks.bitcoin,
   ltc: {
     messagePrefix: '\x19Litecoin Signed Message:\n',
+    bip44: 2,
     bip32: {
       public: 0x019da462,
       private: 0x019d9cfe
@@ -28,6 +29,7 @@ var networks = (_networks = {
   },
   dnr: {
     messagePrefix: '\x19Denarius Signed Message:\n',
+    bip44: 116,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -40,6 +42,7 @@ var networks = (_networks = {
   },
   doge: {
     messagePrefix: '\x19Dogecoin Signed Message:\n',
+    bip44: 3,
     bip32: {
       public: 0x02facafd,
       private: 0x02fac398
@@ -52,6 +55,7 @@ var networks = (_networks = {
   // https://github.com/monacoinproject/monacoin/blob/master-0.10/src/chainparams.cpp#L161
   mona: {
     messagePrefix: '\x19Monacoin Signed Message:\n',
+    bip44: 22,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -63,6 +67,7 @@ var networks = (_networks = {
   },
   game: {
     messagePrefix: '\x19GameCredits Signed Message:\n',
+    bip44: 101,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -75,6 +80,7 @@ var networks = (_networks = {
   // https://github.com/dashpay/dash/blob/master/src/chainparams.cpp#L171
   dash: {
     messagePrefix: '\x19DarkCoin Signed Message:\n',
+    bip44: 5,
     bip32: {
       public: 0x02fe52f8,
       private: 0x02fe52cc
@@ -87,6 +93,7 @@ var networks = (_networks = {
   // https://github.com/zcoinofficial/zcoin/blob/c93eccb39b07a6132cb3d787ac18be406b24c3fa/src/base58.h#L275
   xzc: {
     messagePrefix: '\x19ZCoin Signed Message:\n',
+    bip44: 136,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -100,6 +107,7 @@ var networks = (_networks = {
   // https://raw.githubusercontent.com/jl777/komodo/beta/src/chainparams.cpp
   kmd: {
     messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -113,6 +121,7 @@ var networks = (_networks = {
   },
   via: {
     messagePrefix: '\x19Viacoin Signed Message:\n',
+    bip44: 14,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -124,6 +133,7 @@ var networks = (_networks = {
   },
   vtc: {
     messagePrefix: '\x19Vertcoin Signed Message:\n',
+    bip44: 28,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -135,6 +145,7 @@ var networks = (_networks = {
   },
   nmc: {
     messagePrefix: '\x19Namecoin Signed Message:\n',
+    bip44: 7,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -157,6 +168,7 @@ var networks = (_networks = {
   },
   dgb: {
     messagePrefix: '\x19Digibyte Signed Message:\n',
+    bip44: 20,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -168,6 +180,7 @@ var networks = (_networks = {
   },
   crw: {
     messagePrefix: '\x19Crown Signed Message:\n',
+    bip44: 72,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -179,6 +192,7 @@ var networks = (_networks = {
   },
   arg: {
     messagePrefix: '\x19Argentum Signed Message:\n',
+    bip44: 45,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -190,6 +204,7 @@ var networks = (_networks = {
   },
   chips: {
     messagePrefix: '\x19Chips Signed Message:\n',
+    bip44: 141,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -201,6 +216,7 @@ var networks = (_networks = {
   },
   btg: {
     messagePrefix: '\x19BitcoinGold Signed Message:\n',
+    bip44: 156,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -214,6 +230,7 @@ var networks = (_networks = {
   },
   bch: {
     messagePrefix: '\x19BitcoinCash Signed Message:\n',
+    bip44: 145,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -227,6 +244,7 @@ var networks = (_networks = {
   },
   blk: {
     messagePrefix: '\x19BlackCoin Signed Message:\n',
+    bip44: 10,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -250,6 +268,7 @@ var networks = (_networks = {
   },
   zec: {
     messagePrefix: '\x19Zcash Signed Message:\n',
+    bip44: 133,
     bip32: {
       public: 0x0488b21e,
       private: 0x05358394
@@ -262,6 +281,7 @@ var networks = (_networks = {
   },
   hush: {
     messagePrefix: '\x19Hush Signed Message:\n',
+    bip44: 197,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -274,6 +294,7 @@ var networks = (_networks = {
   },
   zcl: {
     messagePrefix: '\x19Zclassic Signed Message:\n',
+    bip44: 147,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -298,6 +319,7 @@ var networks = (_networks = {
   },
   xmy: {
     messagePrefix: '\x19Myriad Signed Message:\n',
+    bip44: 90,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -320,6 +342,7 @@ var networks = (_networks = {
   },
   qtum: {
     messagePrefix: '\x19Qtum Signed Message:\n',
+    bip44: 2301,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -331,6 +354,7 @@ var networks = (_networks = {
   },
   btx: {
     messagePrefix: '\x19Bitcore Signed Message:\n',
+    bip44: 160,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -342,6 +366,7 @@ var networks = (_networks = {
   },
   btcz: {
     messagePrefix: '\x19BitcoinZ Signed Message:\n',
+    bip44: 177,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -354,6 +379,7 @@ var networks = (_networks = {
   },
   grs: { // fails to gen a proper addr
     messagePrefix: '\x19Groestlcoin Signed Message:\n',
+    bip44: 17,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -399,6 +425,7 @@ var networks = (_networks = {
   },
   iop: {
     messagePrefix: '\x19IOP Signed Message:\n',
+    bip44: 66,
     bip32: {
       public: 0x2780915F,
       private: 0xAE3416F6
@@ -421,6 +448,7 @@ var networks = (_networks = {
   },
   btcp: {
     messagePrefix: '\x18BitcoinPrivate Signed Message:\n',
+    bip44: 183,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -434,6 +462,7 @@ var networks = (_networks = {
   // https://github.com/zencashio/zen/blob/master/src/chainparams.cpp#L118
   zen: { // new address type
     messagePrefix: '\x19Zencas Signed Message:\n',
+    bip44: 121,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -446,6 +475,7 @@ var networks = (_networks = {
   },
   sys: { // zec based
     messagePrefix: '\x19Syscoin Signed Message:\n',
+    bip44: 57,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -459,6 +489,7 @@ var networks = (_networks = {
   },
   emc2: {
     messagePrefix: '\x18Einsteinium Signed Message:\n',
+    bip44: 41,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -471,6 +502,7 @@ var networks = (_networks = {
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
     messagePrefix: '\x19Bata Signed Message:\n',
+    bip44: 89,
     bip32: {
       public: 0xA40C86FA,
       private: 0xA40B91BD
@@ -483,6 +515,7 @@ var networks = (_networks = {
   // https://github.com/lbryio/lbrycrd/blob/master/src/chainparams.cpp#L176
   lbc: {
     messagePrefix: '\x18LBRYcrd Signed Message:\n',
+    bip44: 140,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -494,6 +527,7 @@ var networks = (_networks = {
   // https://github.com/LIMXTEC/BitSend/blob/master/src/chainparams.cpp#L136
   bsd: {
     messagePrefix: '\x19Bitsend Signed Message:\n',
+    bip44: 91,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -506,6 +540,7 @@ var networks = (_networks = {
   // https://github.com/gobytecoin/gobyte/blob/master/src/chainparams.cpp#L127
   gbx: {
     messagePrefix: '\x19GoByte Signed Message:\n',
+    bip44: 176,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -518,6 +553,7 @@ var networks = (_networks = {
   // https://github.com/Electronic-Gulden-Foundation/egulden/blob/master/src/chainparams.cpp#L139
   efl: {
     messagePrefix: '\x19E-Gulden Signed Message:\n',
+    bip44: 78,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -529,6 +565,7 @@ var networks = (_networks = {
   },
   wc: { // xwc
     messagePrefix: '\x18Whitecoin Signed Message:\n',
+    bip44: 181,
     bip32: {
       public: 0x04887F1E,
       private: 0x048894ED
@@ -541,6 +578,7 @@ var networks = (_networks = {
   // https://github.com/vivocoin/vivo/blob/master/src/chainparams.cpp#L133
   vivo: {
     messagePrefix: '\x19Vivo Signed Message:\n',
+    bip44: 166,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -552,6 +590,7 @@ var networks = (_networks = {
   },
   xvg: {
     messagePrefix: '\x18VERGE Signed Message:\n',
+    bip44: 77,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -563,6 +602,7 @@ var networks = (_networks = {
   },
   smart: { // wrong address generated
     messagePrefix: '\x19Smartcash Signed Message:\n',
+    bip44: 224,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -576,6 +616,7 @@ var networks = (_networks = {
   // https://github.com/reddcoin-project/reddcoin/blob/master/src/chainparams.cpp#L79
   rdd: {
     messagePrefix: '\x19Reddcoin Signed Message:\n',
+    bip44: 4,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -588,6 +629,7 @@ var networks = (_networks = {
   // https://github.com/PIVX-Project/PIVX/blob/master/src/chainparams.cpp#L180
   pivx: {
     messagePrefix: '\x19Pivx Signed Message:\n',
+    bip44: 119,
     bip32: {
       public: 0x022D2533,
       private: 0x0221312B
@@ -600,6 +642,7 @@ var networks = (_networks = {
   // https://github.com/OmniLayer/omnicore/blob/master/src/chainparams.cpp#L128
   omni: {
     messagePrefix: '\x19OmniLayer Signed Message:\n',
+    bip44: 200,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -611,6 +654,7 @@ var networks = (_networks = {
   },
   ok: {
     messagePrefix: '\x19OKCash Signed Message:\n',
+    bip44: 69,
     bip32: {
       public: 0x03CC23D7,
       private: 0x03CC1C73
@@ -623,6 +667,7 @@ var networks = (_networks = {
   },
   neos: {
     messagePrefix: '\x19Neoscoin Signed Message:\n',
+    bip44: 25,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -635,6 +680,7 @@ var networks = (_networks = {
   // https://github.com/NAVCoin/navcoin-core/blob/master/src/chainparams.cpp#L160
   nav: {
     messagePrefix: '\x19Navcoin Signed Message:\n',
+    bip44: 130,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -647,6 +693,7 @@ var networks = (_networks = {
   // https://github.com/minexcoin/minexcoin/blob/master/src/chainparams.cpp#L259
   mnx: {
     messagePrefix: '\x19Minexcoin Signed Message:\n',
+    bip44: 182,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -658,6 +705,7 @@ var networks = (_networks = {
   },
   lcc: {
     messagePrefix: '\x18Litecoin Cash Signed Message:\n',
+    bip44: 192,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -670,6 +718,7 @@ var networks = (_networks = {
   // https://github.com/Gulden/gulden-official/blob/master/src/chainparams.cpp#L128
   nlg: {
     messagePrefix: '\x19Gulden Cash Signed Message:\n',
+    bip44: 87,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -683,6 +732,7 @@ var networks = (_networks = {
   // https://github.com/fujicoin/fujicoin/blob/master/src/chainparams.cpp#L132
   fjc: {
     messagePrefix: '\x19Fujicoin Signed Message:\n',
+    bip44: 75,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -695,6 +745,7 @@ var networks = (_networks = {
   // https://github.com/flash-coin/bitcore-lib/commit/97d72267f3577173ee90d46b43553af801b214f2#diff-014a66be6f0ee0e90f9357d497267195R144
   flash: {
     messagePrefix: '\x19Flash Signed Message:\n',
+    bip44: 120,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -707,6 +758,7 @@ var networks = (_networks = {
   // https://github.com/FeatherCoin/Feathercoin/blob/master-0.13/src/chainparams.cpp#L132
   ftc: {
     messagePrefix: '\x19FeatherCoin Signed Message:\n',
+    bip44: 8,
     bip32: {
       public: 0x048BC26,
       private: 0x0488DAEE
@@ -720,6 +772,7 @@ var networks = (_networks = {
   // https://github.com/exclfork/ExclusiveCoin/blob/master/src/chainparams.cpp#L82
   excl: {
     messagePrefix: '\x19ExclusiveCoin Signed Message:\n',
+    bip44: 190,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -732,6 +785,7 @@ var networks = (_networks = {
   // https://github.com/DMDcoin/Diamond/blob/master/src/chainparams.cpp#L166
   dmd: {
     messagePrefix: '\x19Diamond Signed Message:\n',
+    bip44: 152,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -744,6 +798,7 @@ var networks = (_networks = {
   // https://github.com/CooleRRSA/crave/blob/master/src/chainparams.cpp#L99
   crave: {
     messagePrefix: '\x19Crave Signed Message:\n',
+    bip44: 186,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -756,6 +811,7 @@ var networks = (_networks = {
   // https://github.com/BitClubDev/ClubCoin/blob/master/src/chainparams.cpp#L114
   club: {
     messagePrefix: '\x19ClubCoin Signed Message:\n',
+    bip44: 79,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -768,6 +824,7 @@ var networks = (_networks = {
   // https://github.com/nochowderforyou/clams/blob/master/src/chainparams.cpp#L93
   clam: {
     messagePrefix: '\x19Clams Signed Message:\n',
+    bip44: 23,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -780,6 +837,7 @@ var networks = (_networks = {
   // https://github.com/bitcoin-atom/bitcoin-atom/blob/master/src/chainparams.cpp#L168
   bca: {
     messagePrefix: '\x19Bitcoin Atom Signed Message:\n',
+    bip44: 185,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -792,6 +850,7 @@ var networks = (_networks = {
   // https://github.com/aurarad/Auroracoin/blob/master/src/chainparams.cpp#L77
   aur: {
     messagePrefix: '\x19Auroracoin Signed Message:\n',
+    bip44: 85,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -804,6 +863,7 @@ var networks = (_networks = {
   // https://github.com/adcoin-project/AdCoin/blob/master/src/chainparams.cpp#L129
   acc: {
     messagePrefix: '\x19AdCoin Signed Message:\n',
+    bip44: 161,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -827,6 +887,7 @@ var networks = (_networks = {
   // https://raw.githubusercontent.com/iancoleman/bip39/master/src/js/bitcoinjs-extensions.js
   sdc: {
     messagePrefix: '\x18ShadowCash Signed Message:\n',
+    bip44: 35,
     bip32: {
       public: 0xEE80286A,
       private: 0xEE8031E8
@@ -837,6 +898,7 @@ var networks = (_networks = {
   },
   mzc: {
     messagePrefix: '\x18Mazacoin Signed Message:\n',
+    bip44: 13,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -847,6 +909,7 @@ var networks = (_networks = {
   },
   ppc: {
     messagePrefix: '\x18Peercoin Signed Message:\n',
+    bip44: 6,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -857,6 +920,7 @@ var networks = (_networks = {
   },
   axe: {
     messagePrefix: '\x18AXE Signed Message:\n',
+    bip44: 4242,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -877,6 +941,7 @@ var networks = (_networks = {
   },
   nebl: {
     messagePrefix: '\x18Neblio Signed Message:\n',
+    bip44: 146,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -887,6 +952,7 @@ var networks = (_networks = {
   },
   jbs: {
     messagePrefix: '\x19Jumbucks Signed Message:\n',
+    bip44: 26,
     bip32: {
       public: 0x037a689a,
       private: 0x037a6460
@@ -907,6 +973,7 @@ var networks = (_networks = {
   },
   onx: {
     messagePrefix: '\x18Onixcoin Signed Message:\n',
+    bip44: 174,
     bip32: {
       public: 0x049d7cb2,
       private: 0x049d7878
@@ -927,6 +994,7 @@ var networks = (_networks = {
   },
   beet: {
     messagePrefix: '\x19Beetlecoin Signed Message:\n',
+    bip44: 800,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -937,6 +1005,7 @@ var networks = (_networks = {
   },
   ac: {
     messagePrefix: '\x18AsiaCoin Signed Message:\n',
+    bip44: 51,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -947,6 +1016,7 @@ var networks = (_networks = {
   },
   bela: {
     messagePrefix: '\x18BelaCoin Signed Message:\n',
+    bip44: 73,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -957,6 +1027,7 @@ var networks = (_networks = {
   },
   xbc: {
     messagePrefix: '\x18BitcoinPlus Signed Message:\n',
+    bip44: 65,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -967,6 +1038,7 @@ var networks = (_networks = {
   },
   brit: {
     messagePrefix: '\x18BritCoin Signed Message:\n',
+    bip44: 70,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -977,6 +1049,7 @@ var networks = (_networks = {
   },
   cdn: {
     messagePrefix: '\x18Canada eCoin Signed Message:\n',
+    bip44: 34,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -987,6 +1060,7 @@ var networks = (_networks = {
   },
   ccn: {
     messagePrefix: '\x18Cannacoin Signed Message:\n',
+    bip44: 19,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -997,6 +1071,7 @@ var networks = (_networks = {
   },
   cmp: {
     messagePrefix: '\x18CompCoin Signed Message:\n',
+    bip44: 71,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1017,6 +1092,7 @@ var networks = (_networks = {
   },
   dgc: {
     messagePrefix: '\x18Digitalcoin Signed Message:\n',
+    bip44: 18,
     bip32: {
       public: 0x9e0488B2,
       private: 0x0488ADE4
@@ -1027,6 +1103,7 @@ var networks = (_networks = {
   },
   ecn: {
     messagePrefix: '\x18eCoin Signed Message:\n',
+    bip44: 115,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1037,6 +1114,7 @@ var networks = (_networks = {
   },
   edrc: {
     messagePrefix: '\x18EDRcoin Signed Message:\n',
+    bip44: 56,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1047,6 +1125,7 @@ var networks = (_networks = {
   },
   erc: {
     messagePrefix: '\x18Europecoin Signed Message:\n',
+    bip44: 151,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1057,6 +1136,7 @@ var networks = (_networks = {
   },
   frst: {
     messagePrefix: '\x18FirstCoin Signed Message:\n',
+    bip44: 167,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1067,6 +1147,7 @@ var networks = (_networks = {
   },
   gcr: {
     messagePrefix: '\x18GCR Signed Message:\n',
+    bip44: 49,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1077,6 +1158,7 @@ var networks = (_networks = {
   },
   grc: {
     messagePrefix: '\x18Gridcoin Signed Message:\n',
+    bip44: 84,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1087,6 +1169,7 @@ var networks = (_networks = {
   },
   hnc: {
     messagePrefix: '\x18helleniccoin Signed Message:\n',
+    bip44: 168,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1097,6 +1180,7 @@ var networks = (_networks = {
   },
   thc: {
     messagePrefix: '\x18Hempcoin Signed Message:\n',
+    bip44: 113,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1107,6 +1191,7 @@ var networks = (_networks = {
   },
   insn: {
     messagePrefix: '\x18INSaNe Signed Message:\n',
+    bip44: 68,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1117,6 +1202,7 @@ var networks = (_networks = {
   },
   ixc: {
     messagePrefix: '\x18Ixcoin Signed Message:\n',
+    bip44: 86,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1127,6 +1213,7 @@ var networks = (_networks = {
   },
   kobo: {
     messagePrefix: '\x18Kobocoin Signed Message:\n',
+    bip44: 196,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1137,6 +1224,7 @@ var networks = (_networks = {
   },
   ldcn: {
     messagePrefix: '\x18Landcoin Signed Message:\n',
+    bip44: 63,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1147,6 +1235,7 @@ var networks = (_networks = {
   },
   linx: {
     messagePrefix: '\x18LinX Signed Message:\n',
+    bip44: 114,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1167,6 +1256,7 @@ var networks = (_networks = {
   },
   nro: {
     messagePrefix: '\x18PPCoin Signed Message:\n',
+    bip44: 110,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1177,6 +1267,7 @@ var networks = (_networks = {
   },
   nyc: {
     messagePrefix: '\x18Newyorkc Signed Message:\n',
+    bip44: 179,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1187,6 +1278,7 @@ var networks = (_networks = {
   },
   nvc: {
     messagePrefix: '\x18NovaCoin Signed Message:\n',
+    bip44: 50,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1197,6 +1289,7 @@ var networks = (_networks = {
   },
   nsr: {
     messagePrefix: '\x18Nu Signed Message:\n',
+    bip44: 11,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1207,6 +1300,7 @@ var networks = (_networks = {
   },
   psb: {
     messagePrefix: '\x18Pesobit Signed Message:\n',
+    bip44: 62,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1217,6 +1311,7 @@ var networks = (_networks = {
   },
   pink: {
     messagePrefix: '\x18Pinkcoin Signed Message:\n',
+    bip44: 117,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1237,6 +1332,7 @@ var networks = (_networks = {
   },
   pot: {
     messagePrefix: '\x18Potcoin Signed Message:\n',
+    bip44: 81,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1247,6 +1343,7 @@ var networks = (_networks = {
   },
   put: {
     messagePrefix: '\x18PutinCoin Signed Message:\n',
+    bip44: 122,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1257,6 +1354,7 @@ var networks = (_networks = {
   },
   vox: { // rvr
     messagePrefix: '\x18Voxels Signed Message:\n',
+    bip44: 129,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1267,6 +1365,7 @@ var networks = (_networks = {
   },
   rby: {
     messagePrefix: '\x18Rubycoin Signed Message:\n',
+    bip44: 16,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1277,6 +1376,7 @@ var networks = (_networks = {
   },
   smly: {
     messagePrefix: '\x18Smileycoin Signed Message:\n',
+    bip44: 59,
     bip32: {
       public: 0x1E562D9A,
       private: 0x1E5631BC
@@ -1287,6 +1387,7 @@ var networks = (_networks = {
   },
   slr: {
     messagePrefix: '\x18SolarCoin Signed Message:\n',
+    bip44: 58,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1297,6 +1398,7 @@ var networks = (_networks = {
   },
   strat: {
     messagePrefix: '\x18Stratis Signed Message:\n',
+    bip44: 105,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1307,6 +1409,7 @@ var networks = (_networks = {
   },
   toa: {
     messagePrefix: '\x18TOA Signed Message:\n',
+    bip44: 159,
     bip32: {
       public: 0x0488b21e,
       private: 0x0488ade4
@@ -1317,6 +1420,7 @@ var networks = (_networks = {
   },
   usc: {
     messagePrefix: '\x18UltimateSecureCash Signed Message:\n',
+    bip44: 112,
     bip32: {
       public: 0xEE80286A,
       private: 0xEE8031E8
@@ -1327,6 +1431,7 @@ var networks = (_networks = {
   },
   uno: {
     messagePrefix: '\x18Unobtanium Signed Message:\n',
+    bip44: 92,
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4
@@ -1366,6 +1471,7 @@ var networks = (_networks = {
   wif: 0xc9
 }), _defineProperty(_networks, 'xuez', {
   messagePrefix: '\x18Xuez Signed Message:\n',
+  bip44: 225,
   bip32: {
     public: 0x022d2533,
     private: 0x0221312b
@@ -1375,6 +1481,7 @@ var networks = (_networks = {
   wif: 0xd4
 }), _defineProperty(_networks, 'nrg', { // etk?
   messagePrefix: '\x18Energicoin Signed Message:\n',
+  bip44: 204,
   bip32: {
     public: 0x03B8C856,
     private: 0xD7DC6E9F
@@ -1393,6 +1500,7 @@ var networks = (_networks = {
   wif: 0x80
 }), _defineProperty(_networks, 'xax', {
   messagePrefix: '\x18Artax Signed Message:\n',
+  bip44: 219,
   bip32: {
     public: 0x0488B21E,
     private: 0x0488ADE4
@@ -1420,6 +1528,7 @@ var networks = (_networks = {
   wif: 0xbf
 }), _defineProperty(_networks, 'mec', {
   messagePrefix: '\x18Megacoin Signed Message:\n',
+  bip44: 217,
   bip32: {
     public: 0x0488B21E,
     private: 0x0488ADE4
@@ -1438,6 +1547,7 @@ var networks = (_networks = {
   wif: 0x9c
 }), _defineProperty(_networks, 'btdx', {
   messagePrefix: '\x18BitCloud Signed Message:\n',
+  bip44: 218,
   bip32: {
     public: 0x0488B21E,
     private: 0x0488ADE4
@@ -1468,6 +1578,7 @@ var networks = (_networks = {
   wif: 0x9b
 }), _defineProperty(_networks, 'xcp', {
   messagePrefix: '\x18CounterParty Signed Message:\n',
+  bip44: 9,
   pubKeyHash: 0x0,
   scriptHash: 0x5,
   wif: 0x80
@@ -1488,6 +1599,7 @@ var networks = (_networks = {
   wif: 0x8f
 }), _defineProperty(_networks, 'dope', {
   messagePrefix: '\x18Dopecoin Signed Message:\n',
+  bip44: 53,
   bip32: {
     public: 0x0488B21E,
     private: 0x0488ADE4
@@ -1528,6 +1640,7 @@ var networks = (_networks = {
   wif: 0xb0
 }), _defineProperty(_networks, 'mars', {
   messagePrefix: '\x18MarsCoin Signed Message:\n',
+  bip44: 107,
   pubKeyHash: 0x32,
   scriptHash: 0x5,
   wif: 0xb2,
@@ -1546,31 +1659,37 @@ var networks = (_networks = {
   wif: 0x83
 }), _defineProperty(_networks, 'nlc2', {
   messagePrefix: '\x18NoLimitCoin Signed Message:\n',
+  bip44: 149,
   pubKeyHash: 0x35,
   scriptHash: 0x5c,
   wif: 0xb5
 }), _defineProperty(_networks, 'pnd', {
   messagePrefix: '\x18PandaCoin Signed Message:\n',
+  bip44: 37,
   pubKeyHash: 0x37,
   scriptHash: 0x5,
   wif: 0xb7
 }), _defineProperty(_networks, 'part', {
   messagePrefix: '\x18Particl Signed Message:\n',
+  bip44: 44,
   pubKeyHash: 0x38,
   scriptHash: 0x3c,
   wif: 0x6c
 }), _defineProperty(_networks, 'ptc', {
   messagePrefix: '\x18Pesetacoin Signed Message:\n',
+  bip44: 109,
   pubKeyHash: 0x2f,
   scriptHash: 0x5,
   wif: 0xaf
 }), _defineProperty(_networks, 'xpm', {
   messagePrefix: '\x18Primecoin Signed Message:\n',
+  bip44: 24,
   pubKeyHash: 0x17,
   scriptHash: 0x5,
   wif: 0x97
 }), _defineProperty(_networks, 'qrk', {
   messagePrefix: '\x18Quark Signed Message:\n',
+  bip44: 82,
   pubKeyHash: 0x3a,
   scriptHash: 0x5,
   wif: 0xba
@@ -1581,11 +1700,13 @@ var networks = (_networks = {
   wif: 0xbf
 }), _defineProperty(_networks, 'trc', {
   messagePrefix: '\x18TerraCoin Signed Message:\n',
+  bip44: 83,
   pubKeyHash: 0x0,
   scriptHash: 0x5,
   wif: 0x80
 }), _defineProperty(_networks, 'tes', {
   messagePrefix: '\x18TeslaCoin Signed Message:\n',
+  bip44: 1856,
   pubKeyHash: 0xb,
   scriptHash: 0x5,
   wif: 0x8b
@@ -1596,6 +1717,7 @@ var networks = (_networks = {
   wif: 0x99
 }), _defineProperty(_networks, 'unify', {
   messagePrefix: '\x18Unify Signed Message:\n',
+  bip44: 124,
   pubKeyHash: 0x44,
   scriptHash: 0x5,
   wif: 0xc4
