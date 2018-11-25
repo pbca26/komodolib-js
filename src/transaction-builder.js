@@ -79,16 +79,11 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
   } else if (network.sapling) {
     let versionNum;
 
-    if ((network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec') || 
-        (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc') ||
+    if ((network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight) ||
         (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp)) {
       versionNum = 4;
     } else {
-      if (network.ticker === 'zec') {
-        versionNum = 3;
-      } else {
-        versionNum = 1;
-      }
+      versionNum = 1;
     }
   
     if (versionNum) {

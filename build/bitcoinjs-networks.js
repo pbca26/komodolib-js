@@ -146,8 +146,7 @@ var networks = (_networks = {
     dustThreshold: 1000,
     isZcash: true,
     sapling: true,
-    saplingActivationHeight: 227520,
-    ticker: 'vrsc'
+    saplingActivationHeight: 227520
   },
   via: {
     messagePrefix: '\x19Viacoin Signed Message:\n',
@@ -314,8 +313,7 @@ var networks = (_networks = {
     },
     dustThreshold: 1000,
     isZcash: true,
-    saplingActivationHeight: 419200,
-    ticker: 'zec'
+    saplingActivationHeight: 419200
   },
   hush: {
     messagePrefix: '\x19Hush Signed Message:\n',

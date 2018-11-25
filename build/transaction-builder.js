@@ -71,14 +71,10 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
   } else if (network.sapling) {
     var versionNum = void 0;
 
-    if (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec' || network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc' || network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) {
+    if (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight || network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) {
       versionNum = 4;
     } else {
-      if (network.ticker === 'zec') {
-        versionNum = 3;
-      } else {
-        versionNum = 1;
-      }
+      versionNum = 1;
     }
 
     if (versionNum) {

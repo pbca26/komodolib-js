@@ -141,7 +141,6 @@ const networks = {
     isZcash: true,
     sapling: true,
     saplingActivationHeight: 227520,
-    ticker: 'vrsc',
   },
   via: {
     messagePrefix: '\x19Viacoin Signed Message:\n',
@@ -309,7 +308,6 @@ const networks = {
     dustThreshold: 1000,
     isZcash: true,
     saplingActivationHeight: 419200,
-    ticker: 'zec',
   },
   hush: {
     messagePrefix: '\x19Hush Signed Message:\n',
