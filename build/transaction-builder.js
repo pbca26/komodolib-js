@@ -1,7 +1,5 @@
 'use strict';
 
-var _async_hooks = require('async_hooks');
-
 var bitcoinJSForks = require('bitcoinforksjs-lib');
 var bitcoinZcash = require('bitcoinjs-lib-zcash');
 var bitcoinPos = require('bitcoinjs-lib-pos');

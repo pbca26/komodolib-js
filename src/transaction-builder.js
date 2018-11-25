@@ -1,5 +1,3 @@
-import { currentId } from 'async_hooks';
-
 const bitcoinJSForks = require('bitcoinforksjs-lib');
 const bitcoinZcash = require('bitcoinjs-lib-zcash');
 const bitcoinPos = require('bitcoinjs-lib-pos');

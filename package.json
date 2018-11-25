@@ -69,7 +69,7 @@
     "bitcoinjs-lib": "git://github.com/SuperNETorg/bitcoinjs-lib",
     "bitcoinjs-lib-pos": "git://github.com/KomodoPlatform/bitcoinjs-lib-pos",
     "bitcoinjs-lib-zcash": "git://github.com/pbca26/bitcoinjs-lib#zcash",
-    "bitgo-utxo-lib": "git+https://github.com/pbca26/bitgo-utxo-lib.git",
+    "bitgo-utxo-lib": "git://github.com/pbca26/bitgo-utxo-lib",
     "bluebird": "^3.4.7",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",
