@@ -1,6 +1,7 @@
 const bitcoinJSForks = require('bitcoinforksjs-lib');
 const bitcoinZcash = require('bitcoinjs-lib-zcash');
 const bitcoinPos = require('bitcoinjs-lib-pos');
+const bitcoinZcashSapling = require('bitgo-utxo-lib');
 const bitcoin = require('bitcoinjs-lib');
 const coinselect = require('coinselect');
 const utils = require('./utils');
@@ -11,8 +12,14 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
   let tx;
   let btcFork = {};
 
-  if (network.isZcash) {
+  if (network.isZcash &&
+      !network.sapling) {
     tx = new bitcoinZcash.TransactionBuilder(network);
+  } else if (
+    network.isZcash &&
+    network.sapling
+  ) {
+    tx = new bitcoinZcashSapling.TransactionBuilder(network);
   } else if (network.isPoS) {
     tx = new bitcoinPos.TransactionBuilder(network);
   } else if (network.isBtcFork) {
@@ -55,13 +62,34 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     tx.addOutput(dataScript, 1000);
   }
 
-  if (network.forkName
-      && network.forkName === 'btg') {
+  if (network.forkName &&
+      network.forkName === 'btg') {
     tx.enableBitcoinGold(true);
     tx.setVersion(2);
-  } else if (network.forkName && network.forkName === 'bch') {
+  } else if (
+    network.forkName &&
+    network.forkName === 'bch'
+  ) {
     tx.enableBitcoinCash(true);
     tx.setVersion(2);
+  } else if (network.sapling) {
+    let versionNum;
+
+    if ((utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec') || 
+        (utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc') ||
+        (network.saplingActivationTimestamp && 1544835601 > network.saplingActivationTimestamp)) {
+      versionNum = 4;
+    } else {
+      if (network.ticker === 'zec') {
+        versionNum = 3;
+      } else {
+        versionNum = 1;
+      }
+    }
+  
+    if (versionNum) {
+      tx.setVersion(versionNum);
+    }
   }
 
   if (network.kmdInterest) {
@@ -75,6 +103,8 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     } else if (network.isBtcFork) {
       const hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
       tx.sign(i, btcFork.keyPair, null, hashType, utxo[i].value);
+    } else if (network.sapling) {
+      tx.sign(i, key, '', null, utxo[i].value); 
     } else {
       tx.sign(i, key);
     }
@@ -93,10 +123,10 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     fee = 0;
   }
 
-  if (utxoList
-      && utxoList.length
-      && utxoList[0]
-      && utxoList[0].txid) {
+  if (utxoList &&
+      utxoList.length &&
+      utxoList[0] &&
+      utxoList[0].txid) {
     const utxoListFormatted = [];
     let totalInterest = 0;
     let totalInterestUTXOCount = 0;
@@ -152,13 +182,13 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
 
     let _change = 0;
 
-    if (outputs
-        && outputs.length === 2) {
+    if (outputs &&
+        outputs.length === 2) {
       _change = outputs[1].value - fee;
     }
 
-    if (!btcFee
-        && _change === 0) {
+    if (!btcFee &&
+        _change === 0) {
       outputs[0].value = outputs[0].value - fee;
     }
 
@@ -169,8 +199,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     }
 
     // check if any outputs are unverified
-    if (inputs
-        && inputs.length) {
+    if (inputs &&
+        inputs.length) {
       for (let i = 0; i < inputs.length; i++) {
         if (!inputs[i].verified) {
           utxoVerified = false;
@@ -192,8 +222,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       return `Spend value is too large. Max available amount is ${Number(((_maxSpend * 0.00000001).toFixed(8)))}`;
     }
     // account for KMD interest
-    if (network.kmdInterest
-          && totalInterest > 0) {
+    if (network.kmdInterest &&
+        totalInterest > 0) {
       // account for extra vout
 
       if ((_maxSpend - fee) === value) {
@@ -208,15 +238,15 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       }
 
       // double check kmd interest is combined into 1 output
-      if (outputAddress === changeAddress
-            && _change > 0) {
+      if (outputAddress === changeAddress &&
+          _change > 0) {
         value += _change - fee;
         _change = 0;
       }
     }
 
-    if (!inputs
-          && !outputs) {
+    if (!inputs &&
+        !outputs) {
       return 'Can\'t find best fit utxo. Try lower amount.';
     }
     let vinSum = 0;
@@ -235,8 +265,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     }
 
     // TODO: use individual dust thresholds
-    if (_change > 0
-            && _change <= 1000) {
+    if (_change > 0 &&
+        _change <= 1000) {
       _change = 0;
     }
 

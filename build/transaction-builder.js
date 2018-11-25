@@ -3,6 +3,7 @@
 var bitcoinJSForks = require('bitcoinforksjs-lib');
 var bitcoinZcash = require('bitcoinjs-lib-zcash');
 var bitcoinPos = require('bitcoinjs-lib-pos');
+var bitcoinZcashSapling = require('bitgo-utxo-lib');
 var bitcoin = require('bitcoinjs-lib');
 var coinselect = require('coinselect');
 var utils = require('./utils');
@@ -13,8 +14,10 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
   var tx = void 0;
   var btcFork = {};
 
-  if (network.isZcash) {
+  if (network.isZcash && !network.sapling) {
     tx = new bitcoinZcash.TransactionBuilder(network);
+  } else if (network.isZcash && network.sapling) {
+    tx = new bitcoinZcashSapling.TransactionBuilder(network);
   } else if (network.isPoS) {
     tx = new bitcoinPos.TransactionBuilder(network);
   } else if (network.isBtcFork) {
@@ -63,6 +66,22 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
   } else if (network.forkName && network.forkName === 'bch') {
     tx.enableBitcoinCash(true);
     tx.setVersion(2);
+  } else if (network.sapling) {
+    var versionNum = void 0;
+
+    if (utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec' || utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc' || network.saplingActivationTimestamp && 1544835601 > network.saplingActivationTimestamp) {
+      versionNum = 4;
+    } else {
+      if (network.ticker === 'zec') {
+        versionNum = 3;
+      } else {
+        versionNum = 1;
+      }
+    }
+
+    if (versionNum) {
+      tx.setVersion(versionNum);
+    }
   }
 
   if (network.kmdInterest) {
@@ -76,6 +95,8 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
     } else if (network.isBtcFork) {
       var hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
       tx.sign(_i, btcFork.keyPair, null, hashType, utxo[_i].value);
+    } else if (network.sapling) {
+      tx.sign(_i, key, '', null, utxo[_i].value);
     } else {
       tx.sign(_i, key);
     }
