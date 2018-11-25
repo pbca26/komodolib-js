@@ -77,7 +77,7 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
 
     if ((utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec') || 
         (utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc') ||
-        (network.saplingActivationTimestamp && 1544835601 > network.saplingActivationTimestamp)) {
+        (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp)) {
       versionNum = 4;
     } else {
       if (network.ticker === 'zec') {

@@ -44,20 +44,21 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
       _total[key] += Number(_parse[key][i].value);
 
       // ignore op return outputs
-      if (_parse[key][i].scriptPubKey
-          && _parse[key][i].scriptPubKey.addresses
-          && _parse[key][i].scriptPubKey.addresses[0]
-          && _parse[key][i].scriptPubKey.addresses[0] === targetAddress
-          && _parse[key][i].value) {
+      if (_parse[key][i].scriptPubKey &&
+          _parse[key][i].scriptPubKey.addresses &&
+          _parse[key][i].scriptPubKey.addresses[0] &&
+          _parse[key][i].scriptPubKey.addresses[0] === targetAddress &&
+          _parse[key][i].value) {
         _sum[key] += Number(_parse[key][i].value);
       }
 
-      if (_parse[key][i].scriptPubKey
-          && _parse[key][i].scriptPubKey.addresses
-          && _parse[key][i].scriptPubKey.addresses[0]) {
+      if (_parse[key][i].scriptPubKey &&
+          _parse[key][i].scriptPubKey.addresses &&
+          _parse[key][i].scriptPubKey.addresses[0]) {
         _addresses[key].push(_parse[key][i].scriptPubKey.addresses[0]);
 
-        if (_parse[key][i].scriptPubKey.addresses[0] === targetAddress && skipTargetAddress) {
+        if (_parse[key][i].scriptPubKey.addresses[0] === targetAddress &&
+            skipTargetAddress) {
           _addresses[key].pop();
         }
       }
@@ -74,19 +75,20 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
 
   for (const key in _parse) {
     for (let i = 0; i < _addresses[key].length; i++) {
-      if (_addresses[key][i] === targetAddress && _addresses[key].length === 1) {
+      if (_addresses[key][i] === targetAddress &&
+          _addresses[key].length === 1) {
         isSelfSend[key] = true;
       }
     }
   }
 
-  if (_sum.inputs > 0
-      && _sum.outputs > 0) {
+  if (_sum.inputs > 0 &&
+      _sum.outputs > 0) {
     // vin + change, break into two tx
 
     // send to self
-    if (isSelfSend.inputs
-        && isSelfSend.outputs) {
+    if (isSelfSend.inputs &&
+        isSelfSend.outputs) {
       result = {
         type: 'self',
         amount: _sum.inputs === _sum.outputs ? _sum.outputs : Number(_sum.inputs - _sum.outputs).toFixed(8),
@@ -151,8 +153,8 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
       }
     }
   } else if (
-    _sum.inputs === 0
-    && _sum.outputs > 0
+    _sum.inputs === 0 &&
+    _sum.outputs > 0
   ) {
     result = {
       type: 'received',
@@ -167,8 +169,8 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
       outputAddresses: _addresses.outputs,
     };
   } else if (
-    _sum.inputs > 0
-    && _sum.outputs === 0
+    _sum.inputs > 0 &&
+    _sum.outputs === 0
   ) {
     result = {
       type: 'sent',

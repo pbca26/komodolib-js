@@ -53,7 +53,9 @@ const _komodoCoins = _komodoAssetChains.concat([
 
 const isKomodoCoin = (coin, skipKMD) => (_komodoCoins.find((element) => {
   if (skipKMD) {
-    return element === coin.toUpperCase() && coin.toUpperCase() !== 'KMD' && coin.toUpperCase() !== 'KOMODO';
+    return element === coin.toUpperCase() &&
+           coin.toUpperCase() !== 'KMD' &&
+           coin.toUpperCase() !== 'KOMODO';
   }
   return element === coin.toUpperCase();
 }));

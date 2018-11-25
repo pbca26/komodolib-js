@@ -16,8 +16,8 @@ const addressVersionCheck = (network, address) => {
   try {
     const _b58check = network.isZcash ? bitcoinZcash.address.fromBase58Check(address) : bitcoin.address.fromBase58Check(address);
 
-    if (_b58check.version === network.pubKeyHash
-        || _b58check.version === network.scriptHash) {
+    if (_b58check.version === network.pubKeyHash ||
+        _b58check.version === network.scriptHash) {
       return true;
     }
     return false;
