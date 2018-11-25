@@ -39,7 +39,6 @@ const signedTxVRSC = transaction(
 );
 
 const decodedTxVRSC = txDecoder(signedTxVRSC, verusParamsPreSapling);
-console.log(decodedTxVRSC);
 
 const signedTxSaplingVRSC = transaction(
   data.outputAddress,

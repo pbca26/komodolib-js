@@ -300,11 +300,6 @@ let _electrumServers = {
     'electrum2.cipig.net:10073:tcp',
     'electrum3.cipig.net:10073:tcp',
   ],
-  mac: [
-    'electrum1.cipig.net:10077:tcp',
-    'electrum2.cipig.net:10077:tcp',
-    'electrum3.cipig.net:10077:tcp',
-  ],
   mnx: [
     'electrum1.cipig.net:10079:tcp',
     'electrum2.cipig.net:10079:tcp',

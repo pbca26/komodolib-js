@@ -76,7 +76,6 @@ var _electrumServers = {
   fjc: ['electrumx1.fujicoin.org:50001:tcp', 'electrumx2.fujicoin.org:50001:tcp', 'electrumx3.fujicoin.org:50001:tcp', 'electrumx1.fujicoin.org:50002:ssl', 'electrumx2.fujicoin.org:50002:ssl', 'electrumx3.fujicoin.org:50002:ssl'],
   ftc: ['electrum1.cipig.net:10074:tcp', 'electrum2.cipig.net:10074:tcp', 'electrum3.cipig.net:10074:tcp'],
   gbx: ['electrum1.cipig.net:10073:tcp', 'electrum2.cipig.net:10073:tcp', 'electrum3.cipig.net:10073:tcp'],
-  mac: ['electrum1.cipig.net:10077:tcp', 'electrum2.cipig.net:10077:tcp', 'electrum3.cipig.net:10077:tcp'],
   mnx: ['electrum1.cipig.net:10079:tcp', 'electrum2.cipig.net:10079:tcp', 'electrum3.cipig.net:10079:tcp'],
   ccl: ['electrum1.cipig.net:10029:tcp', 'electrum2.cipig.net:10029:tcp', 'electrum3.cipig.net:10029:tcp'],
   vrsc: ['el0.vrsc.0x03.services:10000:tcp', 'el1.vrsc.0x03.services:10000:tcp'],
