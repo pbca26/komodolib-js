@@ -101,7 +101,7 @@ const explorerList = {
   NINJA: 'https://ninja.kmdexplorer.io',
   VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
-  VRSC: 'https://vrsc.kmdexplorer.io',
+  VRSC: 'https://explorer.veruscoin.io',
   KOIN: 'http://live.block.koinon.li/',
   DION: 'https://explorer.dionpay.com',
   KMDICE: 'https://kmdice.explorer.dexstats.info',
