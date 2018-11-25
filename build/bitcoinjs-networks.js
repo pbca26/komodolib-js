@@ -382,9 +382,9 @@ var networks = (_networks = {
       public: 0x0488b21e,
       private: 0x0488ade4
     },
-    pubKeyHash: 0x63,
+    pubKeyHash: 0x3f,
     scriptHash: 0x5,
-    wif: 0x63 + 128,
+    wif: 0xbf,
     dustThreshold: 1000
   },
   qtum: {

@@ -371,16 +371,16 @@ const networks = {
     dustThreshold: 1000,
   },
   suqa: {
-     messagePrefix: '\x19Suqa Signed Message:\n',
-     bip32: {
-        public: 0x0488b21e,
-        private: 0x0488ade4,
-     },
-     pubKeyHash: 0x63,
-     scriptHash: 0x5,
-     wif: 0x63 + 128,
-     dustThreshold: 1000,
-   },
+    messagePrefix: '\x19Suqa Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0x5,
+    wif: 0xbf,
+    dustThreshold: 1000,
+  },
   qtum: {
     messagePrefix: '\x19Qtum Signed Message:\n',
     bip44: 2301,
