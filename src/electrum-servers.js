@@ -246,6 +246,10 @@ let _electrumServers = {
     'hodl.amit177.cf:17989:tcp',
     'hodl2.amit177.cf:17898:tcp',
   ],
+  suqa: [
+    'electrum1.suqa.org:12159:tcp',
+    'electrum2.suqa.org:12159:tcp',
+  ],
   btx: [
     'electrum1.cipig.net:10057:tcp',
     'electrum2.cipig.net:10057:tcp',
@@ -305,10 +309,6 @@ let _electrumServers = {
     'electrum1.cipig.net:10079:tcp',
     'electrum2.cipig.net:10079:tcp',
     'electrum3.cipig.net:10079:tcp',
-  ],
-  call: [
-    'electrum1.mycapitalco.in:10000:tcp',
-    'electrum2.mycapitalco.in:10000:tcp',
   ],
   ccl: [
     'electrum1.cipig.net:10029:tcp',
