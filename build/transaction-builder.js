@@ -1,5 +1,7 @@
 'use strict';
 
+var _async_hooks = require('async_hooks');
+
 var bitcoinJSForks = require('bitcoinforksjs-lib');
 var bitcoinZcash = require('bitcoinjs-lib-zcash');
 var bitcoinPos = require('bitcoinjs-lib-pos');
@@ -16,7 +18,7 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
 
   if (network.isZcash && !network.sapling) {
     tx = new bitcoinZcash.TransactionBuilder(network);
-  } else if (network.isZcash && network.sapling) {
+  } else if (network.isZcash && network.sapling && (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp || network.saplingActivationHeight && utxo[0].currentHeight > network.saplingActivationHeight)) {
     tx = new bitcoinZcashSapling.TransactionBuilder(network);
   } else if (network.isPoS) {
     tx = new bitcoinPos.TransactionBuilder(network);
@@ -69,7 +71,7 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
   } else if (network.sapling) {
     var versionNum = void 0;
 
-    if (utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec' || utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc' || network.saplingActivationTimestamp && 1544835601 > network.saplingActivationTimestamp) {
+    if (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec' || network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc' || network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) {
       versionNum = 4;
     } else {
       if (network.ticker === 'zec') {
@@ -95,7 +97,7 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
     } else if (network.isBtcFork) {
       var hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
       tx.sign(_i, btcFork.keyPair, null, hashType, utxo[_i].value);
-    } else if (network.sapling) {
+    } else if (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp || network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight) {
       tx.sign(_i, key, '', null, utxo[_i].value);
     } else {
       tx.sign(_i, key);
@@ -123,22 +125,30 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     var utxoVerified = true;
 
     for (var i = 0; i < utxoList.length; i++) {
+      var _utxo = void 0;
+
       if (network.kmdInterest) {
-        utxoListFormatted.push({
+        _utxo = {
           txid: utxoList[i].txid,
           vout: utxoList[i].vout,
           value: Number(utxoList[i].amountSats || utxoList[i].value),
           interestSats: Number(utxoList[i].interestSats || utxoList[i].interest || 0),
           verified: utxoList[i].verified ? utxoList[i].verified : false
-        });
+        };
       } else {
-        utxoListFormatted.push({
+        _utxo = {
           txid: utxoList[i].txid,
           vout: utxoList[i].vout,
           value: Number(utxoList[i].amountSats || utxoList[i].value),
           verified: utxoList[i].verified ? utxoList[i].verified : false
-        });
+        };
       }
+
+      if (utxoList[i].currentHeight) {
+        _utxo.currentHeight = utxoList[i].currentHeight;
+      }
+
+      utxoListFormatted.push(_utxo);
     }
 
     var _maxSpendBalance = Number(utils.maxSpendBalance(utxoListFormatted));

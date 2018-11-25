@@ -1,3 +1,5 @@
+import { currentId } from 'async_hooks';
+
 const bitcoinJSForks = require('bitcoinforksjs-lib');
 const bitcoinZcash = require('bitcoinjs-lib-zcash');
 const bitcoinPos = require('bitcoinjs-lib-pos');
@@ -17,7 +19,9 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     tx = new bitcoinZcash.TransactionBuilder(network);
   } else if (
     network.isZcash &&
-    network.sapling
+    network.sapling &&
+    ((network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
+    (network.saplingActivationHeight && utxo[0].currentHeight > network.saplingActivationHeight))
   ) {
     tx = new bitcoinZcashSapling.TransactionBuilder(network);
   } else if (network.isPoS) {
@@ -75,8 +79,8 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
   } else if (network.sapling) {
     let versionNum;
 
-    if ((utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec') || 
-        (utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc') ||
+    if ((network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'zec') || 
+        (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight && network.ticker === 'vrsc') ||
         (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp)) {
       versionNum = 4;
     } else {
@@ -103,7 +107,9 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     } else if (network.isBtcFork) {
       const hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
       tx.sign(i, btcFork.keyPair, null, hashType, utxo[i].value);
-    } else if (network.sapling) {
+    } else if (
+      (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
+      (network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)) {
       tx.sign(i, key, '', null, utxo[i].value); 
     } else {
       tx.sign(i, key);
@@ -134,22 +140,30 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     let utxoVerified = true;
 
     for (let i = 0; i < utxoList.length; i++) {
+      let _utxo;
+
       if (network.kmdInterest) {
-        utxoListFormatted.push({
+        _utxo = {
           txid: utxoList[i].txid,
           vout: utxoList[i].vout,
           value: Number(utxoList[i].amountSats || utxoList[i].value),
           interestSats: Number(utxoList[i].interestSats || utxoList[i].interest || 0),
           verified: utxoList[i].verified ? utxoList[i].verified : false,
-        });
+        };
       } else {
-        utxoListFormatted.push({
+        _utxo = {
           txid: utxoList[i].txid,
           vout: utxoList[i].vout,
           value: Number(utxoList[i].amountSats || utxoList[i].value),
           verified: utxoList[i].verified ? utxoList[i].verified : false,
-        });
+        };
       }
+
+      if (utxoList[i].currentHeight) {
+        _utxo.currentHeight = utxoList[i].currentHeight;
+      }
+
+      utxoListFormatted.push(_utxo);
     }
 
     const _maxSpendBalance = Number(utils.maxSpendBalance(utxoListFormatted));
