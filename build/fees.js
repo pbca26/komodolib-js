@@ -65,6 +65,7 @@ var fees = {
   arg: 50000,
   zec: 10000,
   hush: 10000,
+  bzc: 10000,
   sng: 10000,
   xmy: 5000,
   zcl: 1000,

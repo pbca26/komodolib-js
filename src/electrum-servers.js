@@ -603,8 +603,12 @@ let _electrumServers = {
   ],
   mgnx: [
     '45.76.37.100:50001:tcp',
-    '95.179.177.253:50001:tcp'	
- ]
+    '95.179.177.253:50001:tcp',
+  ],
+  bzc: [ // needs a secondary spv server
+    '194.87.145.250:50012:ssl',
+    '194.87.145.250:50012:ssl',
+  ],
 };
 
 let electrumServers = {};

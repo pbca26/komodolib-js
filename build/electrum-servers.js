@@ -155,7 +155,9 @@ var _electrumServers = {
   lcc: ['electrum1.litecoinca.sh:50001:tcp', 'electrum1.litecoinca.sh:50010:ssl', 'electrum2.litecoinca.sh:50001:tcp', 'electrum2.litecoinca.sh:50010:ssl'],
   btcnano: ['wallet1.btcnano.org:10550:tcp', 'wallet1.btcnano.org:10561:ssl', 'wallet2.btcnano.org:50001:tcp', 'wallet2.btcnano.org:50002:ssl'],
   kreds: ['199.247.21.0:50001:tcp'],
-  mgnx: ['45.76.37.100:50001:tcp', '95.179.177.253:50001:tcp']
+  mgnx: ['45.76.37.100:50001:tcp', '95.179.177.253:50001:tcp'],
+  bzc: [// needs a secondary spv server
+  '194.87.145.250:50012:ssl', '194.87.145.250:50012:ssl']
 };
 
 var electrumServers = {};
