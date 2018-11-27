@@ -91,7 +91,7 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
         isSelfSend.outputs) {
       result = {
         type: 'self',
-        amount: _sum.inputs === _sum.outputs ? _sum.outputs : Number(_sum.inputs - _sum.outputs).toFixed(8),
+        amount: _sum.inputs === _sum.outputs ? Number(_sum.outputs).toFixed(8) : Number(_sum.inputs - _sum.outputs).toFixed(8),
         amountIn: Number(_sum.inputs).toFixed(8),
         amountOut: Number(_sum.outputs).toFixed(8),
         address: targetAddress,
