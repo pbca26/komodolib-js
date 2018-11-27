@@ -7,7 +7,7 @@ const coinselect = require('coinselect');
 const utils = require('./utils');
 
 // single sig
-const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, opreturn) => {
+const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, options) => {
   const key = network.isZcash ? bitcoinZcash.ECPair.fromWIF(wif, network) : bitcoin.ECPair.fromWIF(wif, network);
   let tx;
   let btcFork = {};
@@ -58,7 +58,8 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     }
   }
 
-  if (opreturn) {
+  if (options &&
+      options.opreturn) {
     const data = Buffer.from(opreturn, 'utf8');
     const dataScript = bitcoin.script.nullData.output.encode(data);
     tx.addOutput(dataScript, 1000);
@@ -94,24 +95,27 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     tx.setLockTime(_locktime);
   }
 
-  for (let i = 0; i < utxo.length; i++) {
-    if (network.isPoS) {
-      tx.sign(network, i, key);
-    } else if (network.isBtcFork) {
-      const hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
-      tx.sign(i, btcFork.keyPair, null, hashType, utxo[i].value);
-    } else if (
-      (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
-      (network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)) {
-      tx.sign(i, key, '', null, utxo[i].value); 
-    } else {
-      tx.sign(i, key);
+  if (!options ||
+      (options && !options.unsigned)) {
+    for (let i = 0; i < utxo.length; i++) {
+      if (network.isPoS) {
+        tx.sign(network, i, key);
+      } else if (network.isBtcFork) {
+        const hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
+        tx.sign(i, btcFork.keyPair, null, hashType, utxo[i].value);
+      } else if (
+        (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
+        (network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)) {
+        tx.sign(i, key, '', null, utxo[i].value); 
+      } else {
+        tx.sign(i, key);
+      }
     }
-  }
 
-  const rawtx = tx.build().toHex();
-
-  return rawtx;
+    return tx.build().toHex();
+  } else {
+    return tx.buildIncomplete().toHex();
+  }  
 };
 
 // TODO: merge sendmany
