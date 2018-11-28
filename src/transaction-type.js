@@ -1,4 +1,4 @@
-const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
+const transactionType = (tx, targetAddress, isKomodo, options) => {
   // TODO: - sum vins / sum vouts to the same address
   //       - multi vin multi vout
   //       - detect change address
@@ -58,7 +58,7 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
         _addresses[key].push(_parse[key][i].scriptPubKey.addresses[0]);
 
         if (_parse[key][i].scriptPubKey.addresses[0] === targetAddress &&
-            skipTargetAddress) {
+            (options && options.skipTargetAddress)) {
           _addresses[key].pop();
         }
       }
@@ -145,7 +145,8 @@ const transactionType = (tx, targetAddress, isKomodo, skipTargetAddress) => {
       result = [_sent, _received];
 
       if (_total.inputs === _sum.inputs &&
-          !isKomodo) {
+          !isKomodo &&
+          (!options || (options && !options.nogroup))) {
         result = _sent;
       } else {
         if (isKomodo) { // calc claimed interest amount

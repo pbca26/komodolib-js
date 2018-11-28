@@ -2,7 +2,7 @@
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var transactionType = function transactionType(tx, targetAddress, isKomodo, skipTargetAddress) {
+var transactionType = function transactionType(tx, targetAddress, isKomodo, options) {
   // TODO: - sum vins / sum vouts to the same address
   //       - multi vin multi vout
   //       - detect change address
@@ -55,7 +55,7 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, skip
       if (_parse[key][i].scriptPubKey && _parse[key][i].scriptPubKey.addresses && _parse[key][i].scriptPubKey.addresses[0]) {
         _addresses[key].push(_parse[key][i].scriptPubKey.addresses[0]);
 
-        if (_parse[key][i].scriptPubKey.addresses[0] === targetAddress && skipTargetAddress) {
+        if (_parse[key][i].scriptPubKey.addresses[0] === targetAddress && options && options.skipTargetAddress) {
           _addresses[key].pop();
         }
       }
@@ -139,7 +139,7 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, skip
 
       result = [_sent, _received];
 
-      if (_total.inputs === _sum.inputs && !isKomodo) {
+      if (_total.inputs === _sum.inputs && !isKomodo && (!options || options && !options.nogroup)) {
         result = _sent;
       } else {
         if (isKomodo) {
