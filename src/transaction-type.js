@@ -58,7 +58,8 @@ const transactionType = (tx, targetAddress, isKomodo, options) => {
         _addresses[key].push(_parse[key][i].scriptPubKey.addresses[0]);
 
         if (_parse[key][i].scriptPubKey.addresses[0] === targetAddress &&
-            (options && options.skipTargetAddress)) {
+            options &&
+            options.skipTargetAddress) {
           _addresses[key].pop();
         }
       }

@@ -134,6 +134,31 @@ const toSats = value => Number(value).toFixed(8) * 100000000;
 // https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
 const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
 
+// ref: https://gist.github.com/matthewhudson/7999278 
+function parseBitcoinURL(url) {
+  const r = /^[a-zA-Z0-9]*:([a-zA-Z0-9]{27,34})(?:\?(.*))?$/;
+  const match = r.exec(url);
+  
+  if (!match) return null;
+
+  let parsed = { url };
+
+  if (match[2]) {
+    const queries = match[2].split('&');
+
+    for (let i = 0; i < queries.length; i++) {
+      const query = queries[i].split('=');
+      
+      if (query.length == 2) {
+        parsed[query[0]] = decodeURIComponent(query[1].replace(/\+/g, '%20'));
+      }
+    }
+  }
+
+  parsed.address = match[1];
+  return parsed;
+}
+
 module.exports = {
   formatValue,
   formatBytes,
@@ -147,4 +172,5 @@ module.exports = {
   isNumber,
   isPositiveNumber,
   sortObject,
+  parseBitcoinURL,
 };
