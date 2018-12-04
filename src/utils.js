@@ -135,7 +135,7 @@ const toSats = value => Number(value).toFixed(8) * 100000000;
 const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
 
 // ref: https://gist.github.com/matthewhudson/7999278 
-function parseBitcoinURL(url) {
+const parseBitcoinURL = (url) => {
   const r = /^[a-zA-Z0-9]*:([a-zA-Z0-9]{27,34})(?:\?(.*))?$/;
   const match = r.exec(url);
   

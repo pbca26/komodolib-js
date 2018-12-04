@@ -139,7 +139,7 @@ var sortObject = function sortObject(o) {
 };
 
 // ref: https://gist.github.com/matthewhudson/7999278 
-function parseBitcoinURL(url) {
+var parseBitcoinURL = function parseBitcoinURL(url) {
   var r = /^[a-zA-Z0-9]*:([a-zA-Z0-9]{27,34})(?:\?(.*))?$/;
   var match = r.exec(url);
 
@@ -161,7 +161,7 @@ function parseBitcoinURL(url) {
 
   parsed.address = match[1];
   return parsed;
-}
+};
 
 module.exports = {
   formatValue: formatValue,
