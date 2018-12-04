@@ -45,6 +45,7 @@ const fees = {
   dion: KMD_STD_FEE,
   kmdice: KMD_STD_FEE,
   ptx: KMD_STD_FEE,
+  spltest: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,

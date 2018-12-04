@@ -41,7 +41,8 @@ const _komodoAssetChains = [
   'DION',
   'KMDICE',
   'PTX',
-  'ZEX'
+  'ZEX',
+  'SPLTEST',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -176,6 +177,7 @@ const explorerList = {
   BZC: 'http://35.204.174.237:3001/insight/tx/',
   ETH: 'https://etherscan.io/tx/',
   ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/',
+  SPLTEST: 'http://spltest.explorer.dexstats.info',
 };
 
 const explorerListExt = {

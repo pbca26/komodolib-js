@@ -157,7 +157,9 @@ var _electrumServers = {
   kreds: ['199.247.21.0:50001:tcp'],
   mgnx: ['45.76.37.100:50001:tcp', '95.179.177.253:50001:tcp'],
   bzc: [// needs a secondary spv server
-  '194.87.145.250:50012:ssl', '194.87.145.250:50012:ssl']
+  '194.87.145.250:50012:ssl', '194.87.145.250:50012:ssl'],
+  spltest: [// test kmd chain with sapling activated 
+  'electrum1.cipig.net:10100:tcp', 'electrum2.cipig.net:10100:tcp', 'electrum3.cipig.net:10100:tcp']
 };
 
 var electrumServers = {};
