@@ -162,8 +162,10 @@ let _electrumServers = {
     'electrumx2.monacoin.ninja:50001:tcp',
   ],
   ltc: [
-    'electrum1.cipig.net:10065:tcp',
-    'electrum2.cipig.net:10065:tcp',
+    'electrum-ltc.bysh.me:50001:tcp',
+    'electrum-ltc.ddns.net:50001:tcp',
+    'electrum-ltc.wilv.in:50001:tcp',
+    'electrum.ltc.xurious.com:50001:tcp',
   ],
   fair: [
     'electrum1.cipig.net:10063:tcp',
@@ -208,8 +210,9 @@ let _electrumServers = {
     'electrum2.cipig.net:10050:tcp',
   ],
   bch: [
-    'electrum1.cipig.net:10051:tcp',
-    'electrum2.cipig.net:10051:tcp',
+    'bch.imaginary.cash:50001:tcp',
+    'electroncash.dk:50001:tcp',
+    'wallet.satoshiscoffeehouse.com:50001:tcp',
   ],
   arg: [
     'electrum1.cipig.net:10068:tcp',
