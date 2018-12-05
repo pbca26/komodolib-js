@@ -56,7 +56,11 @@ var _electrumServers = {
   blk: ['electrum1.cipig.net:10054:tcp', 'electrum2.cipig.net:10054:tcp', 'electrum3.cipig.net:10054:tcp'],
   sib: ['electrum1.cipig.net:10050:tcp', 'electrum2.cipig.net:10050:tcp'],
   bch: ['bch.imaginary.cash:50001:tcp', 'electroncash.dk:50001:tcp', 'wallet.satoshiscoffeehouse.com:50001:tcp'],
-  arg: ['electrum1.cipig.net:10068:tcp', 'electrum2.cipig.net:10068:tcp', 'electrum3.cipig.net:10068:tcp'],
+  /*arg: [
+    'electrum1.cipig.net:10068:tcp',
+    'electrum2.cipig.net:10068:tcp',
+    'electrum3.cipig.net:10068:tcp',
+  ],*/
   chips: ['electrum1.cipig.net:10053:tcp', 'electrum2.cipig.net:10053:tcp'],
   zec: ['electrum1.cipig.net:10058:tcp', 'electrum2.cipig.net:10058:tcp'],
   hush: ['electrum1.cipig.net:10064:tcp', 'electrum2.cipig.net:10064:tcp'],

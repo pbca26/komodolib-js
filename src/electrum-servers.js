@@ -214,11 +214,11 @@ let _electrumServers = {
     'electroncash.dk:50001:tcp',
     'wallet.satoshiscoffeehouse.com:50001:tcp',
   ],
-  arg: [
+  /*arg: [
     'electrum1.cipig.net:10068:tcp',
     'electrum2.cipig.net:10068:tcp',
     'electrum3.cipig.net:10068:tcp',
-  ],
+  ],*/
   chips: [
     'electrum1.cipig.net:10053:tcp',
     'electrum2.cipig.net:10053:tcp',
