@@ -277,10 +277,10 @@ let _electrumServers = {
     'electrum1.cipig.net:10062:tcp',
     'electrum2.cipig.net:10062:tcp',
   ],
-  bcbc: [
+  /*bcbc: [
     'bsmn0.cleanblockchain.io:50001:tcp',
     'bsmn1.cleanblockchain.io:50001:tcp',
-  ],
+  ],*/
   game: [
     'electrum1.cipig.net:10072:tcp',
     'electrum2.cipig.net:10072:tcp',
@@ -317,10 +317,6 @@ let _electrumServers = {
     'el0.vrsc.0x03.services:10000:tcp',
     'el1.vrsc.0x03.services:10000:tcp',
   ],
-  rdd: [
-    '82.196.12.14:50001:tcp',
-    '82.196.12.14:50002:ssl',
-  ],
   polis: [
     'electrum1.cipig.net:10075:tcp',
     'electrum2.cipig.net:10075:tcp',
@@ -345,7 +341,6 @@ let _electrumServers = {
     'electrum1.aquariuscoin.com:5095:tcp',
     'electrum2.aquariuscoin.com:5095:tcp',
     'electrum3.aquariuscoin.com:5095:tcp',
-    'electrum4.aquariuscoin.com:5095:tcp',
   ],
   lana: [
     'node1.cryptowallet.si:5097:tcp',
@@ -353,7 +348,6 @@ let _electrumServers = {
     'electrum1.lanacoin.com:5097:tcp',
     'electrum2.lanacoin.com:5097:tcp',
     'electrum3.lanacoin.com:5097:tcp',
-    'electrum4.lanacoin.com:5097:tcp',
   ],
   neva: [
     'node1.cryptowallet.si:5096:tcp',
@@ -361,7 +355,6 @@ let _electrumServers = {
     'electrum1.nevacoin.net:5096:tcp',
     'electrum2.nevacoin.net:5096:tcp',
     'electrum3.nevacoin.net:5096:tcp',
-    'electrum4.nevacoin.net:5096:tcp',
   ],
   netko: [
     'node1.cryptowallet.si:5108:tcp',
@@ -372,16 +365,9 @@ let _electrumServers = {
     'node2.cryptowallet.si:5098:tcp',
     'electrum1.tajcoin.tech:5098:tcp',
     'electrum2.tajcoin.tech:5098:tcp',
-    'electrum3.tajcoin.tech:5098:tcp',
-    'electrum4.tajcoin.tech:5098:tcp',
   ],
   xvg: [
-    'e1.verge-electrum.com:50002:tcp',
-    'e2.verge-electrum.com:50002:tcp',
-    'e1.verge-electrum.com:50003:ssl',
-    'e2.verge-electrum.com:50003:ssl',
     '46.163.118.201:50002:ssl',
-    'electrum-verge.xyz:50001:tcp',
   ],
   cesc: [
     'electrum1.cryptoescudo.org:50001:tcp',
@@ -391,7 +377,6 @@ let _electrumServers = {
   mue: [
     '181.214.148.6:50001:tcp',
     '37.59.209.76:50001:tcp',
-    '181.214.148.6:50002:tcp',
   ],
   uno: [
     'electrum1.unobtanium.uno:50006:ssl',
@@ -422,13 +407,8 @@ let _electrumServers = {
     'electrum2.capricoin.org:50012:ssl',
   ],
   rap: [
-    'electrum.our-rapture.com:50001:tcp:',
     'electrum2.our-rapture.com:50001:tcp',
     '194.87.145.250:50016:ssl',
-  ],
-  qmc: [
-    '45.32.185.157:50001:tcp',
-    '95.179.134.215:50001:tcp',
   ],
   smart: [
     'electrum1.smartcash.cc:50001:tcp',
@@ -464,123 +444,23 @@ let _electrumServers = {
   xsc: [ // sobercoin
     '194.87.145.250:50030:ssl',
   ],
-  vcash: [
-    'ex01.vcash.info:50001:ssl', // ssl?
-  ],
-  piggy: [
-    'electrum.piggy-coin.com:54485:tcp', // ssl?
-    'piggy.electrum.blockpunk.com:54485:tcp'
-  ],
   onix: [ // onixcoin
-    '159.203.80.31:23000:tcp', // ssl?
-    '159.203.80.31:23001:tcp',
-  ],
-  lkr: [ // lkrcoin
-    '190.202.15.196:23000:tcp', // ssl?
-    '190.202.15.196:23001:tcp',
+    '159.203.80.31:23000:tcp',
   ],
   arepa: [ // arepacoin
-    '107.150.6.159:50001:tcp', // ssl?
+    '107.150.6.159:50001:tcp',
     '107.150.6.159:50002:tcp',
-  ],
-  aib: [
-    'aib-cce-1.iobond.com:5037:tcp',
-    'aib-cce-2.iobond.com:5037:tcp',
-    'server1.payoto.com:5037:tcp',
-    'server2.payoto.com:5037:tcp',
-    'server3.payoto.com:5037:tcp',
-    'server4.payoto.com:5037:tcp',
   ],
   bitb: [
     'electrum1.bitbean.org:5088:tcp',
-    'electrum2.bitbean.org:5088:tcp',
-  ],
-  bsd: [
-    '188.68.52.172:50001:tcp',
-  ],
-  vox: [
-    'voxels-1.crypto-expert.com:5048:tcp',
-    'voxels-2.crypto-expert.com:5048:tcp',
-  ],
-  silk: [
-    'silkcoin-1.crypto-expert.com:5049:tcp',
-    'silkcoin-2.crypto-expert.com:5049:tcp',
-  ],
-  nav: [
-    'mobile.navcoin.org:50001:tcp',
-    'mobile2.navcoin.org:50001:tcp',
-  ],
-  nlg: [
-    'electrum1.gulden.com:5038:tcp',
-    'electrum2.gulden.com:5038:tcp',
-  ],
-  aur: [
-    'electrum1.auroracoin.is:50001:tcp',
-    'electrum2.auroracoin.is:50001:tcp',
-  ],
-  pot: [
-    'elect1.potcoin.com:50001:tcp',
-    'elect2.potcoin.com:50001:tcp',
-  ],
-  richx: [
-    'richcoin.us:5038:tcp',
-  ],
-  ac: [
-    '185.81.167.185:30001:tcp',
-    '185.81.165.138:30001:tcp',
-  ],
-  ok: [
-    '162.248.142.89:5040:tcp',
-    '167.88.40.231:5040:tcp',
-  ],
-  efl: [
-    'electrum1.egulden.org:5037:tcp',
-    'electrum2.egulden.org:5037:tcp',
-  ],
-  cdn: [
-    'alberta.canadaecoin.net:5033:tcp',
-    'ontario.canadaecoin.net:5033:tcp',
-  ],
-  pkb: [
-    'electrum-pkb.net:50001:tcp',
-    'electrum.eu1.parkbyte.com:50001:tcp',
-  ],
-  neos: [
-    'el1.neoscoin.com:50005:tcp',
-    'electrum.infernopool.com:50005',
-  ],
-  uis: [
-    '10.16.55.40:50001:tcp',
-  ],
-  dsr: [ // todo: verify it's dsr electrum
-    '35.185.122.226:50003:tcp',
-    '35.196.94.57:50003:tcp',
-    '35.185.122.226:50002:ssl',
   ],
   axe: [
     '198.143.186.117:50001:tcp',
     '198.143.186.117:50002:ssl',
   ],
-  nyc: [ // verify
-    '159.65.47.19:50001:tcp',
-    '159.65.47.19:50002:ssl',
-  ],
   grlc: [
-    'garlium.kenzierocks.me:50001:tcp',
-    'ske.wtf:50003:tcp',
     'electrum.garli.co.in:50001:tcp',
     'electrum.garli.co.in:50002:ssl',
-    'garlium.garlicpool.org:50001:tcp',
-    'garlium.garlicpool.org:50002:ssl',
-    'tuxprint.com:50001:tcp',
-    'tuxprint.com:50002:ssl',
-    'garlium.rshaw.space:50001:tcp',
-    'garlium.rshaw.space:50002:ssl',
-  ],
-  ebst: [
-    'electrum1.eboost.fun:50001:tcp',
-    'electrum2.eboost.fun:50001:tcp',
-    'electrum3.eboost.fun:50001:tcp',
   ],
   ufo: [
     'electrumx1.ufobject.com:50001:tcp',
@@ -590,16 +470,9 @@ let _electrumServers = {
     'electrumx5.ufobject.com:50001:tcp',
   ],
   lcc: [
-    'electrum1.litecoinca.sh:50001:tcp',
     'electrum1.litecoinca.sh:50010:ssl',
     'electrum2.litecoinca.sh:50001:tcp',
     'electrum2.litecoinca.sh:50010:ssl',
-  ],
-  btcnano: [
-    'wallet1.btcnano.org:10550:tcp',
-    'wallet1.btcnano.org:10561:ssl',
-    'wallet2.btcnano.org:50001:tcp',
-    'wallet2.btcnano.org:50002:ssl',
   ],
   kreds: [
     '199.247.21.0:50001:tcp',
