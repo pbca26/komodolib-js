@@ -483,7 +483,7 @@ let _electrumServers = {
   ],
   bzc: [ // needs a secondary spv server
     '194.87.145.250:50012:ssl',
-    '194.87.145.250:50012:ssl',
+    '194.87.145.250:50020:ssl',
   ],
   spltest: [ // test kmd chain with sapling activated 
     'electrum1.cipig.net:10100:tcp',
