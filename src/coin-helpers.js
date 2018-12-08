@@ -105,9 +105,9 @@ const explorerList = {
   VRSC: 'https://explorer.veruscoin.io',
   KOIN: 'http://live.block.koinon.li/',
   DION: 'https://explorer.dionpay.com',
-  KMDICE: 'https://kmdice.explorer.dexstats.info',
+  KMDICE: 'http://kmdice.explorer.dexstats.info',
   PTX: 'http://explorer1.patenttx.com',
-  ZEX: 'http://explorer.zaddex.com',
+  ZEX: 'http://zex.explorer.dexstats.info',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
