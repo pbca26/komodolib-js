@@ -83,6 +83,7 @@ const stringToWif = (string, network, iguana) => {
       pub: string,
     };
   }
+  
   try {
     bs58check.decode(string);
     isWif = true;
@@ -107,7 +108,6 @@ const stringToWif = (string, network, iguana) => {
   } else {
     keys = seedToWif(string, network, iguana);
   }
-
 
   return _wifError ? 'error' : keys;
 };

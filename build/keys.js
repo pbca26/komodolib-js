@@ -84,6 +84,7 @@ var stringToWif = function stringToWif(string, network, iguana) {
       pub: string
     };
   }
+
   try {
     bs58check.decode(string);
     isWif = true;
