@@ -52,7 +52,7 @@ var _electrumServers = {
   dash: ['electrum1.cipig.net:10061:tcp', 'electrum2.cipig.net:10061:tcp'],
   crw: ['sgp-crwseed.crowndns.info:50001:tcp', 'blr-crwseed.crowndns.info:50001:tcp', 'sfo-crwseed.crowndns.info:50001:tcp', 'nyc-crwseed.crowndns.info:50001:tcp', 'ams-crwseed.crowndns.info:50001:tcp', 'tor-crwseed.crowndns.info:50001:tcp', 'lon-crwseed.crowndns.info:50001:tcp', 'fra-crwseed.crowndns.info:50001:tcp'],
   btc: ['electrum1.cipig.net:10000:tcp', 'electrum2.cipig.net:10000:tcp', 'electrum3.cipig.net:10000:tcp'],
-  btg: ['electrumx-eu.bitcoingold.org:50001:tcp', 'electrumx-us.bitcoingold.org:50001:tcp', 'electrumx-eu.btcgpu.org:50001:tcp', 'electrumx-us.btcgpu.org:50001:tcp'],
+  btg: ['electrumx-eu.bitcoingold.org:50001:tcp', 'electrumx-us.bitcoingold.org:50001:tcp'],
   blk: ['electrum1.cipig.net:10054:tcp', 'electrum2.cipig.net:10054:tcp', 'electrum3.cipig.net:10054:tcp'],
   sib: ['electrum1.cipig.net:10050:tcp', 'electrum2.cipig.net:10050:tcp'],
   bch: ['bch.imaginary.cash:50001:tcp', 'electroncash.dk:50001:tcp', 'wallet.satoshiscoffeehouse.com:50001:tcp'],

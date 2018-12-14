@@ -197,8 +197,6 @@ let _electrumServers = {
   btg: [
     'electrumx-eu.bitcoingold.org:50001:tcp',
     'electrumx-us.bitcoingold.org:50001:tcp',
-    'electrumx-eu.btcgpu.org:50001:tcp',
-    'electrumx-us.btcgpu.org:50001:tcp',
   ],
   blk: [
     'electrum1.cipig.net:10054:tcp',
