@@ -1,5 +1,11 @@
 const _komodoAssetChains = [
-  'VRSC',
+  'PIRATE',
+  'CCL',
+  'KMDICE',
+  'MGNX',
+  'DION',
+  'PTX',
+  'ZEX',
   'SUPERNET',
   'REVS',
   'PANGEA',
@@ -21,18 +27,19 @@ const _komodoAssetChains = [
   'AXO',
   'ETOMIC',
   'BTCH',
-  'BEER',
-  'PIZZA',
+  //'BEER',
+  //'PIZZA',
   'OOT',
   'NINJA',
-  'VOTE2018',
+  //'VOTE2018',
   'GLXT',
   'EQL',
   'BNTN',
   'PRLPAY',
   'CHAIN',
   'ZILLA',
-  'DSEC',
+  //'DSEC', Don't have name for DSEC
+  'VRSC',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -139,6 +146,13 @@ const explorerList = {
   ZILLA: 'http://zilla.explorer.dexstats.info',
   XZC: 'https://explorer.zcoin.io',
   VRSC: 'https://explorer.veruscoin.io',
+  PIRATE: 'https://pirate.kmdexplorer.io',
+  CCL: 'https://ccl.kmdexplorer.io',
+  KMDICE: 'https://veruscoin.io/explorernotfound',
+  MGNX: 'http://mgnx.explorer.dexstats.info',
+  DION: 'https://explorer.dionpay.com',
+  PTX: 'https://veruscoin.io/explorernotfound',
+  ZEX: 'https://veruscoin.io/explorernotfound'
 };
 
 const explorerListExt = {
