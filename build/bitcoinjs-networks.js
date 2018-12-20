@@ -376,6 +376,7 @@ var networks = (_networks = {
     },
     dustThreshold: 1000,
     isZcash: true,
+    sapling: true,
     saplingActivationHeight: 419200
   },
   hush: {
