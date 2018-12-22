@@ -172,9 +172,7 @@ var erc20ContractId = {
   IND: '0xf8e386EDa857484f5a12e4B5DAa9984E06E73705',
   FYN: '0x88FCFBc22C6d3dBaa25aF478C578978339BDe77a',
   EOS: '0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0',
-  ZIL: '0x05f4a42e251f2d52b8ed15e9fedaacfcef1fad27',
-  OCALL: '0x2c02c801a3324b371ad285c64af372ff1e23f460',
-  CALLG: '0x6c28f85eb1dbc7651ce02f7af1f29890ad084b94'
+  ZIL: '0x05f4a42e251f2d52b8ed15e9fedaacfcef1fad27'
 };
 
 module.exports = erc20ContractId;
