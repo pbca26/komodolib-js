@@ -94,6 +94,8 @@ var fees = {
   taj: 100,
   xvg: 10000,
   uno: 10000,
+  kreds: 10000,
+  ufo: 100000,
   polis: 0, // todo
   cesc: 0, // todo
   mue: 0, // todo

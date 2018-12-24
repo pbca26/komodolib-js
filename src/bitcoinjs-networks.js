@@ -1954,6 +1954,16 @@ const networks = {
     scriptHash: 0x5,
     wif: 0xC3,
   },
+  ufo: { // https://github.com/UFOCoins/ufo/blob/master-0.15/src/chainparams.cpp#L134
+    messagePrefix: '\x19UFO Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x1B,
+    scriptHash: 0x5,
+    wif: 0x9B,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
