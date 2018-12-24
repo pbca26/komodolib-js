@@ -488,6 +488,10 @@ let _electrumServers = {
     'electrum2.cipig.net:10100:tcp',
     'electrum3.cipig.net:10100:tcp',
   ],
+  aywa: [
+    'electrum1.getaywa.org:50001:tcp',
+    'electrum2.getaywa.org:50001:tcp',
+  ],
 };
 
 let electrumServers = {};

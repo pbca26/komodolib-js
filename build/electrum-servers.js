@@ -134,7 +134,8 @@ var _electrumServers = {
   bzc: [// needs a secondary spv server
   '194.87.145.250:50012:ssl', '194.87.145.250:50020:ssl'],
   spltest: [// test kmd chain with sapling activated 
-  'electrum1.cipig.net:10100:tcp', 'electrum2.cipig.net:10100:tcp', 'electrum3.cipig.net:10100:tcp']
+  'electrum1.cipig.net:10100:tcp', 'electrum2.cipig.net:10100:tcp', 'electrum3.cipig.net:10100:tcp'],
+  aywa: ['electrum1.getaywa.org:50001:tcp', 'electrum2.getaywa.org:50001:tcp']
 };
 
 var electrumServers = {};
