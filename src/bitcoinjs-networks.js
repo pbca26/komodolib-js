@@ -1944,6 +1944,16 @@ const networks = {
     scriptHash: 0x5,
     wif: 0xB1,
   },
+  kreds: {
+    messagePrefix: '\x19Kreds Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x2D,
+    scriptHash: 0x5,
+    wif: 0xC3,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
