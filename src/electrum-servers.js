@@ -492,6 +492,10 @@ let _electrumServers = {
     'electrum1.getaywa.org:50001:tcp',
     'electrum2.getaywa.org:50001:tcp',
   ],
+  xbc: [
+    'electrumx1.bitcoinplus.org:50001:tcp',
+    'electrumx2.bitcoinplus.org:50001:tcp',
+  ],
 };
 
 let electrumServers = {};
