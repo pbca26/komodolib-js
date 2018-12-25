@@ -1984,6 +1984,16 @@ const networks = {
     scriptHash: 0x53,
     wif: 0x96,
   },
+  bitb: {
+    messagePrefix: '\x19BitBean Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x3,
+    scriptHash: 0x55,
+    wif: 0x83,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
