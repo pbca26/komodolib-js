@@ -1957,6 +1957,15 @@ var networks = (_networks = {
   pubKeyHash: 0x32,
   scriptHash: 0x49,
   wif: 0x4D
+}), _defineProperty(_networks, 'polis', {
+  messagePrefix: '\x19Polis Signed Message:\n',
+  bip32: {
+    public: 0x03E25D7E,
+    private: 0x03E25945
+  },
+  pubKeyHash: 0x37,
+  scriptHash: 0x38,
+  wif: 0x3C
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
