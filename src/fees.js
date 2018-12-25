@@ -97,6 +97,7 @@ const fees = {
   lcc: 1000000,
   grlc: 200000,
   axe: 10000,
+  aywa: 10000,
   polis: 0, // todo
   cesc: 0, // todo
   mue: 0, // todo

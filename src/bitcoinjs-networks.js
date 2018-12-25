@@ -1974,6 +1974,16 @@ const networks = {
     scriptHash: 0x32,
     wif: 0xB0,
   },
+  aywa: {
+    messagePrefix: '\x19AywaCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x17,
+    scriptHash: 0x53,
+    wif: 0x96,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
