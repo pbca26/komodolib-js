@@ -1966,6 +1966,15 @@ var networks = (_networks = {
   pubKeyHash: 0x37,
   scriptHash: 0x38,
   wif: 0x3C
+}), _defineProperty(_networks, 'crc', {
+  messagePrefix: '\x19Crowdcoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x41,
+  scriptHash: 0x7F,
+  wif: 0x3
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,

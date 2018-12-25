@@ -430,9 +430,6 @@ let _electrumServers = {
   inn: [ // innova
     '194.87.145.250:50004:ssl',
   ],
-  crc: [ // crowd
-    '194.87.145.250:50006:ssl',
-  ],
   tzc: [ // trezarcoin
     '194.87.145.250:50018:ssl',
   ],

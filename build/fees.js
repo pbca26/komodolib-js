@@ -102,6 +102,7 @@ var fees = {
   aywa: 10000,
   bitb: 100000000,
   polis: 10000,
+  crc: 10000,
   cesc: 0, // todo
   mue: 0, // todo
   koto: 0, // todo
