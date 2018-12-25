@@ -1964,15 +1964,15 @@ const networks = {
     scriptHash: 0x5,
     wif: 0x9B,
   },
-  lcc: {
-    messagePrefix: '\x19LitecoinCash Signed Message:\n',
+  grlc: {
+    messagePrefix: '\x19GarlicCoin Signed Message:\n',
     bip32: {
       public: 0x0488B21E,
       private: 0x0488ADE4,
     },
-    pubKeyHash: 0x1C,
-    scriptHash: 0x5,
-    wif: 0x32,
+    pubKeyHash: 0x26,
+    scriptHash: 0x32,
+    wif: 0xB0,
   },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs

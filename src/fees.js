@@ -95,6 +95,7 @@ const fees = {
   kreds: 10000,
   ufo: 100000,
   lcc: 1000000,
+  grlc: 200000,
   polis: 0, // todo
   cesc: 0, // todo
   mue: 0, // todo
