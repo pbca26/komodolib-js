@@ -43,6 +43,7 @@ const _komodoAssetChains = [
   'PTX',
   'ZEX',
   'SPLTEST',
+  'LUMBER',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
