@@ -109,6 +109,7 @@ const explorerList = {
   KMDICE: 'http://kmdice.explorer.dexstats.info',
   PTX: 'http://explorer1.patenttx.com',
   ZEX: 'http://zex.explorer.dexstats.info',
+  LUMBER: 'https://explorer.lumberscout.io',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
