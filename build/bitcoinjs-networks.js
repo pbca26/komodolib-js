@@ -2039,6 +2039,15 @@ var networks = (_networks = {
   scriptHash: 0x23,
   wif: 0x9C,
   isPoS: true
+}), _defineProperty(_networks, 'rap', {
+  messagePrefix: '\x18Rapture Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x3C,
+  scriptHash: 0x10,
+  wif: 0xCC
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
