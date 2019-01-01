@@ -108,6 +108,7 @@ const fees = {
   eny: 10000,
   rap: 1000,
   cesc: 1000, // (?)
+  xbc: 100000,
   mue: 0, // todo
   koto: 0, // todo
   rdd: 0, // todo
