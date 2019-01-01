@@ -2104,6 +2104,16 @@ const networks = {
     scriptHash: 0x10,
     wif: 0xCC,
   },
+  pac: {
+    messagePrefix: '\u0018PACcoin Signed Message:\n',
+    bip32: {
+      public: 0x043587CF,
+      private: 0x04358394,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0xA,
+    wif: 0xCC,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89

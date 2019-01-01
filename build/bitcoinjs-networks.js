@@ -2048,6 +2048,15 @@ var networks = (_networks = {
   pubKeyHash: 0x3C,
   scriptHash: 0x10,
   wif: 0xCC
+}), _defineProperty(_networks, 'pac', {
+  messagePrefix: '\x18PACcoin Signed Message:\n',
+  bip32: {
+    public: 0x043587CF,
+    private: 0x04358394
+  },
+  pubKeyHash: 0x37,
+  scriptHash: 0xA,
+  wif: 0xCC
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,

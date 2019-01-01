@@ -115,6 +115,7 @@ var fees = {
   koto: 10000,
   pak: 1000, // (?)
   cpc: 1000, //  (?)
+  pac: 10000,
   rdd: 0, // todo
   // eth, gas limit in wei
   eth: 21000,
