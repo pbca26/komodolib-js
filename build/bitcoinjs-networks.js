@@ -1975,6 +1975,15 @@ var networks = (_networks = {
   pubKeyHash: 0x41,
   scriptHash: 0x7F,
   wif: 0x3
+}), _defineProperty(_networks, 'tzc', {
+  messagePrefix: '\x18TrezarCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x42,
+  scriptHash: 0x8,
+  wif: 0xC2
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
