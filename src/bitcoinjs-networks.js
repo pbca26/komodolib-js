@@ -2124,6 +2124,16 @@ const networks = {
     scriptHash: 0x5,
     wif: 0xCC,
   },
+  inn: {
+    messagePrefix: '\u0018Innova Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x66,
+    scriptHash: 0x14,
+    wif: 0xC3,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
@@ -2476,11 +2486,6 @@ const networks = {
     messagePrefix: '\u0018Influxcoin Signed Message:\n',
     pubKeyHash: 0x66,
     wif: 0xe6,
-  },
-  Innox: {
-    messagePrefix: '\u0018Innox Signed Message:\n',
-    pubKeyHash: 0x4b,
-    wif: 0xcb,
   },
   iridiumcoin: {
     messagePrefix: '\u0018IridiumCoin Signed Message:\n',
