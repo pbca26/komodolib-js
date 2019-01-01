@@ -109,8 +109,9 @@ var fees = {
   xsc: 100000,
   eny: 10000,
   rap: 1000,
-  cesc: 0, // todo
-  mue: 0, // todo
+  cesc: 1000, // (?)
+  xbc: 100000,
+  mue: 10000,
   koto: 0, // todo
   rdd: 0, // todo
   pak: 0, // todo

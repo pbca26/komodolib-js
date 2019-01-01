@@ -1984,6 +1984,24 @@ var networks = (_networks = {
   pubKeyHash: 0x42,
   scriptHash: 0x8,
   wif: 0xC2
+}), _defineProperty(_networks, 'cesc', {
+  messagePrefix: '\x18cryptoescudo Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x1C,
+  scriptHash: 0x58,
+  wif: 0x9C
+}), _defineProperty(_networks, 'mue', {
+  messagePrefix: '\x18MonetaryUnit Signed Message:\n',
+  bip32: {
+    public: 0x022D2533,
+    private: 0x0221312B
+  },
+  pubKeyHash: 0x10,
+  scriptHash: 0x4C,
+  wif: 0x7E
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
@@ -2336,10 +2354,6 @@ var networks = (_networks = {
   messagePrefix: '\x18MobiusCoin Signed Message:\n',
   pubKeyHash: 0x00,
   wif: 0x80
-}), _defineProperty(_networks, 'monetaryunit', {
-  messagePrefix: '\x18MonetaryUnit Signed Message:\n',
-  pubKeyHash: 0x10,
-  wif: 0x7e
 }), _defineProperty(_networks, 'monocle', {
   messagePrefix: '\x18Monocle Signed Message:\n',
   pubKeyHash: 0x32,
