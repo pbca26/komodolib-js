@@ -2057,6 +2057,15 @@ var networks = (_networks = {
   pubKeyHash: 0x37,
   scriptHash: 0xA,
   wif: 0xCC
+}), _defineProperty(_networks, 'stak', {
+  messagePrefix: '\x18Straks Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x3F,
+  scriptHash: 0x5,
+  wif: 0xCC
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
