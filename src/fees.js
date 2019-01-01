@@ -111,9 +111,9 @@ const fees = {
   xbc: 100000,
   mue: 10000,
   koto: 10000,
-  rdd: 0, // todo
-  pak: 0, // todo
+  pak: 1000,
   cpc: 0, // todo
+  rdd: 0, // todo
   // eth, gas limit in wei
   eth: 21000,
   eth_ropsten: 21000,

@@ -2020,6 +2020,15 @@ var networks = (_networks = {
   isZcash: true,
   sapling: true,
   saplingActivationHeight: 1
+}), _defineProperty(_networks, 'pak', {
+  messagePrefix: '\x18Pakcoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x37,
+  scriptHash: 0x5,
+  wif: 0xB0
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
