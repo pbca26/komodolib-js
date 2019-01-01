@@ -2029,6 +2029,16 @@ var networks = (_networks = {
   pubKeyHash: 0x37,
   scriptHash: 0x5,
   wif: 0xB0
+}), _defineProperty(_networks, 'cpc', {
+  messagePrefix: '\x18Capricoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x1C,
+  scriptHash: 0x23,
+  wif: 0x9C,
+  isPoS: true
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
@@ -2115,10 +2125,6 @@ var networks = (_networks = {
   wif: 0x9c
 }), _defineProperty(_networks, 'cannabiscoin', {
   messagePrefix: '\x18CannabisCoin Signed Message:\n',
-  pubKeyHash: 0x1c,
-  wif: 0x9c
-}), _defineProperty(_networks, 'capricoin', {
-  messagePrefix: '\x18Capricoin Signed Message:\n',
   pubKeyHash: 0x1c,
   wif: 0x9c
 }), _defineProperty(_networks, 'cassubiandetk', {
