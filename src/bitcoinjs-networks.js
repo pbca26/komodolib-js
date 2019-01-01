@@ -2034,6 +2034,16 @@ const networks = {
     scriptHash: 0x8,
     wif: 0xC2,
   },
+  cesc: {
+    messagePrefix: '\u0018cryptoescudo Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x1C,
+    scriptHash: 0x58,
+    wif: 0x9C,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
