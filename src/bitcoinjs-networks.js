@@ -2054,6 +2054,25 @@ const networks = {
     scriptHash: 0x4C,
     wif: 0x7E,
   },
+  koto: {
+    messagePrefix: '\x19Koto Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x1836,
+    scriptHash: 0x183B,
+    wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 1,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
