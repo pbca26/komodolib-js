@@ -118,6 +118,7 @@ var fees = {
   pac: 10000,
   stak: 10000,
   uis: 2000000,
+  bbk: 1000, // (?)
   rdd: 0, // todo
   // eth, gas limit in wei
   eth: 21000,

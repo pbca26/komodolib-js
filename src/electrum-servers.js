@@ -496,6 +496,9 @@ let _electrumServers = {
   bbk: [
     '194.87.145.250:50050:ssl',
   ],
+  uis: [
+    '194.87.145.250:50040:ssl',
+  ],
 };
 
 let electrumServers = {};
