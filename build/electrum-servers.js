@@ -129,10 +129,7 @@ var _electrumServers = {
   lcc: ['electrum1.litecoinca.sh:50010:ssl', 'electrum2.litecoinca.sh:50001:tcp', 'electrum2.litecoinca.sh:50010:ssl'],
   kreds: ['199.247.21.0:50001:tcp'],
   mgnx: ['45.76.37.100:50001:tcp', '95.179.177.253:50001:tcp'],
-  bzc: [// needs a secondary spv server
-  '194.87.145.250:50012:ssl', '194.87.145.250:50020:ssl'],
-  spltest: [// test kmd chain with sapling activated 
-  'electrum1.cipig.net:10100:tcp', 'electrum2.cipig.net:10100:tcp', 'electrum3.cipig.net:10100:tcp'],
+  bzc: ['194.87.145.250:50012:ssl', '194.87.145.250:50020:ssl'],
   aywa: ['electrum1.getaywa.org:50001:tcp', 'electrum2.getaywa.org:50001:tcp'],
   xbc: ['electrumx1.bitcoinplus.org:50001:tcp', 'electrumx2.bitcoinplus.org:50001:tcp'],
   bbk: ['194.87.145.250:50050:ssl'],
