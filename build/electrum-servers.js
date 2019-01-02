@@ -116,7 +116,7 @@ var _electrumServers = {
   '194.87.145.250:50018:ssl'],
   eny: [// emergencycoin
   '194.87.145.250:50028:ssl'],
-  xsc: [// sobercoin
+  sbr: [// sobercoin
   '194.87.145.250:50030:ssl'],
   onix: [// onixcoin
   '159.203.80.31:23000:tcp'],

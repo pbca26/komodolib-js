@@ -436,7 +436,7 @@ let _electrumServers = {
   eny: [ // emergencycoin
     '194.87.145.250:50028:ssl',
   ],
-  xsc: [ // sobercoin
+  sbr: [ // sobercoin
     '194.87.145.250:50030:ssl',
   ],
   onix: [ // onixcoin
