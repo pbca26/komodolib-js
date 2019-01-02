@@ -493,6 +493,9 @@ let _electrumServers = {
     'electrumx1.bitcoinplus.org:50001:tcp',
     'electrumx2.bitcoinplus.org:50001:tcp',
   ],
+  bbk: [
+    '194.87.145.250:50050:ssl',
+  ],
 };
 
 let electrumServers = {};

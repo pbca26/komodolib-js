@@ -115,6 +115,7 @@ const fees = {
   cpc: 1000, //  (?)
   pac: 10000,
   stak: 10000,
+  uis: 2000000,
   rdd: 0, // todo
   // eth, gas limit in wei
   eth: 21000,

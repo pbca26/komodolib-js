@@ -134,7 +134,8 @@ var _electrumServers = {
   spltest: [// test kmd chain with sapling activated 
   'electrum1.cipig.net:10100:tcp', 'electrum2.cipig.net:10100:tcp', 'electrum3.cipig.net:10100:tcp'],
   aywa: ['electrum1.getaywa.org:50001:tcp', 'electrum2.getaywa.org:50001:tcp'],
-  xbc: ['electrumx1.bitcoinplus.org:50001:tcp', 'electrumx2.bitcoinplus.org:50001:tcp']
+  xbc: ['electrumx1.bitcoinplus.org:50001:tcp', 'electrumx2.bitcoinplus.org:50001:tcp'],
+  bbk: ['194.87.145.250:50050:ssl']
 };
 
 var electrumServers = {};

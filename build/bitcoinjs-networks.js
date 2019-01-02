@@ -2084,6 +2084,15 @@ var networks = (_networks = {
   pubKeyHash: 0x26,
   scriptHash: 0xA,
   wif: 0xC6
+}), _defineProperty(_networks, 'bbk', {
+  messagePrefix: '\x18Bitblocks Signed Message:\n',
+  bip32: {
+    public: 0x022D2533,
+    private: 0x0221312B
+  },
+  pubKeyHash: 0x19,
+  scriptHash: 0x55,
+  wif: 0x6B
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
