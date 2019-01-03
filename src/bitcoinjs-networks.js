@@ -1161,6 +1161,7 @@ const networks = {
     pubKeyHash: 0x19,
     scriptHash: 0x08,
     wif: 0x99,
+    isPoS: true,
   },
   brit: {
     messagePrefix: '\x18BritCoin Signed Message:\n',
