@@ -120,6 +120,7 @@ var fees = {
   uis: 2000000,
   bbk: 1000, // (?)
   arepa: 1000,
+  qmc: 10000,
   rdd: 0, // todo
   // eth, gas limit in wei
   eth: 21000,
