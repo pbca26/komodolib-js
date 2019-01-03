@@ -11,18 +11,24 @@ browserify index.js --standalone agama > agamalib.js
 ```
 
 ### How to add btc compatible pow coin
-- add coin network params in src/bitcoinjs-networks.js
-- add electrum servers list and tx fee in src/electrum-servers.js
+- add coin network params to src/bitcoinjs-networks.js
+- add electrum servers list to src/electrum-servers.js
+- add tx fee to src/fees.js
+- add an explorer link to src/coin-helpers.js
 
 ### How to add kmd asset chain
-- add electrum servers list and tx fee in src/electrum-servers.js
-- add asset chain ticker and an explorer link in src/coin-helpers.js
+- add electrum servers list to src/electrum-servers.js
+- add tx fee to src/fees.js
+- add asset chain ticker and an explorer link to src/coin-helpers.js
+
+### How to add ERC20 token
+- add token contract id to src/eth-erc20-contract-id.js
+- add token decimals value to src/eth-erc20-decimals.js, read instructions
 
 ### How build for old browsers (ES5)
-install babel
+install babel cli
 
 ```console
-npm install babel-preset-es2015
 npm run build
 ```
 
