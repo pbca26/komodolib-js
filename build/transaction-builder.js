@@ -8,7 +8,7 @@ var bitcoin = require('bitcoinjs-lib');
 var coinselect = require('coinselect');
 var utils = require('./utils');
 
-// single sig
+// current multisig limitations: no PoS, no btc forks
 var transaction = function transaction(sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, options) {
   var key = network.isZcash ? bitcoinZcash.ECPair.fromWIF(wif, network) : bitcoin.ECPair.fromWIF(wif, network);
   var tx = void 0;
@@ -17,10 +17,12 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
   if (network.isZcash && !network.sapling) {
     tx = new bitcoinZcash.TransactionBuilder(network);
   } else if (network.isZcash && network.sapling && (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp || network.saplingActivationHeight && utxo[0].currentHeight > network.saplingActivationHeight)) {
-    tx = new bitcoinZcashSapling.TransactionBuilder(network);
+    tx = !options.multisig || options.multisig && options.multisig.creator ? new bitcoinZcashSapling.TransactionBuilder(network) : new bitcoinZcashSapling.TransactionBuilder.fromTransaction(bitcoinZcashSapling.Transaction.fromHex(options.multisig.rawtx, network), network);
   } else if (network.isPoS) {
+    // TODO
     tx = new bitcoinPos.TransactionBuilder(network);
   } else if (network.isBtcFork) {
+    // TODO
     tx = new bitcoinJSForks.TransactionBuilder(network);
     var keyPair = bitcoinJSForks.ECPair.fromWIF(wif, network);
     btcFork = {
@@ -29,60 +31,69 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
       spk: bitcoinJSForks.script.pubKeyHash.output.encode(bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer()))
     };
   } else {
-    tx = new bitcoin.TransactionBuilder(network);
+    tx = !options.multisig || options.multisig && options.multisig.creator ? new bitcoin.TransactionBuilder(network) : new bitcoin.TransactionBuilder.fromTransaction(bitcoin.Transaction.fromHex(options.multisig.rawtx, network), network);
   }
 
   for (var i = 0; i < utxo.length; i++) {
     if (network.isBtcFork) {
       tx.addInput(utxo[i].txid, utxo[i].vout, bitcoinJSForks.Transaction.DEFAULT_SEQUENCE, btcFork.spk);
     } else {
-      tx.addInput(utxo[i].txid, utxo[i].vout);
+      if (options.multisig && options.multisig.creator) {
+        tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, new Buffer.from(options.multisig.scriptPubKey, 'hex'));
+      }
+
+      if (!options.multisig) {
+        tx.addInput(utxo[i].txid, utxo[i].vout);
+      }
     }
   }
 
-  if (network.isPoS) {
-    tx.addOutput(sendTo, Number(spendValue), network);
-  } else {
-    tx.addOutput(sendTo, Number(spendValue));
-  }
-
-  if (changeValue > 0) {
+  if (!options.multisig || options.multisig && options.multisig.creator) {
     if (network.isPoS) {
-      tx.addOutput(changeAddress, Number(changeValue), network);
+      tx.addOutput(sendTo, Number(spendValue), network);
     } else {
-      tx.addOutput(changeAddress, Number(changeValue));
-    }
-  }
-
-  if (options && options.opreturn) {
-    var _data = Buffer.from(opreturn, 'utf8');
-    var dataScript = bitcoin.script.nullData.output.encode(_data);
-    tx.addOutput(dataScript, 1000);
-  }
-
-  if (network.forkName && network.forkName === 'btg') {
-    tx.enableBitcoinGold(true);
-    tx.setVersion(2);
-  } else if (network.forkName && network.forkName === 'bch') {
-    tx.enableBitcoinCash(true);
-    tx.setVersion(2);
-  } else if (network.sapling) {
-    var versionNum = void 0;
-
-    if (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight || network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) {
-      versionNum = 4;
-    } else {
-      versionNum = 1;
+      tx.addOutput(sendTo, Number(spendValue));
     }
 
-    if (versionNum) {
-      tx.setVersion(versionNum);
+    if (changeValue > 0) {
+      if (network.isPoS) {
+        tx.addOutput(changeAddress, Number(changeValue), network);
+      } else {
+        tx.addOutput(changeAddress, Number(changeValue));
+      }
     }
-  }
 
-  if (network.kmdInterest) {
-    var _locktime = Math.floor(Date.now() / 1000) - 777;
-    tx.setLockTime(_locktime);
+    if (options && options.opreturn) {
+      var _data = Buffer.from(opreturn, 'utf8');
+      var dataScript = bitcoin.script.nullData.output.encode(_data);
+
+      tx.addOutput(dataScript, 1000);
+    }
+
+    if (network.forkName && network.forkName === 'btg') {
+      tx.enableBitcoinGold(true);
+      tx.setVersion(2);
+    } else if (network.forkName && network.forkName === 'bch') {
+      tx.enableBitcoinCash(true);
+      tx.setVersion(2);
+    } else if (network.sapling) {
+      var versionNum = void 0;
+
+      if (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight || network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) {
+        versionNum = 4;
+      } else {
+        versionNum = 1;
+      }
+
+      if (versionNum) {
+        tx.setVersion(versionNum);
+      }
+    }
+
+    if (network.kmdInterest) {
+      var _locktime = Math.floor(Date.now() / 1000) - 777;
+      tx.setLockTime(_locktime);
+    }
   }
 
   if (!options || options && !options.unsigned) {
@@ -93,13 +104,21 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
         var hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
         tx.sign(_i, btcFork.keyPair, null, hashType, utxo[_i].value);
       } else if (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp || network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight) {
-        tx.sign(_i, key, '', null, utxo[_i].value);
+        if (options.multisig) {
+          tx.sign(_i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, utxo[_i].value);
+        } else {
+          tx.sign(_i, key, '', null, utxo[_i].value);
+        }
       } else {
         tx.sign(_i, key);
       }
     }
 
-    return tx.build().toHex();
+    if (options.multisig && options.multisig.creator) {
+      return tx.buildIncomplete().toHex();
+    } else {
+      return tx.build().toHex();
+    }
   } else {
     return tx.buildIncomplete().toHex();
   }
@@ -275,6 +294,7 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
       utxoVerified: utxoVerified
     };
   }
+
   return 'no valid utxos';
 };
 

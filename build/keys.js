@@ -306,6 +306,27 @@ var seedToPriv = function seedToPriv(string, dest) {
   return string;
 };
 
+// pubKeys - array containing pub key hash hex
+// note: likely won't work for PoS lib
+var msigAddress = function msigAddress(NofN, pubKeys, network) {
+  if (!pubKeys || pubKeys.length < NofN) {
+    throw 'Error pubKeys length is less than NofN';
+  } else {
+    var _pubKeys = pubKeys.map(function (hex) {
+      return Buffer.from(hex, 'hex');
+    });
+    var redeemScript = bitcoin.script.multisig.output.encode(NofN, _pubKeys);
+    var scriptPubKey = bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(redeemScript));
+    var address = network ? bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
+
+    return {
+      address: address,
+      redeemScript: redeemScript.toString('hex'),
+      scriptPubKey: scriptPubKey.toString('hex')
+    };
+  }
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -318,5 +339,6 @@ module.exports = {
   xpub: xpub,
   btcToEthPriv: btcToEthPriv,
   ethToBtcWif: ethToBtcWif,
-  seedToPriv: seedToPriv
+  seedToPriv: seedToPriv,
+  msigAddress: msigAddress
 };

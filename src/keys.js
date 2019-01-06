@@ -319,7 +319,11 @@ const msigAddress = (NofN, pubKeys, network) => {
     const scriptPubKey = bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(redeemScript));
     const address = network ? bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
 
-    return address;
+    return {
+      address,
+      redeemScript: redeemScript.toString('hex'),
+      scriptPubKey: scriptPubKey.toString('hex'),
+    };
   }
 }
 
