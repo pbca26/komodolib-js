@@ -83,7 +83,7 @@ const stringToWif = (string, network, iguana) => {
       pub: string,
     };
   }
-  
+
   try {
     bs58check.decode(string);
     isWif = true;
@@ -307,6 +307,22 @@ const seedToPriv = (string, dest) => {
   return string;
 };
 
+// pubKeys - array containing pub key hash hex
+// note: likely won't work for PoS lib
+const msigAddress = (NofN, pubKeys, network) => {
+  if (!pubKeys ||
+      pubKeys.length < NofN) {
+    throw('Error pubKeys length is less than NofN');
+  } else {
+    const _pubKeys = pubKeys.map((hex) => Buffer.from(hex, 'hex'));
+    const redeemScript = bitcoin.script.multisig.output.encode(NofN, _pubKeys);
+    const scriptPubKey = bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(redeemScript));
+    const address = network ? bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
+
+    return address;
+  }
+}
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -320,4 +336,5 @@ module.exports = {
   btcToEthPriv,
   ethToBtcWif,
   seedToPriv,
+  msigAddress,
 };
