@@ -327,6 +327,10 @@ const msigAddress = (NofN, pubKeys, network) => {
   }
 }
 
+const msigPubAddress = (scriptPubKey, network) => {
+  return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -341,4 +345,5 @@ module.exports = {
   ethToBtcWif,
   seedToPriv,
   msigAddress,
+  msigPubAddress,
 };

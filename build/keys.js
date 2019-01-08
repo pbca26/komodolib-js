@@ -327,6 +327,10 @@ var msigAddress = function msigAddress(NofN, pubKeys, network) {
   }
 };
 
+var msigPubAddress = function msigPubAddress(scriptPubKey, network) {
+  return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -340,5 +344,6 @@ module.exports = {
   btcToEthPriv: btcToEthPriv,
   ethToBtcWif: ethToBtcWif,
   seedToPriv: seedToPriv,
-  msigAddress: msigAddress
+  msigAddress: msigAddress,
+  msigPubAddress: msigPubAddress
 };
