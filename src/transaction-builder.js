@@ -21,7 +21,7 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     ((network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
     (network.saplingActivationHeight && utxo[0].currentHeight > network.saplingActivationHeight))
   ) {    
-    tx = !options.multisig || (options.multisig && options.multisig.creator) ? new bitcoinZcashSapling.TransactionBuilder(network) : new bitcoinZcashSapling.TransactionBuilder.fromTransaction(bitcoinZcashSapling.Transaction.fromHex(options.multisig.rawtx, network), network);
+    tx = !options || (options && !options.multisig) || (options && options.multisig && options.multisig.creator) ? new bitcoinZcashSapling.TransactionBuilder(network) : new bitcoinZcashSapling.TransactionBuilder.fromTransaction(bitcoinZcashSapling.Transaction.fromHex(options.multisig.rawtx, network), network);
   } else if (network.isPoS) {
     // TODO
     tx = new bitcoinPos.TransactionBuilder(network);
@@ -35,26 +35,29 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       spk: bitcoinJSForks.script.pubKeyHash.output.encode(bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer())),
     };
   } else {
-    tx = !options.multisig || (options.multisig && options.multisig.creator) ? new bitcoin.TransactionBuilder(network) : new bitcoin.TransactionBuilder.fromTransaction(bitcoin.Transaction.fromHex(options.multisig.rawtx, network), network);
+    tx = !options || (options && !options.multisig) || (options && options.multisig && options.multisig.creator) ? new bitcoin.TransactionBuilder(network) : new bitcoin.TransactionBuilder.fromTransaction(bitcoin.Transaction.fromHex(options.multisig.rawtx, network), network);
   }
 
   for (let i = 0; i < utxo.length; i++) {
     if (network.isBtcFork) {
       tx.addInput(utxo[i].txid, utxo[i].vout, bitcoinJSForks.Transaction.DEFAULT_SEQUENCE, btcFork.spk);
     } else {
-      if (options.multisig &&
+      if (options &&
+          options.multisig &&
           options.multisig.creator) {
         tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, new Buffer.from(options.multisig.scriptPubKey, 'hex'));
       }
 
-      if (!options.multisig) {
+      if (!options ||
+          (options && !options.multisig)) {
         tx.addInput(utxo[i].txid, utxo[i].vout);
       }
     }
   }
 
-  if (!options.multisig ||
-      (options.multisig && options.multisig.creator)) {
+  if (!options ||
+      (options && !options.multisig) ||
+      (options && options.multisig && options.multisig.creator)) {
     if (network.isPoS) {
       tx.addOutput(sendTo, Number(spendValue), network);
     } else {
@@ -119,7 +122,8 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       } else if (
         (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
         (network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)) {
-        if (options.multisig) {
+        if (options &&
+            options.multisig) {
           tx.sign(i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, utxo[i].value);
         } else {
           tx.sign(i, key, '', null, utxo[i].value);
@@ -129,8 +133,8 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       }
     }
 
-    if (options.multisig &&
-        options.multisig.creator) {
+    if ((options && options.multisig && options.multisig.creator) ||
+        (options && options.multisig && options.multisig.incomplete)) {
       return tx.buildIncomplete().toHex();
     } else {
       return tx.build().toHex();
