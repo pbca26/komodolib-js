@@ -133,8 +133,9 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       }
     }
 
-    if ((options && options.multisig && options.multisig.creator) ||
-        (options && options.multisig && options.multisig.incomplete)) {
+    if (options &&
+        options.multisig &&
+        options.multisig.incomplete) {
       return tx.buildIncomplete().toHex();
     } else {
       return tx.build().toHex();
