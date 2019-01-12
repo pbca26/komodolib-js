@@ -331,6 +331,15 @@ var msigPubAddress = function msigPubAddress(scriptPubKey, network) {
   return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
 };
 
+// ref: https://github.com/bitcoinjs/bitcoinjs-lib/issues/990
+var pubToElectrumScriptHashHex = function pubToElectrumScriptHashHex(address, network) {
+  var script = network ? network.isZcash ? bitcoinZcash.address.toOutputScript(address, network) : bitcoin.address.toOutputScript(address, network) : bitcoin.address.toOutputScript(address);
+  var hash = bitcoin.crypto.sha256(script);
+  var reversedHash = new Buffer(hash.reverse());
+
+  return reversedHash.toString('hex');
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -345,5 +354,6 @@ module.exports = {
   ethToBtcWif: ethToBtcWif,
   seedToPriv: seedToPriv,
   msigAddress: msigAddress,
-  msigPubAddress: msigPubAddress
+  msigPubAddress: msigPubAddress,
+  pubToElectrumScriptHashHex: pubToElectrumScriptHashHex
 };
