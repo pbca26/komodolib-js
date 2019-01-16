@@ -326,6 +326,24 @@ const multisigGenerate = (NofN, pubKeys, network) => {
   }
 }
 
+const redeemScriptToPubAddress = (scriptPubKey, network) => {
+  return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
+};
+
+const decodeRedeemScript = (redeemScript, options) => {
+  let decodedRedeemScript = options && options.network && options.network.isZcash ? bitcoinZcash.script.multisig.output.decode(Buffer.from(redeemScript, 'hex')) : bitcoin.script.multisig.output.decode(Buffer.from(redeemScript, 'hex'));
+
+  if (options.toHex) {
+    const _pubKeys = decodedRedeemScript.pubKeys;
+
+    for (let i = 0; i < _pubKeys.length; i++) {
+      decodedRedeemScript.pubKeys[i] = decodedRedeemScript.pubKeys[i].toString('hex');
+    }
+  }
+
+  return decodedRedeemScript;
+};
+
 // ref: https://github.com/bitcoinjs/bitcoinjs-lib/issues/990
 const pubToElectrumScriptHashHex = (address, network) => {
   const script = network ? network.isZcash ? bitcoinZcash.address.toOutputScript(address, network) : bitcoin.address.toOutputScript(address, network) : bitcoin.address.toOutputScript(address);
@@ -351,6 +369,7 @@ module.exports = {
   multisig: {
     generate: multisigGenerate,
     redeemScriptToPubAddress,
+    decodeRedeemScript,
   },
   pubToElectrumScriptHashHex,
 };
