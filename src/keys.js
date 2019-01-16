@@ -309,7 +309,7 @@ const seedToPriv = (string, dest) => {
 
 // pubKeys - array containing pub key hash hex
 // note: likely won't work for PoS lib
-const msigAddress = (NofN, pubKeys, network) => {
+const multisigGenerate = (NofN, pubKeys, network) => {
   if (!pubKeys ||
       pubKeys.length < NofN) {
     throw('Error pubKeys length is less than NofN');
@@ -322,14 +322,9 @@ const msigAddress = (NofN, pubKeys, network) => {
     return {
       address,
       redeemScript: redeemScript.toString('hex'),
-      scriptPubKey: scriptPubKey.toString('hex'),
     };
   }
 }
-
-const msigPubAddress = (scriptPubKey, network) => {
-  return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
-};
 
 // ref: https://github.com/bitcoinjs/bitcoinjs-lib/issues/990
 const pubToElectrumScriptHashHex = (address, network) => {
@@ -353,7 +348,9 @@ module.exports = {
   btcToEthPriv,
   ethToBtcWif,
   seedToPriv,
-  msigAddress,
-  msigPubAddress,
+  multisig: {
+    generate: multisigGenerate,
+    redeemScriptToPubAddress,
+  },
   pubToElectrumScriptHashHex,
 };
