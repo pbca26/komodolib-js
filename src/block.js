@@ -3,7 +3,7 @@ const bitcoin = require('bitcoinjs-lib');
 const bitcoinPos = require('bitcoinjs-lib-pos');
 
 const parseBlock = (hex, network) => {
-  const block = network && network.isZcash ? bitcoinZcash.Block.fromBuffer(new Buffer.from(hex, 'hex')) : bitcoin.Block.fromBuffer(new Buffer.from(hex, 'hex'));
+  const block = network && network.isZcash ? bitcoinZcash.Block.fromBuffer(new Buffer.from(hex, 'hex'), network, true) : bitcoin.Block.fromBuffer(new Buffer.from(hex, 'hex'));
   return block;
 };
 
