@@ -99,7 +99,7 @@ const explorerList = {
   BTC: 'https://blockchain.info',
   HUSH: 'https://explorer.myhush.org',
   PIZZA: 'http://pizza.komodochainz.info',
-  BEER: 'http://beer.komodochainz.info',
+  BEER: 'https://beer.kmdexplorer.io',
   NINJA: 'https://ninja.kmdexplorer.io',
   VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
