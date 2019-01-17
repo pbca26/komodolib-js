@@ -353,6 +353,25 @@ var pubToElectrumScriptHashHex = function pubToElectrumScriptHashHex(address, ne
   return reversedHash.toString('hex');
 };
 
+var getAddressVersion = function getAddressVersion(address) {
+  try {
+    var _b58check = bitcoinZcash.address.fromBase58Check(address);
+    var _items = [];
+
+    for (var _key2 in bitcoinjsNetworks) {
+      if (_b58check.version === bitcoinjsNetworks[_key2].pubKeyHash || _b58check.version === bitcoinjsNetworks[_key2].scriptHash) {
+        if (_key2 !== 'vrsc' && _key2 !== 'komodo') {
+          _items.push(_key2);
+        }
+      }
+    }
+
+    return _items.length ? { coins: _items, version: _b58check.version } : 'Unknown or invalid pub address';
+  } catch (e) {
+    return 'Invalid pub address';
+  }
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -371,5 +390,6 @@ module.exports = {
     redeemScriptToPubAddress: redeemScriptToPubAddress,
     decodeRedeemScript: decodeRedeemScript
   },
-  pubToElectrumScriptHashHex: pubToElectrumScriptHashHex
+  pubToElectrumScriptHashHex: pubToElectrumScriptHashHex,
+  getAddressVersion: getAddressVersion
 };

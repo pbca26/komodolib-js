@@ -353,6 +353,27 @@ const pubToElectrumScriptHashHex = (address, network) => {
   return reversedHash.toString('hex');
 };
 
+const getAddressVersion = (address) => {
+  try {
+    const _b58check = bitcoinZcash.address.fromBase58Check(address);
+    let _items = [];
+
+    for (let key in bitcoinjsNetworks) {
+      if (_b58check.version === bitcoinjsNetworks[key].pubKeyHash ||
+          _b58check.version === bitcoinjsNetworks[key].scriptHash) {
+        if (key !== 'vrsc' &&
+            key !== 'komodo') {
+          _items.push(key);
+        }
+      }
+    }
+
+    return _items.length ? { coins: _items, version: _b58check.version } : 'Unknown or invalid pub address';
+  } catch (e) {
+    return 'Invalid pub address';
+  }
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -372,4 +393,5 @@ module.exports = {
     decodeRedeemScript,
   },
   pubToElectrumScriptHashHex,
+  getAddressVersion,
 };
