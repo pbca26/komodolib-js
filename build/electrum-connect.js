@@ -91,8 +91,8 @@ var createRecursiveParser = function createRecursiveParser(maxDepth, delimiter) 
 var createPromiseResult = function createPromiseResult(resolve, reject) {
   return function (err, result) {
     if (err) {
-      console.log('electrum error:');
-      console.log(err);
+      // console.log('electrum error:');
+      // console.log(err);
       resolve(err);
       // reject(err);
     } else {
@@ -193,6 +193,7 @@ var Client = function () {
     this.id = 0;
     this.port = port;
     this.host = host;
+    this.protocolVersion = null;
     this.callbackMessageQueue = {};
     this.subscribe = new EventEmitter();
     this.conn = initSocket(this, protocol, options);
@@ -203,6 +204,11 @@ var Client = function () {
   }
 
   _createClass(Client, [{
+    key: 'setProtocolVersion',
+    value: function setProtocolVersion(version) {
+      this.protocolVersion = version;
+    }
+  }, {
     key: 'connect',
     value: function connect() {
       var _this2 = this;
@@ -358,13 +364,13 @@ var ElectrumConnect = function (_Client) {
     }
   }, {
     key: 'blockchainAddressGetBalance',
-    value: function blockchainAddressGetBalance(address) {
-      return this.request('blockchain.address.get_balance', [address]);
+    value: function blockchainAddressGetBalance(str) {
+      return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.scripthash.get_balance' : 'blockchain.address.get_balance', [str]);
     }
   }, {
     key: 'blockchainAddressGetHistory',
-    value: function blockchainAddressGetHistory(address) {
-      return this.request('blockchain.address.get_history', [address]);
+    value: function blockchainAddressGetHistory(str) {
+      return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.scripthash.get_history' : 'blockchain.address.get_history', [str]);
     }
   }, {
     key: 'blockchainAddressGetMempool',
@@ -373,13 +379,13 @@ var ElectrumConnect = function (_Client) {
     }
   }, {
     key: 'blockchainAddressListunspent',
-    value: function blockchainAddressListunspent(address) {
-      return this.request('blockchain.address.listunspent', [address]);
+    value: function blockchainAddressListunspent(str) {
+      return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.scripthash.listunspent' : 'blockchain.address.listunspent', [str]);
     }
   }, {
     key: 'blockchainBlockGetHeader',
     value: function blockchainBlockGetHeader(height) {
-      return this.request('blockchain.block.get_header', [height]);
+      return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.block.header' : 'blockchain.block.get_header', [height]);
     }
   }, {
     key: 'blockchainBlockGetChunk',
@@ -414,7 +420,7 @@ var ElectrumConnect = function (_Client) {
   }, {
     key: 'blockchainTransactionGet',
     value: function blockchainTransactionGet(tx_hash, height) {
-      return this.request('blockchain.transaction.get', [tx_hash, height]);
+      return this.request('blockchain.transaction.get', height ? [tx_hash, height] : [tx_hash]);
     }
   }, {
     key: 'blockchainTransactionGetMerkle',
