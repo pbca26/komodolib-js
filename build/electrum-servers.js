@@ -1,6 +1,7 @@
 'use strict';
 
 var fees = require('./fees');
+var dpowCoins = require('./electrum-servers-dpow');
 
 // TODO: add a script to sync electrum severs list from https://github.com/jl777/coins/tree/master/electrums
 
@@ -144,6 +145,10 @@ for (var key in _electrumServers) {
     txfee: fees[key] ? fees[key] : 0,
     serverList: _electrumServers[key]
   };
+
+  if (dpowCoins.indexOf(key.toUpperCase()) > -1) {
+    electrumServers[key].dpowConfs = true;
+  }
 }
 
 module.exports = electrumServers;
