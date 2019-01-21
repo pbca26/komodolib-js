@@ -167,6 +167,12 @@ const electrumServers = {
       'el1.vrsc.0x03.services:10000:tcp'
     ],
   },
+  verustest: {
+    txfee: 10000,
+    serverList: [
+      'veruscoin-dev.0x03.services:11000:tcp',
+    ],
+  },
   beer: {
     txfee: 10000,
     serverList: [
@@ -291,11 +297,11 @@ const electrumServers = {
     serverList: [
       'electrum1.cipig.net:10000:tcp',
       'electrum2.cipig.net:10000:tcp',
-      'mooo.not.fyi:50011:tcp',
+      //'mooo.not.fyi:50011:tcp',
       'e-x.not.fyi:50001:tcp',
       'vps.hsmiths.com:50001:tcp',
       'us.electrum.be:50001:tcp',
-      'electrumx.bot.nu:50001:tcp',
+      //'electrumx.bot.nu:50001:tcp',
       'btc.asis.io:50001:tcp',
       'electrum.backplanedns.org:50001:tcp',
       'electrum.festivaldelhumor.org:50001:tcp'
