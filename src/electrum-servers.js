@@ -297,11 +297,11 @@ const electrumServers = {
     serverList: [
       'electrum1.cipig.net:10000:tcp',
       'electrum2.cipig.net:10000:tcp',
-      'mooo.not.fyi:50011:tcp',
+      //'mooo.not.fyi:50011:tcp',
       'e-x.not.fyi:50001:tcp',
       'vps.hsmiths.com:50001:tcp',
       'us.electrum.be:50001:tcp',
-      'electrumx.bot.nu:50001:tcp',
+      //'electrumx.bot.nu:50001:tcp',
       'btc.asis.io:50001:tcp',
       'electrum.backplanedns.org:50001:tcp',
       'electrum.festivaldelhumor.org:50001:tcp'
