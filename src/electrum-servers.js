@@ -501,6 +501,10 @@ let _electrumServers = {
     '51.158.74.137:50001:tcp',
     'electrum.komodochainz.info:50041:tcp',
   ],
+  ksb: [
+    '51.158.74.137:50002:tcp',
+    'electrum.komodochainz.info:50042:tcp',
+  ],
 };
 
 let electrumServers = {};
