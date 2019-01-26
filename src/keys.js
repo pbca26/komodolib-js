@@ -374,6 +374,11 @@ const getAddressVersion = (address) => {
   }
 };
 
+const pubToPub = (address, networkSrc, networkDest) => {
+  const script = networkSrc ? networkSrc.isZcash ? bitcoinZcash.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address);
+  return networkDest ? networkDest.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'));
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -394,4 +399,5 @@ module.exports = {
   },
   pubToElectrumScriptHashHex,
   getAddressVersion,
+  pubToPub,
 };

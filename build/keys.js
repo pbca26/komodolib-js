@@ -372,6 +372,11 @@ var getAddressVersion = function getAddressVersion(address) {
   }
 };
 
+var pubToPub = function pubToPub(address, networkSrc, networkDest) {
+  var script = networkSrc ? networkSrc.isZcash ? bitcoinZcash.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address);
+  return networkDest ? networkDest.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'));
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -391,5 +396,6 @@ module.exports = {
     decodeRedeemScript: decodeRedeemScript
   },
   pubToElectrumScriptHashHex: pubToElectrumScriptHashHex,
-  getAddressVersion: getAddressVersion
+  getAddressVersion: getAddressVersion,
+  pubToPub: pubToPub
 };
