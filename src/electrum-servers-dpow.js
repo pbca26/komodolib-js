@@ -22,11 +22,8 @@ const dpowCoins = [
   'AXO',
   'ETOMIC',
   'BTCH',
-  'BEER',
-  'PIZZA',
   'OOT',
   'NINJA',
-  'VOTE2018',
   'GLXT',
   'EQL',
   'BNTN',
@@ -43,8 +40,7 @@ const dpowCoins = [
   'KMDICE',
   'PTX',
   'ZEX',
-  'SPLTEST',
-  'LUMBER',
+  'OUR',
 ];
 
 module.exports = dpowCoins;
