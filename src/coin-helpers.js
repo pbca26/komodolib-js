@@ -66,6 +66,7 @@ const explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
   DION: 'https://explorer.dionpay.com',
+  KOIN: 'http://live.block.koinon.cloud',
   PTX: 'http://explorer1.patenttx.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
