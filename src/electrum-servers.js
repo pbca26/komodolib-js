@@ -24,6 +24,10 @@ let _electrumServers = {
     'electrum1.prlpay.com:9681:tcp',
     'electrum2.prlpay.com:9681:tcp',
   ],
+  koin: [
+    'dalian.koinon.cloud:50001:tcp',
+    'sumba.koinon.cloud:50001:tcp',
+  ],
   pgt: [
     'agama.komodo.build:10002:tcp',
     'agama2.komodo.build:10002:tcp',
