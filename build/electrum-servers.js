@@ -11,6 +11,7 @@ var _electrumServers = {
   ptx: ['electrum1.patenttx.com:18081:tcp', 'electrum2.patenttx.com:18081:tcp'],
   zilla: ['electrum1.cipig.net:10028:tcp', 'electrum2.cipig.net:10028:tcp'],
   prlpay: ['electrum1.prlpay.com:9681:tcp', 'electrum2.prlpay.com:9681:tcp'],
+  koin: ['dalian.koinon.cloud:50001:tcp', 'sumba.koinon.cloud:50001:tcp'],
   pgt: ['agama.komodo.build:10002:tcp', 'agama2.komodo.build:10002:tcp'],
   kv: ['electrum1.cipig.net:10016:tcp', 'electrum2.cipig.net:10016:tcp'],
   bntn: ['electrum1.cipig.net:10026:tcp', 'electrum2.cipig.net:10026:tcp'],
