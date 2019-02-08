@@ -324,6 +324,7 @@ const multisigGenerate = (NofN, pubKeys, network) => {
 
     return {
       address,
+      scriptPubKey: scriptPubKey.toString('hex'),
       redeemScript: redeemScript.toString('hex'),
     };
   }

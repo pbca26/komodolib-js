@@ -321,6 +321,7 @@ var multisigGenerate = function multisigGenerate(NofN, pubKeys, network) {
 
     return {
       address: address,
+      scriptPubKey: scriptPubKey.toString('hex'),
       redeemScript: redeemScript.toString('hex')
     };
   }
