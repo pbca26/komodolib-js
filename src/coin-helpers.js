@@ -1,6 +1,7 @@
 const _komodoAssetChains = [
   'PIRATE',
   'CCL',
+  'LUMBER',
   'KMDICE',
   'MGNX',
   'DION',
@@ -152,7 +153,8 @@ const explorerList = {
   MGNX: 'http://mgnx.explorer.dexstats.info',
   DION: 'https://explorer.dionpay.com',
   PTX: 'https://veruscoin.io/explorernotfound',
-  ZEX: 'https://veruscoin.io/explorernotfound'
+  ZEX: 'https://veruscoin.io/explorernotfound',
+  LUMBER: 'https://explorer2.lumberscout.io/'
 };
 
 const explorerListExt = {
