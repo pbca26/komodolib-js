@@ -1,17 +1,26 @@
 const bitcoinMessage = require('bitcoinjs-message');
 const wif = require('wif');
 const ethers = require('ethers');
+const bitcoreMessage = require('bitcore-message'); // zcash
+const bitcoreZcash = require('bitcore-lib-zcash'); // zcash
 
-const signBTC = (_wif, message) => {
-  const keyPair = wif.decode(_wif);
+const signBTC = (wifString, message, isZcash) => {
+  let signature;
+
+  if (isZcash) {
+    const key = bitcoreZcash.PrivateKey.fromWIF(wifString);
+    signature = bitcoreMessage(message).sign(key);
+  } else {
+    const keyPair = wif.decode(wifString);
+    signature = bitcoinMessage.sign(message, keyPair.privateKey, keyPair.compressed);
+  }
   
-  const signature = bitcoinMessage.sign(message, keyPair.privateKey, keyPair.compressed);
   return signature.toString('base64');
 };
 
-const verifyBTC = (address, message, sig) => {
+const verifyBTC = (address, message, sig, isZcash) => {
   try {
-    return bitcoinMessage.verify(message, address, sig);
+    return isZcash ? bitcoreMessage(message).verify(address, sig) : bitcoinMessage.verify(message, address, sig);
   } catch (e) {
     return false;
   };
