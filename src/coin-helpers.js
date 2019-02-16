@@ -1,7 +1,6 @@
 const _komodoAssetChains = [
   'PIRATE',
   'CCL',
-  'LUMBER',
   'KMDICE',
   'MGNX',
   'DION',
@@ -28,18 +27,14 @@ const _komodoAssetChains = [
   'AXO',
   'ETOMIC',
   'BTCH',
-  //'BEER',
-  //'PIZZA',
   'OOT',
   'NINJA',
-  //'VOTE2018',
   'GLXT',
   'EQL',
   'BNTN',
   'PRLPAY',
   'CHAIN',
   'ZILLA',
-  //'DSEC', Don't have name for DSEC
   'VRSC',
 ];
 
@@ -154,7 +149,6 @@ const explorerList = {
   DION: 'https://explorer.dionpay.com',
   PTX: 'https://veruscoin.io/explorernotfound',
   ZEX: 'https://veruscoin.io/explorernotfound',
-  LUMBER: 'https://explorer2.lumberscout.io/'
 };
 
 const explorerListExt = {
