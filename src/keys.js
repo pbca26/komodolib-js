@@ -29,7 +29,8 @@ const addressVersionCheck = (network, address) => {
 const wifToWif = (wif, network) => {
   let key;
 
-  if (network.isZcash) {
+  if (network &&
+      network.isZcash) {
     key = new bitcoinZcash.ECPair.fromWIF(wif, network, true);
   } else {
     key = new bitcoin.ECPair.fromWIF(wif, network, true);
@@ -55,7 +56,8 @@ const seedToWif = (seed, network, iguana) => {
   const d = bigi.fromBuffer(bytes);
   let keyPair;
 
-  if (network.isZcash) {
+  if (network &&
+      network.isZcash) {
     keyPair = new bitcoinZcash.ECPair(d, null, { network });
   } else {
     keyPair = new bitcoin.ECPair(d, null, { network });
@@ -91,7 +93,8 @@ const stringToWif = (string, network, iguana) => {
 
   if (isWif) {
     try {
-      if (network.isZcash) {
+      if (network &&
+          network.isZcash) {
         key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
       } else {
         key = new bitcoin.ECPair.fromWIF(string, network, true);
@@ -321,6 +324,7 @@ const multisigGenerate = (NofN, pubKeys, network) => {
 
     return {
       address,
+      scriptPubKey: scriptPubKey.toString('hex'),
       redeemScript: redeemScript.toString('hex'),
     };
   }
@@ -374,6 +378,11 @@ const getAddressVersion = (address) => {
   }
 };
 
+const pubToPub = (address, networkSrc, networkDest) => {
+  const script = networkSrc ? networkSrc.isZcash ? bitcoinZcash.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address);
+  return networkDest ? networkDest.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'));
+};
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -394,4 +403,5 @@ module.exports = {
   },
   pubToElectrumScriptHashHex,
   getAddressVersion,
+  pubToPub,
 };

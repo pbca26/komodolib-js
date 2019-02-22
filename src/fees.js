@@ -49,6 +49,7 @@ const fees = {
   lumber: KMD_STD_FEE,
   ksb: KMD_STD_FEE,
   our: KMD_STD_FEE,
+  koin: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,

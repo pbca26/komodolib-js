@@ -68,6 +68,7 @@ const explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
   DION: 'https://explorer.dionpay.com',
+  KOIN: 'http://live.block.koinon.cloud',
   PTX: 'http://explorer1.patenttx.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
@@ -106,7 +107,6 @@ const explorerList = {
   VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
   VRSC: 'https://explorer.veruscoin.io',
-  KOIN: 'http://live.block.koinon.li/',
   DION: 'https://explorer.dionpay.com',
   KMDICE: 'http://kmdice.explorer.dexstats.info',
   PTX: 'http://explorer1.patenttx.com',

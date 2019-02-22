@@ -76,8 +76,8 @@ const createRecursiveParser = (maxDepth, delimiter) => {
 
 const createPromiseResult = (resolve, reject) => (err, result) => {
   if (err) {
-    console.log('electrum error:');
-    console.log(err);
+    // console.log('electrum error:');
+    // console.log(err);
     resolve(err);
     // reject(err);
   } else {
@@ -163,6 +163,7 @@ class Client {
     this.id = 0;
     this.port = port;
     this.host = host;
+    this.protocolVersion = null;
     this.callbackMessageQueue = {};
     this.subscribe = new EventEmitter();
     this.conn = initSocket(this, protocol, options);
@@ -170,6 +171,10 @@ class Client {
       this.onMessage(body, n);
     });
     this.status = 0;
+  }
+
+  setProtocolVersion(version) {
+    this.protocolVersion = version;
   }
 
   connect() {
@@ -297,24 +302,24 @@ class ElectrumConnect extends Client {
     return this.request('server.peers.subscribe', []);
   }
 
-  blockchainAddressGetBalance(address) {
-    return this.request('blockchain.address.get_balance', [address]);
+  blockchainAddressGetBalance(str) {
+    return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.scripthash.get_balance' : 'blockchain.address.get_balance', [str]);
   }
 
-  blockchainAddressGetHistory(address) {
-    return this.request('blockchain.address.get_history', [address]);
+  blockchainAddressGetHistory(str) {
+    return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.scripthash.get_history' : 'blockchain.address.get_history', [str]);
   }
 
   blockchainAddressGetMempool(address) {
     return this.request('blockchain.address.get_mempool', [address]);
   }
 
-  blockchainAddressListunspent(address) {
-    return this.request('blockchain.address.listunspent', [address]);
+  blockchainAddressListunspent(str) {
+    return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.scripthash.listunspent' : 'blockchain.address.listunspent', [str]);
   }
 
   blockchainBlockGetHeader(height) {
-    return this.request('blockchain.block.get_header', [height]);
+    return this.request(this.protocolVersion && this.protocolVersion === '1.4' ? 'blockchain.block.header' : 'blockchain.block.get_header', [height]);
   }
 
   blockchainBlockGetChunk(index) {
@@ -342,7 +347,7 @@ class ElectrumConnect extends Client {
   }
 
   blockchainTransactionGet(tx_hash, height) {
-    return this.request('blockchain.transaction.get', [tx_hash, height]);
+    return this.request('blockchain.transaction.get', height ? [tx_hash, height] : [tx_hash]);
   }
 
   blockchainTransactionGetMerkle(tx_hash, height) {

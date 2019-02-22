@@ -2131,6 +2131,15 @@ var networks = (_networks = {
   pubKeyHash: 0x3A,
   scriptHash: 0x78,
   wif: 0x1
+}), _defineProperty(_networks, 'gin', {
+  messagePrefix: '\x18GinCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4
+  },
+  pubKeyHash: 0x26,
+  scriptHash: 0xA,
+  wif: 0xC6
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,

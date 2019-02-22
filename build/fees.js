@@ -49,6 +49,7 @@ var fees = {
   ptx: KMD_STD_FEE,
   spltest: KMD_STD_FEE,
   lumber: KMD_STD_FEE,
+  koin: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,

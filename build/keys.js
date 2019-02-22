@@ -30,7 +30,7 @@ var addressVersionCheck = function addressVersionCheck(network, address) {
 var wifToWif = function wifToWif(wif, network) {
   var key = void 0;
 
-  if (network.isZcash) {
+  if (network && network.isZcash) {
     key = new bitcoinZcash.ECPair.fromWIF(wif, network, true);
   } else {
     key = new bitcoin.ECPair.fromWIF(wif, network, true);
@@ -56,7 +56,7 @@ var seedToWif = function seedToWif(seed, network, iguana) {
   var d = bigi.fromBuffer(bytes);
   var keyPair = void 0;
 
-  if (network.isZcash) {
+  if (network && network.isZcash) {
     keyPair = new bitcoinZcash.ECPair(d, null, { network: network });
   } else {
     keyPair = new bitcoin.ECPair(d, null, { network: network });
@@ -92,7 +92,7 @@ var stringToWif = function stringToWif(string, network, iguana) {
 
   if (isWif) {
     try {
-      if (network.isZcash) {
+      if (network && network.isZcash) {
         key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
       } else {
         key = new bitcoin.ECPair.fromWIF(string, network, true);
@@ -321,6 +321,7 @@ var multisigGenerate = function multisigGenerate(NofN, pubKeys, network) {
 
     return {
       address: address,
+      scriptPubKey: scriptPubKey.toString('hex'),
       redeemScript: redeemScript.toString('hex')
     };
   }
@@ -372,6 +373,11 @@ var getAddressVersion = function getAddressVersion(address) {
   }
 };
 
+var pubToPub = function pubToPub(address, networkSrc, networkDest) {
+  var script = networkSrc ? networkSrc.isZcash ? bitcoinZcash.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address, networkSrc) : bitcoin.address.toOutputScript(address);
+  return networkDest ? networkDest.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'));
+};
+
 module.exports = {
   bip39Search: bip39Search,
   addressVersionCheck: addressVersionCheck,
@@ -391,5 +397,6 @@ module.exports = {
     decodeRedeemScript: decodeRedeemScript
   },
   pubToElectrumScriptHashHex: pubToElectrumScriptHashHex,
-  getAddressVersion: getAddressVersion
+  getAddressVersion: getAddressVersion,
+  pubToPub: pubToPub
 };
