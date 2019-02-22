@@ -44,6 +44,8 @@ const _komodoAssetChains = [
   'ZEX',
   'SPLTEST',
   'LUMBER',
+  'KSB',
+  'OUR',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -110,6 +112,8 @@ const explorerList = {
   PTX: 'http://explorer1.patenttx.com',
   ZEX: 'http://zex.explorer.dexstats.info',
   LUMBER: 'https://explorer.lumberscout.io',
+  KSB: 'http://ksb.explorer.dexstats.info',
+  OUR: 'http://our.explorer.dexstats.info',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
