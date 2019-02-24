@@ -136,7 +136,9 @@ var _electrumServers = {
   aywa: ['electrum1.getaywa.org:50001:tcp', 'electrum2.getaywa.org:50001:tcp'],
   xbc: ['electrumx1.bitcoinplus.org:50001:tcp', 'electrumx2.bitcoinplus.org:50001:tcp'],
   bbk: ['194.87.145.250:50050:ssl'],
-  uis: ['194.87.145.250:50040:ssl']
+  uis: ['194.87.145.250:50040:ssl'],
+  ksb: ['51.158.74.137:50001:tcp', 'electrum.komodochainz.info:50041:tcp'],
+  our: ['51.158.74.137:50002:tcp', 'electrum.komodochainz.info:50042:tcp']
 };
 
 var electrumServers = {};
