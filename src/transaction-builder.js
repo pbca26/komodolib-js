@@ -158,9 +158,9 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       utxoList[0] &&
       utxoList[0].txid) {
     const utxoListFormatted = [];
+    const interestClaimThreshold = 200;
     let totalInterest = 0;
     let totalInterestUTXOCount = 0;
-    const interestClaimThreshold = 200;
     let utxoVerified = true;
 
     for (let i = 0; i < utxoList.length; i++) {
@@ -181,6 +181,10 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
           value: Number(utxoList[i].amountSats || utxoList[i].value),
           verified: utxoList[i].verified ? utxoList[i].verified : false,
         };
+      }
+
+      if (utxoList[i].hasOwnProperty('dpowSecured')) {
+        _utxo.dpowSecured = utxoList[i].dpowSecured;
       }
 
       if (utxoList[i].currentHeight) {
