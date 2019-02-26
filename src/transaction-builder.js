@@ -230,6 +230,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     if (btcFee) {
       value = outputs[0].value;
     } else if (_change > 0) {
+      value = outputs[0].value + fee;
+    } else if (_change === 0) {
       value = outputs[0].value - fee;
     }
 
@@ -256,7 +258,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     if (value > _maxSpend) {
       return `Spend value is too large. Max available amount is ${Number(((_maxSpend * 0.00000001).toFixed(8)))}`;
     }
-    
+
     // account for KMD interest
     if (network.kmdInterest &&
         totalInterest > 0) {

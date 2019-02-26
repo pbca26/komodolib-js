@@ -204,6 +204,8 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     if (btcFee) {
       value = outputs[0].value;
     } else if (_change > 0) {
+      value = outputs[0].value + fee;
+    } else if (_change === 0) {
       value = outputs[0].value - fee;
     }
 
