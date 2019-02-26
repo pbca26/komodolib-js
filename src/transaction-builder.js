@@ -148,6 +148,7 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
 // TODO: merge sendmany
 const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
   const btcFee = fee.perbyte ? fee.value : null; // TODO: coin non specific switch static/dynamic fee
+  const inputValue = value;
 
   if (btcFee) {
     fee = 0;
@@ -255,11 +256,11 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     if (value > _maxSpend) {
       return `Spend value is too large. Max available amount is ${Number(((_maxSpend * 0.00000001).toFixed(8)))}`;
     }
+    
     // account for KMD interest
     if (network.kmdInterest &&
         totalInterest > 0) {
       // account for extra vout
-
       if ((_maxSpend - fee) === value) {
         _change = totalInterest - _change;
 
@@ -289,7 +290,13 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       vinSum += inputs[i].value;
     }
 
-    const _estimatedFee = vinSum - outputs[0].value - _change;
+    let voutSum = 0;
+    
+    for (let i = 0; i < outputs.length; i++) {
+      voutSum += outputs[i].value;
+    }
+
+    const _estimatedFee = vinSum - voutSum;
 
     // double check no extra fee is applied
     if ((vinSum - value - _change) > fee) {
@@ -309,6 +316,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       changeAddress,
       network,
       change: _change,
+      inputValue,
       value,
       inputs,
       outputs,
