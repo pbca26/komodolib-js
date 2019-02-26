@@ -140,30 +140,22 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     var utxoVerified = true;
 
     for (var i = 0; i < utxoList.length; i++) {
-      var _utxo = void 0;
+      var _utxo = {
+        txid: utxoList[i].txid,
+        vout: utxoList[i].vout,
+        value: Number(utxoList[i].amountSats || utxoList[i].value),
+        verified: utxoList[i].verified ? utxoList[i].verified : false
+      };
 
       if (network.kmdInterest) {
-        _utxo = {
-          txid: utxoList[i].txid,
-          vout: utxoList[i].vout,
-          value: Number(utxoList[i].amountSats || utxoList[i].value),
-          interestSats: Number(utxoList[i].interestSats || utxoList[i].interest || 0),
-          verified: utxoList[i].verified ? utxoList[i].verified : false
-        };
-      } else {
-        _utxo = {
-          txid: utxoList[i].txid,
-          vout: utxoList[i].vout,
-          value: Number(utxoList[i].amountSats || utxoList[i].value),
-          verified: utxoList[i].verified ? utxoList[i].verified : false
-        };
+        _utxo.interestSats = Number(utxoList[i].interestSats || utxoList[i].interest || 0);
       }
 
       if (utxoList[i].hasOwnProperty('dpowSecured')) {
         _utxo.dpowSecured = utxoList[i].dpowSecured;
       }
 
-      if (utxoList[i].currentHeight) {
+      if (utxoList[i].hasOwnProperty('currentHeight')) {
         _utxo.currentHeight = utxoList[i].currentHeight;
       }
 
