@@ -298,7 +298,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       voutSum += outputs[i].value;
     }
 
-    const _estimatedFee = vinSum - voutSum;
+    const _estimatedFee = vinSum - voutSum - totalInterest;
 
     // double check no extra fee is applied
     if ((vinSum - value - _change) > fee) {

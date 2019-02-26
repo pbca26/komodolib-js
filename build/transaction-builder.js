@@ -268,7 +268,7 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
       voutSum += outputs[_i5].value;
     }
 
-    var _estimatedFee = vinSum - voutSum;
+    var _estimatedFee = vinSum - voutSum - totalInterest;
 
     // double check no extra fee is applied
     if (vinSum - value - _change > fee) {
