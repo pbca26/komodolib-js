@@ -106,9 +106,9 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
         }
       }
     } else {
-      var _sent = { // reorder since tx sort by default is from newest to oldest
+      result = {
         type: 'sent',
-        amount: Number(_sum.inputs - _sum.outputs).toFixed(8),
+        amount: Number(isKomodo && _sum.inputs - _sum.outputs < 0 ? _total.outputs - _sum.outputs : _sum.inputs - _sum.outputs).toFixed(8),
         amountIn: Number(_sum.inputs).toFixed(8),
         amountOut: Number(_sum.outputs).toFixed(8),
         totalIn: Number(_total.inputs).toFixed(8),
@@ -121,41 +121,20 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
         from: _addresses.inputs,
         to: _addresses.outputs
       };
-      var _received = {
-        type: 'received',
-        amount: Number(_sum.outputs).toFixed(8),
-        amountIn: Number(_sum.inputs).toFixed(8),
-        amountOut: Number(_sum.outputs).toFixed(8),
-        totalIn: Number(_total.inputs).toFixed(8),
-        totalOut: Number(_total.outputs).toFixed(8),
-        fee: Number(_total.inputs - _total.outputs).toFixed(8),
-        address: targetAddress,
-        timestamp: tx.timestamp,
-        txid: tx.format.txid,
-        confirmations: tx.confirmations,
-        from: _addresses.inputs,
-        to: _addresses.outputs
-      };
 
-      result = [_sent, _received];
+      if (isKomodo) {
+        // calc claimed interest amount
+        var _vinVoutDiff = _total.inputs - _total.outputs;
 
-      if (_total.inputs === _sum.inputs && !isKomodo && (!options || options && !options.nogroup)) {
-        result = _sent;
-      } else {
-        if (isKomodo) {
-          // calc claimed interest amount
-          var _vinVoutDiff = _total.inputs - _total.outputs;
-
-          if (_vinVoutDiff < 0) {
-            result[1].interest = Number(_vinVoutDiff.toFixed(8));
-          }
+        if (_vinVoutDiff < 0) {
+          result.interest = Number(_vinVoutDiff.toFixed(8));
         }
       }
     }
   } else if (_sum.inputs === 0 && _sum.outputs > 0) {
     result = {
       type: 'received',
-      amount: Number(_sum.outputs.toFixed(8)),
+      amount: Number(_sum.outputs).toFixed(8),
       amountIn: Number(_sum.inputs).toFixed(8),
       amountOut: Number(_sum.outputs).toFixed(8),
       totalIn: Number(_total.inputs).toFixed(8),
@@ -171,7 +150,7 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
   } else if (_sum.inputs > 0 && _sum.outputs === 0) {
     result = {
       type: 'sent',
-      amount: Number(_sum.inputs.toFixed(8)),
+      amount: Number(_sum.inputs).toFixed(8),
       amountIn: Number(_sum.inputs).toFixed(8),
       amountOut: Number(_sum.outputs).toFixed(8),
       totalIn: Number(_total.inputs).toFixed(8),
@@ -184,6 +163,15 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
       inputAddresses: _addresses.inputs,
       outputAddresses: _addresses.outputs
     };
+
+    if (isKomodo) {
+      // calc claimed interest amount
+      var _vinVoutDiff2 = _total.inputs - _total.outputs;
+
+      if (_vinVoutDiff2 < 0) {
+        result.interest = Number(_vinVoutDiff2.toFixed(8));
+      }
+    }
   } else {
     // (?)
     result = {
