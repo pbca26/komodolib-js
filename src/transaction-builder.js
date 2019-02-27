@@ -159,9 +159,9 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       utxoList[0] &&
       utxoList[0].txid) {
     const utxoListFormatted = [];
-    const interestClaimThreshold = 200;
     let totalInterest = 0;
     let totalInterestUTXOCount = 0;
+    const interestClaimThreshold = 200;
     let utxoVerified = true;
 
     for (let i = 0; i < utxoList.length; i++) {
@@ -188,6 +188,11 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     }
 
     const _maxSpendBalance = Number(utils.maxSpendBalance(utxoListFormatted));
+    
+    if (value > _maxSpendBalance) {
+      return `Spend value is too large. Max available amount is ${Number(((_maxSpendBalance * 0.00000001).toFixed(8)))}`;
+    }
+  
     const targets = [{
       address: outputAddress,
       value: value > _maxSpendBalance ? _maxSpendBalance : value,
@@ -229,11 +234,14 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
 
     if (btcFee) {
       value = outputs[0].value;
-    } else if (_change > 0) {
-      value = outputs[0].value + fee;
-    } else if (_change === 0) {
+    } else if (_change >= 0) {
       value = outputs[0].value - fee;
     }
+    
+    if (outputs[0].value === value + fee) {
+      outputs[0].value === outputs[0].value - fee;
+      targets[0].value = targets[0].value - fee;
+    } 
 
     // check if any outputs are unverified
     if (inputs &&
@@ -253,17 +261,12 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       }
     }
 
-    const _maxSpend = utils.maxSpendBalance(utxoListFormatted);
-
-    if (value > _maxSpend) {
-      return `Spend value is too large. Max available amount is ${Number(((_maxSpend * 0.00000001).toFixed(8)))}`;
-    }
-
     // account for KMD interest
     if (network.kmdInterest &&
         totalInterest > 0) {
       // account for extra vout
-      if ((_maxSpend - fee) === value) {
+
+      if ((_maxSpendBalance - fee) === value) {
         _change = totalInterest - _change;
 
         if (outputAddress === changeAddress) {
@@ -318,8 +321,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       changeAddress,
       network,
       change: _change,
-      inputValue,
       value,
+      inputValue,
       inputs,
       outputs,
       targets,

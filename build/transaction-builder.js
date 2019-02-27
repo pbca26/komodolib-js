@@ -135,9 +135,9 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
 
   if (utxoList && utxoList.length && utxoList[0] && utxoList[0].txid) {
     var utxoListFormatted = [];
-    var interestClaimThreshold = 200;
     var totalInterest = 0;
     var totalInterestUTXOCount = 0;
+    var interestClaimThreshold = 200;
     var utxoVerified = true;
 
     for (var i = 0; i < utxoList.length; i++) {
@@ -164,6 +164,11 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     }
 
     var _maxSpendBalance = Number(utils.maxSpendBalance(utxoListFormatted));
+
+    if (value > _maxSpendBalance) {
+      return 'Spend value is too large. Max available amount is ' + Number((_maxSpendBalance * 0.00000001).toFixed(8));
+    }
+
     var targets = [{
       address: outputAddress,
       value: value > _maxSpendBalance ? _maxSpendBalance : value
@@ -203,10 +208,13 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
 
     if (btcFee) {
       value = outputs[0].value;
-    } else if (_change > 0) {
-      value = outputs[0].value + fee;
-    } else if (_change === 0) {
+    } else if (_change >= 0) {
       value = outputs[0].value - fee;
+    }
+
+    if (outputs[0].value === value + fee) {
+      outputs[0].value === outputs[0].value - fee;
+      targets[0].value = targets[0].value - fee;
     }
 
     // check if any outputs are unverified
@@ -226,16 +234,11 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
       }
     }
 
-    var _maxSpend = utils.maxSpendBalance(utxoListFormatted);
-
-    if (value > _maxSpend) {
-      return 'Spend value is too large. Max available amount is ' + Number((_maxSpend * 0.00000001).toFixed(8));
-    }
-
     // account for KMD interest
     if (network.kmdInterest && totalInterest > 0) {
       // account for extra vout
-      if (_maxSpend - fee === value) {
+
+      if (_maxSpendBalance - fee === value) {
         _change = totalInterest - _change;
 
         if (outputAddress === changeAddress) {
@@ -288,8 +291,8 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
       changeAddress: changeAddress,
       network: network,
       change: _change,
-      inputValue: inputValue,
       value: value,
+      inputValue: inputValue,
       inputs: inputs,
       outputs: outputs,
       targets: targets,
