@@ -252,6 +252,11 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
       // double check kmd interest is combined into 1 output
       if (outputAddress === changeAddress && _change > 0) {
         value += _change - fee;
+
+        if (Math.abs(value - inputValue) > fee) {
+          value += fee;
+        }
+
         _change = 0;
       }
     }

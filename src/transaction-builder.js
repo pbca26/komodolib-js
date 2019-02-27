@@ -281,6 +281,11 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       if (outputAddress === changeAddress &&
           _change > 0) {
         value += _change - fee;
+
+        if (Math.abs(value - inputValue) > fee) {
+          value += fee;
+        }
+
         _change = 0;
       }
     }
