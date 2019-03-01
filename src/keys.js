@@ -383,6 +383,21 @@ const pubToPub = (address, networkSrc, networkDest) => {
   return networkDest ? networkDest.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest) : bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'));
 };
 
+const isPrivKey = (str) => {
+  let isPrivKey = false;
+
+  if (ethUtil.isValidPrivate(ethUtil.toBuffer(str))) {
+    isPrivKey = true;
+  } else {
+    try {
+      bs58check.decode(str);
+      isPrivKey = true;
+    } catch (e) {}
+  }
+
+  return isPrivKey;
+}
+
 module.exports = {
   bip39Search,
   addressVersionCheck,
@@ -404,4 +419,5 @@ module.exports = {
   pubToElectrumScriptHashHex,
   getAddressVersion,
   pubToPub,
+  isPrivKey,
 };
