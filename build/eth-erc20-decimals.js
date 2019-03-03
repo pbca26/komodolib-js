@@ -5,11 +5,9 @@ var erc20ContractId = require('./eth-erc20-contract-id');
 // non-standard token decimals only
 // default is 18
 var _decimals = {
-  AION: 8,
   BIO: 8,
   BITSOKO: 8,
   BTCL: 8,
-  BTM: 8,
   CS: 6,
   ENG: 8,
   ETK: 2,
@@ -64,7 +62,11 @@ var _decimals = {
   DICE: 16,
   XAUR: 8,
   HGT: 8,
-  ZIL: 12
+  ZIL: 12,
+  KEA: 8,
+  OVAL: 8,
+  TRET: 8,
+  DEC8: 8
 };
 
 var decimals = {};
