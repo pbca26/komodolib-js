@@ -18,7 +18,6 @@ const dpowCoins = [
   'CEAL',
   'MESH',
   'WLC',
-  'MNZ',
   'AXO',
   'ETOMIC',
   'BTCH',

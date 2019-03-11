@@ -34,7 +34,6 @@ var _electrumServers = {
   pangea: ['electrum1.cipig.net:10010:tcp', 'electrum2.cipig.net:10010:tcp'],
   bet: ['electrum1.cipig.net:10012:tcp', 'electrum2.cipig.net:10012:tcp'],
   mshark: ['electrum1.cipig.net:10013:tcp', 'electrum2.cipig.net:10013:tcp'],
-  mnz: ['electrum1.cipig.net:10002:tcp', 'electrum2.cipig.net:10002:tcp'],
   wlc: ['electrum1.cipig.net:10014:tcp', 'electrum2.cipig.net:10014:tcp'],
   mgw: ['electrum1.cipig.net:10015:tcp', 'electrum2.cipig.net:10015:tcp'],
   btch: ['electrum1.cipig.net:10020:tcp', 'electrum2.cipig.net:10020:tcp'],

@@ -4,7 +4,7 @@ var _explorerList;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'PGT', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'MNZ', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CCL', 'PIRATE', 'KOIN', 'DION', 'KMDICE', 'PTX', 'ZEX', 'SPLTEST', 'LUMBER', 'KSB', 'OUR'];
+var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'PGT', 'DEX', 'JUMBLR', 'BET', 'CRYPTO', 'COQUI', 'HODL', 'MSHARK', 'BOTS', 'MGW', 'MVP', 'KV', 'CEAL', 'MESH', 'WLC', 'AXO', 'ETOMIC', 'BTCH', 'BEER', 'PIZZA', 'OOT', 'NINJA', 'VOTE2018', 'GLXT', 'EQL', 'BNTN', 'PRLPAY', 'CHAIN', 'ZILLA', 'DSEC', 'VRSC', 'MGNX', 'CCL', 'PIRATE', 'KOIN', 'DION', 'KMDICE', 'PTX', 'ZEX', 'SPLTEST', 'LUMBER', 'KSB', 'OUR'];
 
 var _komodoCoins = _komodoAssetChains.concat(['CHIPS', 'KMD', 'KOMODO']);
 
@@ -51,7 +51,6 @@ var explorerList = (_explorerList = {
   CHIPS: 'https://explorer.chips.cash',
   COQUI: 'https://explorer.coqui.cash',
   EQL: 'http://178.62.240.191',
-  MNZ: 'https://mnz.kmdexplorer.io',
   BTCH: 'https://btch.kmdexplorer.io',
   BTC: 'https://blockchain.info',
   HUSH: 'https://explorer.myhush.org',

@@ -106,10 +106,6 @@ let _electrumServers = {
     'electrum1.cipig.net:10013:tcp',
     'electrum2.cipig.net:10013:tcp',
   ],
-  mnz: [
-    'electrum1.cipig.net:10002:tcp',
-    'electrum2.cipig.net:10002:tcp',
-  ],
   wlc: [
     'electrum1.cipig.net:10014:tcp',
     'electrum2.cipig.net:10014:tcp',

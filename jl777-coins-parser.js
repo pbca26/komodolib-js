@@ -1,8 +1,8 @@
 /*
- * Usage: - clone https://github.com/jl777/coinscopy
- *        - paste coins data into coins.js
- *        - run node jl777-coins-parser -flags=
- *        - params can be a combination of flags: spv/eth, names/tickers/ids(for ecrc20 tokens)
+ *  Usage: - clone https://github.com/jl777/coinscopy
+ *         - paste coins data into coins.js
+ *         - run node jl777-coins-parser -flags=
+ *         - params can be a combination of flags: spv/eth, names/tickers/ids(for ecrc20 tokens)
  */
 
 const coins = require('./coins.js');
@@ -39,9 +39,7 @@ if (!Object.keys(flags).length) {
           console.log(`${coins[i].coin}: '${coins[i].fname}',`);
         }
       }
-    }
-
-    if (flags.tickers) {
+    } else if (flags.tickers) {
       for (let i = 0; i < coins.length; i++) {
         if (coins[i].etomic) {
           console.log(`'${coins[i].coin}',`);
@@ -55,9 +53,7 @@ if (!Object.keys(flags).length) {
           console.log(`${coins[i].coin}: '${coins[i].fname}',`);
         }
       }
-    }
-
-    if (flags.tickers) {
+    } else if (flags.tickers) {
       for (let i = 0; i < coins.length; i++) {
         if (!coins[i].etomic) {
           console.log(`'${coins[i].coin}',`);

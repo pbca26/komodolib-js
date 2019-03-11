@@ -31,7 +31,6 @@ const fees = {
   pgt: KMD_STD_FEE,
   bet: KMD_STD_FEE,
   mshark: KMD_STD_FEE,
-  mnz: KMD_STD_FEE,
   wlc: KMD_STD_FEE,
   mgw: KMD_STD_FEE,
   btch: KMD_STD_FEE,
