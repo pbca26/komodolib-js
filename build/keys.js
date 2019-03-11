@@ -13,6 +13,7 @@ var ethersWallet = require('ethers/wallet');
 var ethUtil = require('ethereumjs-util');
 var wif = require('wif');
 var bitcoinjsNetworks = require('./bitcoinjs-networks');
+var groestlcoinjsLib = require('bitgo-utxo-lib-groestl');
 
 var addressVersionCheck = function addressVersionCheck(network, address) {
   try {
@@ -32,6 +33,8 @@ var wifToWif = function wifToWif(wif, network) {
 
   if (network && network.isZcash) {
     key = new bitcoinZcash.ECPair.fromWIF(wif, network, true);
+  } else if (network && network.isGRS) {
+    keyPair = new groestlcoinjsLib.ECPair.fromWIF(wif, network, true);
   } else {
     key = new bitcoin.ECPair.fromWIF(wif, network, true);
   }
@@ -58,6 +61,8 @@ var seedToWif = function seedToWif(seed, network, iguana) {
 
   if (network && network.isZcash) {
     keyPair = new bitcoinZcash.ECPair(d, null, { network: network });
+  } else if (network && network.isGRS) {
+    keyPair = new groestlcoinjsLib.ECPair(d, null, { network: network });
   } else {
     keyPair = new bitcoin.ECPair(d, null, { network: network });
   }
@@ -94,6 +99,8 @@ var stringToWif = function stringToWif(string, network, iguana) {
     try {
       if (network && network.isZcash) {
         key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
+      } else if (network && network.isGRS) {
+        keyPair = new groestlcoinjsLib.ECPair.fromWIF(string, network, true);
       } else {
         key = new bitcoin.ECPair.fromWIF(string, network, true);
       }

@@ -73,6 +73,7 @@
     "bitcore-message": "git://github.com/pbca26/bitcore-message",
     "bitcore-lib-zcash": "git://github.com/zcash-hackworks/bitcore-lib-zcash",
     "bitgo-utxo-lib": "git://github.com/pbca26/bitgo-utxo-lib",
+    "bitgo-utxo-lib-groestl": "git://github.com/SuperNETorg/bitgo-utxo-lib",
     "bluebird": "^3.4.7",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",

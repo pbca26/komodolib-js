@@ -3,9 +3,16 @@
 */
 
 // TODO: runtime extend for kmd assets
+//       use lib flag e.g. lib: 'bitcoinjs-lib'
 // wifAlt can be used for different coin versions that underwent major code base changes
 // this is an experimental option that can lead to key pair derivation errors
 const bitcoin = require('bitcoinjs-lib');
+const bcrypto = require('bitgo-utxo-lib-groestl').crypto;
+
+const groestlHashFunctions = {
+  address: bcrypto.groestl,
+  transaction: bcrypto.sha256,
+};
 
 const networks = {
   btc: bitcoin.networks.bitcoin,
@@ -513,6 +520,7 @@ const networks = {
   },
   grs: { // fails to gen a proper addr
     messagePrefix: '\x19Groestlcoin Signed Message:\n',
+    bech32: 'grs',
     bip44: 17,
     bip32: {
       public: 0x0488b21e,
@@ -522,6 +530,8 @@ const networks = {
     scriptHash: 0x5,
     wif: 0x80,
     dustThreshold: 1000,
+    isGRS: true,
+    hashFunctions: groestlHashFunctions
   },
   aby: {
     messagePrefix: '\x19ArtByte Signed Message:\n',
