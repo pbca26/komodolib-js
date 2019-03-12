@@ -27,6 +27,7 @@ const fees = {
   crypto: KMD_STD_FEE,
   dnr: KMD_STD_FEE,
   hodl: KMD_STD_FEE,
+  iln: KMD_STD_FEE,
   pangea: KMD_STD_FEE,
   pgt: KMD_STD_FEE,
   bet: KMD_STD_FEE,
