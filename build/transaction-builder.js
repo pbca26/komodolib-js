@@ -64,7 +64,7 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
     }
 
     if (options && options.opreturn) {
-      var _data = Buffer.from(opreturn, 'utf8');
+      var _data = Buffer.from(options.opreturn, 'utf8');
       var dataScript = bitcoin.script.nullData.output.encode(_data);
 
       tx.addOutput(dataScript, 1000);
