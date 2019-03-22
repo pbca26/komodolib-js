@@ -46,6 +46,8 @@ const _komodoAssetChains = [
   'LUMBER',
   'KSB',
   'OUR',
+  'RICK',
+  'MORTY',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -114,6 +116,8 @@ const explorerList = {
   LUMBER: 'https://explorer.lumberscout.io',
   KSB: 'http://ksb.explorer.dexstats.info',
   OUR: 'http://our.explorer.dexstats.info',
+  RICK: 'https://rick.kmd.dev',
+  MORTY: 'https://morty.kmd.dev',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
