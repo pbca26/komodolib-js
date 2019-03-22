@@ -31,6 +31,7 @@ var _electrumServers = {
     '45.77.137.111:50001:tcp',
   ],*/
   hodl: ['electrum1.cipig.net:10009:tcp', 'electrum2.cipig.net:10009:tcp'],
+  iln: ['electrum1.ilien.io:65011:tcp', 'electrum2.ilien.io:65011:tcp'],
   pangea: ['electrum1.cipig.net:10010:tcp', 'electrum2.cipig.net:10010:tcp'],
   bet: ['electrum1.cipig.net:10012:tcp', 'electrum2.cipig.net:10012:tcp'],
   mshark: ['electrum1.cipig.net:10013:tcp', 'electrum2.cipig.net:10013:tcp'],

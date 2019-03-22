@@ -37,9 +37,14 @@ const dpowCoins = [
   'KOIN',
   'DION',
   'KMDICE',
-  'PTX',
   'ZEX',
   'OUR',
+  'ILN',
+  'RFOX',
+  'MORTY',
+  'RICK',
+  'SEC',
+  'KSB',
 ];
 
 module.exports = dpowCoins;
