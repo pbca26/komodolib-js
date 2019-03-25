@@ -353,7 +353,9 @@ const redeemScriptToPubAddress = (scriptPubKey, network) => {
 const decodeRedeemScript = (redeemScript, options) => {
   let decodedRedeemScript = options && options.network && options.network.isZcash ? bitcoinZcash.script.multisig.output.decode(Buffer.from(redeemScript, 'hex')) : bitcoin.script.multisig.output.decode(Buffer.from(redeemScript, 'hex'));
 
-  if (options.toHex) {
+  if (options &&
+      options.hasOwnProperty('toHex') &&
+      options.toHex === true) {
     const _pubKeys = decodedRedeemScript.pubKeys;
 
     for (let i = 0; i < _pubKeys.length; i++) {
