@@ -37,9 +37,20 @@ const wifToWif = (wif, network) => {
     network &&
     network.isGRS
   ) {
-    keyPair = new groestlcoinjsLib.ECPair.fromWIF(wif, network, true);
+    key = new groestlcoinjsLib.ECPair.fromWIF(wif, network, true);
   } else {
-    key = new bitcoin.ECPair.fromWIF(wif, network, true);
+    if (network &&
+        network.hasOwnProperty('compressed') &&
+        network.compressed === true) {
+      const decoded = wif.decode(wif);
+      const d = bigi.fromBuffer(decoded.privateKey);
+      key = new bitcoin.ECPair(d, null, {
+        compressed: true,
+        network,
+      });
+    } else {
+      key = new bitcoin.ECPair.fromWIF(wif, network, true);
+    }
   }
 
   return {
@@ -59,7 +70,7 @@ const seedToWif = (seed, network, iguana) => {
     bytes[31] |= 64;
   }
 
-  const d = bigi.fromBuffer(bytes);
+  let d = bigi.fromBuffer(bytes);
   let keyPair;
 
   if (network &&
@@ -71,7 +82,18 @@ const seedToWif = (seed, network, iguana) => {
   ) {
     keyPair = new groestlcoinjsLib.ECPair(d, null, { network });
   } else {
-    keyPair = new bitcoin.ECPair(d, null, { network });
+    if (network &&
+        network.hasOwnProperty('compressed') &&
+        network.compressed === true) {
+      const decoded = wif.decode(new bitcoin.ECPair(d, null, { network }).toWIF());
+      d = bigi.fromBuffer(decoded.privateKey);
+      keyPair = new bitcoin.ECPair(d, null, {
+        compressed: true,
+        network,
+      });
+    } else {
+      keyPair = new bitcoin.ECPair(d, null, { network });
+    }
   }
 
   const keys = {
@@ -111,9 +133,20 @@ const stringToWif = (string, network, iguana) => {
         network &&
         network.isGRS
       ) {
-        keyPair = new groestlcoinjsLib.ECPair.fromWIF(string, network, true);
+        key = new groestlcoinjsLib.ECPair.fromWIF(string, network, true);
       } else {
-        key = new bitcoin.ECPair.fromWIF(string, network, true);
+        if (network &&
+            network.hasOwnProperty('compressed') &&
+            network.compressed === true) {
+          const decoded = wif.decode(string);
+          const d = bigi.fromBuffer(decoded.privateKey);
+          key = new bitcoin.ECPair(d, null, {
+            compressed: true,
+            network,
+          });
+        } else {
+          key = new bitcoin.ECPair.fromWIF(string, network, true);
+        }
       }
 
       keys = {
@@ -122,6 +155,7 @@ const stringToWif = (string, network, iguana) => {
         pubHex: key.getPublicKeyBuffer().toString('hex'),
       };
     } catch (e) {
+      console.log(e);
       _wifError = true;
     }
   } else {
@@ -183,7 +217,7 @@ const fromWif = (string, network, versionCheck) => {
     compressed: !decoded.compressed,
     network,
   }) : new bitcoin.ECPair(d, null, {
-    compressed: !decoded.compressed,
+    compressed: network && network.hasOwnProperty('compressed') && network.compressed === true ? true : !decoded.compressed,
     network,
   });
 
@@ -219,6 +253,7 @@ const fromWif = (string, network, versionCheck) => {
       alt: altKP,
     };
   }
+  
   return {
     inputKey: decoded,
     master: {
@@ -269,11 +304,11 @@ const xpub = (seed, options) => {
   let string;
 
   if (options &&
-      options.bip32) {
+      options.hasOwnProperty('bip32')) {
     string = node.neutered().toBase58();
   } else {
     if (options &&
-        options.path) {
+        options.hasOwnProperty('path')) {
       string = node.derivePath(options.path).neutered().toBase58();
     } else {
       return 'missing path arg';

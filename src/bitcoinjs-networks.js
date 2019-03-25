@@ -640,8 +640,8 @@ const networks = {
     },
     pubKeyHash: 0x21,
     scriptHash: 0x05,
-    wif: 0xa1,
-    wifAlt: [0xB0],
+    wif: 0xB0,
+    compressed: true, 
   },
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {

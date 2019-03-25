@@ -34,9 +34,18 @@ var wifToWif = function wifToWif(wif, network) {
   if (network && network.isZcash) {
     key = new bitcoinZcash.ECPair.fromWIF(wif, network, true);
   } else if (network && network.isGRS) {
-    keyPair = new groestlcoinjsLib.ECPair.fromWIF(wif, network, true);
+    key = new groestlcoinjsLib.ECPair.fromWIF(wif, network, true);
   } else {
-    key = new bitcoin.ECPair.fromWIF(wif, network, true);
+    if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
+      var decoded = wif.decode(wif);
+      var d = bigi.fromBuffer(decoded.privateKey);
+      key = new bitcoin.ECPair(d, null, {
+        compressed: true,
+        network: network
+      });
+    } else {
+      key = new bitcoin.ECPair.fromWIF(wif, network, true);
+    }
   }
 
   return {
@@ -64,7 +73,16 @@ var seedToWif = function seedToWif(seed, network, iguana) {
   } else if (network && network.isGRS) {
     keyPair = new groestlcoinjsLib.ECPair(d, null, { network: network });
   } else {
-    keyPair = new bitcoin.ECPair(d, null, { network: network });
+    if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
+      var decoded = wif.decode(new bitcoin.ECPair(d, null, { network: network }).toWIF());
+      d = bigi.fromBuffer(decoded.privateKey);
+      keyPair = new bitcoin.ECPair(d, null, {
+        compressed: true,
+        network: network
+      });
+    } else {
+      keyPair = new bitcoin.ECPair(d, null, { network: network });
+    }
   }
 
   var keys = {
@@ -100,9 +118,18 @@ var stringToWif = function stringToWif(string, network, iguana) {
       if (network && network.isZcash) {
         key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
       } else if (network && network.isGRS) {
-        keyPair = new groestlcoinjsLib.ECPair.fromWIF(string, network, true);
+        key = new groestlcoinjsLib.ECPair.fromWIF(string, network, true);
       } else {
-        key = new bitcoin.ECPair.fromWIF(string, network, true);
+        if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
+          var decoded = wif.decode(string);
+          var d = bigi.fromBuffer(decoded.privateKey);
+          key = new bitcoin.ECPair(d, null, {
+            compressed: true,
+            network: network
+          });
+        } else {
+          key = new bitcoin.ECPair.fromWIF(string, network, true);
+        }
       }
 
       keys = {
@@ -111,6 +138,7 @@ var stringToWif = function stringToWif(string, network, iguana) {
         pubHex: key.getPublicKeyBuffer().toString('hex')
       };
     } catch (e) {
+      console.log(e);
       _wifError = true;
     }
   } else {
@@ -172,7 +200,7 @@ var fromWif = function fromWif(string, network, versionCheck) {
     compressed: !decoded.compressed,
     network: network
   }) : new bitcoin.ECPair(d, null, {
-    compressed: !decoded.compressed,
+    compressed: network && network.hasOwnProperty('compressed') && network.compressed === true ? true : !decoded.compressed,
     network: network
   });
 
@@ -208,6 +236,7 @@ var fromWif = function fromWif(string, network, versionCheck) {
       alt: altKP
     };
   }
+
   return {
     inputKey: decoded,
     master: {
@@ -257,10 +286,10 @@ var xpub = function xpub(seed, options) {
   var node = options && options.network ? bip32.fromSeed(_seed, options.network) : bip32.fromSeed(_seed);
   var string = void 0;
 
-  if (options && options.bip32) {
+  if (options && options.hasOwnProperty('bip32')) {
     string = node.neutered().toBase58();
   } else {
-    if (options && options.path) {
+    if (options && options.hasOwnProperty('path')) {
       string = node.derivePath(options.path).neutered().toBase58();
     } else {
       return 'missing path arg';
