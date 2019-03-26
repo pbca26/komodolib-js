@@ -6,7 +6,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 MIT License
 
 Copyright (c) 2017 Yuki Akiyama, SuperNET
-Copyright (c) 2017 - 2018 SuperNET
+Copyright (c) 2017 - 2019 SuperNET
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 Supported coin types: bitcoin, bitcoin forks BTG and BCH, zcash based coins, PoS type coins
-
 */
 
 var bitcoinLib = {
@@ -38,6 +37,7 @@ var bitcoinLib = {
   },
   bitcoinZcash: require('bitcoinjs-lib-zcash'),
   bitcoinZcashSapling: require('bitgo-utxo-lib'),
+  groestlcoinjsLib: require('bitgo-utxo-lib-groestl'),
   bitcoin: require('bitcoinjs-lib')
 };
 var bitcoin = void 0;
@@ -146,6 +146,8 @@ var transactionDecoder = function transactionDecoder(rawtx, network, debug) {
     bitcoin = bitcoinLib.bitcoinZcash;
   } else if (network.sapling) {
     bitcoin = bitcoinLib.bitcoinZcashSapling;
+  } else if (network.isGRS) {
+    bitcoin = bitcoinLib.groestlcoinjsLib;
   } else {
     bitcoin = bitcoinLib.bitcoin;
   }
