@@ -524,7 +524,7 @@ var networks = (_networks = {
     dustThreshold: 1000,
     isZcash: true
   },
-  grs: { // fails to gen a proper addr
+  grs: {
     messagePrefix: '\x19Groestlcoin Signed Message:\n',
     bech32: 'grs',
     bip44: 17,

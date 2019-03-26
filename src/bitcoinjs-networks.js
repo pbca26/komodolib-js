@@ -518,7 +518,7 @@ const networks = {
     dustThreshold: 1000,
     isZcash: true,
   },
-  grs: { // fails to gen a proper addr
+  grs: {
     messagePrefix: '\x19Groestlcoin Signed Message:\n',
     bech32: 'grs',
     bip44: 17,
@@ -531,7 +531,7 @@ const networks = {
     wif: 0x80,
     dustThreshold: 1000,
     isGRS: true,
-    hashFunctions: groestlHashFunctions
+    hashFunctions: groestlHashFunctions,
   },
   aby: {
     messagePrefix: '\x19ArtByte Signed Message:\n',
