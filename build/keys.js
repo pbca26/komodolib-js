@@ -40,23 +40,22 @@ var addressVersionCheck = function addressVersionCheck(network, address) {
   }
 };
 
-var wifToWif = function wifToWif(wif, network) {
+var wifToWif = function wifToWif(_wif, network) {
   var key = void 0;
 
   if (network && network.isZcash) {
-    key = new bitcoinZcash.ECPair.fromWIF(wif, network, true);
+    key = new bitcoinZcash.ECPair.fromWIF(_wif, network, true);
   } else if (network && network.isGRS) {
-    key = new groestlcoinjsLib.ECPair.fromWIF(wif, network, true);
+    key = new groestlcoinjsLib.ECPair.fromWIF(_wif, network, true);
   } else {
     if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-      var decoded = wif.decode(wif);
+      var decoded = wif.decode(_wif);
       var d = bigi.fromBuffer(decoded.privateKey);
       key = new bitcoin.ECPair(d, null, {
-        compressed: true,
         network: network
       });
     } else {
-      key = new bitcoin.ECPair.fromWIF(wif, network, true);
+      key = new bitcoin.ECPair.fromWIF(_wif, network, true);
     }
   }
 

@@ -43,29 +43,28 @@ const addressVersionCheck = (network, address) => {
   }
 };
 
-const wifToWif = (wif, network) => {
+const wifToWif = (_wif, network) => {
   let key;
 
   if (network &&
       network.isZcash) {
-    key = new bitcoinZcash.ECPair.fromWIF(wif, network, true);
+    key = new bitcoinZcash.ECPair.fromWIF(_wif, network, true);
   } else if (
     network &&
     network.isGRS
   ) {
-    key = new groestlcoinjsLib.ECPair.fromWIF(wif, network, true);
+    key = new groestlcoinjsLib.ECPair.fromWIF(_wif, network, true);
   } else {
     if (network &&
         network.hasOwnProperty('compressed') &&
         network.compressed === true) {
-      const decoded = wif.decode(wif);
+      const decoded = wif.decode(_wif);
       const d = bigi.fromBuffer(decoded.privateKey);
       key = new bitcoin.ECPair(d, null, {
-        compressed: true,
         network,
       });
     } else {
-      key = new bitcoin.ECPair.fromWIF(wif, network, true);
+      key = new bitcoin.ECPair.fromWIF(_wif, network, true);
     }
   }
 
