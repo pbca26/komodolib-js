@@ -67,38 +67,50 @@ var wifToWif = function wifToWif(_wif, network) {
 };
 
 var seedToWif = function seedToWif(seed, network, iguana) {
-  var hash = sha256.create().update(seed);
-  var bytes = hash.array();
+  var isWif = false;
 
-  if (iguana) {
-    bytes[0] &= 248;
-    bytes[31] &= 127;
-    bytes[31] |= 64;
-  }
+  try {
+    bs58check.decode(seed);
+    isWif = true;
+    throw new Error('provided string is a WIF key');
+  } catch (e) {
+    if (!isWif) {
+      var hash = sha256.create().update(seed);
+      var bytes = hash.array();
 
-  var d = bigi.fromBuffer(bytes);
-  var keyPair = void 0;
+      if (iguana) {
+        bytes[0] &= 248;
+        bytes[31] &= 127;
+        bytes[31] |= 64;
+      }
 
-  if (network && network.isZcash) {
-    keyPair = new bitcoinZcash.ECPair(d, null, { network: network });
-  } else if (network && network.isGRS) {
-    keyPair = new groestlcoinjsLib.ECPair(d, null, { network: network });
-  } else {
-    if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-      keyPair = new bitcoin.ECPair(d, null, {
-        compressed: true,
-        network: network
-      });
+      var d = bigi.fromBuffer(bytes);
+      var keyPair = void 0;
+
+      if (network && network.isZcash) {
+        keyPair = new bitcoinZcash.ECPair(d, null, { network: network });
+      } else if (network && network.isGRS) {
+        keyPair = new groestlcoinjsLib.ECPair(d, null, { network: network });
+      } else {
+        if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
+          keyPair = new bitcoin.ECPair(d, null, {
+            compressed: true,
+            network: network
+          });
+        } else {
+          keyPair = new bitcoin.ECPair(d, null, { network: network });
+        }
+      }
+
+      return {
+        pub: keyPair.getAddress(),
+        priv: keyPair.toWIF(),
+        pubHex: keyPair.getPublicKeyBuffer().toString('hex')
+      };
     } else {
-      keyPair = new bitcoin.ECPair(d, null, { network: network });
+      throw new Error('provided string is a WIF key');
     }
   }
-
-  return {
-    pub: keyPair.getAddress(),
-    priv: keyPair.toWIF(),
-    pubHex: keyPair.getPublicKeyBuffer().toString('hex')
-  };
 };
 
 // login like function
