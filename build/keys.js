@@ -35,7 +35,6 @@ var addressVersionCheck = function addressVersionCheck(network, address) {
 
     return false;
   } catch (e) {
-    console.log(e);
     return 'Invalid pub address';
   }
 };
@@ -46,12 +45,16 @@ var wifToWif = function wifToWif(_wif, network) {
   if (network && network.isZcash) {
     key = new bitcoinZcash.ECPair.fromWIF(_wif, network, true);
   } else if (network && network.isGRS) {
-    key = new groestlcoinjsLib.ECPair.fromWIF(_wif, network, true);
+    var decoded = wif.decode(_wif);
+    var d = bigi.fromBuffer(decoded.privateKey);
+    key = new groestlcoinjsLib.ECPair(d, null, {
+      network: network
+    });
   } else {
     if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-      var decoded = wif.decode(_wif);
-      var d = bigi.fromBuffer(decoded.privateKey);
-      key = new bitcoin.ECPair(d, null, {
+      var _decoded = wif.decode(_wif);
+      var _d = bigi.fromBuffer(_decoded.privateKey);
+      key = new bitcoin.ECPair(_d, null, {
         network: network
       });
     } else {
@@ -137,12 +140,16 @@ var stringToWif = function stringToWif(string, network, iguana) {
       if (network && network.isZcash) {
         key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
       } else if (network && network.isGRS) {
-        key = new groestlcoinjsLib.ECPair.fromWIF(string, network, true);
+        var decoded = wif.decode(string);
+        var d = bigi.fromBuffer(decoded.privateKey);
+        key = new bitcoin.ECPair(d, null, {
+          network: network
+        });
       } else {
         if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-          var decoded = wif.decode(string);
-          var d = bigi.fromBuffer(decoded.privateKey);
-          key = new bitcoin.ECPair(d, null, {
+          var _decoded2 = wif.decode(string);
+          var _d2 = bigi.fromBuffer(_decoded2.privateKey);
+          key = new bitcoin.ECPair(_d2, null, {
             network: network
           });
         } else {
@@ -225,9 +232,9 @@ var fromWif = function fromWif(string, network, versionCheck) {
     });
   } else {
     if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-      var _decoded = wif.decode(string);
-      var _d = bigi.fromBuffer(_decoded.privateKey);
-      masterKP = new bitcoin.ECPair(_d, null, {
+      var _decoded3 = wif.decode(string);
+      var _d3 = bigi.fromBuffer(_decoded3.privateKey);
+      masterKP = new bitcoin.ECPair(_d3, null, {
         compressed: true,
         network: network
       });

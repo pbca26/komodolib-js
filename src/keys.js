@@ -38,7 +38,6 @@ const addressVersionCheck = (network, address) => {
 
     return false;
   } catch (e) {
-    console.log(e)
     return 'Invalid pub address';
   }
 };
@@ -53,7 +52,11 @@ const wifToWif = (_wif, network) => {
     network &&
     network.isGRS
   ) {
-    key = new groestlcoinjsLib.ECPair.fromWIF(_wif, network, true);
+    const decoded = wif.decode(_wif);
+    const d = bigi.fromBuffer(decoded.privateKey);
+    key = new groestlcoinjsLib.ECPair(d, null, {
+      network,
+    });
   } else {
     if (network &&
         network.hasOwnProperty('compressed') &&
@@ -156,7 +159,11 @@ const stringToWif = (string, network, iguana) => {
         network &&
         network.isGRS
       ) {
-        key = new groestlcoinjsLib.ECPair.fromWIF(string, network, true);
+        const decoded = wif.decode(string);
+        const d = bigi.fromBuffer(decoded.privateKey);
+        key = new bitcoin.ECPair(d, null, {
+          network,
+        });
       } else {
         if (network &&
             network.hasOwnProperty('compressed') &&
