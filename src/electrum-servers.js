@@ -268,8 +268,13 @@ let _electrumServers = {
     'electrum2.cipig.net:10056:tcp',
   ],
   grs: [
-    'electrum10.groestlcoin.org:50001:tcp',
-    'electrum11.groestlcoin.org:50001:tcp',
+    'electrum1.groestlcoin.org:50002:ssl',
+    'electrum2.groestlcoin.org:50002:ssl',
+    'electrum6.groestlcoin.org:50002:ssl',
+    'electrum7.groestlcoin.org:50002:ssl',
+    'electrum8.groestlcoin.org:50002:ssl',
+    'electrum9.groestlcoin.org:50002:ssl',
+    'electrum10.groestlcoin.org:50002:ssl',
   ],
   qtum: [
     's1.qtum.info:50001:tcp',

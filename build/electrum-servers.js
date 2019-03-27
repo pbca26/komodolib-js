@@ -74,7 +74,7 @@ var _electrumServers = {
   suqa: ['electrum1.suqa.org:12159:tcp', 'electrum2.suqa.org:12159:tcp'],
   btx: ['electrum1.cipig.net:10057:tcp', 'electrum2.cipig.net:10057:tcp'],
   btcz: ['electrum1.cipig.net:10056:tcp', 'electrum2.cipig.net:10056:tcp'],
-  grs: ['electrum10.groestlcoin.org:50001:tcp', 'electrum11.groestlcoin.org:50001:tcp'],
+  grs: ['electrum1.groestlcoin.org:50002:ssl', 'electrum2.groestlcoin.org:50002:ssl', 'electrum6.groestlcoin.org:50002:ssl', 'electrum7.groestlcoin.org:50002:ssl', 'electrum8.groestlcoin.org:50002:ssl', 'electrum9.groestlcoin.org:50002:ssl', 'electrum10.groestlcoin.org:50002:ssl'],
   qtum: ['s1.qtum.info:50001:tcp', 's2.qtum.info:50001:tcp'],
   btcp: ['electrum.btcprivate.org:5222:tcp', 'electrum2.btcprivate.org:5222:tcp'],
   emc2: ['electrum1.cipig.net:10062:tcp', 'electrum2.cipig.net:10062:tcp'],
