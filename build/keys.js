@@ -133,7 +133,6 @@ var stringToWif = function stringToWif(string, network, iguana) {
           var decoded = wif.decode(string);
           var d = bigi.fromBuffer(decoded.privateKey);
           key = new bitcoin.ECPair(d, null, {
-            compressed: true,
             network: network
           });
         } else {

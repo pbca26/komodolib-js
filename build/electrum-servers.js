@@ -138,7 +138,9 @@ var _electrumServers = {
   bbk: ['194.87.145.250:50050:ssl'],
   uis: ['194.87.145.250:50040:ssl'],
   ksb: ['51.158.74.137:50001:tcp', 'electrum.komodochainz.info:50041:tcp'],
-  our: ['51.158.74.137:50002:tcp', 'electrum.komodochainz.info:50042:tcp']
+  our: ['51.158.74.137:50002:tcp', 'electrum.komodochainz.info:50042:tcp'],
+  rick: ['116.203.111.225:10004:tcp', '116.203.120.175:10004:tcp', '116.203.40.22:10004:tcp'],
+  morty: ['116.203.111.225:10005:tcp', '116.203.120.175:10005:tcp', '116.203.40.22:10005:tcp']
 };
 
 var electrumServers = {};

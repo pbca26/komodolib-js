@@ -154,7 +154,6 @@ const stringToWif = (string, network, iguana) => {
           const decoded = wif.decode(string);
           const d = bigi.fromBuffer(decoded.privateKey);
           key = new bitcoin.ECPair(d, null, {
-            compressed: true,
             network,
           });
         } else {
