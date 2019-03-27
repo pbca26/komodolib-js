@@ -2,6 +2,7 @@ const bitcoinJSForks = require('bitcoinforksjs-lib');
 const bitcoinZcash = require('bitcoinjs-lib-zcash');
 const bitcoinPos = require('bitcoinjs-lib-pos');
 const bitcoinZcashSapling = require('bitgo-utxo-lib');
+const groestlcoinjsLib = require('bitgo-utxo-lib-groestl');
 const bitcoin = require('bitcoinjs-lib');
 const coinselect = require('coinselect');
 const utils = require('./utils');
@@ -34,7 +35,10 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       pk: bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer()),
       spk: bitcoinJSForks.script.pubKeyHash.output.encode(bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer())),
     };
-  } else {
+  } else if (network.isGRS) {
+    tx = new groestlcoinjsLib.TransactionBuilder(network);
+  } 
+   else {
     tx = !options || (options && !options.multisig) || (options && options.multisig && options.multisig.creator) ? new bitcoin.TransactionBuilder(network) : new bitcoin.TransactionBuilder.fromTransaction(bitcoin.Transaction.fromHex(options.multisig.rawtx, network), network);
   }
 
