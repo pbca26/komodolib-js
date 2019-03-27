@@ -85,8 +85,6 @@ var seedToWif = function seedToWif(seed, network, iguana) {
     keyPair = new groestlcoinjsLib.ECPair(d, null, { network: network });
   } else {
     if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-      var decoded = wif.decode(new bitcoin.ECPair(d, null, { network: network }).toWIF());
-      d = bigi.fromBuffer(decoded.privateKey);
       keyPair = new bitcoin.ECPair(d, null, {
         compressed: true,
         network: network

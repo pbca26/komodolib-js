@@ -100,8 +100,6 @@ const seedToWif = (seed, network, iguana) => {
     if (network &&
         network.hasOwnProperty('compressed') &&
         network.compressed === true) {
-      const decoded = wif.decode(new bitcoin.ECPair(d, null, { network }).toWIF());
-      d = bigi.fromBuffer(decoded.privateKey);
       keyPair = new bitcoin.ECPair(d, null, {
         compressed: true,
         network,
