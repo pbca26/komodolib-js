@@ -52,6 +52,8 @@ var fees = {
   ksb: KMD_STD_FEE,
   our: KMD_STD_FEE,
   koin: KMD_STD_FEE,
+  rick: KMD_STD_FEE,
+  morty: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
