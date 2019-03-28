@@ -163,7 +163,7 @@ const explorerList = {
   XMY: 'https://chainz.cryptoid.info/xmy/search.dws?q=',
   MUE: 'https://chainz.cryptoid.info/mue/search.dws?q=',
   UNO: 'https://chainz.cryptoid.info/uno/search.dws?q=',
-  GRS: 'https://chainz.cryptoid.info/grs/search.dws?q=',  
+  GRS: 'http://groestlsight.groestlcoin.org',  
   VOX: 'http://206.189.74.116:3001',
   AUR: 'http://insight.auroracoin.is',
   LBC: 'https://explorer.lbry.io',
