@@ -149,7 +149,7 @@ const transactionDecoder = (rawtx, network, debug) => {
   }
 
   if (debug) {
-    const _tx = bitcoin.Transaction.fromHex(rawtx);
+    const _tx = bitcoin.Transaction.fromHex(rawtx, network ? network : null);
 
     return {
       tx: _tx,
@@ -216,7 +216,7 @@ const transactionDecoder = (rawtx, network, debug) => {
   }
 
   try {
-    const _tx = network.isPoS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
+    const _tx = network.isPoS || network.isGRS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
     
     return {
       tx: _tx,

@@ -153,7 +153,7 @@ var transactionDecoder = function transactionDecoder(rawtx, network, debug) {
   }
 
   if (debug) {
-    var _tx = bitcoin.Transaction.fromHex(rawtx);
+    var _tx = bitcoin.Transaction.fromHex(rawtx, network ? network : null);
 
     return {
       tx: _tx,
@@ -227,7 +227,7 @@ var transactionDecoder = function transactionDecoder(rawtx, network, debug) {
   }
 
   try {
-    var _tx3 = network.isPoS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
+    var _tx3 = network.isPoS || network.isGRS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
 
     return {
       tx: _tx3,
