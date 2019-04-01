@@ -25,7 +25,6 @@ const _komodoAssetChains = [
   'PIZZA',
   'OOT',
   'NINJA',
-  'VOTE2018',
   'GLXT',
   'EQL',
   'BNTN',
@@ -48,6 +47,7 @@ const _komodoAssetChains = [
   'OUR',
   'RICK',
   'MORTY',
+  'VOTE2019',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -106,7 +106,6 @@ const explorerList = {
   PIZZA: 'http://pizza.komodochainz.info',
   BEER: 'https://beer.kmdexplorer.io',
   NINJA: 'https://ninja.kmdexplorer.io',
-  VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
   VRSC: 'https://explorer.veruscoin.io',
   DION: 'https://explorer.dionpay.com',
@@ -188,7 +187,6 @@ const explorerList = {
   BZC: 'http://35.204.174.237:3001/insight/tx/',
   ETH: 'https://etherscan.io/tx/',
   ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/',
-  SPLTEST: 'http://spltest.explorer.dexstats.info',
 };
 
 const explorerListExt = {

@@ -40,7 +40,6 @@ var _electrumServers = {
   btch: ['electrum1.cipig.net:10020:tcp', 'electrum2.cipig.net:10020:tcp'],
   beer: ['electrum1.cipig.net:10022:tcp', 'electrum2.cipig.net:10022:tcp'],
   pizza: ['electrum1.cipig.net:10024:tcp', 'electrum2.cipig.net:10024:tcp'],
-  vote2018: ['electrum1.cipig.net:10021:tcp', 'electrum2.cipig.net:10021:tcp'],
   ninja: ['electrum1.fund.ninja:50001:tcp', 'electrum2.fund.ninja:50001:tcp'],
   jumblr: ['electrum1.cipig.net:10004:tcp', 'electrum2.cipig.net:10004:tcp'],
   kmd: ['electrum1.cipig.net:10001:tcp', 'electrum2.cipig.net:10001:tcp'],
@@ -140,7 +139,8 @@ var _electrumServers = {
   ksb: ['51.158.74.137:50001:tcp', 'electrum.komodochainz.info:50041:tcp'],
   our: ['51.158.74.137:50002:tcp', 'electrum.komodochainz.info:50042:tcp'],
   rick: ['116.203.111.225:10004:tcp', '116.203.120.175:10004:tcp', '116.203.40.22:10004:tcp'],
-  morty: ['116.203.111.225:10005:tcp', '116.203.120.175:10005:tcp', '116.203.40.22:10005:tcp']
+  morty: ['116.203.111.225:10005:tcp', '116.203.120.175:10005:tcp', '116.203.40.22:10005:tcp'],
+  vote2019: ['electrum1.cipig.net:10036:tcp', 'electrum2.cipig.net:10036:tcp', 'electrum3.cipig.net:10036:tcp']
 };
 
 var electrumServers = {};

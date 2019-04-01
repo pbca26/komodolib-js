@@ -130,10 +130,6 @@ let _electrumServers = {
     'electrum1.cipig.net:10024:tcp',
     'electrum2.cipig.net:10024:tcp',
   ],
-  vote2018: [
-    'electrum1.cipig.net:10021:tcp',
-    'electrum2.cipig.net:10021:tcp',
-  ],
   ninja: [
     'electrum1.fund.ninja:50001:tcp',
     'electrum2.fund.ninja:50001:tcp',
@@ -524,6 +520,11 @@ let _electrumServers = {
     '116.203.111.225:10005:tcp',
     '116.203.120.175:10005:tcp',
     '116.203.40.22:10005:tcp',
+  ],
+  vote2019: [
+    'electrum1.cipig.net:10036:tcp',
+    'electrum2.cipig.net:10036:tcp',
+    'electrum3.cipig.net:10036:tcp',
   ],
 };
 
