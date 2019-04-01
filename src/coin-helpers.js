@@ -117,6 +117,7 @@ const explorerList = {
   OUR: 'http://our.explorer.dexstats.info',
   RICK: 'https://rick.kmd.dev',
   MORTY: 'https://morty.kmd.dev',
+  VOTE2019: 'https://vote2019.world',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
