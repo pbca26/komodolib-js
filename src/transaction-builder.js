@@ -194,7 +194,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     const _maxSpendBalance = Number(utils.maxSpendBalance(utxoListFormatted));
     
     if (value > _maxSpendBalance) {
-      return `Spend value is too large. Max available amount is ${Number(((_maxSpendBalance * 0.00000001).toFixed(8)))}`;
+      return `Spend value is too large or unconfirmed UTXO(S). Max available amount is ${Number(((_maxSpendBalance * 0.00000001).toFixed(8)))}`;
     }
   
     const targets = [{

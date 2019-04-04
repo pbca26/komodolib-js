@@ -184,7 +184,6 @@ const stringToWif = (string, network, iguana) => {
         pubHex: key.getPublicKeyBuffer().toString('hex'),
       };
     } catch (e) {
-      console.log(e);
       _wifError = true;
     }
   } else {
