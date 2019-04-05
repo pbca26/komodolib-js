@@ -48,7 +48,7 @@ var _electrumServers = {
   vtc: ['fr1.vtconline.org:55001:tcp', 'uk1.vtconline.org:55001:tcp'],
   nmc: ['electrum1.cipig.net:10066:tcp', 'electrum2.cipig.net:10066:tcp'],
   mona: ['electrumx1.monacoin.nl:50001:tcp', 'electrumx2.monacoin.nl:50001:tcp', 'electrumx1.monacoin.ninja:50001:tcp', 'electrumx2.monacoin.ninja:50001:tcp'],
-  ltc: ['electrum-ltc.bysh.me:50001:tcp', 'electrum-ltc.ddns.net:50001:tcp', 'electrum-ltc.wilv.in:50001:tcp', 'electrum.ltc.xurious.com:50001:tcp'],
+  ltc: ['electrum-ltc.bysh.me:50001:tcp', 'node.ispol.sk:50003:tcp', 'electrum-ltc.wilv.in:50001:tcp', 'backup.electrum-ltc.org:50001:tcp'],
   fair: ['electrum1.cipig.net:10063:tcp', 'electrum2.cipig.net:10063:tcp'],
   dgb: ['electrum1.cipig.net:10059:tcp', 'electrum2.cipig.net:10059:tcp'],
   dash: ['electrum1.cipig.net:10061:tcp', 'electrum2.cipig.net:10061:tcp'],
@@ -57,7 +57,7 @@ var _electrumServers = {
   btg: ['electrumx-eu.bitcoingold.org:50001:tcp', 'electrumx-us.bitcoingold.org:50001:tcp'],
   blk: ['electrum1.cipig.net:10054:tcp', 'electrum2.cipig.net:10054:tcp', 'electrum3.cipig.net:10054:tcp'],
   sib: ['electrum1.cipig.net:10050:tcp', 'electrum2.cipig.net:10050:tcp'],
-  bch: ['bch.imaginary.cash:50001:tcp', 'electroncash.dk:50001:tcp', 'wallet.satoshiscoffeehouse.com:50001:tcp'],
+  bch: ['bch.imaginary.cash:50001:tcp', 'electroncash.dk:50001:tcp', 'wallet.satoshiscoffeehouse.com:50001:tcp', 'electron.coinucopia.io:50001:tcp', 'electron-cash.dragon.zone:50001:tcp'],
   /*arg: [
     'electrum1.cipig.net:10068:tcp',
     'electrum2.cipig.net:10068:tcp',

@@ -138,9 +138,9 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
 
   if (utxoList && utxoList.length && utxoList[0] && utxoList[0].txid) {
     var utxoListFormatted = [];
+    var interestClaimThreshold = 200;
     var totalInterest = 0;
     var totalInterestUTXOCount = 0;
-    var interestClaimThreshold = 200;
     var utxoVerified = true;
 
     for (var i = 0; i < utxoList.length; i++) {

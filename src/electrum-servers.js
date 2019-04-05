@@ -167,9 +167,9 @@ let _electrumServers = {
   ],
   ltc: [
     'electrum-ltc.bysh.me:50001:tcp',
-    'electrum-ltc.ddns.net:50001:tcp',
+    'node.ispol.sk:50003:tcp',
     'electrum-ltc.wilv.in:50001:tcp',
-    'electrum.ltc.xurious.com:50001:tcp',
+    'backup.electrum-ltc.org:50001:tcp',
   ],
   fair: [
     'electrum1.cipig.net:10063:tcp',
@@ -215,6 +215,8 @@ let _electrumServers = {
     'bch.imaginary.cash:50001:tcp',
     'electroncash.dk:50001:tcp',
     'wallet.satoshiscoffeehouse.com:50001:tcp',
+    'electron.coinucopia.io:50001:tcp',
+    'electron-cash.dragon.zone:50001:tcp',
   ],
   /*arg: [
     'electrum1.cipig.net:10068:tcp',
