@@ -298,6 +298,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
         !outputs) {
       return 'Can\'t find best fit utxo. Try lower amount.';
     }
+    
     let vinSum = 0;
 
     for (let i = 0; i < inputs.length; i++) {

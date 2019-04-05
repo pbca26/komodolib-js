@@ -267,6 +267,7 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     if (!inputs && !outputs) {
       return 'Can\'t find best fit utxo. Try lower amount.';
     }
+
     var vinSum = 0;
 
     for (var _i4 = 0; _i4 < inputs.length; _i4++) {

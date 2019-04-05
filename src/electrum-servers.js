@@ -526,6 +526,11 @@ let _electrumServers = {
     'electrum2.cipig.net:10036:tcp',
     'electrum3.cipig.net:10036:tcp',
   ],
+  zex: [
+    'electrum1.cipig.net:10035:tcp',
+    'electrum2.cipig.net:10035:tcp',
+    'electrum3.cipig.net:10035:tcp',
+  ],
 };
 
 let electrumServers = {};
