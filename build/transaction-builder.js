@@ -9,6 +9,8 @@ var bitcoin = require('bitcoinjs-lib');
 var coinselect = require('coinselect');
 var utils = require('./utils');
 
+// TODO: eth wrapper
+
 // current multisig limitations: no PoS, no btc forks
 var transaction = function transaction(sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, options) {
   var key = network.isZcash ? bitcoinZcash.ECPair.fromWIF(wif, network) : bitcoin.ECPair.fromWIF(wif, network);

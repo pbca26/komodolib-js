@@ -156,6 +156,7 @@ const parseBitcoinURL = (url) => {
   }
 
   parsed.address = match[1];
+  
   return parsed;
 }
 
