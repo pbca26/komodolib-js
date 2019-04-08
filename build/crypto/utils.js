@@ -1,8 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 var maskPubAddress = function maskPubAddress(pub) {
   // keep 3 first and 3 last chars unmasked
   var masked = '';
@@ -26,7 +23,7 @@ var hex2str = function hex2str(hex) {
 };
 
 // ref: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-var shuffleArray = exports.shuffleArray = function shuffleArray(a) {
+var shuffleArray = function shuffleArray(a) {
   for (var i = a.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
 

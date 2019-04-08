@@ -160,10 +160,39 @@ const parseBitcoinURL = (url) => {
   return parsed;
 }
 
+const sortTransactions = (transactions, sortBy) => {
+  return transactions.sort((b, a) => {
+    if (a[sortBy ? sortBy : 'height'] < b[sortBy ? sortBy : 'height'] &&
+        a[sortBy ? sortBy : 'height'] &&
+        b[sortBy ? sortBy : 'height']) {
+      return -1;
+    }
+
+    if (a[sortBy ? sortBy : 'height'] > b[sortBy ? sortBy : 'height'] &&
+        a[sortBy ? sortBy : 'height'] &&
+        b[sortBy ? sortBy : 'height']) {
+      return 1;
+    }
+
+    if (!a[sortBy ? sortBy : 'height'] &&
+        b[sortBy ? sortBy : 'height']) {
+      return 1;
+    }
+
+    if (!b[sortBy ? sortBy : 'height'] &&
+        a[sortBy ? sortBy : 'height']) {
+      return -1;
+    }
+
+    return 0;
+  });
+}
+
 module.exports = {
   formatValue,
   formatBytes,
   sort,
+  sortTransactions,
   getRandomIntInclusive,
   getRandomElectrumServer,
   estimateTxSize,

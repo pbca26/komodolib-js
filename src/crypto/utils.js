@@ -21,7 +21,7 @@ const hex2str = (hex) => {
 };
 
 // ref: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-export const shuffleArray = (a) => {
+const shuffleArray = (a) => {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     
