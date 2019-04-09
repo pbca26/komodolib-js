@@ -48,6 +48,10 @@ let _electrumServers = {
     'electrum1.utrum.io:10088:tcp',
     'electrum2.utrum.io:10088:tcp',
   ],
+  k64: [
+    'electrum1.komodore64.com:21245:tcp',
+    'electrum2.komodore64.com:21245:tcp',
+  ],
   coqui: [
     'electrum1.cipig.net:10011:tcp',
     'electrum2.cipig.net:10011:tcp',

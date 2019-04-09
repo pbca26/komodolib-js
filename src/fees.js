@@ -17,6 +17,7 @@ const fees = {
   bntn: KMD_STD_FEE,
   eql: KMD_STD_FEE,
   oot: KMD_STD_FEE,
+  k64: KMD_STD_FEE,
   coqui: KMD_STD_FEE,
   chain: KMD_STD_FEE,
   glxt: KMD_STD_FEE,
