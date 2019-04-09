@@ -533,6 +533,11 @@ let _electrumServers = {
     'electrum2.cipig.net:10035:tcp',
     'electrum3.cipig.net:10035:tcp',
   ],
+  rfox: [
+    'electrum1.cipig.net:10034:tcp',
+    'electrum2.cipig.net:10034:tcp',
+    'electrum3.cipig.net:10034:tcp',
+  ],
 };
 
 let electrumServers = {};

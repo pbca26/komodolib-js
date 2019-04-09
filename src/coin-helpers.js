@@ -49,6 +49,7 @@ const _komodoAssetChains = [
   'MORTY',
   'VOTE2019',
   'MTST3',
+  'RFOX',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -120,6 +121,7 @@ const explorerList = {
   MORTY: 'https://morty.kmd.dev',
   VOTE2019: 'https://vote2019.world',
   MTST3:  'http://explorer.marmara.io',
+  RFOX: 'https://rfox.kmdexplorer.io',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',

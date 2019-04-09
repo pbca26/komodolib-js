@@ -52,6 +52,7 @@ const fees = {
   morty: KMD_STD_FEE,
   vote2019: KMD_STD_FEE,
   zex: KMD_STD_FEE,
+  rfox: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,

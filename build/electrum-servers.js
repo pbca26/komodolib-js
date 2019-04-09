@@ -141,7 +141,8 @@ var _electrumServers = {
   rick: ['116.203.111.225:10004:tcp', '116.203.120.175:10004:tcp', '116.203.40.22:10004:tcp'],
   morty: ['116.203.111.225:10005:tcp', '116.203.120.175:10005:tcp', '116.203.40.22:10005:tcp'],
   vote2019: ['electrum1.cipig.net:10036:tcp', 'electrum2.cipig.net:10036:tcp', 'electrum3.cipig.net:10036:tcp'],
-  zex: ['electrum1.cipig.net:10035:tcp', 'electrum2.cipig.net:10035:tcp', 'electrum3.cipig.net:10035:tcp']
+  zex: ['electrum1.cipig.net:10035:tcp', 'electrum2.cipig.net:10035:tcp', 'electrum3.cipig.net:10035:tcp'],
+  rfox: ['electrum1.cipig.net:10034:tcp', 'electrum2.cipig.net:10034:tcp', 'electrum3.cipig.net:10034:tcp']
 };
 
 var electrumServers = {};
