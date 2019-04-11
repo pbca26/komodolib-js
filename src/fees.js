@@ -17,7 +17,6 @@ const fees = {
   bntn: KMD_STD_FEE,
   eql: KMD_STD_FEE,
   oot: KMD_STD_FEE,
-  k64: KMD_STD_FEE,
   coqui: KMD_STD_FEE,
   chain: KMD_STD_FEE,
   glxt: KMD_STD_FEE,
@@ -54,6 +53,7 @@ const fees = {
   vote2019: KMD_STD_FEE,
   zex: KMD_STD_FEE,
   rfox: KMD_STD_FEE,
+  k64: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
