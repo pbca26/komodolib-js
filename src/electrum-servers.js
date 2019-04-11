@@ -172,8 +172,9 @@ let _electrumServers = {
   ltc: [
     'electrum-ltc.bysh.me:50001:tcp',
     'node.ispol.sk:50003:tcp',
-    'electrum-ltc.wilv.in:50001:tcp',
-    'backup.electrum-ltc.org:50001:tcp',
+    'ltc01.knas.systems:50003:tcp',
+    'node.ispol.sk:50003:tcp',
+    'electrum.ltc.xurious.com:50001:tcp',
   ],
   fair: [
     'electrum1.cipig.net:10063:tcp',
