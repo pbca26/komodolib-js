@@ -101,7 +101,7 @@ const explorerList = {
   MGW: 'https://mgw.kmdexplorer.io',
   WLC: 'https://wlc.kmdexplorer.io',
   CHIPS: 'https://explorer.chips.cash',
-  K64: 'https://explorer.komodore64.com',
+  K64: 'http://explorer.komodore64.com',
   COQUI: 'https://explorer.coqui.cash',
   EQL: 'http://178.62.240.191',
   BTCH: 'https://btch.kmdexplorer.io',
