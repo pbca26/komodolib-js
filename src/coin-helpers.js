@@ -51,6 +51,7 @@ const _komodoAssetChains = [
   'VOTE2019',
   'MTST3',
   'RFOX',
+  'HUSH',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([

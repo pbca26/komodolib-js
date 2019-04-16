@@ -386,19 +386,6 @@ var networks = (_networks = {
     sapling: true,
     saplingActivationHeight: 419200
   },
-  hush: {
-    messagePrefix: '\x19Hush Signed Message:\n',
-    bip44: 197,
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4
-    },
-    pubKeyHash: 0x1cb8,
-    scriptHash: 0x1cbd,
-    wif: 0x80,
-    dustThreshold: 1000,
-    isZcash: true
-  },
   bzc: {
     messagePrefix: '\x19Bitzec Signed Message:\n',
     bip44: 197,
