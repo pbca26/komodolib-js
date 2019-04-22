@@ -126,7 +126,8 @@ var stringToWif = function stringToWif(string, network, iguana) {
   if (string.match('^[a-zA-Z0-9]{34}$')) {
     return {
       priv: string,
-      pub: string
+      pub: string,
+      isPub: true
     };
   }
 

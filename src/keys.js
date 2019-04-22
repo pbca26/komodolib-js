@@ -142,6 +142,7 @@ const stringToWif = (string, network, iguana) => {
     return {
       priv: string,
       pub: string,
+      isPub: true,
     };
   }
 
