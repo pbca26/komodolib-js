@@ -34,7 +34,6 @@ const dpowCoins = [
   'MGNX',
   'CCL',
   'PIRATE',
-  'KOIN',
   'DION',
   'KMDICE',
   'ZEX',
@@ -45,6 +44,9 @@ const dpowCoins = [
   'RICK',
   'SEC',
   'KSB',
+  'VOTE2019',
+  'HUSH3',
+  'KOIN',
 ];
 
 module.exports = dpowCoins;
