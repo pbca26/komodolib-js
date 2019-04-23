@@ -17,8 +17,15 @@
 const bip39 = require('bip39');
 
 const passphraseGenerator = {
-  generatePassPhrase: bitsval => bip39.generateMnemonic(bitsval),
+  generatePassPhrase: (bitsval) => {
+    let seed;
+    
+    while (!bip39.validateMnemonic(seed)) {
+      seed = bip39.generateMnemonic(bitsval);
+    }
 
+    return seed;
+  },
   // checks if it's possible that the pass phrase words supplied as the first parameter
   // were generated with the number of bits supplied as the second parameter
   isPassPhraseValid: (passPhraseWords, bits) => {
@@ -27,7 +34,6 @@ const passphraseGenerator = {
     const wordsCount = bits / 32 * 3;
     return passPhraseWords && passPhraseWords.length === wordsCount;
   },
-
   arePassPhraseWordsValid: passphrase => bip39.validateMnemonic(passphrase),
 };
 
