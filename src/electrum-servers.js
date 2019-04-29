@@ -173,8 +173,9 @@ let _electrumServers = {
     'electrum-ltc.bysh.me:50001:tcp',
     'node.ispol.sk:50003:tcp',
     'ltc01.knas.systems:50003:tcp',
-    'node.ispol.sk:50003:tcp',
+    'ltc.rentonisk.com:50002:ssl',
     'electrum.ltc.xurious.com:50001:tcp',
+    'backup.electrum-ltc.org:50001:tcp',
   ],
   fair: [
     'electrum1.cipig.net:10063:tcp',
@@ -312,11 +313,6 @@ let _electrumServers = {
     'electrum2.cipig.net:10074:tcp',
     'electrum3.cipig.net:10074:tcp',
   ],
-  gbx: [
-    'electrum1.cipig.net:10073:tcp',
-    'electrum2.cipig.net:10073:tcp',
-    'electrum3.cipig.net:10073:tcp',
-  ],
   mnx: [
     'electrum1.cipig.net:10079:tcp',
     'electrum2.cipig.net:10079:tcp',
@@ -335,11 +331,6 @@ let _electrumServers = {
     'electrum1.cipig.net:10075:tcp',
     'electrum2.cipig.net:10075:tcp',
     'electrum3.cipig.net:10075:tcp',
-  ],
-  xmcc: [
-    'electrum1.cipig.net:10076:tcp',
-    'electrum2.cipig.net:10076:tcp',
-    'electrum3.cipig.net:10076:tcp',
   ],
   xzc: [
     'electrumx01.zcoin.io:50001:tcp',

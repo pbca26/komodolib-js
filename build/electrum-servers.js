@@ -49,7 +49,7 @@ var _electrumServers = {
   vtc: ['fr1.vtconline.org:55001:tcp', 'uk1.vtconline.org:55001:tcp'],
   nmc: ['electrum1.cipig.net:10066:tcp', 'electrum2.cipig.net:10066:tcp'],
   mona: ['electrumx1.monacoin.nl:50001:tcp', 'electrumx2.monacoin.nl:50001:tcp', 'electrumx1.monacoin.ninja:50001:tcp', 'electrumx2.monacoin.ninja:50001:tcp'],
-  ltc: ['electrum-ltc.bysh.me:50001:tcp', 'node.ispol.sk:50003:tcp', 'ltc01.knas.systems:50003:tcp', 'node.ispol.sk:50003:tcp', 'electrum.ltc.xurious.com:50001:tcp'],
+  ltc: ['electrum-ltc.bysh.me:50001:tcp', 'node.ispol.sk:50003:tcp', 'ltc01.knas.systems:50003:tcp', 'ltc.rentonisk.com:50002:ssl', 'electrum.ltc.xurious.com:50001:tcp', 'backup.electrum-ltc.org:50001:tcp'],
   fair: ['electrum1.cipig.net:10063:tcp', 'electrum2.cipig.net:10063:tcp'],
   dgb: ['electrum1.cipig.net:10059:tcp', 'electrum2.cipig.net:10059:tcp'],
   dash: ['electrum1.cipig.net:10061:tcp', 'electrum2.cipig.net:10061:tcp'],
@@ -85,12 +85,10 @@ var _electrumServers = {
   game: ['electrum1.cipig.net:10072:tcp', 'electrum2.cipig.net:10072:tcp'],
   fjc: ['electrumx1.fujicoin.org:50001:tcp', 'electrumx2.fujicoin.org:50001:tcp', 'electrumx3.fujicoin.org:50001:tcp', 'electrumx1.fujicoin.org:50002:ssl', 'electrumx2.fujicoin.org:50002:ssl', 'electrumx3.fujicoin.org:50002:ssl'],
   ftc: ['electrum1.cipig.net:10074:tcp', 'electrum2.cipig.net:10074:tcp', 'electrum3.cipig.net:10074:tcp'],
-  gbx: ['electrum1.cipig.net:10073:tcp', 'electrum2.cipig.net:10073:tcp', 'electrum3.cipig.net:10073:tcp'],
   mnx: ['electrum1.cipig.net:10079:tcp', 'electrum2.cipig.net:10079:tcp', 'electrum3.cipig.net:10079:tcp'],
   ccl: ['electrum1.cipig.net:10029:tcp', 'electrum2.cipig.net:10029:tcp', 'electrum3.cipig.net:10029:tcp'],
   vrsc: ['el0.vrsc.0x03.services:10000:tcp', 'el1.vrsc.0x03.services:10000:tcp'],
   polis: ['electrum1.cipig.net:10075:tcp', 'electrum2.cipig.net:10075:tcp', 'electrum3.cipig.net:10075:tcp'],
-  xmcc: ['electrum1.cipig.net:10076:tcp', 'electrum2.cipig.net:10076:tcp', 'electrum3.cipig.net:10076:tcp'],
   xzc: ['electrumx01.zcoin.io:50001:tcp', 'electrumx02.zcoin.io":50001:tcp', '45.63.92.224:50001:tcp', '45.77.67.235:50001:tcp'],
   // unverified to work
   // src: CryptoWallet.si
