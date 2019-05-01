@@ -16,11 +16,16 @@
 
 const bip39 = require('bip39');
 
+const hasDuplicates = (seed) => {
+  seed = seed.split(' ');
+  return (new Set(seed)).size !== seed.length;
+};
+
 const passphraseGenerator = {
   generatePassPhrase: (bitsval) => {
-    let seed;
+    let seed =  bip39.generateMnemonic(bitsval);
     
-    while (!bip39.validateMnemonic(seed)) {
+    while (hasDuplicates(seed)) {
       seed = bip39.generateMnemonic(bitsval);
     }
 
