@@ -7,7 +7,7 @@ const getMerkleRoot = (txid, proof, pos) => {
   let hash = txid;
   let serialized;
 
-  for (i = 0; i < proof.length; i++) {
+  for (let i = 0; i < proof.length; i++) {
     const _hashBuff = new Buffer(hash, 'hex');
     const _proofBuff = new Buffer(proof[i], 'hex');
 
