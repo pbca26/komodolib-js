@@ -334,7 +334,7 @@ let _electrumServers = {
   ],
   xzc: [
     'electrumx01.zcoin.io:50001:tcp',
-    'electrumx02.zcoin.io":50001:tcp',
+    'electrumx02.zcoin.io:50001:tcp',
     '45.63.92.224:50001:tcp',
     '45.77.67.235:50001:tcp',
   ],
