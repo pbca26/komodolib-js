@@ -5,23 +5,23 @@ const txDecoder = require('../transaction-decoder');
 const networks = require('../bitcoinjs-networks');
 
 const data = {
-  "utxo": [{
-    "txid":"33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
-    "vout":2,
-    "value":778970000,
-    "verified":true,
-    "height":241214,
-    "currentHeight":261482,
+  utxo: [{
+    txid: "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+    vout: 2,
+    value: 778970000,
+    verified: true,
+    height: 241214,
+    currentHeight: 261482,
   }],
-  "change":678960000,
-  "changeAdjusted":678960000,
-  "totalInterest":0,
-  "fee":10000,
-  "value":100000000,
-  "outputAddress":"RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
-  "changeAddress":"RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
-  "network":"vrsc",
-  "wif": "Uu831oyJFDQ1BsQuucH1TG3CbD2YHmvXrwnFLeAi7f9PKxcmGri3"
+  change: 678960000,
+  changeAdjusted: 678960000,
+  totalInterest: 0,
+  fee: 10000,
+  value: 100000000,
+  outputAddress: "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+  changeAddress: "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+  network: "vrsc",
+  wif: "Uu831oyJFDQ1BsQuucH1TG3CbD2YHmvXrwnFLeAi7f9PKxcmGri3",
 };
 
 const verusParams = networks.vrsc;
@@ -52,17 +52,39 @@ const signedTxSaplingVRSC = transaction(
 
 const decodedTxSaplingVRSC = txDecoder(signedTxSaplingVRSC, verusParams);
 
-const signedTxSaplingKmd = transaction(
+const presSaplingNetwork = {
+  messagePrefix: '\x19Komodo Signed Message:\n',
+  bip44: 141,
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4,
+  },
+  pubKeyHash: 0x3c,
+  scriptHash: 0x55,
+  wif: 0xbc,
+  consensusBranchId: {
+    1: 0x00,
+    2: 0x00,
+    3: 0x5ba81b19,
+    4: 0x76b809bb,
+  },
+  dustThreshold: 1000,
+  isZcash: true,
+  sapling: true,
+  saplingActivationHeight: 5000000,
+};
+
+const signedTxPreSapling = transaction(
   data.outputAddress,
   data.changeAddress,
   data.wif,
-  networks.kmd,
+  presSaplingNetwork,
   data.utxo,
   data.change,
   data.value
 );
 
-const decodedTxSaplingKmd = txDecoder(signedTxSaplingKmd, networks.kmd);
+const decodedTxPreSapling = txDecoder(signedTxPreSapling, presSaplingNetwork);
 
 test('src - transaction-builder - vrsc regular tx', async (t) => {
   t.plan(1);
@@ -74,7 +96,7 @@ test('src - transaction-builder - vrsc sapling tx', async (t) => {
   t.equal(decodedTxSaplingVRSC.tx.version, 4);
 });
 
-test('src - transaction-builder - kmd regular tx', async (t) => {
+test('src - transaction-builder - kmd non-sapling tx', async (t) => {
   t.plan(1);
-  t.equal(decodedTxSaplingKmd.tx.version, 1);
+  t.equal(decodedTxPreSapling.tx.version, 1);
 });
