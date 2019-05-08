@@ -502,6 +502,13 @@ const pubToElectrumScriptHashHex = (address, network) => {
   return reversedHash.toString('hex');
 };
 
+const pubKeyHashToElectrumScriptHashHex = (pubKeyHash) => {
+  const hash = bitcoin.crypto.sha256(pubKeyHash);
+  const reversedHash = Buffer.from(hash.reverse());
+
+  return reversedHash.toString('hex');
+};
+
 const getAddressVersion = (address) => {
   try {
     const _b58check = bitcoinZcash.address.fromBase58Check(address);
@@ -599,6 +606,7 @@ module.exports = {
     decodeRedeemScript,
   },
   pubToElectrumScriptHashHex,
+  pubKeyHashToElectrumScriptHashHex,
   getAddressVersion,
   pubToPub,
   isPrivKey,
