@@ -1,23 +1,15 @@
 // ref: https://css-tricks.com/snippets/javascript/javascript-md5/
 
 const md5 = function (string) {
-  function RotateLeft(lValue, iShiftBits) {
+  const RotateLeft = (lValue, iShiftBits) => {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
   }
-
-  function AddUnsigned(lX, lY) {
+  
+  const AddUnsigned = (lX, lY) => {
     let lX4;
-
-
     let lY4;
-
-
     let lX8;
-
-
     let lY8;
-
-
     let lResult;
 
     lX8 = (lX & 0x80000000);
@@ -26,9 +18,11 @@ const md5 = function (string) {
     lY4 = (lY & 0x40000000);
     lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
 
-    if (lX4 & lY4) {
+    if (lX4 &
+        lY4) {
       return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
     }
+    
     if (lX4 | lY4) {
       if (lResult & 0x40000000) {
         return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
@@ -38,38 +32,38 @@ const md5 = function (string) {
     return (lResult ^ lX8 ^ lY8);
   }
 
-  function F(x, y, z) { return (x & y) | ((~x) & z); }
-  function G(x, y, z) { return (x & z) | (y & (~z)); }
-  function H(x, y, z) { return (x ^ y ^ z); }
-  function I(x, y, z) { return (y ^ (x | (~z))); }
+  const F = (x, y, z) => { return (x & y) | ((~x) & z); }
+  const G = (x, y, z) => { return (x & z) | (y & (~z)); }
+  const H = (x, y, z) => { return (x ^ y ^ z); }
+  const I = (x, y, z) => { return (y ^ (x | (~z))); }
 
-  function FF(a, b, c, d, x, s, ac) {
+  const FF = (a, b, c, d, x, s, ac) => {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
   }
 
-  function GG(a, b, c, d, x, s, ac) {
+  const GG = (a, b, c, d, x, s, ac) => {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
   }
 
-  function HH(a, b, c, d, x, s, ac) {
+  const HH = (a, b, c, d, x, s, ac) => {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
   }
 
-  function II(a, b, c, d, x, s, ac) {
+  const II = (a, b, c, d, x, s, ac) => {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
   }
 
-  function ConvertToWordArray(string) {
-    let lWordCount;
+  const ConvertToWordArray = (string) => {
     const lMessageLength = string.length;
     const lNumberOfWords_temp1 = lMessageLength + 8;
     const lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
     const lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
     const lWordArray = Array(lNumberOfWords - 1);
+    let lWordCount;
     let lBytePosition = 0;
     let lByteCount = 0;
 
@@ -89,16 +83,10 @@ const md5 = function (string) {
     return lWordArray;
   }
 
-  function WordToHex(lValue) {
+  const WordToHex = (lValue) => {
     let WordToHexValue = '';
-
-
     let WordToHexValue_temp = '';
-
-
     let lByte;
-
-
     let lCount;
 
     for (lCount = 0; lCount <= 3; lCount++) {
@@ -110,7 +98,7 @@ const md5 = function (string) {
     return WordToHexValue;
   }
 
-  function Utf8Encode(string) {
+  const Utf8Encode = (string) => {
     string = string.replace(/\r\n/g, '\n');
     let utftext = '';
 
@@ -135,16 +123,9 @@ const md5 = function (string) {
   let x = Array();
   let k; let AA; let BB; let CC; let DD; let a; let b; let c; let d;
   const S11 = 7; const S12 = 12; const S13 = 17; const S14 = 22;
-
-
   const S21 = 5; const S22 = 9; const S23 = 14; const S24 = 20;
-
-
   const S31 = 4; const S32 = 11; const S33 = 16; const S34 = 23;
-
-
-  const S41 = 6; const S42 = 10; const S43 = 15; const
-    S44 = 21;
+  const S41 = 6; const S42 = 10; const S43 = 15; const S44 = 21;
 
   string = Utf8Encode(string);
 
