@@ -460,8 +460,13 @@ const multisigGenerate = (NofN, pubKeys, network) => {
   }
 }
 
-const redeemScriptToPubAddress = (scriptPubKey, network) => {
+const scriptPubKeyToPubAddress = (scriptPubKey, network) => {
   return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
+};
+
+const redeemScriptToPubAddress = (redeemScript, network) => {
+  const scriptPubKey = network && network.isZcash ? bitcoinZcash.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(redeemScript, 'hex'))) : bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(redeemScript, 'hex')));
+  return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
 };
 
 const decodeRedeemScript = (redeemScript, options) => {
@@ -497,13 +502,6 @@ const pubToElectrumScriptHashHex = (address, network) => {
   }
   
   const hash = bitcoin.crypto.sha256(script);
-  const reversedHash = Buffer.from(hash.reverse());
-
-  return reversedHash.toString('hex');
-};
-
-const pubKeyHashToElectrumScriptHashHex = (pubKeyHash) => {
-  const hash = bitcoin.crypto.sha256(pubKeyHash);
   const reversedHash = Buffer.from(hash.reverse());
 
   return reversedHash.toString('hex');
@@ -602,11 +600,11 @@ module.exports = {
   seedToPriv,
   multisig: {
     generate: multisigGenerate,
+    scriptPubKeyToPubAddress,
     redeemScriptToPubAddress,
     decodeRedeemScript,
   },
   pubToElectrumScriptHashHex,
-  pubKeyHashToElectrumScriptHashHex,
   getAddressVersion,
   pubToPub,
   isPrivKey,
