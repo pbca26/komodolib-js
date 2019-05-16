@@ -51,7 +51,8 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       if (options &&
           options.multisig &&
           options.multisig.creator) {
-        tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, new Buffer.from(options.multisig.scriptPubKey, 'hex'));
+        const scriptPubKey = network && network.isZcash ? bitcoinZcash.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(options.multisig.redeemScript, 'hex'))) : bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(options.multisig.redeemScript, 'hex')));
+        tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, scriptPubKey);
       }
 
       if (!options ||
@@ -130,9 +131,9 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
         (network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)) {
         if (options &&
             options.multisig) {
-          tx.sign(i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, utxo[i].value);
+          tx.sign(i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, Number(utxo[i].value));
         } else {
-          tx.sign(i, key, '', null, utxo[i].value);
+          tx.sign(i, key, '', null, Number(utxo[i].value));
         }
       } else {
         tx.sign(i, key);

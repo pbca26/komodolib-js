@@ -44,7 +44,8 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
       tx.addInput(utxo[i].txid, utxo[i].vout, bitcoinJSForks.Transaction.DEFAULT_SEQUENCE, btcFork.spk);
     } else {
       if (options && options.multisig && options.multisig.creator) {
-        tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, new Buffer.from(options.multisig.scriptPubKey, 'hex'));
+        var scriptPubKey = network && network.isZcash ? bitcoinZcash.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(options.multisig.redeemScript, 'hex'))) : bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(options.multisig.redeemScript, 'hex')));
+        tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, scriptPubKey);
       }
 
       if (!options || options && !options.multisig) {
@@ -110,9 +111,9 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
         tx.sign(_i, btcFork.keyPair, null, hashType, utxo[_i].value);
       } else if (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp || network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight) {
         if (options && options.multisig) {
-          tx.sign(_i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, utxo[_i].value);
+          tx.sign(_i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, Number(utxo[_i].value));
         } else {
-          tx.sign(_i, key, '', null, utxo[_i].value);
+          tx.sign(_i, key, '', null, Number(utxo[_i].value));
         }
       } else {
         tx.sign(_i, key);
