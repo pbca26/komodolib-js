@@ -9,9 +9,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 */
 
 // TODO: runtime extend for kmd assets
+//       use lib flag e.g. lib: 'bitcoinjs-lib'
 // wifAlt can be used for different coin versions that underwent major code base changes
 // this is an experimental option that can lead to key pair derivation errors
 var bitcoin = require('bitcoinjs-lib');
+var bcrypto = require('bitgo-utxo-lib-groestl').crypto;
+
+var groestlHashFunctions = {
+  address: bcrypto.groestl,
+  transaction: bcrypto.sha256
+};
 
 var networks = (_networks = {
   btc: bitcoin.networks.bitcoin,
@@ -115,9 +122,101 @@ var networks = (_networks = {
     pubKeyHash: 0x3c,
     scriptHash: 0x55,
     wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
     dustThreshold: 1000,
     isZcash: true,
+    sapling: true,
+    saplingActivationTimestamp: 1544835600,
     kmdInterest: true
+  },
+  vrsc: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 227520
+  },
+  oot: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 5000000
+  },
+  zilla: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 5000000
+  },
+  spltest: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationTimestamp: 1543958192
   },
   via: {
     messagePrefix: '\x19Viacoin Signed Message:\n',
@@ -276,11 +375,19 @@ var networks = (_networks = {
     pubKeyHash: 0x1cb8,
     scriptHash: 0x1cbd,
     wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
     dustThreshold: 1000,
-    isZcash: true
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 419200
   },
-  hush: {
-    messagePrefix: '\x19Hush Signed Message:\n',
+  bzc: {
+    messagePrefix: '\x19Bitzec Signed Message:\n',
     bip44: 197,
     bip32: {
       public: 0x0488b21e,
@@ -289,8 +396,16 @@ var networks = (_networks = {
     pubKeyHash: 0x1cb8,
     scriptHash: 0x1cbd,
     wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
     dustThreshold: 1000,
-    isZcash: true
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 1
   },
   zcl: {
     messagePrefix: '\x19Zclassic Signed Message:\n',
@@ -302,8 +417,16 @@ var networks = (_networks = {
     pubKeyHash: 0x1cb8,
     scriptHash: 0x1cbd,
     wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
     dustThreshold: 1000,
-    isZcash: true
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 476969
   },
   sng: {
     messagePrefix: '\x19Snowgem Signed Message:\n',
@@ -338,6 +461,17 @@ var networks = (_networks = {
     pubKeyHash: 0x28,
     scriptHash: 0x5,
     wif: 0x28 + 128,
+    dustThreshold: 1000
+  },
+  suqa: {
+    messagePrefix: '\x19Suqa Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0x5,
+    wif: 0xbf,
     dustThreshold: 1000
   },
   qtum: {
@@ -377,8 +511,9 @@ var networks = (_networks = {
     dustThreshold: 1000,
     isZcash: true
   },
-  grs: { // fails to gen a proper addr
+  grs: {
     messagePrefix: '\x19Groestlcoin Signed Message:\n',
+    bech32: 'grs',
     bip44: 17,
     bip32: {
       public: 0x0488b21e,
@@ -387,7 +522,9 @@ var networks = (_networks = {
     pubKeyHash: 0x24,
     scriptHash: 0x5,
     wif: 0x80,
-    dustThreshold: 1000
+    dustThreshold: 1000,
+    isGRS: true,
+    hashFunctions: groestlHashFunctions
   },
   aby: {
     messagePrefix: '\x19ArtByte Signed Message:\n',
@@ -496,8 +633,8 @@ var networks = (_networks = {
     },
     pubKeyHash: 0x21,
     scriptHash: 0x05,
-    wif: 0xa1,
-    wifAlt: [0xB0]
+    wif: 0xB0,
+    compressed: true
   },
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
@@ -1034,7 +1171,8 @@ var networks = (_networks = {
     },
     pubKeyHash: 0x19,
     scriptHash: 0x08,
-    wif: 0x99
+    wif: 0x99,
+    isPoS: true
   },
   brit: {
     messagePrefix: '\x18BritCoin Signed Message:\n',
@@ -1771,6 +1909,242 @@ var networks = (_networks = {
   pubKeyHash: 0x35,
   scriptHash: 0x5,
   wif: 0xB1
+}), _defineProperty(_networks, 'kreds', {
+  messagePrefix: '\x19Kreds Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x2D,
+  scriptHash: 0x5,
+  wif: 0xC3
+}), _defineProperty(_networks, 'ufo', { // https://github.com/UFOCoins/ufo/blob/master-0.15/src/chainparams.cpp#L134
+  messagePrefix: '\x19UFO Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x1B,
+  scriptHash: 0x5,
+  wif: 0x9B
+}), _defineProperty(_networks, 'grlc', {
+  messagePrefix: '\x19GarlicCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x26,
+  scriptHash: 0x32,
+  wif: 0xB0
+}), _defineProperty(_networks, 'aywa', {
+  messagePrefix: '\x19AywaCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x17,
+  scriptHash: 0x53,
+  wif: 0x96
+}), _defineProperty(_networks, 'bitb', {
+  messagePrefix: '\x19BitBean Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x3,
+  scriptHash: 0x55,
+  wif: 0x83
+}), _defineProperty(_networks, 'xmcc', {
+  messagePrefix: '\x19Monoeci Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x32,
+  scriptHash: 0x49,
+  wif: 0x4D
+}), _defineProperty(_networks, 'polis', {
+  messagePrefix: '\x19Polis Signed Message:\n',
+  bip32: {
+    public: 0x03E25D7E,
+    private: 0x03E25945
+  },
+  pubKeyHash: 0x37,
+  scriptHash: 0x38,
+  wif: 0x3C
+}), _defineProperty(_networks, 'crc', {
+  messagePrefix: '\x19Crowdcoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x41,
+  scriptHash: 0x7F,
+  wif: 0x3
+}), _defineProperty(_networks, 'tzc', {
+  messagePrefix: '\x18TrezarCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x42,
+  scriptHash: 0x8,
+  wif: 0xC2
+}), _defineProperty(_networks, 'cesc', {
+  messagePrefix: '\x18cryptoescudo Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x1C,
+  scriptHash: 0x58,
+  wif: 0x9C
+}), _defineProperty(_networks, 'mue', {
+  messagePrefix: '\x18MonetaryUnit Signed Message:\n',
+  bip32: {
+    public: 0x022D2533,
+    private: 0x0221312B
+  },
+  pubKeyHash: 0x10,
+  scriptHash: 0x4C,
+  wif: 0x7E
+}), _defineProperty(_networks, 'koto', {
+  messagePrefix: '\x19Koto Signed Message:\n',
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4
+  },
+  pubKeyHash: 0x1836,
+  scriptHash: 0x183B,
+  wif: 0x80,
+  consensusBranchId: {
+    1: 0x00,
+    2: 0x00,
+    3: 0x5ba81b19,
+    4: 0x76b809bb
+  },
+  isZcash: true,
+  sapling: true,
+  saplingActivationHeight: 1
+}), _defineProperty(_networks, 'pak', {
+  messagePrefix: '\x18Pakcoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x37,
+  scriptHash: 0x5,
+  wif: 0xB0
+}), _defineProperty(_networks, 'cpc', {
+  messagePrefix: '\x18Capricoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x1C,
+  scriptHash: 0x23,
+  wif: 0x9C,
+  isPoS: true
+}), _defineProperty(_networks, 'rap', {
+  messagePrefix: '\x18Rapture Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x3C,
+  scriptHash: 0x10,
+  wif: 0xCC
+}), _defineProperty(_networks, 'pac', {
+  messagePrefix: '\x18PACcoin Signed Message:\n',
+  bip32: {
+    public: 0x043587CF,
+    private: 0x04358394
+  },
+  pubKeyHash: 0x37,
+  scriptHash: 0xA,
+  wif: 0xCC
+}), _defineProperty(_networks, 'stak', {
+  messagePrefix: '\x18Straks Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x3F,
+  scriptHash: 0x5,
+  wif: 0xCC
+}), _defineProperty(_networks, 'inn', {
+  messagePrefix: '\x18Innova Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x66,
+  scriptHash: 0x14,
+  wif: 0xC3
+}), _defineProperty(_networks, 'goa', {
+  messagePrefix: '\x18Goacoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x26,
+  scriptHash: 0xA,
+  wif: 0xC6
+}), _defineProperty(_networks, 'bbk', {
+  messagePrefix: '\x18Bitblocks Signed Message:\n',
+  bip32: {
+    public: 0x022D2533,
+    private: 0x0221312B
+  },
+  pubKeyHash: 0x19,
+  scriptHash: 0x55,
+  wif: 0x6B
+}), _defineProperty(_networks, 'uis', {
+  messagePrefix: '\x18Unitus Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x44,
+  scriptHash: 0xA,
+  wif: 0x84
+}), _defineProperty(_networks, 'uis', {
+  messagePrefix: '\x18Unitus Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x44,
+  scriptHash: 0xA,
+  wif: 0x84
+}), _defineProperty(_networks, 'arepa', {
+  messagePrefix: '\x18Arepacoin Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x17,
+  scriptHash: 0x55,
+  wif: 0x97,
+  isPoS: true
+}), _defineProperty(_networks, 'qmc', {
+  messagePrefix: '\x18QMCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4
+  },
+  pubKeyHash: 0x3A,
+  scriptHash: 0x78,
+  wif: 0x1
+}), _defineProperty(_networks, 'gin', {
+  messagePrefix: '\x18GinCoin Signed Message:\n',
+  bip32: {
+    public: 0x0488b21e,
+    private: 0x0488ade4
+  },
+  pubKeyHash: 0x26,
+  scriptHash: 0xA,
+  wif: 0xC6
 }), _defineProperty(_networks, '2give', {
   messagePrefix: '\x182GIVE Signed Message:\n',
   pubKeyHash: 0x27,
@@ -1857,10 +2231,6 @@ var networks = (_networks = {
   wif: 0x9c
 }), _defineProperty(_networks, 'cannabiscoin', {
   messagePrefix: '\x18CannabisCoin Signed Message:\n',
-  pubKeyHash: 0x1c,
-  wif: 0x9c
-}), _defineProperty(_networks, 'capricoin', {
-  messagePrefix: '\x18Capricoin Signed Message:\n',
   pubKeyHash: 0x1c,
   wif: 0x9c
 }), _defineProperty(_networks, 'cassubiandetk', {
@@ -2055,10 +2425,6 @@ var networks = (_networks = {
   messagePrefix: '\x18Influxcoin Signed Message:\n',
   pubKeyHash: 0x66,
   wif: 0xe6
-}), _defineProperty(_networks, 'Innox', {
-  messagePrefix: '\x18Innox Signed Message:\n',
-  pubKeyHash: 0x4b,
-  wif: 0xcb
 }), _defineProperty(_networks, 'iridiumcoin', {
   messagePrefix: '\x18IridiumCoin Signed Message:\n',
   pubKeyHash: 0x30,
@@ -2123,10 +2489,6 @@ var networks = (_networks = {
   messagePrefix: '\x18MobiusCoin Signed Message:\n',
   pubKeyHash: 0x00,
   wif: 0x80
-}), _defineProperty(_networks, 'monetaryunit', {
-  messagePrefix: '\x18MonetaryUnit Signed Message:\n',
-  pubKeyHash: 0x10,
-  wif: 0x7e
 }), _defineProperty(_networks, 'monocle', {
   messagePrefix: '\x18Monocle Signed Message:\n',
   pubKeyHash: 0x32,

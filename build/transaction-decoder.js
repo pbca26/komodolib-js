@@ -6,6 +6,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 MIT License
 
 Copyright (c) 2017 Yuki Akiyama, SuperNET
+Copyright (c) 2017 - 2019 SuperNET
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +27,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 Supported coin types: bitcoin, bitcoin forks BTG and BCH, zcash based coins, PoS type coins
-
 */
 
 var bitcoinLib = {
@@ -36,6 +36,8 @@ var bitcoinLib = {
     address: require('bitcoinjs-lib-pos/src/address')
   },
   bitcoinZcash: require('bitcoinjs-lib-zcash'),
+  bitcoinZcashSapling: require('bitgo-utxo-lib'),
+  groestlcoinjsLib: require('bitgo-utxo-lib-groestl'),
   bitcoin: require('bitcoinjs-lib')
 };
 var bitcoin = void 0;
@@ -140,14 +142,18 @@ var decodeOutput = function decodeOutput(tx, network) {
 var transactionDecoder = function transactionDecoder(rawtx, network, debug) {
   if (network.isPoS) {
     bitcoin = bitcoinLib.bitcoinPos.main;
-  } else if (network.isZcash) {
+  } else if (network.isZcash && !network.sapling) {
     bitcoin = bitcoinLib.bitcoinZcash;
+  } else if (network.sapling) {
+    bitcoin = bitcoinLib.bitcoinZcashSapling;
+  } else if (network.isGRS) {
+    bitcoin = bitcoinLib.groestlcoinjsLib;
   } else {
     bitcoin = bitcoinLib.bitcoin;
   }
 
   if (debug) {
-    var _tx = bitcoin.Transaction.fromHex(rawtx);
+    var _tx = bitcoin.Transaction.fromHex(rawtx, network ? network : null);
 
     return {
       tx: _tx,
@@ -157,7 +163,8 @@ var transactionDecoder = function transactionDecoder(rawtx, network, debug) {
       outputs: decodeOutput(_tx, network)
     };
   }
-  if (network.isZcash) {
+
+  if (network.isZcash && !network.sapling) {
     var buffer = Buffer.from(rawtx, 'hex');
 
     var decodeTx = function decodeTx(buffer) {
@@ -190,16 +197,44 @@ var transactionDecoder = function transactionDecoder(rawtx, network, debug) {
       inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0], network),
       outputs: decodeOutput(decodedtx[0], network)
     };
+  } else if (network.sapling) {
+    var _tx2 = bitcoin.Transaction.fromHex(rawtx, network);
+
+    if (_tx2.joinsplits || _tx2.vShieldedSpend || _tx2.vShieldedOutput) {
+      var _buffer = Buffer.from(rawtx, 'hex');
+      var _readHash = function _readHash(buffer) {
+        var _readSlice3 = readSlice(32)(_sha256(_sha256(buffer))),
+            _readSlice4 = _slicedToArray(_readSlice3, 2),
+            res = _readSlice4[0],
+            bufferLeft = _readSlice4[1];
+
+        var hash = Buffer.from(res, 'hex').reverse().toString('hex');
+        return hash;
+      };
+
+      _tx2.getId = function () {
+        return _readHash(_buffer);
+      };
+
+      return {
+        tx: _tx2,
+        network: network,
+        format: decodeFormat(_tx2),
+        inputs: !_tx2.ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(_tx2, network),
+        outputs: decodeOutput(_tx2, network)
+      };
+    }
   }
+
   try {
-    var _tx2 = network.isPoS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
+    var _tx3 = network.isPoS || network.isGRS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
 
     return {
-      tx: _tx2,
+      tx: _tx3,
       network: network,
-      format: decodeFormat(_tx2),
-      inputs: decodeInput(_tx2, network),
-      outputs: decodeOutput(_tx2, network)
+      format: decodeFormat(_tx3),
+      inputs: decodeInput(_tx3, network),
+      outputs: decodeOutput(_tx3, network)
     };
   } catch (e) {
     return false;

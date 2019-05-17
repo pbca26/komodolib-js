@@ -7,8 +7,10 @@ const _komodoAssetChains = [
   'JUMBLR',
   'BET',
   'CRYPTO',
+  'K64',
   'COQUI',
   'HODL',
+  'ILN',
   'MSHARK',
   'BOTS',
   'MGW',
@@ -17,7 +19,6 @@ const _komodoAssetChains = [
   'CEAL',
   'MESH',
   'WLC',
-  'MNZ',
   'AXO',
   'ETOMIC',
   'BTCH',
@@ -25,7 +26,6 @@ const _komodoAssetChains = [
   'PIZZA',
   'OOT',
   'NINJA',
-  'VOTE2018',
   'GLXT',
   'EQL',
   'BNTN',
@@ -42,6 +42,16 @@ const _komodoAssetChains = [
   'KMDICE',
   'PTX',
   'ZEX',
+  'SPLTEST',
+  'LUMBER',
+  'KSB',
+  'OUR',
+  'RICK',
+  'MORTY',
+  'VOTE2019',
+  'MTST3',
+  'RFOX',
+  'HUSH',
   'ZEXO'
 ];
 
@@ -53,7 +63,9 @@ const _komodoCoins = _komodoAssetChains.concat([
 
 const isKomodoCoin = (coin, skipKMD) => (_komodoCoins.find((element) => {
   if (skipKMD) {
-    return element === coin.toUpperCase() && coin.toUpperCase() !== 'KMD' && coin.toUpperCase() !== 'KOMODO';
+    return element === coin.toUpperCase() &&
+           coin.toUpperCase() !== 'KMD' &&
+           coin.toUpperCase() !== 'KOMODO';
   }
   return element === coin.toUpperCase();
 }));
@@ -63,6 +75,7 @@ const explorerList = {
   KMD: 'https://www.kmdexplorer.io',
   // KMD asset chains
   DION: 'https://explorer.dionpay.com',
+  KOIN: 'http://live.block.koinon.cloud',
   PTX: 'http://explorer1.patenttx.com',
   ZILLA: 'http://zilla.explorer.dexstats.info',
   MGNX: 'http://mgnx.explorer.dexstats.info',
@@ -84,28 +97,35 @@ const explorerList = {
   BET: 'https://bet.kmdexplorer.io',
   CRYPTO: 'https://crypto.kmdexplorer.io',
   HODL: 'https://hodl.kmdexplorer.io',
+  ILN: 'https://explorer.ilien.io',
   SHARK: 'http://SHARK.explorer.supernet.org',
   BOTS: 'https://bots.kmdexplorer.io',
   MGW: 'https://mgw.kmdexplorer.io',
   WLC: 'https://wlc.kmdexplorer.io',
   CHIPS: 'https://explorer.chips.cash',
+  K64: 'http://explorer.komodore64.com',
   COQUI: 'https://explorer.coqui.cash',
   EQL: 'http://178.62.240.191',
-  MNZ: 'https://mnz.kmdexplorer.io',
   BTCH: 'https://btch.kmdexplorer.io',
   BTC: 'https://blockchain.info',
   HUSH: 'https://explorer.myhush.org',
   PIZZA: 'http://pizza.komodochainz.info',
-  BEER: 'http://beer.komodochainz.info',
+  BEER: 'https://beer.kmdexplorer.io',
   NINJA: 'https://ninja.kmdexplorer.io',
-  VOTE2018: 'http://88.99.226.252',
   DSEC: 'https://dsec.kmdexplorer.io',
-  VRSC: 'https://vrsc.kmdexplorer.io',
-  KOIN: 'http://live.block.koinon.li/',
+  VRSC: 'https://explorer.veruscoin.io',
   DION: 'https://explorer.dionpay.com',
-  KMDICE: 'https://kmdice.explorer.dexstats.info',
+  KMDICE: 'http://kmdice.explorer.dexstats.info',
   PTX: 'http://explorer1.patenttx.com',
   ZEX: 'http://zex.explorer.dexstats.info',
+  LUMBER: 'https://explorer.lumberscout.io',
+  KSB: 'http://ksb.explorer.dexstats.info',
+  OUR: 'http://our.explorer.dexstats.info',
+  RICK: 'https://rick.kmd.dev',
+  MORTY: 'https://morty.kmd.dev',
+  VOTE2019: 'https://vote2019.world',
+  MTST3:  'http://explorer.marmara.io',
+  RFOX: 'https://rfox.kmdexplorer.io',
   ZEXO: 'http://zexo.explorer.dexstats.info',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
@@ -131,6 +151,7 @@ const explorerList = {
   BTX: 'http://explorer.bitcore.cc',
   BTCZ: 'https://explorer.bitcoinz.site',
   HODLC: 'http://www.fuzzbawls.pw/explore/HOdlcoin/tx.php?tx=',
+  SUQA: 'http://suqaexplorer.com',
   SIB: 'https://chain.sibcoin.net/en/tx/',
   ZEC: 'https://explorer.zcha.in/transactions/',
   BLK: 'https://explorer.coinpayments.net/transaction.php?chain=4&hash=',
@@ -151,6 +172,7 @@ const explorerList = {
   XMY: 'https://chainz.cryptoid.info/xmy/search.dws?q=',
   MUE: 'https://chainz.cryptoid.info/mue/search.dws?q=',
   UNO: 'https://chainz.cryptoid.info/uno/search.dws?q=',
+  GRS: 'http://groestlsight.groestlcoin.org',  
   VOX: 'http://206.189.74.116:3001',
   AUR: 'http://insight.auroracoin.is',
   LBC: 'https://explorer.lbry.io',
@@ -172,6 +194,7 @@ const explorerList = {
   MNX: 'https://minexexplorer.com/?r=explorer/tx&hash=',
   BCBC: 'http://be.cleanblockchain.org/tx/',
   RDD: 'https://live.reddcoin.com',
+  BZC: 'http://35.204.174.237:3001/insight/tx/',
   ETH: 'https://etherscan.io/tx/',
   ETH_ROPSTEN: 'https://ropsten.etherscan.io/tx/',
 };

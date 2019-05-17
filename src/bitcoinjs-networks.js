@@ -3,9 +3,16 @@
 */
 
 // TODO: runtime extend for kmd assets
+//       use lib flag e.g. lib: 'bitcoinjs-lib'
 // wifAlt can be used for different coin versions that underwent major code base changes
 // this is an experimental option that can lead to key pair derivation errors
 const bitcoin = require('bitcoinjs-lib');
+const bcrypto = require('bitgo-utxo-lib-groestl').crypto;
+
+const groestlHashFunctions = {
+  address: bcrypto.groestl,
+  transaction: bcrypto.sha256,
+};
 
 const networks = {
   btc: bitcoin.networks.bitcoin,
@@ -109,9 +116,101 @@ const networks = {
     pubKeyHash: 0x3c,
     scriptHash: 0x55,
     wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
     dustThreshold: 1000,
     isZcash: true,
+    sapling: true,
+    saplingActivationTimestamp: 1544835600,
     kmdInterest: true,
+  },
+  vrsc: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 227520,
+  },
+  oot: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 5000000,
+  },
+  zilla: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 5000000,
+  },
+  spltest: {
+    messagePrefix: '\x19Komodo Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationTimestamp: 1543958192,
   },
   via: {
     messagePrefix: '\x19Viacoin Signed Message:\n',
@@ -270,11 +369,19 @@ const networks = {
     pubKeyHash: 0x1cb8,
     scriptHash: 0x1cbd,
     wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
     dustThreshold: 1000,
     isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 419200,
   },
-  hush: {
-    messagePrefix: '\x19Hush Signed Message:\n',
+  bzc: {
+    messagePrefix: '\x19Bitzec Signed Message:\n',
     bip44: 197,
     bip32: {
       public: 0x0488b21e,
@@ -283,8 +390,16 @@ const networks = {
     pubKeyHash: 0x1cb8,
     scriptHash: 0x1cbd,
     wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
     dustThreshold: 1000,
     isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 1,
   },
   zcl: {
     messagePrefix: '\x19Zclassic Signed Message:\n',
@@ -296,8 +411,16 @@ const networks = {
     pubKeyHash: 0x1cb8,
     scriptHash: 0x1cbd,
     wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
     dustThreshold: 1000,
     isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 476969,
   },
   sng: {
     messagePrefix: '\x19Snowgem Signed Message:\n',
@@ -332,6 +455,17 @@ const networks = {
     pubKeyHash: 0x28,
     scriptHash: 0x5,
     wif: 0x28 + 128,
+    dustThreshold: 1000,
+  },
+  suqa: {
+    messagePrefix: '\x19Suqa Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3f,
+    scriptHash: 0x5,
+    wif: 0xbf,
     dustThreshold: 1000,
   },
   qtum: {
@@ -371,8 +505,9 @@ const networks = {
     dustThreshold: 1000,
     isZcash: true,
   },
-  grs: { // fails to gen a proper addr
+  grs: {
     messagePrefix: '\x19Groestlcoin Signed Message:\n',
+    bech32: 'grs',
     bip44: 17,
     bip32: {
       public: 0x0488b21e,
@@ -382,6 +517,8 @@ const networks = {
     scriptHash: 0x5,
     wif: 0x80,
     dustThreshold: 1000,
+    isGRS: true,
+    hashFunctions: groestlHashFunctions,
   },
   aby: {
     messagePrefix: '\x19ArtByte Signed Message:\n',
@@ -490,8 +627,8 @@ const networks = {
     },
     pubKeyHash: 0x21,
     scriptHash: 0x05,
-    wif: 0xa1,
-    wifAlt: [0xB0],
+    wif: 0xB0,
+    compressed: true, 
   },
   // https://github.com/BTA-BATA/BATA-SOURCE/blob/master/src/chainparams.cpp#L156
   bta: {
@@ -1029,6 +1166,7 @@ const networks = {
     pubKeyHash: 0x19,
     scriptHash: 0x08,
     wif: 0x99,
+    isPoS: true,
   },
   brit: {
     messagePrefix: '\x18BritCoin Signed Message:\n',
@@ -1812,6 +1950,267 @@ const networks = {
     scriptHash: 0x5,
     wif: 0xB1,
   },
+  kreds: {
+    messagePrefix: '\x19Kreds Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x2D,
+    scriptHash: 0x5,
+    wif: 0xC3,
+  },
+  ufo: { // https://github.com/UFOCoins/ufo/blob/master-0.15/src/chainparams.cpp#L134
+    messagePrefix: '\x19UFO Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x1B,
+    scriptHash: 0x5,
+    wif: 0x9B,
+  },
+  grlc: {
+    messagePrefix: '\x19GarlicCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x26,
+    scriptHash: 0x32,
+    wif: 0xB0,
+  },
+  aywa: {
+    messagePrefix: '\x19AywaCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x17,
+    scriptHash: 0x53,
+    wif: 0x96,
+  },
+  bitb: {
+    messagePrefix: '\x19BitBean Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x3,
+    scriptHash: 0x55,
+    wif: 0x83,
+  },
+  xmcc: {
+    messagePrefix: '\x19Monoeci Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x32,
+    scriptHash: 0x49,
+    wif: 0x4D,
+  },
+  polis: {
+    messagePrefix: '\x19Polis Signed Message:\n',
+    bip32: {
+      public: 0x03E25D7E,
+      private: 0x03E25945,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x38,
+    wif: 0x3C,
+  },
+  crc: {
+    messagePrefix: '\x19Crowdcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x41,
+    scriptHash: 0x7F,
+    wif: 0x3,
+  },
+  tzc: {
+    messagePrefix: '\u0018TrezarCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x42,
+    scriptHash: 0x8,
+    wif: 0xC2,
+  },
+  cesc: {
+    messagePrefix: '\u0018cryptoescudo Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x1C,
+    scriptHash: 0x58,
+    wif: 0x9C,
+  },
+  mue: {
+    messagePrefix: '\u0018MonetaryUnit Signed Message:\n',
+    bip32: {
+      public: 0x022D2533,
+      private: 0x0221312B,
+    },
+    pubKeyHash: 0x10,
+    scriptHash: 0x4C,
+    wif: 0x7E,
+  },
+  koto: {
+    messagePrefix: '\x19Koto Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x1836,
+    scriptHash: 0x183B,
+    wif: 0x80,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
+    isZcash: true,
+    sapling: true,
+    saplingActivationHeight: 1,
+  },
+  pak: {
+    messagePrefix: '\u0018Pakcoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0x5,
+    wif: 0xB0,
+  },
+  cpc: {
+    messagePrefix: '\u0018Capricoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x1C,
+    scriptHash: 0x23,
+    wif: 0x9C,
+    isPoS: true,
+  },
+  rap: {
+    messagePrefix: '\u0018Rapture Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x3C,
+    scriptHash: 0x10,
+    wif: 0xCC,
+  },
+  pac: {
+    messagePrefix: '\u0018PACcoin Signed Message:\n',
+    bip32: {
+      public: 0x043587CF,
+      private: 0x04358394,
+    },
+    pubKeyHash: 0x37,
+    scriptHash: 0xA,
+    wif: 0xCC,
+  },
+  stak: {
+    messagePrefix: '\u0018Straks Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x3F,
+    scriptHash: 0x5,
+    wif: 0xCC,
+  },
+  inn: {
+    messagePrefix: '\u0018Innova Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x66,
+    scriptHash: 0x14,
+    wif: 0xC3,
+  },
+  goa: {
+    messagePrefix: '\u0018Goacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x26,
+    scriptHash: 0xA,
+    wif: 0xC6,
+  },
+  bbk: {
+    messagePrefix: '\u0018Bitblocks Signed Message:\n',
+    bip32: {
+      public: 0x022D2533,
+      private: 0x0221312B,
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x55,
+    wif: 0x6B,
+  },
+  uis: {
+    messagePrefix: '\u0018Unitus Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x44,
+    scriptHash: 0xA,
+    wif: 0x84,
+  },
+  uis: {
+    messagePrefix: '\u0018Unitus Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x44,
+    scriptHash: 0xA,
+    wif: 0x84,
+  },
+  arepa: {
+    messagePrefix: '\u0018Arepacoin Signed Message:\n',
+    bip32: {
+      public: 0x0488B21E,
+      private: 0x0488ADE4,
+    },
+    pubKeyHash: 0x17,
+    scriptHash: 0x55,
+    wif: 0x97,
+    isPoS: true,
+  },
+  qmc: {
+    messagePrefix: '\x18QMCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3A,
+    scriptHash: 0x78,
+    wif: 0x1,
+  },
+  gin: {
+    messagePrefix: '\x18GinCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x26,
+    scriptHash: 0xA,
+    wif: 0xC6,
+  },
   // coins missing scriptHash info and a proper ticker symbol
   // needs a fix to be able to use multisig txs
   // src: https://github.com/walletgeneratornet/WalletGenerator.net/blob/master/src/janin.currency.js#L89
@@ -1922,11 +2321,6 @@ const networks = {
   },
   cannabiscoin: {
     messagePrefix: '\u0018CannabisCoin Signed Message:\n',
-    pubKeyHash: 0x1c,
-    wif: 0x9c,
-  },
-  capricoin: {
-    messagePrefix: '\u0018Capricoin Signed Message:\n',
     pubKeyHash: 0x1c,
     wif: 0x9c,
   },
@@ -2170,11 +2564,6 @@ const networks = {
     pubKeyHash: 0x66,
     wif: 0xe6,
   },
-  Innox: {
-    messagePrefix: '\u0018Innox Signed Message:\n',
-    pubKeyHash: 0x4b,
-    wif: 0xcb,
-  },
   iridiumcoin: {
     messagePrefix: '\u0018IridiumCoin Signed Message:\n',
     pubKeyHash: 0x30,
@@ -2254,11 +2643,6 @@ const networks = {
     messagePrefix: '\u0018MobiusCoin Signed Message:\n',
     pubKeyHash: 0x00,
     wif: 0x80,
-  },
-  monetaryunit: {
-    messagePrefix: '\u0018MonetaryUnit Signed Message:\n',
-    pubKeyHash: 0x10,
-    wif: 0x7e,
   },
   monocle: {
     messagePrefix: '\u0018Monocle Signed Message:\n',

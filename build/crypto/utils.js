@@ -22,7 +22,21 @@ var hex2str = function hex2str(hex) {
   return str;
 };
 
+// ref: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+var shuffleArray = function shuffleArray(a) {
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+
+    var _ref = [a[j], a[i]];
+    a[i] = _ref[0];
+    a[j] = _ref[1];
+  }
+
+  return a;
+};
+
 module.exports = {
   maskPubAddress: maskPubAddress,
-  hex2str: hex2str
+  hex2str: hex2str,
+  shuffleArray: shuffleArray
 };

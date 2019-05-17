@@ -138,10 +138,59 @@ var sortObject = function sortObject(o) {
   }, {});
 };
 
+// ref: https://gist.github.com/matthewhudson/7999278 
+var parseBitcoinURL = function parseBitcoinURL(url) {
+  var r = /^[a-zA-Z0-9]*:([a-zA-Z0-9]{27,34})(?:\?(.*))?$/;
+  var match = r.exec(url);
+
+  if (!match) return null;
+
+  var parsed = { url: url };
+
+  if (match[2]) {
+    var queries = match[2].split('&');
+
+    for (var i = 0; i < queries.length; i++) {
+      var query = queries[i].split('=');
+
+      if (query.length == 2) {
+        parsed[query[0]] = decodeURIComponent(query[1].replace(/\+/g, '%20'));
+      }
+    }
+  }
+
+  parsed.address = match[1];
+
+  return parsed;
+};
+
+var sortTransactions = function sortTransactions(transactions, sortBy) {
+  return transactions.sort(function (b, a) {
+    if (a[sortBy ? sortBy : 'height'] < b[sortBy ? sortBy : 'height'] && a[sortBy ? sortBy : 'height'] && b[sortBy ? sortBy : 'height']) {
+      return -1;
+    }
+
+    if (a[sortBy ? sortBy : 'height'] > b[sortBy ? sortBy : 'height'] && a[sortBy ? sortBy : 'height'] && b[sortBy ? sortBy : 'height']) {
+      return 1;
+    }
+
+    if (!a[sortBy ? sortBy : 'height'] && b[sortBy ? sortBy : 'height']) {
+      return 1;
+    }
+
+    if (!b[sortBy ? sortBy : 'height'] && a[sortBy ? sortBy : 'height']) {
+      return -1;
+    }
+
+    return 0;
+  });
+};
+
 module.exports = {
   formatValue: formatValue,
   formatBytes: formatBytes,
   sort: sort,
+  sortTransactions: sortTransactions,
   getRandomIntInclusive: getRandomIntInclusive,
   getRandomElectrumServer: getRandomElectrumServer,
   estimateTxSize: estimateTxSize,
@@ -150,5 +199,6 @@ module.exports = {
   toSats: toSats,
   isNumber: isNumber,
   isPositiveNumber: isPositiveNumber,
-  sortObject: sortObject
+  sortObject: sortObject,
+  parseBitcoinURL: parseBitcoinURL
 };
