@@ -6,11 +6,30 @@ const groestlcoinjsLib = require('bitgo-utxo-lib-groestl');
 const bitcoin = require('bitcoinjs-lib');
 const coinselect = require('coinselect');
 const utils = require('./utils');
+const {
+  multisig,
+  stringToWif,
+} = require('./keys');
+
+const ECPair = require('bitgo-utxo-lib/src/ecpair');
+const ECSignature = require('bitgo-utxo-lib/src/ecsignature');
+const Transaction = require('bitgo-utxo-lib/src/transaction');
 
 // TODO: eth wrapper
 
 // current multisig limitations: no PoS, no btc forks
+// bitcoinjs multisig order doesn't matter
 const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, options) => {
+  if (options &&
+      options.multisig) {
+    const decodedRedeemScript = multisig.decodeRedeemScript(options.multisig.redeemScript, { toHex: true });
+    const signPubkey = stringToWif(wif, network, true).pubHex;
+
+    if (decodedRedeemScript.pubKeys.indexOf(signPubkey) === -1) {
+      return { error: 'wrong multisig signing key' };
+    }
+  }
+
   const key = network.isZcash ? bitcoinZcash.ECPair.fromWIF(wif, network) : bitcoin.ECPair.fromWIF(wif, network);
   let tx;
   let btcFork = {};
@@ -39,8 +58,7 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     };
   } else if (network.isGRS) {
     tx = new groestlcoinjsLib.TransactionBuilder(network);
-  } 
-   else {
+  } else {
     tx = !options || (options && !options.multisig) || (options && options.multisig && options.multisig.creator) ? new bitcoin.TransactionBuilder(network) : new bitcoin.TransactionBuilder.fromTransaction(bitcoin.Transaction.fromHex(options.multisig.rawtx, network), network);
   }
 
@@ -353,4 +371,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
 module.exports = {
   data,
   transaction,
+  multisig: {
+    getSigsData,
+  },
 };
