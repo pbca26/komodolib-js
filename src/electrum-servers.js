@@ -535,6 +535,7 @@ let _electrumServers = {
     'electrum3.cipig.net:10034:tcp',
   ],
 };
+_electrumServers.zexo = _electrumServers.zex;
 
 let electrumServers = {};
 
