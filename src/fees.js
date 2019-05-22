@@ -55,6 +55,7 @@ const fees = {
   rfox: KMD_STD_FEE,
   k64: KMD_STD_FEE,
   hush: KMD_STD_FEE,
+  zexo: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
