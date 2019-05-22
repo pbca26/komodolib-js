@@ -13,7 +13,6 @@ const {
 
 const ECPair = require('bitgo-utxo-lib/src/ecpair');
 const ECSignature = require('bitgo-utxo-lib/src/ecsignature');
-const Transaction = require('bitgo-utxo-lib/src/transaction');
 
 // TODO: eth wrapper
 
@@ -116,17 +115,11 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       tx.enableBitcoinCash(true);
       tx.setVersion(2);
     } else if (network.sapling) {
-      let versionNum;
-
       if ((network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight) ||
           (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp)) {
-        versionNum = 4;
+        tx.setVersion(4);
       } else {
-        versionNum = 1;
-      }
-    
-      if (versionNum) {
-        tx.setVersion(versionNum);
+        tx.setVersion(1);
       }
     }
 
@@ -368,10 +361,62 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
   return 'no valid utxos';
 };
 
+// TODO: extend support for other btc forks
+const checkSignatures = (utxo, rawtx, redeemScript, network) => {
+  const txb = new bitcoinZcashSapling.TransactionBuilder.fromTransaction(bitcoinZcashSapling.Transaction.fromHex(rawtx, network), network);
+  
+  let pubKeySigCount = {};
+  let pubKeySigComplete = [];
+  let decodedRedeemScript;
+  let isRedeemScriptError = false;
+
+  for (let i = 0; i < txb.inputs.length; i++) {
+    const input = txb.inputs[i];
+
+    for (let j = 0; j < input.pubKeys.length; j++) {
+      if (input.signatures[j]) {
+        if (input.signScript.toString('hex') !== redeemScript) {
+          isRedeemScriptError = true;
+        }
+
+        decodedRedeemScript = multisig.decodeRedeemScript(input.signScript.toString('hex'), { toHex: true });
+
+        const parsedSig = ECSignature.parseScriptSignature(input.signatures[j]);
+        const keyPair = ECPair.fromPublicKeyBuffer(input.pubKeys[j])
+        const hash = txb.tx.hashForZcashSignature(i, input.signScript, utxo[i].value, parsedSig.hashType);
+        const verifySig = keyPair.verify(hash, parsedSig.signature);
+
+        if (decodedRedeemScript.pubKeys.indexOf(input.pubKeys[j].toString('hex')) > -1 &&
+            verifySig) {
+          if (!pubKeySigCount[input.pubKeys[j].toString('hex')]) {
+            pubKeySigCount[input.pubKeys[j].toString('hex')] = 1;
+          } else {
+            pubKeySigCount[input.pubKeys[j].toString('hex')]++;
+          }
+        }
+      }
+    }
+  }
+
+  for (let key in pubKeySigCount) {
+    if (pubKeySigCount[key] === txb.inputs.length) {
+      pubKeySigComplete.push(key);
+    }
+  } 
+
+  return isRedeemScriptError ? { error: 'redeem script mismatch' } : {
+    signatures: {
+      required: decodedRedeemScript.m,
+      verified: Object.keys(pubKeySigCount).length,
+    },
+    pubKeys: pubKeySigComplete, 
+  };
+}
+
 module.exports = {
   data,
   transaction,
   multisig: {
-    getSigsData,
+    checkSignatures,
   },
 };

@@ -9,10 +9,27 @@ var bitcoin = require('bitcoinjs-lib');
 var coinselect = require('coinselect');
 var utils = require('./utils');
 
+var _require = require('./keys'),
+    multisig = _require.multisig,
+    stringToWif = _require.stringToWif;
+
+var ECPair = require('bitgo-utxo-lib/src/ecpair');
+var ECSignature = require('bitgo-utxo-lib/src/ecsignature');
+
 // TODO: eth wrapper
 
 // current multisig limitations: no PoS, no btc forks
+// bitcoinjs multisig order doesn't matter
 var transaction = function transaction(sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, options) {
+  if (options && options.multisig) {
+    var decodedRedeemScript = multisig.decodeRedeemScript(options.multisig.redeemScript, { toHex: true });
+    var signPubkey = stringToWif(wif, network, true).pubHex;
+
+    if (decodedRedeemScript.pubKeys.indexOf(signPubkey) === -1) {
+      return { error: 'wrong multisig signing key' };
+    }
+  }
+
   var key = network.isZcash ? bitcoinZcash.ECPair.fromWIF(wif, network) : bitcoin.ECPair.fromWIF(wif, network);
   var tx = void 0;
   var btcFork = {};
@@ -83,16 +100,10 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
       tx.enableBitcoinCash(true);
       tx.setVersion(2);
     } else if (network.sapling) {
-      var versionNum = void 0;
-
       if (network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight || network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) {
-        versionNum = 4;
+        tx.setVersion(4);
       } else {
-        versionNum = 1;
-      }
-
-      if (versionNum) {
-        tx.setVersion(versionNum);
+        tx.setVersion(1);
       }
     }
 
@@ -319,7 +330,61 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
   return 'no valid utxos';
 };
 
+// TODO: extend support for other btc forks
+var checkSignatures = function checkSignatures(utxo, rawtx, redeemScript, network) {
+  var txb = new bitcoinZcashSapling.TransactionBuilder.fromTransaction(bitcoinZcashSapling.Transaction.fromHex(rawtx, network), network);
+
+  var pubKeySigCount = {};
+  var pubKeySigComplete = [];
+  var decodedRedeemScript = void 0;
+  var isRedeemScriptError = false;
+
+  for (var i = 0; i < txb.inputs.length; i++) {
+    var input = txb.inputs[i];
+
+    for (var j = 0; j < input.pubKeys.length; j++) {
+      if (input.signatures[j]) {
+        if (input.signScript.toString('hex') !== redeemScript) {
+          isRedeemScriptError = true;
+        }
+
+        decodedRedeemScript = multisig.decodeRedeemScript(input.signScript.toString('hex'), { toHex: true });
+
+        var parsedSig = ECSignature.parseScriptSignature(input.signatures[j]);
+        var keyPair = ECPair.fromPublicKeyBuffer(input.pubKeys[j]);
+        var hash = txb.tx.hashForZcashSignature(i, input.signScript, utxo[i].value, parsedSig.hashType);
+        var verifySig = keyPair.verify(hash, parsedSig.signature);
+
+        if (decodedRedeemScript.pubKeys.indexOf(input.pubKeys[j].toString('hex')) > -1 && verifySig) {
+          if (!pubKeySigCount[input.pubKeys[j].toString('hex')]) {
+            pubKeySigCount[input.pubKeys[j].toString('hex')] = 1;
+          } else {
+            pubKeySigCount[input.pubKeys[j].toString('hex')]++;
+          }
+        }
+      }
+    }
+  }
+
+  for (var key in pubKeySigCount) {
+    if (pubKeySigCount[key] === txb.inputs.length) {
+      pubKeySigComplete.push(key);
+    }
+  }
+
+  return isRedeemScriptError ? { error: 'redeem script mismatch' } : {
+    signatures: {
+      required: decodedRedeemScript.m,
+      verified: Object.keys(pubKeySigCount).length
+    },
+    pubKeys: pubKeySigComplete
+  };
+};
+
 module.exports = {
   data: data,
-  transaction: transaction
+  transaction: transaction,
+  multisig: {
+    checkSignatures: checkSignatures
+  }
 };
