@@ -1,14 +1,13 @@
 const reverse = require('buffer-reverse');
 const crypto = require('crypto');
-const sha256 = (data) => {
-  return crypto.createHash('sha256').update(data).digest();
-}
+
+const sha256 = data => crypto.createHash('sha256').update(data).digest();
 
 const getMerkleRoot = (txid, proof, pos) => {
   let hash = txid;
   let serialized;
 
-  for (i = 0; i < proof.length; i++) {
+  for (let i = 0; i < proof.length; i++) {
     const _hashBuff = new Buffer(hash, 'hex');
     const _proofBuff = new Buffer(proof[i], 'hex');
 
@@ -23,6 +22,6 @@ const getMerkleRoot = (txid, proof, pos) => {
   }
 
   return hash;
-}
+};
 
 module.exports = getMerkleRoot;
