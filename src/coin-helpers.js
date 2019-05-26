@@ -128,6 +128,7 @@ const explorerList = {
   MTST3:  'http://explorer.marmara.io',
   RFOX: 'https://rfox.kmdexplorer.io',
   ZEXO: 'http://zexo.explorer.dexstats.info',
+  LABS: 'http://labs.explorer.dexstats.info',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
