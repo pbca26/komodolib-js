@@ -1,5 +1,5 @@
 /*
- *  Usage: - clone https://github.com/jl777/coinscopy
+ *  Usage: - clone https://github.com/jl777/coins
  *         - paste coins data into coins.js
  *         - run node jl777-coins-parser -flags=
  *         - params can be a combination of flags: spv/eth, names/tickers/ids(for ecrc20 tokens)
