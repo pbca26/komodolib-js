@@ -42,7 +42,7 @@ var passphraseGenerator = {
     // the required number of words based on the number of bits
     // mirrors the generatePassPhrase function above
     var wordsCount = bits / 32 * 3;
-    return passPhraseWords && passPhraseWords.split(' ').length === wordsCount;
+    return seed && seed.split(' ').length === wordsCount;
   },
   arePassPhraseWordsValid: function arePassPhraseWordsValid(passphrase) {
     return bip39.validateMnemonic(passphrase);
