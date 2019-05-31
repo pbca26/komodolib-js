@@ -345,7 +345,17 @@ var ElectrumConnect = function (_Client) {
   }, {
     key: 'serverVersion',
     value: function serverVersion(client_name, protocol_version) {
-      return this.request('server.version', [client_name, protocol_version]);
+      var params = [];
+
+      if (client_name && protocol_version) {
+        params = [client_name, protocol_version];
+      } else if (!client_name && protocol_version) {
+        params = ['', protocol_version];
+      } else if (client_name && !protocol_version) {
+        params = [''];
+      }
+
+      return this.request('server.version', params);
     }
   }, {
     key: 'serverBanner',

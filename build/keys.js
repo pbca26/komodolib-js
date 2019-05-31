@@ -416,8 +416,13 @@ var multisigGenerate = function multisigGenerate(NofN, pubKeys, network) {
   }
 };
 
-var redeemScriptToPubAddress = function redeemScriptToPubAddress(scriptPubKey, network) {
+var scriptPubKeyToPubAddress = function scriptPubKeyToPubAddress(scriptPubKey, network) {
   return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
+};
+
+var redeemScriptToPubAddress = function redeemScriptToPubAddress(redeemScript, network) {
+  var scriptPubKey = network && network.isZcash ? bitcoinZcash.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(redeemScript, 'hex'))) : bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(redeemScript, 'hex')));
+  return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
 };
 
 var decodeRedeemScript = function decodeRedeemScript(redeemScript, options) {
@@ -447,13 +452,6 @@ var pubToElectrumScriptHashHex = function pubToElectrumScriptHashHex(address, ne
   }
 
   var hash = bitcoin.crypto.sha256(script);
-  var reversedHash = Buffer.from(hash.reverse());
-
-  return reversedHash.toString('hex');
-};
-
-var pubKeyHashToElectrumScriptHashHex = function pubKeyHashToElectrumScriptHashHex(pubKeyHash) {
-  var hash = bitcoin.crypto.sha256(pubKeyHash);
   var reversedHash = Buffer.from(hash.reverse());
 
   return reversedHash.toString('hex');
@@ -542,11 +540,11 @@ module.exports = {
   seedToPriv: seedToPriv,
   multisig: {
     generate: multisigGenerate,
+    scriptPubKeyToPubAddress: scriptPubKeyToPubAddress,
     redeemScriptToPubAddress: redeemScriptToPubAddress,
     decodeRedeemScript: decodeRedeemScript
   },
   pubToElectrumScriptHashHex: pubToElectrumScriptHashHex,
-  pubKeyHashToElectrumScriptHashHex: pubKeyHashToElectrumScriptHashHex,
   getAddressVersion: getAddressVersion,
   pubToPub: pubToPub,
   isPrivKey: isPrivKey

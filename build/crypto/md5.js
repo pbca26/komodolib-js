@@ -3,19 +3,15 @@
 // ref: https://css-tricks.com/snippets/javascript/javascript-md5/
 
 var md5 = function md5(string) {
-  function RotateLeft(lValue, iShiftBits) {
+  var RotateLeft = function RotateLeft(lValue, iShiftBits) {
     return lValue << iShiftBits | lValue >>> 32 - iShiftBits;
-  }
+  };
 
-  function AddUnsigned(lX, lY) {
+  var AddUnsigned = function AddUnsigned(lX, lY) {
     var lX4 = void 0;
-
     var lY4 = void 0;
-
     var lX8 = void 0;
-
     var lY8 = void 0;
-
     var lResult = void 0;
 
     lX8 = lX & 0x80000000;
@@ -27,6 +23,7 @@ var md5 = function md5(string) {
     if (lX4 & lY4) {
       return lResult ^ 0x80000000 ^ lX8 ^ lY8;
     }
+
     if (lX4 | lY4) {
       if (lResult & 0x40000000) {
         return lResult ^ 0xC0000000 ^ lX8 ^ lY8;
@@ -34,48 +31,48 @@ var md5 = function md5(string) {
       return lResult ^ 0x40000000 ^ lX8 ^ lY8;
     }
     return lResult ^ lX8 ^ lY8;
-  }
+  };
 
-  function F(x, y, z) {
+  var F = function F(x, y, z) {
     return x & y | ~x & z;
-  }
-  function G(x, y, z) {
+  };
+  var G = function G(x, y, z) {
     return x & z | y & ~z;
-  }
-  function H(x, y, z) {
+  };
+  var H = function H(x, y, z) {
     return x ^ y ^ z;
-  }
-  function I(x, y, z) {
+  };
+  var I = function I(x, y, z) {
     return y ^ (x | ~z);
-  }
+  };
 
-  function FF(a, b, c, d, x, s, ac) {
+  var FF = function FF(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  }
+  };
 
-  function GG(a, b, c, d, x, s, ac) {
+  var GG = function GG(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  }
+  };
 
-  function HH(a, b, c, d, x, s, ac) {
+  var HH = function HH(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  }
+  };
 
-  function II(a, b, c, d, x, s, ac) {
+  var II = function II(a, b, c, d, x, s, ac) {
     a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
     return AddUnsigned(RotateLeft(a, s), b);
-  }
+  };
 
-  function ConvertToWordArray(string) {
-    var lWordCount = void 0;
+  var ConvertToWordArray = function ConvertToWordArray(string) {
     var lMessageLength = string.length;
     var lNumberOfWords_temp1 = lMessageLength + 8;
     var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - lNumberOfWords_temp1 % 64) / 64;
     var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
     var lWordArray = Array(lNumberOfWords - 1);
+    var lWordCount = void 0;
     var lBytePosition = 0;
     var lByteCount = 0;
 
@@ -93,15 +90,12 @@ var md5 = function md5(string) {
     lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
 
     return lWordArray;
-  }
+  };
 
-  function WordToHex(lValue) {
+  var WordToHex = function WordToHex(lValue) {
     var WordToHexValue = '';
-
     var WordToHexValue_temp = '';
-
     var lByte = void 0;
-
     var lCount = void 0;
 
     for (lCount = 0; lCount <= 3; lCount++) {
@@ -111,9 +105,9 @@ var md5 = function md5(string) {
     }
 
     return WordToHexValue;
-  }
+  };
 
-  function Utf8Encode(string) {
+  var Utf8Encode = function Utf8Encode(string) {
     string = string.replace(/\r\n/g, '\n');
     var utftext = '';
 
@@ -133,16 +127,13 @@ var md5 = function md5(string) {
     }
 
     return utftext;
-  }
+  };
 
   var x = Array();
   var k = void 0;var AA = void 0;var BB = void 0;var CC = void 0;var DD = void 0;var a = void 0;var b = void 0;var c = void 0;var d = void 0;
   var S11 = 7;var S12 = 12;var S13 = 17;var S14 = 22;
-
   var S21 = 5;var S22 = 9;var S23 = 14;var S24 = 20;
-
   var S31 = 4;var S32 = 11;var S33 = 16;var S34 = 23;
-
   var S41 = 6;var S42 = 10;var S43 = 15;var S44 = 21;
 
   string = Utf8Encode(string);
