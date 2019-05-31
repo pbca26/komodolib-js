@@ -334,7 +334,7 @@ let _electrumServers = {
   ],
   xzc: [
     'electrumx01.zcoin.io:50001:tcp',
-    'electrumx02.zcoin.io":50001:tcp',
+    'electrumx02.zcoin.io:50001:tcp',
     '45.63.92.224:50001:tcp',
     '45.77.67.235:50001:tcp',
   ],
@@ -510,14 +510,14 @@ let _electrumServers = {
     'electrum.komodochainz.info:50042:tcp',
   ],
   rick: [
-    '116.203.111.225:10004:tcp',
-    '116.203.120.175:10004:tcp',
-    '116.203.40.22:10004:tcp',
+    'electrum1.cipig.net:10017:tcp',
+    'electrum2.cipig.net:10017:tcp',
+    'electrum3.cipig.net:10017:tcp',
   ],
   morty: [
-    '116.203.111.225:10005:tcp',
-    '116.203.120.175:10005:tcp',
-    '116.203.40.22:10005:tcp',
+    'electrum1.cipig.net:10018:tcp',
+    'electrum2.cipig.net:10018:tcp',
+    'electrum3.cipig.net:10018:tcp',
   ],
   vote2019: [
     'electrum1.cipig.net:10036:tcp',
@@ -534,7 +534,13 @@ let _electrumServers = {
     'electrum2.cipig.net:10034:tcp',
     'electrum3.cipig.net:10034:tcp',
   ],
+  labs: [
+    'electrum1.cipig.net:10019:tcp',
+    'electrum2.cipig.net:10019:tcp',
+    'electrum3.cipig.net:10019:tcp',
+  ],
 };
+_electrumServers.zexo = _electrumServers.zex;
 
 let electrumServers = {};
 

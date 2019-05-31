@@ -11,7 +11,7 @@ var getMerkleRoot = function getMerkleRoot(txid, proof, pos) {
   var hash = txid;
   var serialized = void 0;
 
-  for (i = 0; i < proof.length; i++) {
+  for (var i = 0; i < proof.length; i++) {
     var _hashBuff = new Buffer(hash, 'hex');
     var _proofBuff = new Buffer(proof[i], 'hex');
 
