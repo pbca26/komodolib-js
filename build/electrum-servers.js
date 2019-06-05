@@ -89,7 +89,7 @@ var _electrumServers = {
   ccl: ['electrum1.cipig.net:10029:tcp', 'electrum2.cipig.net:10029:tcp', 'electrum3.cipig.net:10029:tcp'],
   vrsc: ['el0.vrsc.0x03.services:10000:tcp', 'el1.vrsc.0x03.services:10000:tcp'],
   polis: ['electrum1.cipig.net:10075:tcp', 'electrum2.cipig.net:10075:tcp', 'electrum3.cipig.net:10075:tcp'],
-  xzc: ['electrumx01.zcoin.io:50001:tcp', 'electrumx02.zcoin.io":50001:tcp', '45.63.92.224:50001:tcp', '45.77.67.235:50001:tcp'],
+  xzc: ['electrumx01.zcoin.io:50001:tcp', 'electrumx02.zcoin.io:50001:tcp', '45.63.92.224:50001:tcp', '45.77.67.235:50001:tcp'],
   // unverified to work
   // src: CryptoWallet.si
   arco: ['node1.cryptowallet.si:5095:tcp', 'node2.cryptowallet.si:5095:tcp', 'electrum1.aquariuscoin.com:5095:tcp', 'electrum2.aquariuscoin.com:5095:tcp', 'electrum3.aquariuscoin.com:5095:tcp'],
@@ -137,12 +137,14 @@ var _electrumServers = {
   uis: ['194.87.145.250:50040:ssl'],
   ksb: ['51.158.74.137:50001:tcp', 'electrum.komodochainz.info:50041:tcp'],
   our: ['51.158.74.137:50002:tcp', 'electrum.komodochainz.info:50042:tcp'],
-  rick: ['116.203.111.225:10004:tcp', '116.203.120.175:10004:tcp', '116.203.40.22:10004:tcp'],
-  morty: ['116.203.111.225:10005:tcp', '116.203.120.175:10005:tcp', '116.203.40.22:10005:tcp'],
+  rick: ['electrum1.cipig.net:10017:tcp', 'electrum2.cipig.net:10017:tcp', 'electrum3.cipig.net:10017:tcp'],
+  morty: ['electrum1.cipig.net:10018:tcp', 'electrum2.cipig.net:10018:tcp', 'electrum3.cipig.net:10018:tcp'],
   vote2019: ['electrum1.cipig.net:10036:tcp', 'electrum2.cipig.net:10036:tcp', 'electrum3.cipig.net:10036:tcp'],
   zex: ['electrum1.cipig.net:10035:tcp', 'electrum2.cipig.net:10035:tcp', 'electrum3.cipig.net:10035:tcp'],
-  rfox: ['electrum1.cipig.net:10034:tcp', 'electrum2.cipig.net:10034:tcp', 'electrum3.cipig.net:10034:tcp']
+  rfox: ['electrum1.cipig.net:10034:tcp', 'electrum2.cipig.net:10034:tcp', 'electrum3.cipig.net:10034:tcp'],
+  labs: ['electrum1.cipig.net:10019:tcp', 'electrum2.cipig.net:10019:tcp', 'electrum3.cipig.net:10019:tcp']
 };
+_electrumServers.zexo = _electrumServers.zex;
 
 var electrumServers = {};
 

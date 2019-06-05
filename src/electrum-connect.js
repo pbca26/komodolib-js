@@ -287,7 +287,24 @@ class ElectrumConnect extends Client {
 
   // ref: http://docs.electrum.org/en/latest/protocol.html
   serverVersion(client_name, protocol_version) {
-    return this.request('server.version', [client_name, protocol_version]);
+    let params = [];
+
+    if (client_name &&
+        protocol_version) {
+      params = [client_name, protocol_version];
+    } else if (
+      !client_name &&
+      protocol_version
+    ) {
+      params = ['', protocol_version];
+    } else if (
+      client_name &&
+      !protocol_version
+    ) {
+      params = [''];
+    }
+
+    return this.request('server.version', params);
   }
 
   serverBanner() {
