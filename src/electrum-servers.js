@@ -524,7 +524,7 @@ let _electrumServers = {
     'electrum2.cipig.net:10036:tcp',
     'electrum3.cipig.net:10036:tcp',
   ],
-  zex: [
+  zexo: [
     'electrum1.cipig.net:10035:tcp',
     'electrum2.cipig.net:10035:tcp',
     'electrum3.cipig.net:10035:tcp',
@@ -540,7 +540,6 @@ let _electrumServers = {
     'electrum3.cipig.net:10019:tcp',
   ],
 };
-_electrumServers.zexo = _electrumServers.zex;
 
 let electrumServers = {};
 

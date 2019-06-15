@@ -36,7 +36,6 @@ const dpowCoins = [
   'PIRATE',
   'DION',
   'KMDICE',
-  'ZEX',
   'OUR',
   'ILN',
   'RFOX',
