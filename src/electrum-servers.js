@@ -151,9 +151,8 @@ let _electrumServers = {
     'electrum2.cipig.net:10060:tcp',
   ],
   via: [
-    'viax1.bitops.me:50001:tcp',
-    'viax2.bitops.me:50001:tcp',
-    'viax3.bitops.me:50001.tcp',
+    'server.vialectrum.org:50001.tcp',
+    'server2.vialectrum.org:50001.tcp',
   ],
   vtc: [
     'fr1.vtconline.org:55001:tcp',
@@ -256,16 +255,18 @@ let _electrumServers = {
     'electrum2.cipig.net:10055:tcp',
   ],
   hodlc: [
-    'hodl.amit177.cf:17989:tcp',
-    'hodl2.amit177.cf:17898:tcp',
+    'hodl.amit.systems:17989:tcp',
+    'hodl2.amit.systems:17898:tcp',
   ],
   suqa: [
     'electrum1.suqa.org:12159:tcp',
     'electrum2.suqa.org:12159:tcp',
   ],
   btx: [
-    'electrum1.cipig.net:10057:tcp',
-    'electrum2.cipig.net:10057:tcp',
+    'ele1.bitcore.cc:50001:tcp',
+    'ele2.bitcore.cc:50001:tcp',
+    'ele3.bitcore.cc:50001:tcp',
+    'ele4.bitcore.cc:50001:tcp',
   ],
   btcz: [
     'electrum1.cipig.net:10056:tcp',
@@ -309,9 +310,10 @@ let _electrumServers = {
     'electrumx3.fujicoin.org:50002:ssl',
   ],
   ftc: [
-    'electrum1.cipig.net:10074:tcp',
-    'electrum2.cipig.net:10074:tcp',
-    'electrum3.cipig.net:10074:tcp',
+    'electrumx-ch-1.feathercoin.ch:50001:tcp',
+    'electrumx-de-2.feathercoin.ch:50001:tcp',
+    'electrumx-gb-1.feathercoin.network:50001:tcp',
+    'electrumx-gb-2.feathercoin.network:50001:tcp',
   ],
   mnx: [
     'electrum1.cipig.net:10079:tcp',
