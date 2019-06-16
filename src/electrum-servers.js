@@ -151,8 +151,8 @@ let _electrumServers = {
     'electrum2.cipig.net:10060:tcp',
   ],
   via: [
-    'server.vialectrum.org:50001.tcp',
-    'server2.vialectrum.org:50001.tcp',
+    'server.vialectrum.org:50001:tcp',
+    'server2.vialectrum.org:50001:tcp',
   ],
   vtc: [
     'fr1.vtconline.org:55001:tcp',
