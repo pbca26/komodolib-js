@@ -127,9 +127,9 @@ const maxSpendBalance = (utxoList, fee) => {
   return maxSpendBalance;
 };
 
-const fromSats = value => value * 0.00000001;
+const fromSats = value => (Math.round(value))/100000000;
 
-const toSats = value => Number(value).toFixed(8) * 100000000;
+const toSats = value => (Math.round(value*10000000000))/100;
 
 // https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
 const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
