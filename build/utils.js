@@ -124,11 +124,11 @@ var maxSpendBalance = function maxSpendBalance(utxoList, fee) {
 };
 
 var fromSats = function fromSats(value) {
-  return value * 0.00000001;
+  return Math.round(value) / 100000000;
 };
 
 var toSats = function toSats(value) {
-  return Number(value).toFixed(8) * 100000000;
+  return Math.round(value * 10000000000) / 100;
 };
 
 // https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
