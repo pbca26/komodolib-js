@@ -45,7 +45,7 @@ var _electrumServers = {
   jumblr: ['electrum1.cipig.net:10004:tcp', 'electrum2.cipig.net:10004:tcp'],
   kmd: ['electrum1.cipig.net:10001:tcp', 'electrum2.cipig.net:10001:tcp'],
   doge: ['electrum1.cipig.net:10060:tcp', 'electrum2.cipig.net:10060:tcp'],
-  via: ['viax1.bitops.me:50001:tcp', 'viax2.bitops.me:50001:tcp', 'viax3.bitops.me:50001.tcp'],
+  via: ['viax1.bitops.me:50001:tcp', 'viax2.bitops.me:50001:tcp', 'viax3.bitops.me:50001:tcp'],
   vtc: ['fr1.vtconline.org:55001:tcp', 'uk1.vtconline.org:55001:tcp'],
   nmc: ['electrum1.cipig.net:10066:tcp', 'electrum2.cipig.net:10066:tcp'],
   mona: ['electrumx1.monacoin.nl:50001:tcp', 'electrumx2.monacoin.nl:50001:tcp', 'electrumx1.monacoin.ninja:50001:tcp', 'electrumx2.monacoin.ninja:50001:tcp'],
