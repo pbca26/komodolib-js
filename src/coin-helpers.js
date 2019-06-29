@@ -54,6 +54,7 @@ const _komodoAssetChains = [
   'HUSH',
   'ZEXO',
   'LABS',
+  'DP',
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
@@ -129,6 +130,7 @@ const explorerList = {
   RFOX: 'https://rfox.kmdexplorer.io',
   ZEXO: 'http://zexo.explorer.dexstats.info',
   LABS: 'http://labs.explorer.dexstats.info',
+  DP: 'https://dp.explorer.komodo.top',
   // non-kmd coins
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
