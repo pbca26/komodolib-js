@@ -540,8 +540,8 @@ let _electrumServers = {
     'electrum3.cipig.net:10019:tcp',
   ],
   dp: [
-    'dp1.electrum.komodo.top:20011',
-    'dp2.electrum.komodo.top:20012',
+    'dp1.electrum.komodo.top:25268:tcp',
+    'dp2.electrum.komodo.top:25268:tcp',
   ],
 };
 _electrumServers.zexo = _electrumServers.zex;
