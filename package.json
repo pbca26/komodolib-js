@@ -73,7 +73,7 @@
     "bitcoinjs-message": "^2.0.0",
     "bitcore-lib-zcash": "git+https://github.com/zcash-hackworks/bitcore-lib-zcash",
     "bitcore-message": "git+https://github.com/pbca26/bitcore-message",
-    "bitgo-utxo-lib": "git+https://github.com/pbca26/bitgo-utxo-lib",
+    "bitgo-utxo-lib": "git+https://github.com/VerusCoin/bitgo-utxo-lib.git#react-native",
     "bitgo-utxo-lib-groestl": "git+https://github.com/SuperNETorg/bitgo-utxo-lib",
     "bluebird": "^3.4.7",
     "buffer-reverse": "^1.0.1",
