@@ -221,10 +221,7 @@ let _electrumServers = {
   ],
   bch: [
     'bch.imaginary.cash:50001:tcp',
-    'electroncash.dk:50001:tcp',
     'wallet.satoshiscoffeehouse.com:50001:tcp',
-    'electron.coinucopia.io:50001:tcp',
-    'electron-cash.dragon.zone:50001:tcp',
   ],
   /*arg: [
     'electrum1.cipig.net:10068:tcp',
