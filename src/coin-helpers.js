@@ -62,14 +62,10 @@ const _komodoCoins = _komodoAssetChains.concat([
   'KOMODO',
 ]);
 
-const isKomodoCoin = (coin, skipKMD) => (_komodoCoins.find((element) => {
-  if (skipKMD) {
-    return element === coin.toUpperCase() &&
-           coin.toUpperCase() !== 'KMD' &&
-           coin.toUpperCase() !== 'KOMODO';
-  }
-  return element === coin.toUpperCase();
-}));
+const isKomodoCoin = (coin) => {
+  const coins = _komodoCoins.filter(x => x !== 'CHIPS');
+  return coin && coins.indexOf(coin.toUpperCase()) > -1 ? true : false;
+};
 
 // TODO: add at least 2 explorers per coin
 const explorerList = {
