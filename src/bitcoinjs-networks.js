@@ -105,6 +105,18 @@ const networks = {
     dustThreshold: 1000, // https://github.com/zcoinofficial/zcoin/blob/f755f95a036eedfef7c96bcfb6769cb79278939f/src/main.h#L59,
     isZcash: true,
   },
+  chips: {
+    messagePrefix: '\x19Chips Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    dustThreshold: 1000,
+  },
   // https://raw.githubusercontent.com/jl777/komodo/beta/src/chainparams.cpp
   kmd: {
     messagePrefix: '\x19Komodo Signed Message:\n',
