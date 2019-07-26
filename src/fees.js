@@ -5,58 +5,14 @@
  * fee values are in satoshis
  */
 
+const { kmdAssetChains } = require('./coin-helpers');
+
 const KMD_STD_FEE = 10000; // kmd main/chips/asset chains
-const fees = {
+let fees = {
   // btc compatible coins, fees in satoshis
   // kmd/chips/asset chains
   kmd: KMD_STD_FEE,
   chips: KMD_STD_FEE,
-  zilla: KMD_STD_FEE,
-  prlpay: KMD_STD_FEE,
-  kv: KMD_STD_FEE,
-  bntn: KMD_STD_FEE,
-  eql: KMD_STD_FEE,
-  oot: KMD_STD_FEE,
-  coqui: KMD_STD_FEE,
-  chain: KMD_STD_FEE,
-  glxt: KMD_STD_FEE,
-  revs: KMD_STD_FEE,
-  supernet: KMD_STD_FEE,
-  dex: KMD_STD_FEE,
-  bots: KMD_STD_FEE,
-  crypto: KMD_STD_FEE,
-  dnr: KMD_STD_FEE,
-  hodl: KMD_STD_FEE,
-  iln: KMD_STD_FEE,
-  pangea: KMD_STD_FEE,
-  pgt: KMD_STD_FEE,
-  bet: KMD_STD_FEE,
-  mshark: KMD_STD_FEE,
-  wlc: KMD_STD_FEE,
-  mgw: KMD_STD_FEE,
-  btch: KMD_STD_FEE,
-  beer: KMD_STD_FEE,
-  pizza: KMD_STD_FEE,
-  ninja: KMD_STD_FEE,
-  jumblr: KMD_STD_FEE,
-  ccl: KMD_STD_FEE,
-  vrsc: KMD_STD_FEE,
-  dion: KMD_STD_FEE,
-  kmdice: KMD_STD_FEE,
-  ptx: KMD_STD_FEE,
-  lumber: KMD_STD_FEE,
-  ksb: KMD_STD_FEE,
-  our: KMD_STD_FEE,
-  koin: KMD_STD_FEE,
-  rick: KMD_STD_FEE,
-  morty: KMD_STD_FEE,
-  vote2019: KMD_STD_FEE,
-  zex: KMD_STD_FEE,
-  rfox: KMD_STD_FEE,
-  k64: KMD_STD_FEE,
-  hush: KMD_STD_FEE,
-  zexo: KMD_STD_FEE,
-  labs: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
@@ -135,5 +91,9 @@ const fees = {
   eth: 21000,
   eth_ropsten: 21000,
 };
+
+for (let i = 0; i < kmdAssetChains.length; i++) {
+  fees[kmdAssetChains[i].toLowerCase()] = KMD_STD_FEE;
+}
 
 module.exports = fees;
