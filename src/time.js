@@ -74,7 +74,7 @@ const secondsElapsedToString = (timestamp, srcInSeconds) => { // in seconds
     }
   }
 
-  return str;
+  return str.trim(); // trim space chars
 };
 
 module.exports = {
