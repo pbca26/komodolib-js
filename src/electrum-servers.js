@@ -546,7 +546,7 @@ let _electrumServers = {
   ],
   dp: [
     'dp.electrum.komodo.top:50001:tcp',
-    'dp2.electrum.komodo.top:50001:tcp',
+    'dp.electrum2.komodo.top:50001:tcp',
   ],
 };
 
