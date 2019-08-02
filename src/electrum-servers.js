@@ -545,7 +545,8 @@ let _electrumServers = {
     'electrum3.cipig.net:10019:tcp',
   ],
   dp: [
-    'dp.electrum.komodo.top',
+    'dp.electrum.komodo.top:50001:tcp',
+    'dp2.electrum.komodo.top:50001:tcp',
   ],
 };
 
