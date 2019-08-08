@@ -11,7 +11,7 @@ const komodoInterest = require('./komodo-interest');
 const transactionBuilder = require('./transaction-builder');
 const transactionType = require('./transaction-type');
 const getMerkleRoot = require('./transaction-merkle');
-const eth = require('./eth');
+const eth = require('./eth/eth');
 const btcnetworksUtils = require('./bitcoinjs-networks-utils');
 
 module.exports = {
@@ -29,4 +29,5 @@ module.exports = {
   getMerkleRoot,
   keys,
   btcnetworksUtils,
+  eth,
 };
