@@ -13,14 +13,14 @@ const encrypt = (cipherKey, string, testPinStrength) => new Promise((resolve, re
   if (testPinStrength) {
     const passwdStrength = require('passwd-strength');
 
-    if (passwdStrength(_pin) < 29) {
+    if (passwdStrength(cipherKey) < 29) {
       resolve(-1);
     }
   } else {
     _encrypt(string, cipherKey)
-      .then((encryptedString) => {
-        resolve(encryptedString);
-      });
+    .then((encryptedString) => {
+      resolve(encryptedString);
+    });
   }
 });
 
@@ -38,12 +38,12 @@ const decrypt = (cipherKey, string) => {
       });
     } else {
       _decrypt(string, cipherKey)
-        .then((decryptedKey) => {
-          resolve({ string: decryptedKey });
-        })
-        .catch((err) => {
-          resolve(false);
-        });
+      .then((decryptedKey) => {
+        resolve(decryptedKey);
+      })
+      .catch((err) => {
+        resolve(false);
+      });
     }
   });
 };
