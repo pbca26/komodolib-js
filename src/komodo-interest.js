@@ -33,7 +33,7 @@ const komodoInterest = (locktime, value, height, inSats) => { // value in sats, 
     interest = Number(((Math.floor(value / 10512000) * timestampDiffMinutes) * (inSats ? 1 : 0.00000001)).toFixed(inSats ? 0 : 8));
   }
 
-  return interest;
+  return interest > 0 ? interest : 0;
 };
 
 module.exports = komodoInterest;
