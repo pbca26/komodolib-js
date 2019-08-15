@@ -12,6 +12,7 @@ const sort = (data, sortKey, desc) => {
       return 0;
     });
   }
+  
   return data.sort((b, a) => {
     if (a[sortKey] < b[sortKey]) {
       return -1;
@@ -83,9 +84,9 @@ const formatValue = (value) => {
   const splitNum = str.split('.');
 
   if (Number(splitNum[0]) !== 0) {
-    return newVal.toFixed(4);
+    return Number(newVal.toFixed(4));
   }
-  return newVal;
+  return Number(newVal);
 };
 
 const formatBytes = (bytes, decimals) => {
@@ -113,7 +114,6 @@ const formatBytes = (bytes, decimals) => {
 
 const estimateTxSize = (numVins, numOuts) => numVins * 180 + numOuts * 34 + 11;
 
-
 const maxSpendBalance = (utxoList, fee) => {
   let maxSpendBalance = 0;
 
@@ -122,14 +122,31 @@ const maxSpendBalance = (utxoList, fee) => {
   }
 
   if (fee) {
-    return Number(maxSpendBalance) - Number(fee);
+    return Number((Number(maxSpendBalance) - Number(fee)).toFixed(8));
   }
-  return maxSpendBalance;
+  
+  return Number(maxSpendBalance);
 };
 
-const fromSats = value => value * 0.00000001;
+// ref: http://blog.davidjs.com/2018/07/convert-exponential-numbers-to-decimal-in-javascript/
+const convertExponentialToDecimal = (exponentialNumber) => {
+  // sanity check - is it exponential number
+  const str = exponentialNumber.toString();
+  if (str.indexOf('e') !== -1) {
+    const exponent = parseInt(str.split('-')[1], 10);
+    // Unfortunately I can not return 1e-8 as 0.00000001, because even if I call parseFloat() on it,
+    // it will still return the exponential representation
+    // So I have to use .toFixed()
+    const result = exponentialNumber.toFixed(exponent);
+    return result;
+  } else {
+    return exponentialNumber;
+  }
+}
 
-const toSats = value => Number(value).toFixed(8) * 100000000;
+const fromSats = value => Number(convertExponentialToDecimal(value * 0.00000001).toFixed(8));
+
+const toSats = value => Number((Number(value).toFixed(8) * 100000000).toFixed(0));
 
 // https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
 const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
@@ -203,4 +220,5 @@ module.exports = {
   isPositiveNumber,
   sortObject,
   parseBitcoinURL,
+  convertExponentialToDecimal,
 };
