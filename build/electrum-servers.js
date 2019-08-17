@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 var fees = require('./fees');
-var dpowCoins = require('./electrum-servers-dpow');
 
-// TODO: add a script to sync electrum severs list from https://github.com/jl777/coins/tree/master/electrums
+var dpowCoins = require('./electrum-servers-dpow'); // TODO: add a script to sync electrum severs list from https://github.com/jl777/coins/tree/master/electrums
+
 
 var _electrumServers = {
   lumber: ['electrum1.lumberscout.io:10001:tcp'],
@@ -27,6 +27,7 @@ var _electrumServers = {
   dex: ['electrum1.cipig.net:10006:tcp', 'electrum2.cipig.net:10006:tcp'],
   bots: ['electrum1.cipig.net:10007:tcp', 'electrum2.cipig.net:10007:tcp'],
   crypto: ['electrum1.cipig.net:10008:tcp', 'electrum2.cipig.net:10008:tcp'],
+
   /*dnr: [
     '144.202.95.223:50001:tcp',
     '45.77.137.111:50001:tcp',
@@ -58,7 +59,8 @@ var _electrumServers = {
   btg: ['electrumx-eu.bitcoingold.org:50001:tcp', 'electrumx-us.bitcoingold.org:50001:tcp'],
   blk: ['electrum1.cipig.net:10054:tcp', 'electrum2.cipig.net:10054:tcp', 'electrum3.cipig.net:10054:tcp'],
   sib: ['electrum1.cipig.net:10050:tcp', 'electrum2.cipig.net:10050:tcp'],
-  bch: ['bch.imaginary.cash:50001:tcp', 'electroncash.dk:50001:tcp', 'wallet.satoshiscoffeehouse.com:50001:tcp', 'electron.coinucopia.io:50001:tcp', 'electron-cash.dragon.zone:50001:tcp'],
+  bch: ['bch.imaginary.cash:50001:tcp', 'wallet.satoshiscoffeehouse.com:50001:tcp'],
+
   /*arg: [
     'electrum1.cipig.net:10068:tcp',
     'electrum2.cipig.net:10068:tcp',
@@ -78,6 +80,7 @@ var _electrumServers = {
   qtum: ['s1.qtum.info:50001:tcp', 's2.qtum.info:50001:tcp'],
   btcp: ['electrum.btcprivate.org:5222:tcp', 'electrum2.btcprivate.org:5222:tcp'],
   emc2: ['electrum1.cipig.net:10062:tcp', 'electrum2.cipig.net:10062:tcp'],
+
   /*bcbc: [
     'bsmn0.cleanblockchain.io:50001:tcp',
     'bsmn1.cleanblockchain.io:50001:tcp',
@@ -142,9 +145,9 @@ var _electrumServers = {
   vote2019: ['electrum1.cipig.net:10036:tcp', 'electrum2.cipig.net:10036:tcp', 'electrum3.cipig.net:10036:tcp'],
   zexo: ['electrum1.cipig.net:10035:tcp', 'electrum2.cipig.net:10035:tcp', 'electrum3.cipig.net:10035:tcp'],
   rfox: ['electrum1.cipig.net:10034:tcp', 'electrum2.cipig.net:10034:tcp', 'electrum3.cipig.net:10034:tcp'],
-  labs: ['electrum1.cipig.net:10019:tcp', 'electrum2.cipig.net:10019:tcp', 'electrum3.cipig.net:10019:tcp']
+  labs: ['electrum1.cipig.net:10019:tcp', 'electrum2.cipig.net:10019:tcp', 'electrum3.cipig.net:10019:tcp'],
+  dp: ['dp.electrum.komodo.top:50001:tcp', 'dp.electrum2.komodo.top:50001:tcp']
 };
-
 var electrumServers = {};
 
 for (var key in _electrumServers) {
@@ -158,4 +161,10 @@ for (var key in _electrumServers) {
   }
 }
 
-module.exports = electrumServers;
+var proxyServersHttps = ['el0.vrsc.0x03.services', 'el1.vrsc.0x03.services', 'el2.vrsc.0x03.services'];
+var proxyServersHttp = ['94.130.225.86:80', '94.130.225.86:80'];
+module.exports = {
+  proxyServersHttps: proxyServersHttps,
+  proxyServersHttp: proxyServersHttp,
+  electrumServers: electrumServers
+};

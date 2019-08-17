@@ -1,6 +1,7 @@
-'use strict';
+"use strict";
 
 var reverse = require('buffer-reverse');
+
 var crypto = require('crypto');
 
 var sha256 = function sha256(data) {
@@ -9,10 +10,11 @@ var sha256 = function sha256(data) {
 
 var getMerkleRoot = function getMerkleRoot(txid, proof, pos) {
   var hash = txid;
-  var serialized = void 0;
+  var serialized;
 
   for (var i = 0; i < proof.length; i++) {
     var _hashBuff = new Buffer(hash, 'hex');
+
     var _proofBuff = new Buffer(proof[i], 'hex');
 
     if ((pos & 1) == 0) {

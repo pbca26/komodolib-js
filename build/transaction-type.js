@@ -1,6 +1,12 @@
-'use strict';
+"use strict";
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var transactionType = function transactionType(tx, targetAddress, isKomodo, options) {
   // TODO: - sum vins / sum vouts to the same address
@@ -39,15 +45,15 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
   for (var key in _parse) {
     if (!tx[key].length) {
       _parse[key] = [];
+
       _parse[key].push(tx[key]);
     } else {
       _parse[key] = tx[key];
     }
 
     for (var i = 0; i < _parse[key].length; i++) {
-      _total[key] += Number(_parse[key][i].value);
+      _total[key] += Number(_parse[key][i].value); // ignore op return outputs
 
-      // ignore op return outputs
       if (_parse[key][i].scriptPubKey && _parse[key][i].scriptPubKey.addresses && _parse[key][i].scriptPubKey.addresses[0] && _parse[key][i].scriptPubKey.addresses[0] === targetAddress && _parse[key][i].value) {
         _sum[key] += Number(_parse[key][i].value);
       }
@@ -62,9 +68,8 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
     }
   }
 
-  _addresses.inputs = [].concat(_toConsumableArray(new Set(_addresses.inputs)));
-  _addresses.outputs = [].concat(_toConsumableArray(new Set(_addresses.outputs)));
-
+  _addresses.inputs = _toConsumableArray(new Set(_addresses.inputs));
+  _addresses.outputs = _toConsumableArray(new Set(_addresses.outputs));
   var isSelfSend = {
     inputs: false,
     outputs: false
@@ -80,7 +85,6 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
 
   if (_sum.inputs > 0 && _sum.outputs > 0) {
     // vin + change, break into two tx
-
     // send to self
     if (isSelfSend.inputs && isSelfSend.outputs) {
       result = {

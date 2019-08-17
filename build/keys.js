@@ -1,35 +1,31 @@
-'use strict';
+"use strict";
 
 var sha256 = require('js-sha256');
-var crypto = require('crypto');
-var bigi = require('bigi');
-var bitcoinZcash = require('bitcoinjs-lib-zcash');
-var bitcoin = require('bitcoinjs-lib');
-var bitcoinPos = require('bitcoinjs-lib-pos');
-var bs58check = require('bs58check');
-var bip39 = require('bip39');
-var bip32 = require('bip32');
-var ethersWallet = require('ethers/wallet');
-var ethUtil = require('ethereumjs-util');
-var wif = require('wif');
-var bitcoinjsNetworks = require('./bitcoinjs-networks');
-var groestlcoinjsLib = require('bitgo-utxo-lib-groestl');
 
-// TODO: grs/emc2 multisig fix
+var bigi = require('bigi');
+
+var bitcoin = require('bitgo-utxo-lib');
+
+var bs58check = require('bs58check');
+
+var bip39 = require('bip39');
+
+var bip32 = require('bip32');
+
+var ethersWallet = require('ethers/wallet');
+
+var ethUtil = require('ethereumjs-util');
+
+var wif = require('wif');
+
+var bitcoinjsNetworks = require('./bitcoinjs-networks'); // TODO: grs/emc2 multisig fix
+
 
 var addressVersionCheck = function addressVersionCheck(network, address) {
   try {
-    var _b58check2 = void 0;
+    var _b58check = bitcoin.address.fromBase58Check(address);
 
-    if (network && network.isZcash) {
-      _b58check2 = bitcoinZcash.address.fromBase58Check(address);
-    } else if (network && network.isGRS) {
-      _b58check2 = groestlcoinjsLib.address.fromBase58Check(address, network);
-    } else {
-      _b58check2 = bitcoin.address.fromBase58Check(address);
-    }
-
-    if (_b58check2.version === network.pubKeyHash || _b58check2.version === network.scriptHash) {
+    if (_b58check.version === network.pubKeyHash || _b58check.version === network.scriptHash) {
       return true;
     }
 
@@ -40,26 +36,16 @@ var addressVersionCheck = function addressVersionCheck(network, address) {
 };
 
 var wifToWif = function wifToWif(_wif, network) {
-  var key = void 0;
+  var key;
 
-  if (network && network.isZcash) {
-    key = new bitcoinZcash.ECPair.fromWIF(_wif, network, true);
-  } else if (network && network.isGRS) {
+  if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
     var decoded = wif.decode(_wif);
     var d = bigi.fromBuffer(decoded.privateKey);
-    key = new groestlcoinjsLib.ECPair(d, null, {
+    key = new bitcoin.ECPair(d, null, {
       network: network
     });
   } else {
-    if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-      var _decoded = wif.decode(_wif);
-      var _d = bigi.fromBuffer(_decoded.privateKey);
-      key = new bitcoin.ECPair(_d, null, {
-        network: network
-      });
-    } else {
-      key = new bitcoin.ECPair.fromWIF(_wif, network, true);
-    }
+    key = new bitcoin.ECPair.fromWIF(_wif, network, true);
   }
 
   return {
@@ -88,21 +74,17 @@ var seedToWif = function seedToWif(seed, network, iguana) {
       }
 
       var d = bigi.fromBuffer(bytes);
-      var keyPair = void 0;
+      var keyPair;
 
-      if (network && network.isZcash) {
-        keyPair = new bitcoinZcash.ECPair(d, null, { network: network });
-      } else if (network && network.isGRS) {
-        keyPair = new groestlcoinjsLib.ECPair(d, null, { network: network });
+      if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
+        keyPair = new bitcoin.ECPair(d, null, {
+          compressed: true,
+          network: network
+        });
       } else {
-        if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-          keyPair = new bitcoin.ECPair(d, null, {
-            compressed: true,
-            network: network
-          });
-        } else {
-          keyPair = new bitcoin.ECPair(d, null, { network: network });
-        }
+        keyPair = new bitcoin.ECPair(d, null, {
+          network: network
+        });
       }
 
       return {
@@ -110,19 +92,18 @@ var seedToWif = function seedToWif(seed, network, iguana) {
         priv: keyPair.toWIF(),
         pubHex: keyPair.getPublicKeyBuffer().toString('hex')
       };
-    } else {
-      throw new Error('provided string is a WIF key');
     }
-  }
-};
 
-// login like function
+    throw new Error('provided string is a WIF key');
+  }
+}; // login like function
+
+
 var stringToWif = function stringToWif(string, network, iguana) {
   var _wifError = false;
   var isWif = false;
-  var keys = void 0;
+  var keys; // watchonly
 
-  // watchonly
   if (string.match('^[a-zA-Z0-9]{34}$')) {
     return {
       priv: string,
@@ -138,24 +119,16 @@ var stringToWif = function stringToWif(string, network, iguana) {
 
   if (isWif) {
     try {
-      if (network && network.isZcash) {
-        key = new bitcoinZcash.ECPair.fromWIF(string, network, true);
-      } else if (network && network.isGRS) {
+      var key;
+
+      if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
         var decoded = wif.decode(string);
         var d = bigi.fromBuffer(decoded.privateKey);
         key = new bitcoin.ECPair(d, null, {
           network: network
         });
       } else {
-        if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-          var _decoded2 = wif.decode(string);
-          var _d2 = bigi.fromBuffer(_decoded2.privateKey);
-          key = new bitcoin.ECPair(_d2, null, {
-            network: network
-          });
-        } else {
-          key = new bitcoin.ECPair.fromWIF(string, network, true);
-        }
+        key = new bitcoin.ECPair.fromWIF(string, network, true);
       }
 
       keys = {
@@ -179,18 +152,20 @@ var bip39Search = function bip39Search(seed, network, matchPattern, addressDepth
   var _defaultAddressDepth = addressDepth;
   var _defaultAccountCount = accountsCount;
   var _addresses = [];
+
   var _matchingKey = matchPattern ? [] : {};
+
   accountCountOffset = !accountCountOffset ? 0 : accountCountOffset;
   addressDepthOffset = !addressDepthOffset ? 0 : addressDepthOffset;
 
   for (var i = Number(accountCountOffset); i < Number(accountCountOffset) + Number(_defaultAccountCount); i++) {
     for (var j = 0; j < (includeChangeAddresses ? 2 : 1); j++) {
       for (var k = Number(addressDepthOffset); k < Number(addressDepthOffset) + Number(_defaultAddressDepth); k++) {
-        var _key = hdMaster.derivePath('m/44\'/141\'/' + i + '\'/' + j + '/' + k);
+        var _key = hdMaster.derivePath("m/44'/141'/".concat(i, "'/").concat(j, "/").concat(k));
 
         if (!matchPattern) {
           _matchingKey.push({
-            path: 'm/44\'/141\'/' + i + '\'/' + j + '/' + k,
+            path: "m/44'/141'/".concat(i, "'/").concat(j, "/").concat(k),
             pub: _key.keyPair.getAddress(),
             priv: _key.keyPair.toWIF()
           });
@@ -205,13 +180,12 @@ var bip39Search = function bip39Search(seed, network, matchPattern, addressDepth
   }
 
   return _matchingKey || 'address is not found';
-};
+}; // src: https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/src/ecpair.js#L62
 
-// src: https://github.com/bitcoinjs/bitcoinjs-lib/blob/master/src/ecpair.js#L62
+
 var fromWif = function fromWif(string, network, versionCheck) {
   var decoded = wif.decode(string);
   var version = decoded.version;
-
   if (!network) throw new Error('Unknown network version');
 
   if (versionCheck) {
@@ -220,29 +194,21 @@ var fromWif = function fromWif(string, network, versionCheck) {
   }
 
   var d = bigi.fromBuffer(decoded.privateKey);
-  var masterKP = void 0;
+  var masterKP;
 
-  if (network && network.isZcash) {
-    masterKP = new bitcoinZcash.ECPair(d, null, {
-      network: network
-    });
-  } else if (network && network.isGRS) {
-    masterKP = new groestlcoinjsLib.ECPair(d, null, {
+  if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
+    var _decoded = wif.decode(string);
+
+    var _d = bigi.fromBuffer(_decoded.privateKey);
+
+    masterKP = new bitcoin.ECPair(_d, null, {
+      compressed: true,
       network: network
     });
   } else {
-    if (network && network.hasOwnProperty('compressed') && network.compressed === true) {
-      var _decoded3 = wif.decode(string);
-      var _d3 = bigi.fromBuffer(_decoded3.privateKey);
-      masterKP = new bitcoin.ECPair(_d3, null, {
-        compressed: true,
-        network: network
-      });
-    } else {
-      masterKP = new bitcoin.ECPair(d, null, {
-        network: network
-      });
-    }
+    masterKP = new bitcoin.ECPair(d, null, {
+      network: network
+    });
   }
 
   if (network.wifAlt) {
@@ -250,11 +216,10 @@ var fromWif = function fromWif(string, network, versionCheck) {
 
     for (var i = 0; i < network.wifAlt.length; i++) {
       var _network = JSON.parse(JSON.stringify(network));
+
       _network.wif = network.wifAlt[i];
 
-      var _altKP = network.isZcash ? new bitcoinZcash.ECPair(d, null, {
-        network: _network
-      }) : new bitcoin.ECPair(d, null, {
+      var _altKP = new bitcoin.ECPair(d, null, {
         network: _network
       });
 
@@ -290,23 +255,14 @@ var pubkeyToAddress = function pubkeyToAddress(pubkey, network) {
   try {
     var publicKey = Buffer.from(pubkey, 'hex');
     var publicKeyHash = bitcoin.crypto.hash160(publicKey);
-    var address = void 0;
-
-    if (network && network.isZcash) {
-      address = bitcoinZcash.address.toBase58Check(publicKeyHash, network.pubKeyHash);
-    } else if (network && network.isGRS) {
-      address = groestlcoinjsLib.address.toBase58Check(publicKeyHash, network.pubKeyHash);
-    } else {
-      address = bitcoin.address.toBase58Check(publicKeyHash, network.pubKeyHash);
-    }
-
+    var address = bitcoin.address.toBase58Check(publicKeyHash, network.pubKeyHash);
     return address;
   } catch (e) {
     return false;
   }
-};
+}; // priv can be a valid priv key or a seed
 
-// priv can be a valid priv key or a seed
+
 var etherKeys = function etherKeys(priv, iguana) {
   if (ethUtil.isValidPrivate(ethUtil.toBuffer(priv))) {
     return new ethersWallet.Wallet(priv);
@@ -324,23 +280,22 @@ var etherKeys = function etherKeys(priv, iguana) {
   var _wallet = new ethersWallet.Wallet(ethUtil.bufferToHex(bytes));
 
   return _wallet;
-};
-
-// https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
+}; // https://github.com/bitcoinjs/bitcoinjs-lib/blob/582727f6de251441c75027a6292699b6f1e1b8f2/test/integration/bip32.js#L31
 // btc forks only
+
+
 var xpub = function xpub(seed, options) {
   var _seed = bip39.mnemonicToSeed(seed);
+
   var node = options && options.network ? bip32.fromSeed(_seed, options.network) : bip32.fromSeed(_seed);
-  var string = void 0;
+  var string;
 
   if (options && options.hasOwnProperty('bip32')) {
     string = node.neutered().toBase58();
+  } else if (options && options.hasOwnProperty('path')) {
+    string = node.derivePath(options.path).neutered().toBase58();
   } else {
-    if (options && options.hasOwnProperty('path')) {
-      string = node.derivePath(options.path).neutered().toBase58();
-    } else {
-      return 'missing path arg';
-    }
+    return 'missing path arg';
   }
 
   return string;
@@ -349,7 +304,6 @@ var xpub = function xpub(seed, options) {
 var btcToEthPriv = function btcToEthPriv(_wif) {
   var decodedWif = wif.decode(_wif);
   var ethWallet = new ethersWallet.Wallet(ethUtil.bufferToHex(decodedWif.privateKey));
-
   return ethWallet.signingKey.privateKey;
 };
 
@@ -357,29 +311,17 @@ var ethToBtcWif = function ethToBtcWif(priv, network) {
   var buf = ethUtil.toBuffer(priv);
   var d = bigi.fromBuffer(buf);
 
-  if (network && network.isZcash) {
-    return new bitcoinZcash.ECPair(d, null, {
-      compressed: true,
-      network: network
-    }).toWIF();
-  } else if (network && network.isGRS) {
-    return new groestlcoinjsLib.ECPair(d, null, {
-      compressed: true,
-      network: network
-    }).toWIF();
-  } else if (network && !network.isZcash && !network.isGRS) {
+  if (network) {
     return new bitcoin.ECPair(d, null, {
       compressed: true,
       network: network
-    }).toWIF();
-  } else {
-    return new bitcoin.ECPair(d, null, {
-      compressed: true,
-      network: bitcoinjsNetworks.btc
     }).toWIF();
   }
 
-  return false;
+  return new bitcoin.ECPair(d, null, {
+    compressed: true,
+    network: bitcoinjsNetworks.btc
+  }).toWIF();
 };
 
 var seedToPriv = function seedToPriv(string, dest) {
@@ -393,21 +335,21 @@ var seedToPriv = function seedToPriv(string, dest) {
   }
 
   return string;
-};
-
-// pubKeys - array containing pub key hash hex
+}; // pubKeys - array containing pub key hash hex
 // note: likely won't work for PoS lib
+
+
 var multisigGenerate = function multisigGenerate(NofN, pubKeys, network) {
   if (!pubKeys || pubKeys.length < NofN) {
-    throw 'Error pubKeys length is less than NofN (' + NofN + ' vs ' + pubKeys.length + ')';
+    throw "Error pubKeys length is less than NofN (".concat(NofN, " vs ").concat(pubKeys.length, ")");
   } else {
     var _pubKeys = pubKeys.map(function (hex) {
       return Buffer.from(hex, 'hex');
     });
-    var redeemScript = network && network.isZcash ? bitcoinZcash.script.multisig.output.encode(NofN, _pubKeys) : bitcoin.script.multisig.output.encode(NofN, _pubKeys);
-    var scriptPubKey = network && network.isZcash ? bitcoinZcash.script.scriptHash.output.encode(bitcoin.crypto.hash160(redeemScript)) : bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(redeemScript));
-    var address = network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
 
+    var redeemScript = bitcoin.script.multisig.output.encode(NofN, _pubKeys);
+    var scriptPubKey = bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(redeemScript));
+    var address = network ? bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
     return {
       address: address,
       scriptPubKey: scriptPubKey.toString('hex'),
@@ -417,11 +359,11 @@ var multisigGenerate = function multisigGenerate(NofN, pubKeys, network) {
 };
 
 var redeemScriptToPubAddress = function redeemScriptToPubAddress(scriptPubKey, network) {
-  return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
+  return network ? bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'), network) : bitcoin.address.fromOutputScript(Buffer.from(scriptPubKey, 'hex'));
 };
 
 var decodeRedeemScript = function decodeRedeemScript(redeemScript, options) {
-  var decodedRedeemScript = options && options.network && options.network.isZcash ? bitcoinZcash.script.multisig.output.decode(Buffer.from(redeemScript, 'hex')) : bitcoin.script.multisig.output.decode(Buffer.from(redeemScript, 'hex'));
+  var decodedRedeemScript = bitcoin.script.multisig.output.decode(Buffer.from(redeemScript, 'hex'));
 
   if (options && options.hasOwnProperty('toHex') && options.toHex === true) {
     var _pubKeys = decodedRedeemScript.pubKeys;
@@ -432,77 +374,42 @@ var decodeRedeemScript = function decodeRedeemScript(redeemScript, options) {
   }
 
   return decodedRedeemScript;
-};
+}; // ref: https://github.com/bitcoinjs/bitcoinjs-lib/issues/990
 
-// ref: https://github.com/bitcoinjs/bitcoinjs-lib/issues/990
+
 var pubToElectrumScriptHashHex = function pubToElectrumScriptHashHex(address, network) {
-  var script = void 0;
-
-  if (network && network.isZcash) {
-    script = bitcoinZcash.address.toOutputScript(address, network);
-  } else if (network && network.isGRS) {
-    script = groestlcoinjsLib.address.toOutputScript(address, network);
-  } else {
-    script = bitcoin.address.toOutputScript(address, network ? network : bitcoinjsNetworks.btc);
-  }
-
+  var script = bitcoin.address.toOutputScript(address, network || bitcoinjsNetworks.btc);
   var hash = bitcoin.crypto.sha256(script);
   var reversedHash = Buffer.from(hash.reverse());
-
   return reversedHash.toString('hex');
 };
 
 var getAddressVersion = function getAddressVersion(address) {
   try {
-    var _b58check3 = bitcoinZcash.address.fromBase58Check(address);
+    var _b58check = bitcoin.address.fromBase58Check(address);
+
     var _items = [];
 
-    for (var _key2 in bitcoinjsNetworks) {
-      if (_b58check3.version === bitcoinjsNetworks[_key2].pubKeyHash || _b58check3.version === bitcoinjsNetworks[_key2].scriptHash) {
-        if (_key2 !== 'vrsc' && _key2 !== 'komodo') {
-          _items.push(_key2);
+    for (var key in bitcoinjsNetworks) {
+      if (_b58check.version === bitcoinjsNetworks[key].pubKeyHash || _b58check.version === bitcoinjsNetworks[key].scriptHash) {
+        if (key !== 'vrsc' && key !== 'komodo') {
+          _items.push(key);
         }
       }
     }
 
     return _items.length ? {
       coins: _items,
-      version: _b58check3.version
+      version: _b58check.version
     } : 'Unknown or invalid pub address';
   } catch (e) {
-    try {
-      _b58check = groestlcoinjsLib.address.fromBase58Check(address, bitcoinjsNetworks.grs);
-
-      return {
-        coins: ['grs'],
-        version: _b58check.version
-      };
-    } catch (e) {
-      return 'Invalid pub address';
-    }
+    return 'Invalid pub address';
   }
 };
 
 var pubToPub = function pubToPub(address, networkSrc, networkDest) {
-  var script = void 0;
-
-  if (networkSrc && networkSrc.isZcash) {
-    script = bitcoinZcash.address.toOutputScript(address, networkSrc);
-  } else if (networkSrc && networkSrc.isGRS) {
-    script = groestlcoinjsLib.address.toOutputScript(address, networkSrc);
-  } else {
-    script = bitcoin.address.toOutputScript(address, networkSrc ? networkSrc : bitcoinjsNetworks.btc);
-  }
-
-  if (networkDest && networkDest.isZcash) {
-    return bitcoinZcash.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest);
-  } else if (networkDest && networkDest.isGRS) {
-    return groestlcoinjsLib.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest);
-  } else {
-    return bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest ? networkDest : bitcoinjsNetworks.btc);
-  }
-
-  return false;
+  var script = bitcoin.address.toOutputScript(address, networkSrc || bitcoinjsNetworks.btc);
+  return bitcoin.address.fromOutputScript(Buffer.from(script, 'hex'), networkDest || bitcoinjsNetworks.btc);
 };
 
 var isPrivKey = function isPrivKey(str) {

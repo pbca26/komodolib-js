@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
   KV lite format description:
@@ -31,30 +31,24 @@
   random content example:
   01:0:0:post:test post from john doe:test test test 1234
 */
-
 var KV_OPRETURN_MAX_SIZE_BYTES = 8192;
-
 var KV_VERSION = {
   current: '01',
   minSupported: '01'
-};
+}; // fixed size
 
-// fixed size
 var KV_HEADER_SIZE = [2, // kv version
 1, // encrypted
 64 // tag
-];
+]; // variable size
 
-// variable size
 var KV_CONTENT_HEADER_SIZE = [3, // content version
 64, // previous txid
 128];
-
 var KV_MAX_CONTENT_SIZE = 4096;
 
 encode = function encode(data) {
   var kvBuf = [Buffer.alloc(KV_HEADER_SIZE[0]), Buffer.alloc(KV_HEADER_SIZE[1]), Buffer.alloc(KV_HEADER_SIZE[2]), Buffer.alloc(KV_CONTENT_HEADER_SIZE[0]), Buffer.alloc(KV_CONTENT_HEADER_SIZE[1]), Buffer.alloc(KV_CONTENT_HEADER_SIZE[2]), Buffer.alloc(data.content.body.length)];
-
   kvBuf[0].write(KV_VERSION.current);
   kvBuf[1].write('0');
   kvBuf[2].write(data.tag);
@@ -62,7 +56,6 @@ encode = function encode(data) {
   kvBuf[4].write(data.content.parent ? data.content.parent : '0000000000000000000000000000000000000000000000000000000000000000');
   kvBuf[5].write(data.content.title);
   kvBuf[6].write(data.content.body);
-
   var out = Buffer.concat(kvBuf);
 
   if (out.toString('hex').length > KV_MAX_CONTENT_SIZE + KV_CONTENT_HEADER_SIZE[0] + KV_CONTENT_HEADER_SIZE[1] + KV_CONTENT_HEADER_SIZE[2]) {
@@ -80,7 +73,6 @@ decode = function decode(hex, fromTx) {
   var _kvBuf = Buffer.from(hex, 'hex');
 
   var kvBuf = [_kvBuf.slice(0, KV_HEADER_SIZE[0]), _kvBuf.slice(KV_HEADER_SIZE[0], KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1]), _kvBuf.slice(KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1], KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2]), _kvBuf.slice(KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2], KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2] + KV_CONTENT_HEADER_SIZE[0]), _kvBuf.slice(KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2] + KV_CONTENT_HEADER_SIZE[0], KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2] + KV_CONTENT_HEADER_SIZE[0] + KV_CONTENT_HEADER_SIZE[1]), _kvBuf.slice(KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2] + KV_CONTENT_HEADER_SIZE[0] + KV_CONTENT_HEADER_SIZE[1], KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2] + KV_CONTENT_HEADER_SIZE[0] + KV_CONTENT_HEADER_SIZE[1] + KV_CONTENT_HEADER_SIZE[2]), _kvBuf.slice(KV_HEADER_SIZE[0] + KV_HEADER_SIZE[1] + KV_HEADER_SIZE[2] + KV_CONTENT_HEADER_SIZE[0] + KV_CONTENT_HEADER_SIZE[1] + KV_CONTENT_HEADER_SIZE[2], _kvBuf.length)];
-
   var out = {
     version: kvBuf[0].toString().replace(/\0/g, ''),
     encrypted: kvBuf[1].toString().replace(/\0/g, ''),

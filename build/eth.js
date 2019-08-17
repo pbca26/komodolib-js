@@ -1,14 +1,16 @@
-'use strict';
+"use strict";
 
 var _require = require('ethers/utils/units'),
     formatEther = _require.formatEther,
     parseUnits = _require.parseUnits;
 
 var standardABI = require('./erc20-standard-abi');
-var erc20ContractID = require('./eth-erc20-contract-id');
-var erc20Decimals = require('./eth-erc20-decimals');
 
-// normalize eth transactions to btc like list
+var erc20ContractID = require('./eth-erc20-contract-id');
+
+var erc20Decimals = require('./eth-erc20-decimals'); // normalize eth transactions to btc like list
+
+
 var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, isErc20, decimals) {
   var _txs = [];
 
@@ -67,12 +69,12 @@ var ethTransactionsToBtc = function ethTransactionsToBtc(transactions, address, 
   }
 
   var _uniqueTxs = new Array();
+
   _uniqueTxs = Array.from(new Set(_txs.map(JSON.stringify))).map(JSON.parse);
-
   return _uniqueTxs;
-};
+}; // http://gasstation.info/json/ethgasAPI.json rates are in 10gwei
 
-// http://gasstation.info/json/ethgasAPI.json rates are in 10gwei
+
 var ethGasStationRateToWei = function ethGasStationRateToWei(rate) {
   return parseUnits(Number(rate / 10).toString(), 'gwei').toString();
 };

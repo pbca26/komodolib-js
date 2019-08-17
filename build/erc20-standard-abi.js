@@ -1,7 +1,6 @@
-'use strict';
+"use strict";
 
 // ref: https://github.com/ethereum/wiki/wiki/Contract-ERC20-ABI
-
 var ABI = [{
   constant: true,
   inputs: [],
@@ -170,5 +169,4 @@ var ABI = [{
   name: 'Transfer',
   type: 'event'
 }];
-
 module.exports = ABI;

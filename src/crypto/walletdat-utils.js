@@ -1,5 +1,5 @@
 const wif = require('wif');
-const bitcoin = require('bitcoinjs-lib');
+const bitcoin = require('bitgo-utxo-lib');
 const bitcoinNetworks = require('../bitcoinjs-networks');
 
 // data in wallet.dat format

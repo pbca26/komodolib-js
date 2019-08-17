@@ -25,35 +25,24 @@ SOFTWARE.
 Supported coin types: bitcoin, bitcoin forks BTG and BCH, zcash based coins, PoS type coins
 */
 
-const bitcoinLib = {
-  bitcoinPos: {
-    main: require('bitcoinjs-lib-pos'),
-    script: require('bitcoinjs-lib-pos/src/script'),
-    address: require('bitcoinjs-lib-pos/src/address'),
-  },
-  bitcoinZcash: require('bitcoinjs-lib-zcash'),
-  bitcoinZcashSapling: require('bitgo-utxo-lib'),
-  groestlcoinjsLib: require('bitgo-utxo-lib-groestl'),
-  bitcoin: require('bitcoinjs-lib'),
-};
-let bitcoin;
+const bitcoin = require('bitgo-utxo-lib');
+
 
 // zcash tx decode fallback
-const Buffer = require('safe-buffer').Buffer;
 const {
   readSlice,
   readInt32,
   readUInt32,
-} = require('tx-decoder/build/buffer-utils');
+} = require('tx-builder/src/buffer-read');
 const {
   compose,
   addProp,
-} = require('tx-decoder/build/compose');
+} = require('tx-builder/src/compose-read');
 const {
   readInputs,
   readInput,
   readOutput,
-} = require('tx-decoder/build/tx-decoder');
+} = require('tx-builder/src/tx-decoder');
 const crypto = require('crypto');
 
 const _sha256 = data => crypto.createHash('sha256').update(data).digest();
@@ -68,14 +57,14 @@ const decodeFormat = (tx) => {
   return result;
 };
 
-const decodeInput = (tx, network) => {
+const decodeInput = (tx) => {
   const result = [];
 
   tx.ins.forEach((input, n) => {
     const vin = {
       txid: !input.hash.reverse ? input.hash : input.hash.reverse().toString('hex'),
       n: input.index,
-      script: network.isPoS ? bitcoinLib.bitcoinPos.script.fromHex(input.hash) : bitcoin.script.toASM(input.script),
+      script: bitcoin.script.toASM(input.script),
       sequence: input.sequence,
     };
 
@@ -86,42 +75,34 @@ const decodeInput = (tx, network) => {
 };
 
 const decodeOutput = (tx, network) => {
-  const format = (out, n, network) => {
-    const vout = {
+  var format = (out, n, network) => {
+    var vout = {
       satoshi: out.value,
       value: (1e-8 * out.value).toFixed(8),
-      n,
+      n: n,
       scriptPubKey: {
-        asm: network.isPoS ? bitcoinLib.bitcoin.script.toASM(out.script.chunks) : bitcoin.script.toASM(out.script),
-        hex: network.isPoS ? out.script.toHex() : out.script.toString('hex'),
-        type: network.isPoS ? bitcoin.scripts.classifyOutput(out.script) : bitcoin.script.classifyOutput(out.script),
+        asm: bitcoin.script.toASM(out.script),
+        hex: out.script.toString('hex'),
+        type: bitcoin.script.classifyOutput(out.script),
         addresses: [],
       },
     };
 
-    switch (vout.scriptPubKey.type) {
+  switch (vout.scriptPubKey.type) {
     case 'pubkeyhash':
-      if (network.isPoS) {
-        vout.scriptPubKey.addresses.push(bitcoinLib.bitcoinPos.address.fromOutputScript(out.script, network));
-      } else {
-        vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
-      }
+      vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
       break;
     case 'pubkey':
-      const pubKeyBuffer = new Buffer(vout.scriptPubKey.asm.split(' ')[0], 'hex');
+      const pubKeyBuffer = Buffer.from(vout.scriptPubKey.asm.split(' ')[0], 'hex');
       vout.scriptPubKey.addresses.push(bitcoin.ECPair.fromPublicKeyBuffer(pubKeyBuffer, network).getAddress());
       break;
     case 'scripthash':
-      if (network.isPoS) {
-        vout.scriptPubKey.addresses.push(bitcoinLib.bitcoinPos.address.fromOutputScript(out.script, network));
-      } else {
-        vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
-      }
+      vout.scriptPubKey.addresses.push(bitcoin.address.fromOutputScript(out.script, network));
       break;
     }
 
     return vout;
-  };
+  }
 
   const result = [];
 
@@ -133,23 +114,9 @@ const decodeOutput = (tx, network) => {
 };
 
 const transactionDecoder = (rawtx, network, debug) => {
-  if (network.isPoS) {
-    bitcoin = bitcoinLib.bitcoinPos.main;
-  } else if (
-    network.isZcash &&
-    !network.sapling
-  ) {
-    bitcoin = bitcoinLib.bitcoinZcash;
-  } else if (network.sapling) {
-    bitcoin = bitcoinLib.bitcoinZcashSapling;
-  } else if (network.isGRS) {
-    bitcoin = bitcoinLib.groestlcoinjsLib;
-  } else {
-    bitcoin = bitcoinLib.bitcoin;
-  }
 
   if (debug) {
-    const _tx = bitcoin.Transaction.fromHex(rawtx, network ? network : null);
+    const _tx = bitcoin.Transaction.fromHex(rawtx, network || null);
 
     return {
       tx: _tx,
@@ -160,36 +127,7 @@ const transactionDecoder = (rawtx, network, debug) => {
     };
   }
 
-  if (network.isZcash &&
-      !network.sapling) {
-    const buffer = Buffer.from(rawtx, 'hex');
-
-    const decodeTx = buffer => (
-      compose([
-        addProp('version', readInt32), // 4 bytes
-        addProp('ins', readInputs(readInput)), // 1-9 bytes (VarInt), Input counter; Variable, Inputs
-        addProp('outs', readInputs(readOutput)), // 1-9 bytes (VarInt), Output counter; Variable, Outputs
-        addProp('locktime', readUInt32), // 4 bytes
-      ])({}, buffer)
-    );
-
-    const readHash = (buffer) => {
-      const [res, bufferLeft] = readSlice(32)(_sha256(_sha256(buffer)));
-      const hash = Buffer.from(res, 'hex').reverse().toString('hex');
-      return [hash, bufferLeft];
-    };
-
-    const decodedtx = decodeTx(buffer);
-    decodedtx[0].getId = () => readHash(buffer)[0];
-
-    return {
-      tx: decodedtx[0],
-      network,
-      format: decodeFormat(decodedtx[0]),
-      inputs: !decodedtx[0].ins.length ? [{ txid: '0000000000000000000000000000000000000000000000000000000000000000' }] : decodeInput(decodedtx[0], network),
-      outputs: decodeOutput(decodedtx[0], network),
-    };
-  } else if (network.sapling) {
+  if (network.isZcash) {
     const _tx = bitcoin.Transaction.fromHex(rawtx, network);
 
     if (_tx.joinsplits ||
@@ -216,8 +154,8 @@ const transactionDecoder = (rawtx, network, debug) => {
   }
 
   try {
-    const _tx = network.isPoS || network.isGRS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
-    
+    const _tx = bitcoin.Transaction.fromHex(rawtx, network);
+
     return {
       tx: _tx,
       network,

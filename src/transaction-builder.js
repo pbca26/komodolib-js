@@ -1,111 +1,59 @@
-const bitcoinJSForks = require('bitcoinforksjs-lib');
-const bitcoinZcash = require('bitcoinjs-lib-zcash');
-const bitcoinPos = require('bitcoinjs-lib-pos');
-const bitcoinZcashSapling = require('bitgo-utxo-lib');
-const groestlcoinjsLib = require('bitgo-utxo-lib-groestl');
-const bitcoin = require('bitcoinjs-lib');
+const bitcoin = require('bitgo-utxo-lib');
 const coinselect = require('coinselect');
 const utils = require('./utils');
+
 
 // TODO: eth wrapper
 
 // current multisig limitations: no PoS, no btc forks
 const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, options) => {
-  const key = network.isZcash ? bitcoinZcash.ECPair.fromWIF(wif, network) : bitcoin.ECPair.fromWIF(wif, network);
-  let tx;
-  let btcFork = {};
-
-  if (network.isZcash &&
-      !network.sapling) {
-    tx = new bitcoinZcash.TransactionBuilder(network);
-  } else if (
-    network.isZcash &&
-    network.sapling &&
-    ((network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
-    (network.saplingActivationHeight && utxo[0].currentHeight > network.saplingActivationHeight))
-  ) {    
-    tx = !options || (options && !options.multisig) || (options && options.multisig && options.multisig.creator) ? new bitcoinZcashSapling.TransactionBuilder(network) : new bitcoinZcashSapling.TransactionBuilder.fromTransaction(bitcoinZcashSapling.Transaction.fromHex(options.multisig.rawtx, network), network);
-  } else if (network.isPoS) {
-    // TODO
-    tx = new bitcoinPos.TransactionBuilder(network);
-  } else if (network.isBtcFork) {
-    // TODO
-    tx = new bitcoinJSForks.TransactionBuilder(network);
-    const keyPair = bitcoinJSForks.ECPair.fromWIF(wif, network);
-    btcFork = {
-      keyPair,
-      pk: bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer()),
-      spk: bitcoinJSForks.script.pubKeyHash.output.encode(bitcoinJSForks.crypto.hash160(keyPair.getPublicKeyBuffer())),
-    };
-  } else if (network.isGRS) {
-    tx = new groestlcoinjsLib.TransactionBuilder(network);
-  } 
-   else {
-    tx = !options || (options && !options.multisig) || (options && options.multisig && options.multisig.creator) ? new bitcoin.TransactionBuilder(network) : new bitcoin.TransactionBuilder.fromTransaction(bitcoin.Transaction.fromHex(options.multisig.rawtx, network), network);
-  }
+  const key = bitcoin.ECPair.fromWIF(wif, network);
+  const tx = !options || (options && !options.multisig) || (options && options.multisig && options.multisig.creator)
+    ? new bitcoin.TransactionBuilder(network)
+    : bitcoin.TransactionBuilder.fromTransaction(
+      bitcoin.Transaction.fromHex(options.multisig.rawtx, network), network
+    );
 
   for (let i = 0; i < utxo.length; i++) {
-    if (network.isBtcFork) {
-      tx.addInput(utxo[i].txid, utxo[i].vout, bitcoinJSForks.Transaction.DEFAULT_SEQUENCE, btcFork.spk);
-    } else {
-      if (options &&
-          options.multisig &&
-          options.multisig.creator) {
-        tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, new Buffer.from(options.multisig.scriptPubKey, 'hex'));
-      }
+    if (options
+      && options.multisig
+      && options.multisig.creator) {
+      tx.addInput(utxo[i].txid, utxo[i].vout, 0, null, Buffer.from(options.multisig.scriptPubKey, 'hex'));
+    }
 
-      if (!options ||
-          (options && !options.multisig)) {
-        tx.addInput(utxo[i].txid, utxo[i].vout);
-      }
+    if (!options
+      || (options && !options.multisig)) {
+      tx.addInput(utxo[i].txid, utxo[i].vout);
     }
   }
 
-  if (!options ||
-      (options && !options.multisig) ||
-      (options && options.multisig && options.multisig.creator)) {
-    if (network.isPoS) {
-      tx.addOutput(sendTo, Number(spendValue), network);
-    } else {
-      tx.addOutput(sendTo, Number(spendValue));
-    }
+  if (!options
+    || (options && !options.multisig)
+    || (options && options.multisig && options.multisig.creator)) {
+    tx.addOutput(sendTo, Number(spendValue));
 
     if (changeValue > 0) {
-      if (network.isPoS) {
-        tx.addOutput(changeAddress, Number(changeValue), network);
-      } else {
-        tx.addOutput(changeAddress, Number(changeValue));
-      }
+      tx.addOutput(changeAddress, Number(changeValue));
     }
 
-    if (options &&
-        options.opreturn) {
+    if (options
+      && options.opreturn) {
       const data = Buffer.from(options.opreturn, 'utf8');
       const dataScript = bitcoin.script.nullData.output.encode(data);
-      
+
       tx.addOutput(dataScript, 1000);
     }
 
-    if (network.forkName &&
-        network.forkName === 'btg') {
-      tx.enableBitcoinGold(true);
-      tx.setVersion(2);
-    } else if (
-      network.forkName &&
-      network.forkName === 'bch'
-    ) {
-      tx.enableBitcoinCash(true);
-      tx.setVersion(2);
-    } else if (network.sapling) {
+    if (network.sapling) {
       let versionNum;
 
-      if ((network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight) ||
-          (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp)) {
+      if ((network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)
+        || (network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp)) {
         versionNum = 4;
       } else {
         versionNum = 1;
       }
-    
+
       if (versionNum) {
         tx.setVersion(versionNum);
       }
@@ -117,20 +65,18 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
     }
   }
 
-  if (!options ||
-      (options && !options.unsigned)) {
+  if (!options
+    || (options && !options.unsigned)) {
     for (let i = 0; i < utxo.length; i++) {
-      if (network.isPoS) {
-        tx.sign(network, i, key);
-      } else if (network.isBtcFork) {
-        const hashType = bitcoinJSForks.Transaction.SIGHASH_ALL | bitcoinJSForks.Transaction.SIGHASH_BITCOINCASHBIP143;
-        tx.sign(i, btcFork.keyPair, null, hashType, utxo[i].value);
+      if (bitcoin.coins.isBitcoinCash(network) || bitcoin.coins.isBitcoinGold(network) || bitcoin.coins.isBitcoinSV(network)) {
+        const hashType = bitcoin.Transaction.SIGHASH_ALL | bitcoin.Transaction.SIGHASH_BITCOINCASHBIP143;
+        tx.sign(i, key, null, hashType, utxo[i].value);
       } else if (
-        (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp) ||
-        (network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)) {
-        if (options &&
-            options.multisig) {
-          tx.sign(i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, utxo[i].value);
+        (network.sapling && network.saplingActivationTimestamp && Math.floor(Date.now() / 1000) > network.saplingActivationTimestamp)
+        || (network.sapling && network.saplingActivationHeight && utxo[0].currentHeight >= network.saplingActivationHeight)) {
+        if (options
+          && options.multisig) {
+          tx.sign(i, key, Buffer.from(options.multisig.redeemScript, 'hex'), null, utxo[i].value);
         } else {
           tx.sign(i, key, '', null, utxo[i].value);
         }
@@ -139,16 +85,14 @@ const transaction = (sendTo, changeAddress, wif, network, utxo, changeValue, spe
       }
     }
 
-    if (options &&
-        options.multisig &&
-        options.multisig.incomplete) {
+    if (options
+      && options.multisig
+      && options.multisig.incomplete) {
       return tx.buildIncomplete().toHex();
-    } else {
-      return tx.build().toHex();
     }
-  } else {
-    return tx.buildIncomplete().toHex();
+    return tx.build().toHex();
   }
+  return tx.buildIncomplete().toHex();
 };
 
 // TODO: merge sendmany
@@ -160,10 +104,10 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     fee = 0;
   }
 
-  if (utxoList &&
-      utxoList.length &&
-      utxoList[0] &&
-      utxoList[0].txid) {
+  if (utxoList
+    && utxoList.length
+    && utxoList[0]
+    && utxoList[0].txid) {
     const utxoListFormatted = [];
     const interestClaimThreshold = 200;
     let totalInterest = 0;
@@ -171,7 +115,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     let utxoVerified = true;
 
     for (let i = 0; i < utxoList.length; i++) {
-      let _utxo = {
+      const _utxo = {
         txid: utxoList[i].txid,
         vout: utxoList[i].vout,
         value: Number(utxoList[i].amountSats || utxoList[i].value),
@@ -194,11 +138,11 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     }
 
     const _maxSpendBalance = Number(utils.maxSpendBalance(utxoListFormatted));
-    
+
     if (value > _maxSpendBalance) {
       return `Spend value is too large or unconfirmed UTXO(S). Max available amount is ${Number(((_maxSpendBalance * 0.00000001).toFixed(8)))}`;
     }
-  
+
     const targets = [{
       address: outputAddress,
       value: value > _maxSpendBalance ? _maxSpendBalance : value,
@@ -210,8 +154,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     // make a first run, calc approx tx fee
     // if ins and outs are empty reduce max spend by txfee
     const firstRun = coinselect(utxoListFormatted, targets, btcFee || 0);
-    let inputs = firstRun.inputs;
-    let outputs = firstRun.outputs;
+    let { inputs } = firstRun;
+    let { outputs } = firstRun;
 
     if (btcFee) {
       fee = firstRun.fee;
@@ -228,13 +172,13 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
 
     let _change = 0;
 
-    if (outputs &&
-        outputs.length === 2) {
+    if (outputs
+      && outputs.length === 2) {
       _change = outputs[1].value - fee;
     }
 
-    if (!btcFee &&
-        _change === 0) {
+    if (!btcFee
+      && _change === 0) {
       outputs[0].value = outputs[0].value - fee;
     }
 
@@ -243,15 +187,15 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     } else if (_change >= 0) {
       value = outputs[0].value - fee;
     }
-    
+
     if (outputs[0].value === value + fee) {
-      outputs[0].value === outputs[0].value - fee;
+      outputs[0].value = outputs[0].value - fee;
       targets[0].value = targets[0].value - fee;
-    } 
+    }
 
     // check if any outputs are unverified
-    if (inputs &&
-        inputs.length) {
+    if (inputs
+      && inputs.length) {
       for (let i = 0; i < inputs.length; i++) {
         if (!inputs[i].verified) {
           utxoVerified = false;
@@ -268,8 +212,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     }
 
     // account for KMD interest
-    if (network.kmdInterest &&
-        totalInterest > 0) {
+    if (network.kmdInterest
+      && totalInterest > 0) {
       // account for extra vout
 
       if ((_maxSpendBalance - fee) === value) {
@@ -284,8 +228,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       }
 
       // double check kmd interest is combined into 1 output
-      if (outputAddress === changeAddress &&
-          _change > 0) {
+      if (outputAddress === changeAddress
+        && _change > 0) {
         value += _change - fee;
 
         if (Math.abs(value - inputValue) > fee) {
@@ -296,11 +240,11 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       }
     }
 
-    if (!inputs &&
-        !outputs) {
+    if (!inputs
+      && !outputs) {
       return 'Can\'t find best fit utxo. Try lower amount.';
     }
-    
+
     let vinSum = 0;
 
     for (let i = 0; i < inputs.length; i++) {
@@ -308,7 +252,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     }
 
     let voutSum = 0;
-    
+
     for (let i = 0; i < outputs.length; i++) {
       voutSum += outputs[i].value;
     }
@@ -323,8 +267,8 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
     }
 
     // TODO: use individual dust thresholds
-    if (_change > 0 &&
-        _change <= 1000) {
+    if (_change > 0
+      && _change <= 1000) {
       _change = 0;
     }
 
@@ -345,7 +289,7 @@ const data = (network, value, fee, outputAddress, changeAddress, utxoList) => {
       utxoVerified,
     };
   }
-  
+
   return 'no valid utxos';
 };
 

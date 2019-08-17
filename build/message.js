@@ -1,13 +1,19 @@
-'use strict';
+"use strict";
 
 var bitcoinMessage = require('bitcoinjs-message');
+
 var wif = require('wif');
+
 var ethers = require('ethers');
+
 var bitcoreMessage = require('bitcore-message'); // zcash
+
+
 var bitcoreZcash = require('bitcore-lib-zcash'); // zcash
 
+
 var signBTC = function signBTC(wifString, message, isZcash) {
-  var signature = void 0;
+  var signature;
 
   if (isZcash) {
     var key = bitcoreZcash.PrivateKey.fromWIF(wifString);
@@ -25,7 +31,9 @@ var verifyBTC = function verifyBTC(address, message, sig, isZcash) {
     return isZcash ? bitcoreMessage(message).verify(address, sig) : bitcoinMessage.verify(message, address, sig);
   } catch (e) {
     return false;
-  };
+  }
+
+  ;
 };
 
 var signETH = function signETH(privKey, message) {
@@ -33,12 +41,11 @@ var signETH = function signETH(privKey, message) {
   var messageBytes = ethers.utils.toUtf8Bytes(message);
   var messageDigest = ethers.utils.keccak256(messageBytes);
   var signature = signingKey.signDigest(messageDigest);
-
   return Buffer.from(JSON.stringify(signature)).toString('base64');
 };
 
 var verifyETH = function verifyETH(address, message, sig) {
-  var signature = void 0;
+  var signature;
 
   try {
     signature = JSON.parse(new Buffer(sig, 'base64').toString());
@@ -49,7 +56,6 @@ var verifyETH = function verifyETH(address, message, sig) {
   var messageBytes = ethers.utils.toUtf8Bytes(message);
   var messageDigest = ethers.utils.keccak256(messageBytes);
   var recoveredAddress = ethers.utils.recoverAddress(messageDigest, signature);
-
   return address === recoveredAddress ? true : false;
 };
 

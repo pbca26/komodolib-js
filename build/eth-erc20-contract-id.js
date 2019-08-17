@@ -1,7 +1,6 @@
-'use strict';
+"use strict";
 
 // ref: https://github.com/jl777/coins/blob/master/coins
-
 var erc20ContractId = {
   AE: '0x5ca9a71b1d01849c0a95490cc00559717fcf0d1d',
   ANN: '0xe0e73E8fc3a0fA161695be1D75E1Bc3E558957c4',
@@ -172,5 +171,4 @@ var erc20ContractId = {
   ZIL: '0x05f4a42e251f2d52b8ed15e9fedaacfcef1fad27',
   TUSD: '0x0000000000085d4780B73119b644AE5ecd22b376'
 };
-
 module.exports = erc20ContractId;

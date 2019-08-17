@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var networks = require('./bitcoinjs-networks.js');
 

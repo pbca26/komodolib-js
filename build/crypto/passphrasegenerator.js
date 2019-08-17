@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /******************************************************************************
  * Copyright © 2016 The Waves Core Developers.                             	  *
@@ -15,10 +15,9 @@
  * Removal or modification of this copyright notice is prohibited.            *
  *                                                                            *
  ******************************************************************************/
-
 var bip39 = require('bip39');
 
-var _hasDuplicates = function _hasDuplicates(seed) {
+var _hasDuplicates = function hasDuplicates(seed) {
   seed = seed.split(' ');
   return new Set(seed).size !== seed.length;
 };
@@ -48,5 +47,4 @@ var passphraseGenerator = {
     return bip39.validateMnemonic(passphrase);
   }
 };
-
 module.exports = passphraseGenerator;

@@ -1,8 +1,11 @@
-'use strict';
+"use strict";
 
 var md5 = require('./md5');
+
 var passphraseGenerator = require('./passphrasegenerator');
+
 var cryptstr = require('./cryptstr');
+
 var parseWalletdat = require('./walletdat-utils');
 
 module.exports = {

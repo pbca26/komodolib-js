@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-var erc20ContractId = require('./eth-erc20-contract-id');
-
-// non-standard token decimals only
+var erc20ContractId = require('./eth-erc20-contract-id'); // non-standard token decimals only
 // default is 18
+
+
 var _decimals = {
   BIO: 8,
   BITSOKO: 8,
@@ -68,7 +68,6 @@ var _decimals = {
   TRET: 8,
   DEC8: 8
 };
-
 var decimals = {};
 
 for (var key in erc20ContractId) {

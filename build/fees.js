@@ -10,8 +10,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * btc has dynamic fees
  * fee values are in satoshis
  */
-
 var KMD_STD_FEE = 10000; // kmd main/chips/asset chains
+
 var fees = (_fees = {
   // btc compatible coins, fees in satoshis
   // kmd/chips/asset chains
@@ -62,6 +62,7 @@ var fees = (_fees = {
   hush: KMD_STD_FEE,
   zexo: KMD_STD_FEE,
   labs: KMD_STD_FEE,
+  dp: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
@@ -80,5 +81,4 @@ var fees = (_fees = {
   arg: 50000,
   zec: 10000
 }, _defineProperty(_fees, "hush", 10000), _defineProperty(_fees, "bzc", 10000), _defineProperty(_fees, "sng", 10000), _defineProperty(_fees, "xmy", 5000), _defineProperty(_fees, "zcl", 1000), _defineProperty(_fees, "hodlc", 5000), _defineProperty(_fees, "suqa", 5000), _defineProperty(_fees, "btx", 50000), _defineProperty(_fees, "btcz", 10000), _defineProperty(_fees, "grs", 50000), _defineProperty(_fees, "qtum", 400000), _defineProperty(_fees, "btcp", 10000), _defineProperty(_fees, "emc2", 100000), _defineProperty(_fees, "bcbc", 10000), _defineProperty(_fees, "game", 100000), _defineProperty(_fees, "fjc", 100000), _defineProperty(_fees, "ftc", 1000000), _defineProperty(_fees, "xmcc", 10000), _defineProperty(_fees, "xzc", 10000), _defineProperty(_fees, "gbx", 10000), _defineProperty(_fees, "mac", 100000), _defineProperty(_fees, "mnx", 10000), _defineProperty(_fees, "arco", 10000), _defineProperty(_fees, "lana", 100), _defineProperty(_fees, "neva", 100), _defineProperty(_fees, "netko", 100), _defineProperty(_fees, "taj", 100), _defineProperty(_fees, "xvg", 10000), _defineProperty(_fees, "uno", 10000), _defineProperty(_fees, "kreds", 10000), _defineProperty(_fees, "ufo", 100000), _defineProperty(_fees, "lcc", 1000000), _defineProperty(_fees, "grlc", 200000), _defineProperty(_fees, "axe", 10000), _defineProperty(_fees, "aywa", 10000), _defineProperty(_fees, "bitb", 100000000), _defineProperty(_fees, "polis", 10000), _defineProperty(_fees, "crc", 1000000), _defineProperty(_fees, "tzc", 1000000), _defineProperty(_fees, "inn", 10000), _defineProperty(_fees, "goa", 100000), _defineProperty(_fees, "xsc", 100000), _defineProperty(_fees, "eny", 10000), _defineProperty(_fees, "rap", 1000), _defineProperty(_fees, "cesc", 1000), _defineProperty(_fees, "xbc", 100000), _defineProperty(_fees, "mue", 10000), _defineProperty(_fees, "koto", 10000), _defineProperty(_fees, "pak", 1000), _defineProperty(_fees, "cpc", 1000), _defineProperty(_fees, "pac", 10000), _defineProperty(_fees, "stak", 10000), _defineProperty(_fees, "uis", 2000000), _defineProperty(_fees, "bbk", 1000), _defineProperty(_fees, "arepa", 1000), _defineProperty(_fees, "qmc", 10000), _defineProperty(_fees, "rdd", 0), _defineProperty(_fees, "eth", 21000), _defineProperty(_fees, "eth_ropsten", 21000), _fees);
-
 module.exports = fees;

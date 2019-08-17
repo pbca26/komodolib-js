@@ -1,10 +1,12 @@
-'use strict';
+"use strict";
 
 var wif = require('wif');
-var bitcoin = require('bitcoinjs-lib');
-var bitcoinNetworks = require('../bitcoinjs-networks');
 
-// data in wallet.dat format
+var bitcoin = require('bitgo-utxo-lib');
+
+var bitcoinNetworks = require('../bitcoinjs-networks'); // data in wallet.dat format
+
+
 var parseWalletdat = function parseWalletdat(data) {
   var re = /\x30\x81\xD3\x02\x01\x01\x04\x20(.{32})/gm;
   var dataHexStr = data.toString('latin1');
@@ -13,6 +15,7 @@ var parseWalletdat = function parseWalletdat(data) {
   if (!privateKeys) {
     return 'wallet is encrypted?';
   }
+
   var _keys = [];
   privateKeys = privateKeys.map(function (x) {
     return x.replace('\x30\x81\xD3\x02\x01\x01\x04\x20', '');
@@ -27,7 +30,6 @@ var parseWalletdat = function parseWalletdat(data) {
     var key = wif.encode(0xbc, privateKey, true);
     var keyObj = wif.decode(key);
     var wifKey = wif.encode(keyObj);
-
     var keyPair = bitcoin.ECPair.fromWIF(wifKey, bitcoinNetworks.kmd);
     var _keyPair = {
       priv: keyPair.toWIF(),

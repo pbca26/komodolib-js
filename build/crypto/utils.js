@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var maskPubAddress = function maskPubAddress(pub) {
   // keep 3 first and 3 last chars unmasked
@@ -13,6 +13,8 @@ var maskPubAddress = function maskPubAddress(pub) {
 
 var hex2str = function hex2str(hex) {
   var _hex = hex.toString(); // force conversion
+
+
   var str = '';
 
   for (var i = 0; i < _hex.length; i += 2) {
@@ -20,13 +22,12 @@ var hex2str = function hex2str(hex) {
   }
 
   return str;
-};
+}; // ref: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
 
-// ref: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+
 var shuffleArray = function shuffleArray(a) {
   for (var i = a.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
-
     var _ref = [a[j], a[i]];
     a[i] = _ref[0];
     a[j] = _ref[1];

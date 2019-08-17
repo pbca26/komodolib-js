@@ -14,7 +14,7 @@ const signBTC = (wifString, message, isZcash) => {
     const keyPair = wif.decode(wifString);
     signature = bitcoinMessage.sign(message, keyPair.privateKey, keyPair.compressed);
   }
-  
+
   return signature.toString('base64');
 };
 
@@ -31,13 +31,13 @@ const signETH = (privKey, message) => {
   const messageBytes = ethers.utils.toUtf8Bytes(message);
   const messageDigest = ethers.utils.keccak256(messageBytes);
   const signature = signingKey.signDigest(messageDigest);
-  
+
   return Buffer.from(JSON.stringify(signature)).toString('base64');
 };
 
 const verifyETH = (address, message, sig) => {
   let signature;
-  
+
   try {
     signature = JSON.parse(new Buffer(sig, 'base64').toString());
   } catch (e) {
@@ -47,7 +47,7 @@ const verifyETH = (address, message, sig) => {
   const messageBytes = ethers.utils.toUtf8Bytes(message);
   const messageDigest = ethers.utils.keccak256(messageBytes);
   const recoveredAddress = ethers.utils.recoverAddress(messageDigest, signature);
-  
+
   return address === recoveredAddress ? true : false;
 };
 
