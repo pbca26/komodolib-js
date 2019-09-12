@@ -419,6 +419,11 @@ const redeemScriptToPubAddress = (redeemScript, network) => {
   return network ? network.isZcash ? bitcoinZcash.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey, network) : bitcoin.address.fromOutputScript(scriptPubKey);
 };
 
+const redeemScriptToScriptPubKey = (redeemScript, network) => {
+  const scriptPubKey = network && network.isZcash ? bitcoinZcash.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(redeemScript, 'hex'))) : bitcoin.script.scriptHash.output.encode(bitcoin.crypto.hash160(Buffer.from(redeemScript, 'hex')));
+  return scriptPubKey.toString('hex');
+};
+
 const decodeRedeemScript = (redeemScript, options) => {
   let decodedRedeemScript = options && options.network && options.network.isZcash ? bitcoinZcash.script.multisig.output.decode(Buffer.from(redeemScript, 'hex')) : bitcoin.script.multisig.output.decode(Buffer.from(redeemScript, 'hex'));
 
@@ -556,6 +561,7 @@ module.exports = {
     generate: multisigGenerate,
     scriptPubKeyToPubAddress,
     redeemScriptToPubAddress,
+    redeemScriptToScriptPubKey,
     decodeRedeemScript,
   },
   pubToElectrumScriptHashHex,

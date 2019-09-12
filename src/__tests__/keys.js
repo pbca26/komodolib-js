@@ -240,3 +240,13 @@ test('src - multisig - redeemScriptToPubAddress', async (t) => {
   t.deepEqual(multisig.redeemScriptToPubAddress(fixture.generate.KMD_2of2.redeemScript, networks.kmd), fixture.generate.KMD_2of2.address, 'should generate 2 of 2 KMD wallet pub address');
   t.deepEqual(multisig.redeemScriptToPubAddress(fixture.generate.KMD_2of3.redeemScript, networks.kmd), fixture.generate.KMD_2of3.address, 'should generate 2 of 3 KMD wallet pub address');
 });
+
+test('src - multisig - redeemScriptToScriptPubKey', async (t) => {
+  t.plan(6);
+  t.deepEqual(multisig.redeemScriptToScriptPubKey(fixture.generate.BTC_1of2.redeemScript), fixture.generate.BTC_1of2.scriptPubKey, 'should generate 1 of 2 BTC wallet pub hex');
+  t.deepEqual(multisig.redeemScriptToScriptPubKey(fixture.generate.BTC_2of2.redeemScript), fixture.generate.BTC_2of2.scriptPubKey, 'should generate 2 of 2 BTC wallet pub hex');
+  t.deepEqual(multisig.redeemScriptToScriptPubKey(fixture.generate.BTC_2of3.redeemScript), fixture.generate.BTC_2of3.scriptPubKey, 'should generate 2 of 3 BTC wallet pub hex');
+  t.deepEqual(multisig.redeemScriptToScriptPubKey(fixture.generate.KMD_1of2.redeemScript, networks.kmd), fixture.generate.KMD_1of2.scriptPubKey, 'should generate 1 of 2 KMD wallet pub hex');
+  t.deepEqual(multisig.redeemScriptToScriptPubKey(fixture.generate.KMD_2of2.redeemScript, networks.kmd), fixture.generate.KMD_2of2.scriptPubKey, 'should generate 2 of 2 KMD wallet pub hex');
+  t.deepEqual(multisig.redeemScriptToScriptPubKey(fixture.generate.KMD_2of3.redeemScript, networks.kmd), fixture.generate.KMD_2of3.scriptPubKey, 'should generate 2 of 3 KMD wallet pub hex');
+});
