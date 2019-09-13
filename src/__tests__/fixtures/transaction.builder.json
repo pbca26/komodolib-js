@@ -1,0 +1,645 @@
+{
+  "data": {
+    "BTC": {
+      "self": {
+        "outputAddress": "1Hgzt5xsnbfc8UTWqWKSTLRm5bEYHYBoCE",
+        "changeAddress": "1Hgzt5xsnbfc8UTWqWKSTLRm5bEYHYBoCE",
+        "network": {
+          "messagePrefix": "\u0018Bitcoin Signed Message:\n",
+          "bech32": "bc",
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 0,
+          "scriptHash": 5,
+          "wif": 128,
+          "bip44": 0
+        },
+        "change": 99890000,
+        "value": 100000,
+        "inputValue": 100000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "1Hgzt5xsnbfc8UTWqWKSTLRm5bEYHYBoCE",
+            "value": 100000
+          },
+          {
+            "value": 99890000
+          }
+        ],
+        "targets": [
+          {
+            "address": "1Hgzt5xsnbfc8UTWqWKSTLRm5bEYHYBoCE",
+            "value": 100000
+          }
+        ],
+        "fee": 10000,
+        "estimatedFee": 10000,
+        "balance": 100000000,
+        "totalInterest": 0,
+        "utxoVerified": true
+      },
+      "static_fee": {
+        "outputAddress": "19eA3hUfKRt7aZymavdQFXg5EZ6KCVKxr8",
+        "changeAddress": "1Hgzt5xsnbfc8UTWqWKSTLRm5bEYHYBoCE",
+        "network": {
+          "messagePrefix": "\u0018Bitcoin Signed Message:\n",
+          "bech32": "bc",
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 0,
+          "scriptHash": 5,
+          "wif": 128,
+          "bip44": 0
+        },
+        "change": 99890000,
+        "value": 100000,
+        "inputValue": 100000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "19eA3hUfKRt7aZymavdQFXg5EZ6KCVKxr8",
+            "value": 100000
+          },
+          {
+            "value": 99890000
+          }
+        ],
+        "targets": [
+          {
+            "address": "19eA3hUfKRt7aZymavdQFXg5EZ6KCVKxr8",
+            "value": 100000
+          }
+        ],
+        "fee": 10000,
+        "estimatedFee": 10000,
+        "balance": 100000000,
+        "totalInterest": 0,
+        "utxoVerified": true
+      },
+      "dynamic_fee": {
+        "outputAddress": "19eA3hUfKRt7aZymavdQFXg5EZ6KCVKxr8",
+        "changeAddress": "1Hgzt5xsnbfc8UTWqWKSTLRm5bEYHYBoCE",
+        "network": {
+          "messagePrefix": "\u0018Bitcoin Signed Message:\n",
+          "bech32": "bc",
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 0,
+          "scriptHash": 5,
+          "wif": 128,
+          "bip44": 0
+        },
+        "change": 99897740,
+        "value": 100000,
+        "inputValue": 100000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "19eA3hUfKRt7aZymavdQFXg5EZ6KCVKxr8",
+            "value": 100000
+          },
+          {
+            "value": 99897740
+          }
+        ],
+        "targets": [
+          {
+            "address": "19eA3hUfKRt7aZymavdQFXg5EZ6KCVKxr8",
+            "value": 100000
+          }
+        ],
+        "fee": 2260,
+        "estimatedFee": 2260,
+        "balance": 100000000,
+        "totalInterest": 0,
+        "utxoVerified": true
+      }
+    },
+    "KMD": {
+      "self": {
+        "outputAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "changeAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "network": {
+          "messagePrefix": "\u0019Komodo Signed Message:\n",
+          "bech32": "bc",
+          "bip44": 141,
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 60,
+          "scriptHash": 85,
+          "wif": 188,
+          "consensusBranchId": {
+            "1": 0,
+            "2": 0,
+            "3": 1537743641,
+            "4": 1991772603
+          },
+          "dustThreshold": 1000,
+          "isZcash": true,
+          "sapling": true,
+          "saplingActivationTimestamp": 1544835600,
+          "kmdInterest": true
+        },
+        "change": 99890000,
+        "value": 100000,
+        "inputValue": 100000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "interestSats": 0,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+            "value": 100000
+          },
+          {
+            "value": 99890000
+          }
+        ],
+        "targets": [
+          {
+            "address": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+            "value": 100000
+          }
+        ],
+        "fee": 10000,
+        "estimatedFee": 10000,
+        "balance": 100000000,
+        "totalInterest": 0,
+        "utxoVerified": true
+      },
+      "external": {
+        "outputAddress": "RHvM8DMwvFggeaLy46cXM41GzpYur6oWEe",
+        "changeAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "network": {
+          "messagePrefix": "\u0019Komodo Signed Message:\n",
+          "bech32": "bc",
+          "bip44": 141,
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 60,
+          "scriptHash": 85,
+          "wif": 188,
+          "consensusBranchId": {
+            "1": 0,
+            "2": 0,
+            "3": 1537743641,
+            "4": 1991772603
+          },
+          "dustThreshold": 1000,
+          "isZcash": true,
+          "sapling": true,
+          "saplingActivationTimestamp": 1544835600,
+          "kmdInterest": true
+        },
+        "change": 99890000,
+        "value": 100000,
+        "inputValue": 100000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "interestSats": 0,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "RHvM8DMwvFggeaLy46cXM41GzpYur6oWEe",
+            "value": 100000
+          },
+          {
+            "value": 99890000
+          }
+        ],
+        "targets": [
+          {
+            "address": "RHvM8DMwvFggeaLy46cXM41GzpYur6oWEe",
+            "value": 100000
+          }
+        ],
+        "fee": 10000,
+        "estimatedFee": 10000,
+        "balance": 100000000,
+        "totalInterest": 0,
+        "utxoVerified": true
+      },
+      "interest_self": {
+        "outputAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "changeAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "network": {
+          "messagePrefix": "\u0019Komodo Signed Message:\n",
+          "bech32": "bc",
+          "bip44": 141,
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 60,
+          "scriptHash": 85,
+          "wif": 188,
+          "consensusBranchId": {
+            "1": 0,
+            "2": 0,
+            "3": 1537743641,
+            "4": 1991772603
+          },
+          "dustThreshold": 1000,
+          "isZcash": true,
+          "sapling": true,
+          "saplingActivationTimestamp": 1544835600,
+          "kmdInterest": true
+        },
+        "change": 0,
+        "value": 109980000,
+        "inputValue": 100000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "interestSats": 10000000,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+            "value": 100000
+          },
+          {
+            "value": 99890000
+          }
+        ],
+        "targets": [
+          {
+            "address": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+            "value": 100000
+          }
+        ],
+        "fee": 10000,
+        "estimatedFee": -9990000,
+        "balance": 100000000,
+        "totalInterest": 10000000,
+        "utxoVerified": true
+      },
+      "interest_external": {
+        "outputAddress": "RHvM8DMwvFggeaLy46cXM41GzpYur6oWEe",
+        "changeAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "network": {
+          "messagePrefix": "\u0019Komodo Signed Message:\n",
+          "bech32": "bc",
+          "bip44": 141,
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 60,
+          "scriptHash": 85,
+          "wif": 188,
+          "consensusBranchId": {
+            "1": 0,
+            "2": 0,
+            "3": 1537743641,
+            "4": 1991772603
+          },
+          "dustThreshold": 1000,
+          "isZcash": true,
+          "sapling": true,
+          "saplingActivationTimestamp": 1544835600,
+          "kmdInterest": true
+        },
+        "change": 109880000,
+        "value": 100000,
+        "inputValue": 100000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "interestSats": 10000000,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "RHvM8DMwvFggeaLy46cXM41GzpYur6oWEe",
+            "value": 100000
+          },
+          {
+            "value": 99890000
+          }
+        ],
+        "targets": [
+          {
+            "address": "RHvM8DMwvFggeaLy46cXM41GzpYur6oWEe",
+            "value": 100000
+          }
+        ],
+        "fee": 10000,
+        "estimatedFee": -9990000,
+        "balance": 100000000,
+        "totalInterest": 10000000,
+        "utxoVerified": true
+      },
+      "donate_dust_to_miners": {
+        "outputAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "changeAddress": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+        "network": {
+          "messagePrefix": "\u0019Komodo Signed Message:\n",
+          "bech32": "bc",
+          "bip44": 141,
+          "bip32": {
+            "public": 76067358,
+            "private": 76066276
+          },
+          "pubKeyHash": 60,
+          "scriptHash": 85,
+          "wif": 188,
+          "consensusBranchId": {
+            "1": 0,
+            "2": 0,
+            "3": 1537743641,
+            "4": 1991772603
+          },
+          "dustThreshold": 1000,
+          "isZcash": true,
+          "sapling": true,
+          "saplingActivationTimestamp": 1544835600,
+          "kmdInterest": true
+        },
+        "change": 0,
+        "value": 99990000,
+        "inputValue": 99990000,
+        "inputs": [
+          {
+            "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
+            "vout": 1,
+            "value": 100000000,
+            "verified": true,
+            "interestSats": 0,
+            "currentHeight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "address": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+            "value": 99990000
+          },
+          {
+            "value": 900
+          }
+        ],
+        "targets": [
+          {
+            "address": "RRyBxbrAPRUBCUpiJgJZYrkxqrh8x5ta9Z",
+            "value": 99990000
+          }
+        ],
+        "fee": 9100,
+        "estimatedFee": 9100,
+        "balance": 100000000,
+        "totalInterest": 0,
+        "utxoVerified": true
+      }
+    }
+  },
+  "transaction": {
+    "single": {
+      "BTC": {
+        "self": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a473044022045c1dc5d6b72c07de2e2f5cd0222a6226204170d5c1e97d9b910165caa5df97702202c8ea90a75ee4671329b38aa6bc144fb9e64bb5f8d6105f0f077af2e7580d8ab0121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0210270000000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688aca0860100000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000",
+        "external": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a473044022014e4f4d74402a737f0c70a202a46ef4a25dc5ffd73eee2242d240ed06adbad1e02205ae98bfd0f91b083ab9eb6c443db35bdc43ebf110c7618c4c58d6f045a89366f0121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0210270000000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688aca0860100000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac00000000",
+        "opreturn": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a47304402203769692c227deaeda1213710f1c5de2d81efb793684734ff19e718ceb7a7e7d3022020188abd236469776de82cac6ce7456600a0184fcb4e975509d95ea1a57a4bf70121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0310270000000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688aca0860100000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ace803000000000000066a047465737400000000",
+        "unsigned": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f6330100000000ffffffff0210270000000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688aca0860100000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000"
+      },
+      "BTG": {
+        "self": "0200000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a47304402204718ae4a254cc6b083c7611ffb38ec6a59c00cd69698f818170aadabbab418c002206f2476e0bfc5da464e34e533aac28bbaba61f28a39c48240f947a0ae4df9d6604121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000",
+        "external": "0200000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a47304402207b183f5bf356df232cf48f5c48a6a001e1e7299ba52438f1950a760e1c3d443702203955b2077662a1486b0df72fe1df9a1408b2682aacd6c7987efb1dece641c7e54121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000"
+      },
+      "BCH": {
+        "self": "0200000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b4830450221009af081635184e784a2a4fcedb07492692d44dab695e0aa18f23244c4ba045f4002204eab6a05ed41e3b7b69c7f8b1ded7a61a8d1e6f6708e72acdd165377facfaa3c4121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000",
+        "external": "0200000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b483045022100d2ca64db26067bd4e2499c5bbf67c17f85f3c1a23b3f12999ce522d6bb5cf92f02207b9c909c7718b1a05b4f488b247bdf6a20dbc258eb78612674ebaa5055b14a274121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000"
+      },
+      "BLK": {
+        "self": "01000000fd45515d01f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b483045022100f187edcaec8a1d4137d3e034524dc7b8c49eba08164a5fe4f900f4379881299b0220758ce97d3d40ac586025744469d4dfe07ff500ad0060b03eead24ed5f10655b30121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000",
+        "external": "010000009845515d01f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a47304402201479ef2c3ae6175d30f9086af0fc3e559156d145eab60450ae230f0dc04812e10220344aad807dc6211504de9c8912437ba99ef456f4a4978366917cbe3ab32db8960121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000"
+      },
+      "ZEC": {
+        "self": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b483045022100e761b135a8138763895d0091a8eada47f5198474e5a454b04dd086b027bd87ea0220148630777e7292f88462c912fc44e8d0997510f9e093ba5f7a8dd198d89ec9c30121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000000000000000000000000000000000",
+        "external": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a473044022075efd1a9ea45d155522848df17f791c426db4f92c6e941f6fc84696e0727e184022041f4de711dfa8167961af7c082ef01836241af9a2a1308beefebec072d435b550121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000000000000000000000000000000000"
+      },
+      "OOT": {
+        "self": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a473044022015e069751acd286be953e28707a0b00fc87fb9230f6e35f88106757e87ad064402204e465224cf8e03b8169b266624e9630369f5ca152de7c8b6bc4c988d055e8e010121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000",
+        "external": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a4730440220087162767551808f9e62682bd30b244ef22ed1dfeda620ca8401c91a1fdab8470220653efaa6747e5815fcc37350b1cab5460d4c58d2cc5e5c708e7d578b7a2f67300121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000"
+      },
+      "GRS": {
+        "self": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a47304402202503c444b3208bede00107508423d8e25a0ce6f3289dd8800fd692ce89c3292c02204531af78ad37120bcf43c35d757335e4574a018d68e98a4eb842105c4f3ffc880121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000",
+        "external": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b483045022100d0238356af35e33b92af10b14d59e55f0a069b528277e05f1ea68eb3533a8b6202203cb98f1c443d7dc67c4aa2ba68d33752e02bbda8d9cafd44bb89533b4b4d21f10121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac00000000"
+      },
+      "KMD": {
+        "self": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006a473044022010bfb178109becd40e5342e1dc5ea95b68523c88a047279d80fe884254998c6302205347fa913ca913b4ad50708b7acab78aeb5e076db9399c2e54a18c1b0048df400121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688aced63525d000000000000000000000000000000",
+        "external": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b483045022100b35c4a8240cf404c79ad0def4ecfe959afb1898f470550b0d8644074599b8f96022039694234ac5a14b5b232c1080e8e470c347f3a823373f14d1627df1a23f9ab3f0121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff0280969800000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac1164525d000000000000000000000000000000",
+        "interest_self": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b4830450221008c78f9589fd2f541ea500a1c842e86468d96d9ccfa52ae4695352a1e0a6c9977022077164aca00edc9f161e28c91ffdbaef2e8276738347f9bbffe3adfd3342404c00121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff02002d3101000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac3568525d000000000000000000000000000000",
+        "interest_external": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000006b4830450221008cf4059a978e147f75fba33f44096c4808ca5dad1f74ba2984930104fbe6175e02205f5c23267aaa2d2f2220ef40b8b28ab19a136815eb469a4b6ce23e1362e8d9030121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2fffffffff02002d3101000000001976a9145ec7f2d15a1f20eab67d60f09effca58b43eee9f88ac804a5d05000000001976a914b7128d2ee837cf03e30a2c0e3e0181f7b9669bb688ac9968525d000000000000000000000000000000"
+      }
+    },
+    "multisig": {
+      "BTC_1of2_sig1": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000009100473044022078f9cbb3cf8b2cad62e5690573da06a58f8ddf432f3d26a5e5a880c015caf2850220451ceba5cae0efd0f960d9f2b7387fa732a9ef50d1e46de65d9f765539aa04d101475121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae0000000002809698000000000017a91483dbed2774b9729398823cd2efd723edc558746687804a5d050000000017a91483dbed2774b9729398823cd2efd723edc55874668700000000",
+      "BTC_1of2_sig2": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000009100473044022032eb9d6a8829e8886b16c195200f3167c488763bcc74d4a6197e1d054633651d02206663ef1bce986884b234e99c86c628dbb6ae45274c9aad295746c13619a91a8e01475121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae0000000002809698000000000017a91483dbed2774b9729398823cd2efd723edc558746687804a5d050000000017a91483dbed2774b9729398823cd2efd723edc55874668700000000",
+      "BTC_1of2_unsigned": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f63301000000000000000002809698000000000017a91483dbed2774b9729398823cd2efd723edc558746687804a5d050000000017a91483dbed2774b9729398823cd2efd723edc55874668700000000",
+      "BTC_2of2_complete": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f63301000000da00483045022100e70d78aff14e8353410911f4c895726aa5ed5c8c94bd02db867af683937d0d4c02200badb1a494b4c2ceec8f6e0c421cbdd07a4eb15ecfd77cda013e423f76857af201473044022037ece768b2fad3abed26181311f40f3f32d4a3029ef69e238bf6e0f91f3b44d40220163d88fabc5a93c2e10957e5ec6a46560c952a937becae0192c2f906a194082b01475221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae0000000002809698000000000017a914f12b7478e08e9f1879605fa0ab803a4f71e3f2d387804a5d050000000017a914f12b7478e08e9f1879605fa0ab803a4f71e3f2d38700000000",
+      "BTC_2of3_complete": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f63301000000fc0047304402207f9d49e48e51124af0784aa2cbf1672aaed9667d38d3a670fa2f0cf651e345fb02205500e5298de5ebbc723c6f6cb6b65494ac52c5f8531d228d5f4129bea9abb56a01473044022076f1be96267d19ba79da8304363cdf860f7914fae4ca4c81f8aa712cf1eda99e02207860756cab9653fec80391c882bbdeff9967d54f484727cccadc53d2c5f75059014c695221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae0000000002809698000000000017a91476f12de74b576c104b30354580453ff3d3dc6d3287804a5d050000000017a91476f12de74b576c104b30354580453ff3d3dc6d328700000000",
+      "BTC_3of3_complete": "0100000001f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f63301000000fd45010047304402205584f22a421ba037fb3e7c994e3a28a64916c4e990d547880e550e4d024c318902203f1dbc0e52cb239c73db614737b035490424b14878221df67ae25b79c8ea13c701483045022100994c80d2b19b0323f302ee1bca17b077e763760f7b1c28d7e1d9713ba59d480a022042dbf2f666aa9727b73a5ca499fdf37318fbd1342f131867b65c6eb1a84face301473044022041495dc875e75e41bd88c72363024b106e92b2c630767cceb35f498c17d2b1790220349b5eaef42cd96a56683cc4db7f38d8006485274af85ac0a5a0b89b1aa70b68014c695321020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae0000000002809698000000000017a9146c297f25bb591e455ca72547b3a50b884febba9887804a5d050000000017a9146c297f25bb591e455ca72547b3a50b884febba988700000000",
+      "ZEC_1of2_sig1": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000009200483045022100b11547e7222990119b8bddd69037afec9203dc9dd9c6e759df792b5ba01c1f7a0220116651263214419e13623f9d548dfe8b75dcc3b7bd64cfb28387dbebd326f40d01475121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae0000000002809698000000000017a91483dbed2774b9729398823cd2efd723edc558746687804a5d050000000017a91483dbed2774b9729398823cd2efd723edc55874668700000000000000000000000000000000000000",
+      "ZEC_1of2_sig2": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f633010000009100473044022053f61d9fa9cd8cc6838faefef264776c8601f16126a97b58328c31f47ee81ac40220113755cbb8b43acf5f195e0262b61e0bf4c7fa7f4bbe7a1ec741e6038c82f77b01475121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae0000000002809698000000000017a91483dbed2774b9729398823cd2efd723edc558746687804a5d050000000017a91483dbed2774b9729398823cd2efd723edc55874668700000000000000000000000000000000000000",
+      "ZEC_2of2_complete": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f63301000000da004830450221009e672dcb0916e5a5be2d54b115c0a1fe5eccc0ab9a04a2f8e96d52018389c4af0220341ba4dedf7db96ab265cfedbc1e305732f67991300ae5bab48fe69b6e73c0340147304402207b7dcfaf16e2e82fc5497256373b0171bee4e08fd5d21f93e861e291996d22e302202b59d34f6321505d4331669adf1412d677f8b354b015bbf4d110e9d3f72809dc01475221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae0000000002809698000000000017a914f12b7478e08e9f1879605fa0ab803a4f71e3f2d387804a5d050000000017a914f12b7478e08e9f1879605fa0ab803a4f71e3f2d38700000000000000000000000000000000000000",
+      "ZEC_2of3_complete": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f63301000000fdfd0000483045022100c9371e88c527ebbe750c6959f928a95c3cdacd8cb1c1f9bea35240f4aa67862b0220605dbac79cb8e803bad231e6fc0f02bff3d5ac1524ef8bab16cf168ca30e13f20147304402206f010fc8abb8cae27d36e7e39c2384deba13cd770bc9e6465b4751f486518721022024e25b4620e20a44b4d1b259494ac23b07b862423504dac97e4f7f2d4562a68f014c695221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae0000000002809698000000000017a91476f12de74b576c104b30354580453ff3d3dc6d3287804a5d050000000017a91476f12de74b576c104b30354580453ff3d3dc6d328700000000000000000000000000000000000000",
+      "ZEC_3of3_complete": "0400008085202f8901f9394656eb54a6d17e8de7763403b332905c2e43712d21fd2b2fafab9713f63301000000fd450100483045022100a1c3f7aa08abb0c2ca56e7ae6a27a1478f085cffe1a24fb06c7f3011c46e04640220789b1962fee59ff5ba06ff158c7e770b3aeffe6e95775891b730beaeb2347a7f014730440220115c13bf6a6435ca731a7c167bb47e922d6d240852091a1ef150254db6f9ebf30220277372956abbbd6e64080341c86102f1b7f323dd0178bc928e7ffabf3df6bc640147304402202e0413fa7b311e9145fbb02ff665c7a1e5ecf8d4b80b0b41a273ed1af9e9128e02201e685468c17ce1dce3daed6771f20d5473f958b8018ab1641d2c37c1dc428485014c695321020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae0000000002809698000000000017a9146c297f25bb591e455ca72547b3a50b884febba9887804a5d050000000017a9146c297f25bb591e455ca72547b3a50b884febba988700000000000000000000000000000000000000"
+    }
+  },
+  "multisigWallet": {
+    "BTC_1of2": {
+      "address": "3DiDuRh8k4LfGW8MKVxaLd5gYBTuuokz5M",
+      "scriptPubKey": "a91483dbed2774b9729398823cd2efd723edc558746687",
+      "redeemScript": "5121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae"
+    },
+    "BTC_2of2": {
+      "address": "3PgCq5YKksxLTVTLXFEvGhRPqf9kHP7vzp",
+      "scriptPubKey": "a914f12b7478e08e9f1879605fa0ab803a4f71e3f2d387",
+      "redeemScript": "5221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae"
+    },
+    "BTC_2of3": {
+      "address": "3CXvacT5HxsnujbPxQC5VmHUuzgw8sfqMZ",
+      "scriptPubKey": "a91476f12de74b576c104b30354580453ff3d3dc6d3287",
+      "redeemScript": "5221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae"
+    },
+    "BTC_3of3": {
+      "address": "3BYvcVzDDSPHoFF2Jx72GYUuF8wWY5Jz2F",
+      "scriptPubKey": "a9146c297f25bb591e455ca72547b3a50b884febba9887",
+      "redeemScript": "5321020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae"
+    },
+    "ZEC_1of2": {
+      "address": "t3Wapum7GiP8Fs9BFFvmhUSBbnqezfpPT93",
+      "scriptPubKey": "a91483dbed2774b9729398823cd2efd723edc558746687",
+      "redeemScript": "5121020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae"
+    },
+    "ZEC_2of2": {
+      "address": "t3gYoqQxTjCjw48WETg43QWXK6KLq8ecAe5",
+      "scriptPubKey": "a914f12b7478e08e9f1879605fa0ab803a4f71e3f2d387",
+      "redeemScript": "5221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c252ae"
+    },
+    "ZEC_2of3": {
+      "address": "t3VQXawsDGHfPWNeHtq1CdaPQAet1vog9HZ",
+      "scriptPubKey": "a91476f12de74b576c104b30354580453ff3d3dc6d3287",
+      "redeemScript": "5221020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae"
+    },
+    "ZEC_3of3": {
+      "address": "t3URXcqQMBmAtPtHvFNv9QMapVo8bK1JLRL",
+      "scriptPubKey": "a9146c297f25bb591e455ca72547b3a50b884febba9887",
+      "redeemScript": "5321020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f2103a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c22103e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f53ae"
+    }
+  },
+  "checkSignatures": {
+    "BTC_1of2_sig1": {
+      "signatures": {
+        "required": 1,
+        "verified": 1
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f"
+      ]
+    },
+    "BTC_1of2_sig2": {
+      "signatures": {
+        "required": 1,
+        "verified": 1
+      },
+      "pubKeys": [
+        "03a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c2"
+      ]
+    },
+    "BTC_1of2_unsigned": {
+      "signatures": {
+        "required": 1,
+        "verified": 0
+      },
+      "pubKeys": []
+    },
+    "BTC_2of2_complete": {
+      "signatures": {
+        "required": 2,
+        "verified": 2
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f",
+        "03a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c2"
+      ]
+    },
+    "BTC_2of3_complete": {
+      "signatures": {
+        "required": 2,
+        "verified": 2
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f",
+        "03a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c2"
+      ]
+    },
+    "BTC_3of3_complete": {
+      "signatures": {
+        "required": 3,
+        "verified": 3
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f",
+        "03a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c2",
+        "03e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f"
+      ]
+    },
+    "ZEC_1of2_sig1": {
+      "signatures": {
+        "required": 1,
+        "verified": 1
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f"
+      ]
+    },
+    "ZEC_2of2_complete": {
+      "signatures": {
+        "required": 2,
+        "verified": 2
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f",
+        "03a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c2"
+      ]
+    },
+    "ZEC_2of3_complete": {
+      "signatures": {
+        "required": 2,
+        "verified": 2
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f",
+        "03a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c2"
+      ]
+    },
+    "ZEC_3of3_complete": {
+      "signatures": {
+        "required": 3,
+        "verified": 3
+      },
+      "pubKeys": [
+        "020e0f6fe6e0fcdcac541eb728d6fe538a12adff20412b3c8a7fa892b223a47c2f",
+        "03a8a91657663e1907f1bc8b27db5b0e7143f27c4709d8f3c6fc96af9bab95f6c2",
+        "03e6cf0da5ab99655f36e4e84a934901580f6e4c25e0c35b99aca4dc88fb33c66f"
+      ]
+    }
+  }
+}
