@@ -218,13 +218,19 @@ const transactionDecoder = (rawtx, network, debug) => {
   try {
     const _tx = network.isPoS || network.isGRS ? bitcoin.Transaction.fromHex(rawtx, network) : bitcoin.Transaction.fromHex(rawtx);
     
-    return {
+    let _decodedTx = {
       tx: _tx,
       network,
       format: decodeFormat(_tx),
       inputs: decodeInput(_tx, network),
       outputs: decodeOutput(_tx, network),
     };
+
+    if (network.isGRS) {
+      return JSON.parse(JSON.stringify(_decodedTx));
+    }
+
+    return _decodedTx;
   } catch (e) {
     return false;
   }
