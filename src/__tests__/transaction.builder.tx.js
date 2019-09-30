@@ -19,7 +19,7 @@ import txDecoder from '../transaction-decoder';
 import networks from '../bitcoinjs-networks';
 const fixture = JSON.parse(fs.readFileSync(__dirname + '/fixtures/transaction.builder.json'));
 
-test('src - transaction - error handling', async (t) => {  
+test('src - transaction - error handling', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -158,7 +158,7 @@ test('src - transaction - error handling', async (t) => {
   t.throws(tx11, /Missing reedeem script string/, 'should throw "Missing reedeem script string" (multisig)');
 });
 
-test('src - transaction - BTC send to self', async (t) => {  
+test('src - transaction - BTC send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -182,7 +182,7 @@ test('src - transaction - BTC send to self', async (t) => {
   t.equal(tx, fixture.transaction.single.BTC.self, 'should return raw hex');
 });
 
-test('src - transaction - BTC send to external address', async (t) => {  
+test('src - transaction - BTC send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -206,7 +206,7 @@ test('src - transaction - BTC send to external address', async (t) => {
   t.equal(tx, fixture.transaction.single.BTC.external, 'should return raw hex');
 });
 
-test('src - transaction - BTC opreturn', async (t) => {  
+test('src - transaction - BTC opreturn', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -231,7 +231,7 @@ test('src - transaction - BTC opreturn', async (t) => {
   t.equal(tx, fixture.transaction.single.BTC.opreturn, 'should return raw hex');
 });
 
-test('src - transaction - BTC unsigned', async (t) => {  
+test('src - transaction - BTC unsigned', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -256,7 +256,7 @@ test('src - transaction - BTC unsigned', async (t) => {
   t.equal(tx, fixture.transaction.single.BTC.unsigned, 'should return raw hex');
 });
 
-test('src - transaction - BTG send to self', async (t) => {  
+test('src - transaction - BTG send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -280,7 +280,7 @@ test('src - transaction - BTG send to self', async (t) => {
   t.equal(tx, fixture.transaction.single.BTG.self, 'should return raw hex');
 });
 
-test('src - transaction - BTG send to external address', async (t) => {  
+test('src - transaction - BTG send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -304,7 +304,7 @@ test('src - transaction - BTG send to external address', async (t) => {
   t.equal(tx, fixture.transaction.single.BTG.external, 'should return raw hex');
 });
 
-test('src - transaction - BCH send to self', async (t) => {  
+test('src - transaction - BCH send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -328,7 +328,7 @@ test('src - transaction - BCH send to self', async (t) => {
   t.equal(tx, fixture.transaction.single.BCH.self, 'should return raw hex');
 });
 
-test('src - transaction - BCH send to external address', async (t) => {  
+test('src - transaction - BCH send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -352,7 +352,7 @@ test('src - transaction - BCH send to external address', async (t) => {
   t.equal(tx, fixture.transaction.single.BCH.external, 'should return raw hex');
 });
 
-test('src - transaction - BLK send to self', async (t) => {  
+test('src - transaction - BLK send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -384,7 +384,7 @@ test('src - transaction - BLK send to self', async (t) => {
   }, 'should return raw hex');
 });
 
-test('src - transaction - BLK send to external address', async (t) => {  
+test('src - transaction - BLK send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -416,7 +416,7 @@ test('src - transaction - BLK send to external address', async (t) => {
   }, 'should return raw hex');
 });
 
-test('src - transaction - ZEC send to self', async (t) => {  
+test('src - transaction - ZEC send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -440,7 +440,7 @@ test('src - transaction - ZEC send to self', async (t) => {
   t.equal(tx, fixture.transaction.single.ZEC.self, 'should return raw hex');
 });
 
-test('src - data - ZEC send to external address', async (t) => {  
+test('src - data - ZEC send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -464,7 +464,7 @@ test('src - data - ZEC send to external address', async (t) => {
   t.equal(tx, fixture.transaction.single.ZEC.external, 'should return raw hex');
 });
 
-test('src - transaction - OOT send to self (pre-sapling)', async (t) => {  
+test('src - transaction - OOT send to self (pre-sapling)', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -488,7 +488,7 @@ test('src - transaction - OOT send to self (pre-sapling)', async (t) => {
   t.equal(tx, fixture.transaction.single.OOT.self, 'should return raw hex');
 });
 
-test('src - transaction - OOT send to external address (pre-sapling)', async (t) => {  
+test('src - transaction - OOT send to external address (pre-sapling)', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -512,7 +512,7 @@ test('src - transaction - OOT send to external address (pre-sapling)', async (t)
   t.equal(tx, fixture.transaction.single.OOT.external, 'should return raw hex');
 });
 
-test('src - transaction - GRS send to self', async (t) => {  
+test('src - transaction - GRS send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -536,7 +536,7 @@ test('src - transaction - GRS send to self', async (t) => {
   t.equal(tx, fixture.transaction.single.GRS.self, 'should return raw hex');
 });
 
-test('src - transaction - GRS send to external address', async (t) => {  
+test('src - transaction - GRS send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -560,7 +560,7 @@ test('src - transaction - GRS send to external address', async (t) => {
   t.equal(tx, fixture.transaction.single.GRS.external, 'should return raw hex');
 });
 
-test('src - transaction - KMD send to self', async (t) => {  
+test('src - transaction - KMD send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -594,7 +594,7 @@ test('src - transaction - KMD send to self', async (t) => {
   }, 'should return raw hex');
 });
 
-test('src - transaction - KMD send to external address', async (t) => {  
+test('src - transaction - KMD send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -628,7 +628,7 @@ test('src - transaction - KMD send to external address', async (t) => {
   }, 'should return raw hex');
 });
 
-test('src - transaction - KMD interest claim (self)', async (t) => {  
+test('src - transaction - KMD interest claim (self)', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -662,7 +662,7 @@ test('src - transaction - KMD interest claim (self)', async (t) => {
   }, 'should return raw hex');
 });
 
-test('src - transaction - KMD interest claim (external)', async (t) => {  
+test('src - transaction - KMD interest claim (external)', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,

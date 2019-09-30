@@ -16,7 +16,7 @@ import txDecoder from '../transaction-decoder';
 import networks from '../bitcoinjs-networks';
 const fixture = JSON.parse(fs.readFileSync(__dirname + '/fixtures/transaction.builder.json'));
 
-test('src - data - BTC send to self', async (t) => {  
+test('src - data - BTC send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -39,7 +39,7 @@ test('src - data - BTC send to self', async (t) => {
   t.deepEqual(d, fixture.data.BTC.self, 'should return calculated data');
 });
 
-test('src - data - BTC send to external address', async (t) => {  
+test('src - data - BTC send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -74,7 +74,7 @@ test('src - data - BTC send to external address', async (t) => {
   t.deepEqual(d2, fixture.data.BTC.dynamic_fee, 'should return calculated data (BTC dynamic fee)');
 });
 
-test('src - data - error handling', async (t) => {  
+test('src - data - error handling', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -188,7 +188,7 @@ test('src - data - error handling', async (t) => {
   t.throws(d10, /Wrong fee/, 'should throw "Wrong fee" (float)');
 });
 
-test('src - data - KMD send to self', async (t) => {  
+test('src - data - KMD send to self', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -211,7 +211,7 @@ test('src - data - KMD send to self', async (t) => {
   t.deepEqual(d, fixture.data.KMD.self, 'should return calculated data');
 });
 
-test('src - data - KMD send to external address', async (t) => {  
+test('src - data - KMD send to external address', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -234,7 +234,7 @@ test('src - data - KMD send to external address', async (t) => {
   t.deepEqual(d, fixture.data.KMD.external, 'should return calculated data');
 });
 
-test('src - data - KMD send to self (rewards claim)', async (t) => {  
+test('src - data - KMD send to self (rewards claim)', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -258,7 +258,7 @@ test('src - data - KMD send to self (rewards claim)', async (t) => {
   t.deepEqual(d, fixture.data.KMD.interest_self, 'should return calculated data');
 });
 
-test('src - data - KMD send to external (rewards claim)', async (t) => {  
+test('src - data - KMD send to external (rewards claim)', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,
@@ -282,7 +282,7 @@ test('src - data - KMD send to external (rewards claim)', async (t) => {
   t.deepEqual(d, fixture.data.KMD.interest_external, 'should return calculated data');
 });
 
-test('src - data - KMD send to external (rewards claim)', async (t) => {  
+test('src - data - KMD send to external (rewards claim)', async (t) => {
   const utxo = [{
     "txid": "33f61397abaf2f2bfd212d71432e5c9032b3033476e78d7ed1a654eb564639f9",
     "vout": 1,

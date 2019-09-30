@@ -707,6 +707,7 @@
         }],
         "network": {
           "messagePrefix": "\u0019Komodo Signed Message:\n",
+          "bech32": "bc",
           "bip44": 141,
           "bip32": {
             "public": 76067358,
@@ -740,6 +741,7 @@
       },
       "network": {
         "messagePrefix": "\u0019Komodo Signed Message:\n",
+        "bech32": "bc",
         "bip44": 141,
         "bip32": {
           "public": 76067358,

@@ -144,7 +144,7 @@ const convertExponentialToDecimal = (exponentialNumber) => {
   }
 }
 
-const fromSats = value => Number(convertExponentialToDecimal(value * 0.00000001).toFixed(8));
+const fromSats = value => convertExponentialToDecimal(Number(Number(value * 0.00000001).toFixed(8)));
 
 const toSats = value => Number((Number(value).toFixed(8) * 100000000).toFixed(0));
 
