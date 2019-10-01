@@ -7,7 +7,7 @@ import networks from '../bitcoinjs-networks';
 import jsonToBuffer from '../test.utils';
 const fixture = JSON.parse(fs.readFileSync(__dirname + '/fixtures/transaction.decoder.json'));
 
-test('src - transactionDecoder - BLK', async (t) => {  
+test('src - transactionDecoder - BLK', async (t) => {
   const decodedTx = transactionDecoder(fixture.raw.BLK, networks.blk);
   const formattedFixture = jsonToBuffer(fixture.decoded.BLK);
   
@@ -21,7 +21,7 @@ test('src - transactionDecoder - BLK', async (t) => {
   t.deepEqual(decodedTx.outputs, formattedFixture.outputs, 'should match decoded BLK transaction (PoS, outputs)');
 });
 
-test('src - transactionDecoder - KMD', async (t) => {  
+test('src - transactionDecoder - KMD', async (t) => {
   const decodedTx = transactionDecoder(fixture.raw.KMD, networks.kmd);
   const formattedFixture = jsonToBuffer(fixture.decoded.KMD);
   
@@ -34,7 +34,7 @@ test('src - transactionDecoder - KMD', async (t) => {
   t.deepEqual(decodedTx.outputs, formattedFixture.outputs, 'should match decoded KMD transaction (Sapling v1, outputs)');
 });
 
-test('src - transactionDecoder - GRS', async (t) => {  
+test('src - transactionDecoder - GRS', async (t) => {
   const formattedFixture = jsonToBuffer(fixture.decoded.GRS);
   let decodedTx = transactionDecoder(fixture.raw.GRS, networks.grs);
   decodedTx.tx.network.hashFunctions = {};
@@ -48,7 +48,7 @@ test('src - transactionDecoder - GRS', async (t) => {
   t.deepEqual(decodedTx.tx.outputs, formattedFixture.tx.outputs, 'should match decoded GRS transaction (GRS, outputs)');
 });
 
-test('src - transactionDecoder - BTC', async (t) => {  
+test('src - transactionDecoder - BTC', async (t) => {
   const formattedFixture = jsonToBuffer(fixture.decoded.BTC);
   const decodedTx = transactionDecoder(fixture.raw.BTC, networks.btc);
 
@@ -61,7 +61,7 @@ test('src - transactionDecoder - BTC', async (t) => {
   t.deepEqual(decodedTx.tx.outputs, formattedFixture.tx.outputs, 'should match decoded BTC transaction (outputs)');
 });
 
-test('src - transactionDecoder - ZEC', async (t) => {  
+test('src - transactionDecoder - ZEC', async (t) => {
   const decodedTx = transactionDecoder(fixture.raw.ZEC, networks.zec);
   const formattedFixture = jsonToBuffer(fixture.decoded.ZEC);
   
