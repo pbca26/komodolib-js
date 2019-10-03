@@ -3,6 +3,7 @@ const KOMODO_ENDOFERA = 7777777;
 const LOCKTIME_THRESHOLD = 500000000;
 
 const komodoInterest = (locktime, value, height, inSats) => { // value in sats, inSats - return output in sats
+  if (inSats ? value < 10 * 100000000 : value < 10) return 0;
   const timestampDiff = Math.floor(Date.now() / 1000) - locktime - 777;
   const hoursPassed = Math.floor(timestampDiff / 3600);
   const minutesPassed = Math.floor((timestampDiff - (hoursPassed * 3600)) / 60);
