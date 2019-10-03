@@ -1,0 +1,16 @@
+.editorconfig
+.jshintrc
+.travis.yml
+.istanbul.yml
+.gitlab-ci.yml
+.babelrc
+.idea/
+.vscode/
+.github/
+.yarn-cache/
+test/
+coverage/
+bin/
+lib/
+docs/
+src/

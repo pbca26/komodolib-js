@@ -1,0 +1,377 @@
+{
+  "KMD": {
+    "transaction": {
+      "confirmations": "580297",
+      "timestamp": "1510734416",
+      "tx": {
+        "version": 1,
+        "locktime": 1510734375
+      },
+      "format":{
+        "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+        "version": 1,
+        "locktime": 1510734375
+      },
+      "inputs":[{
+        "satoshi": 15989999,
+        "value": "0.15989999",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_HASH160 d6e729236ab1b78badfef438279384d09f332afa OP_EQUAL",
+          "hex": "a914d6e729236ab1b78badfef438279384d09f332afa87",
+          "type": "scripthash",
+          "addresses": [ "bYKaDcHiwamTdep23Shq1DLGHxmnJg3R4J" ]
+        }
+      }],
+      "outputs":[{
+        "satoshi": 15979999,
+        "value": "0.15979999",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "pubkeyhash",
+          "addresses": [ "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd" ]
+        }
+      }]
+    },
+    "transactionSelf": {
+      "confirmations": "580297",
+      "timestamp": "1510734416",
+      "tx": {
+        "version": 1,
+        "locktime": 1510734375
+      },
+      "format":{
+        "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+        "version": 1,
+        "locktime": 1510734375
+      },
+      "inputs":[{
+        "satoshi": 90000000,
+        "value": "0.9",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUAL",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "scripthash",
+          "addresses": [ "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd" ]
+        }
+      }],
+      "outputs":[{
+        "satoshi": 100000000,
+        "value": "1",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "pubkeyhash",
+          "addresses": [ "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd" ]
+        }
+      }]
+    },
+    "transactionSent": {
+      "confirmations": "580297",
+      "timestamp": "1510734416",
+      "tx": {
+        "version": 1,
+        "locktime": 1510734375
+      },
+      "format":{
+        "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+        "version": 1,
+        "locktime": 1510734375
+      },
+      "inputs":[{
+        "satoshi": 100000000,
+        "value": "1",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUAL",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "scripthash",
+          "addresses": [ "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd" ]
+        }
+      }],
+      "outputs":[{
+        "satoshi": 90000000,
+        "value": "0.9",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "pubkeyhash",
+          "addresses": [ "bYKaDcHiwamTdep23Shq1DLGHxmnJg3R4J" ]
+        }
+      }]
+    },
+    "decodedPartial": {
+      "type": "other",
+      "amount": "unknown",
+      "address": "unknown",
+      "timestamp": "unknown",
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": "unknown"
+    },
+    "decodedFull": {
+      "type": "received",
+      "amount": 0.15979999,
+      "amountIn": 0.00000000,
+      "amountOut": 0.15979999,
+      "totalIn": 0.15989999,
+      "totalOut": 0.15979999,
+      "fee": 0.0001,
+      "address": "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "inputAddresses": ["bYKaDcHiwamTdep23Shq1DLGHxmnJg3R4J"],
+      "outputAddresses": ["RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd"]
+    },
+    "decodedFullSkip": {
+      "type": "received",
+      "amount": 0.15979999,
+      "amountIn": 0.00000000,
+      "amountOut": 0.15979999,
+      "totalIn": 0.15989999,
+      "totalOut": 0.15979999,
+      "fee": 0.0001,
+      "address": "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "inputAddresses": ["bYKaDcHiwamTdep23Shq1DLGHxmnJg3R4J"],
+      "outputAddresses": []
+    },
+    "decodedFullIsKomodo": {
+      "type": "received",
+      "amount": 1,
+      "amountIn": 0,
+      "amountOut": 1,
+      "totalIn": 0.15989999,
+      "totalOut": 1,
+      "fee": -0.84010001,
+      "address": "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "inputAddresses": ["bYKaDcHiwamTdep23Shq1DLGHxmnJg3R4J"],
+      "outputAddresses": ["RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd"]
+    },
+    "decodedFullInterestSelf": {
+      "type": "self",
+      "amount": 1,
+      "amountIn": 0.9,
+      "amountOut": 1,
+      "totalIn": 0.9,
+      "totalOut": 1,
+      "fee": -0.1,
+      "address": "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "interest": 0.1
+    },
+    "decodedFullSelf": {
+      "type": "self",
+      "amount": -0.1,
+      "amountIn": 0.9,
+      "amountOut": 1,
+      "totalIn": 0.9,
+      "totalOut": 1,
+      "fee": -0.1,
+      "address": "RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297
+    },
+    "decodedFullSent": {
+      "type": "sent",
+      "amount": 1,
+      "amountIn": 1,
+      "amountOut": 0,
+      "totalIn": 1,
+      "totalOut": 0.9,
+      "fee": 0.1,
+      "address": "bYKaDcHiwamTdep23Shq1DLGHxmnJg3R4J",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "inputAddresses": ["RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd"],
+      "outputAddresses": ["bYKaDcHiwamTdep23Shq1DLGHxmnJg3R4J"]
+    }
+  },
+  "BTC": {
+    "transaction": {
+      "confirmations": "580297",
+      "timestamp": "1510734416",
+      "tx": {
+        "version": 1,
+        "locktime": 0
+      },
+      "format":{
+        "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+        "version": 1,
+        "locktime": 0
+      },
+      "inputs":[{
+        "satoshi": 15989999,
+        "value": "0.15989999",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_HASH160 d6e729236ab1b78badfef438279384d09f332afa OP_EQUAL",
+          "hex": "a914d6e729236ab1b78badfef438279384d09f332afa87",
+          "type": "scripthash",
+          "addresses": [ "19dC6h1fQqJqZwTg4WLLJz9LqHZjY5RDK9" ]
+        }
+      }],
+      "outputs":[{
+        "satoshi": 15979999,
+        "value": "0.15979999",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "pubkeyhash",
+          "addresses": [ "15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe" ]
+        }
+      }]
+    },
+    "transactionSelf": {
+      "confirmations": "580297",
+      "timestamp": "1510734416",
+      "tx": {
+        "version": 1,
+        "locktime": 0
+      },
+      "format":{
+        "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+        "version": 1,
+        "locktime": 0
+      },
+      "inputs":[{
+        "satoshi": 90000000,
+        "value": "0.9",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUAL",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "scripthash",
+          "addresses": [ "15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe" ]
+        }
+      }],
+      "outputs":[{
+        "satoshi": 100000000,
+        "value": "1",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "pubkeyhash",
+          "addresses": [ "15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe" ]
+        }
+      }]
+    },
+    "transactionSent": {
+      "confirmations": "580297",
+      "timestamp": "1510734416",
+      "tx": {
+        "version": 1,
+        "locktime": 0
+      },
+      "format":{
+        "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+        "version": 1,
+        "locktime": 0
+      },
+      "inputs":[{
+        "satoshi": 100000000,
+        "value": "1",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUAL",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "scripthash",
+          "addresses": [ "15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe" ]
+        }
+      }],
+      "outputs":[{
+        "satoshi": 90000000,
+        "value": "0.9",
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 2f4c0f91fc06ac228c120aee41741d0d39096832 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a9142f4c0f91fc06ac228c120aee41741d0d3909683288ac",
+          "type": "pubkeyhash",
+          "addresses": [ "19dC6h1fQqJqZwTg4WLLJz9LqHZjY5RDK9" ]
+        }
+      }]
+    },
+    "decodedPartial": {
+      "type": "other",
+      "amount": "unknown",
+      "address": "unknown",
+      "timestamp": "unknown",
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": "unknown"
+    },
+    "decodedFull": {
+      "type": "received",
+      "amount": 0.15979999,
+      "amountIn": 0.00000000,
+      "amountOut": 0.15979999,
+      "totalIn": 0.15989999,
+      "totalOut": 0.15979999,
+      "fee": 0.0001,
+      "address": "15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "inputAddresses": ["19dC6h1fQqJqZwTg4WLLJz9LqHZjY5RDK9"],
+      "outputAddresses": ["15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe"]
+    },
+    "decodedFullSkip": {
+      "type": "received",
+      "amount": 0.15979999,
+      "amountIn": 0.00000000,
+      "amountOut": 0.15979999,
+      "totalIn": 0.15989999,
+      "totalOut": 0.15979999,
+      "fee": 0.0001,
+      "address": "15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "inputAddresses": ["19dC6h1fQqJqZwTg4WLLJz9LqHZjY5RDK9"],
+      "outputAddresses": []
+    },
+    "decodedFullSelf": {
+      "type": "self",
+      "amount": -0.1,
+      "amountIn": 0.9,
+      "amountOut": 1,
+      "totalIn": 0.9,
+      "totalOut": 1,
+      "fee": -0.1,
+      "address": "15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297
+    },
+    "decodedFullSent": {
+      "type": "sent",
+      "amount": 1,
+      "amountIn": 1,
+      "amountOut": 0,
+      "totalIn": 1,
+      "totalOut": 0.9,
+      "fee": 0.1,
+      "address": "19dC6h1fQqJqZwTg4WLLJz9LqHZjY5RDK9",
+      "timestamp": 1510734416,
+      "txid": "1531fcf212c2d015bede1e01b54440f8a50187838a5d3632a27d1b5f01d8ec00",
+      "confirmations": 580297,
+      "inputAddresses": ["15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe"],
+      "outputAddresses": ["19dC6h1fQqJqZwTg4WLLJz9LqHZjY5RDK9"]
+    }
+  }
+}
