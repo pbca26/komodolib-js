@@ -15,7 +15,7 @@ const groestlHashFunctions = {
 };
 
 const networks = {
-  btc: bitcoin.networks.bitcoin,
+  btc: Object.assign(bitcoin.networks.bitcoin, { bip44: 0 }),
   ltc: {
     messagePrefix: '\x19Litecoin Signed Message:\n',
     bip44: 2,
@@ -105,9 +105,21 @@ const networks = {
     dustThreshold: 1000, // https://github.com/zcoinofficial/zcoin/blob/f755f95a036eedfef7c96bcfb6769cb79278939f/src/main.h#L59,
     isZcash: true,
   },
+  chips: {
+    messagePrefix: '\x19Chips Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    dustThreshold: 1000,
+  },
   // https://raw.githubusercontent.com/jl777/komodo/beta/src/chainparams.cpp
   kmd: {
     messagePrefix: '\x19Komodo Signed Message:\n',
+    bech32: 'bc',
     bip44: 141,
     bip32: {
       public: 0x0488b21e,
@@ -293,18 +305,6 @@ const networks = {
     pubKeyHash: 0x17,
     scriptHash: 0x5,
     wif: 0x97,
-    dustThreshold: 1000,
-  },
-  chips: {
-    messagePrefix: '\x19Chips Signed Message:\n',
-    bip44: 141,
-    bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4,
-    },
-    pubKeyHash: 0x3c,
-    scriptHash: 0x55,
-    wif: 0xbc,
     dustThreshold: 1000,
   },
   btg: {
@@ -2514,6 +2514,16 @@ const networks = {
     pubKeyHash: 0x26,
     wif: 0xa6,
   },
+  gridcoinresearch: {
+    messagePrefix: '\u0018GridcoinResearch Signed Message:\n',
+    pubKeyHash: 0x3e,
+    wif: 0xbe,
+  },
+  guncoin: {
+    messagePrefix: '\u0018Guncoin Signed Message:\n',
+    pubKeyHash: 0x27,
+    wif: 0xa7,
+  },
   gzro: {
     messagePrefix: '\x18Gravity Signed Message:\n',
     bip44: 50,
@@ -2524,16 +2534,6 @@ const networks = {
     pubKeyHash: 0x38,
     scriptHash: 0x85,
     wif: 0xa6,
-  }, 
-  gridcoinresearch: {
-    messagePrefix: '\u0018GridcoinResearch Signed Message:\n',
-    pubKeyHash: 0x3e,
-    wif: 0xbe,
-  },
-  guncoin: {
-    messagePrefix: '\u0018Guncoin Signed Message:\n',
-    pubKeyHash: 0x27,
-    wif: 0xa7,
   },
   hamradiocoin: {
     messagePrefix: '\u0018HamRadioCoin Signed Message:\n',
