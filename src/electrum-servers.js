@@ -4,6 +4,10 @@ const dpowCoins = require('./electrum-servers-dpow');
 // TODO: add a script to sync electrum severs list from https://github.com/jl777/coins/tree/master/electrums
 
 let _electrumServers = {
+  gzro: [
+    'electrum1.gzrograviteers.org:50001:tcp',
+    'electrum1.gzrograviteers.org:50002:ssl'
+  ],
   lumber: [
     'electrum1.lumberscout.io:10001:tcp'
   ],

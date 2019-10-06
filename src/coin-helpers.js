@@ -1,4 +1,5 @@
 const _komodoAssetChains = [
+  'GZRO',
   'SUPERNET',
   'REVS',
   'PANGEA',
@@ -126,6 +127,7 @@ const explorerList = {
   ZEXO: 'http://zexo.explorer.dexstats.info',
   LABS: 'http://labs.explorer.dexstats.info',
   // non-kmd coins
+  GZRO: 'http://gzroexplorer.com/',
   QTUM: 'https://explorer.qtum.org',
   DNR: 'http://denarius.name',
   LTC: 'https://live.blockcypher.com/ltc/tx/',
