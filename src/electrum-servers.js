@@ -218,11 +218,11 @@ let _electrumServers = {
     'electrum2.cipig.net:10050:tcp',
   ],
   bch: [
-    'bch.imaginary.cash:50001:tcp',
-    'electroncash.dk:50001:tcp',
-    'wallet.satoshiscoffeehouse.com:50001:tcp',
-    'electron.coinucopia.io:50001:tcp',
-    'electron-cash.dragon.zone:50001:tcp',
+    'electrumx-bch.cryptonermal.net:50001:tcp',
+    'bch.soul-dev.com:50002:ssl',
+    'bitcoincash.network:50002:ssl',
+    'bchx.disdev.org:50002:ssl',
+    'electrumx.hillsideinternet.com:50002:ssl'
   ],
   /*arg: [
     'electrum1.cipig.net:10068:tcp',
