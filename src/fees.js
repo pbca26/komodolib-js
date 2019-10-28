@@ -57,6 +57,8 @@ const fees = {
   hush: KMD_STD_FEE,
   zexo: KMD_STD_FEE,
   labs: KMD_STD_FEE,
+  thc: KMD_STD_FEE,
+  commod: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,

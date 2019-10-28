@@ -539,6 +539,11 @@ let _electrumServers = {
     'electrum2.cipig.net:10019:tcp',
     'electrum3.cipig.net:10019:tcp',
   ],
+  commod: [
+    'electrum1.cipig.net:10022:tcp',
+    'electrum2.cipig.net:10022:tcp',
+    'electrum3.cipig.net:10022:tcp',
+  ],
 };
 _electrumServers.zexo = _electrumServers.zex;
 
