@@ -57,6 +57,7 @@ const fees = {
   zexo: KMD_STD_FEE,
   labs: KMD_STD_FEE,
   dp: KMD_STD_FEE,
+  wlc21: KMD_STD_FEE,
   // ext. coins
   doge: 100000000,
   via: 100000,
