@@ -46,7 +46,6 @@ const dpowCoins = [
   'VOTE2019',
   'HUSH3',
   'KOIN',
-  'K64',
 ];
 
 module.exports = dpowCoins;
