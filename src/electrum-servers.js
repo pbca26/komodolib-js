@@ -322,8 +322,9 @@ let _electrumServers = {
     'electrum3.cipig.net:10029:tcp',
   ],
   vrsc: [
-    'el0.vrsc.0x03.services:10000:tcp',
-    'el1.vrsc.0x03.services:10000:tcp',
+    'el0.vrsc.veruscoin.io:17485:tcp',
+    'el1.vrsc.veruscoin.io:17485:tcp',
+    'el2.vrsc.veruscoin.io:17485:tcp',
   ],
   polis: [
     'electrum1.cipig.net:10075:tcp',
