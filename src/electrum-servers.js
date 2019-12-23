@@ -543,7 +543,9 @@ let _electrumServers = {
     'dp.electrum2.komodo.top:50001:tcp',
   ],
   wlc21: [
-    'electrum.komodochainz.info:50021:tcp',
+    'electrum1.cipig.net:10014:tcp',
+    'electrum2.cipig.net:10014:tcp',
+    'electrum3.cipig.net:10014:tcp',
   ],
 };
 
