@@ -542,6 +542,9 @@ let _electrumServers = {
     'dp.electrum.komodo.top:50001:tcp',
     'dp.electrum2.komodo.top:50001:tcp',
   ],
+  wlc21: [
+    'electrum.komodochainz.info:50021:tcp',
+  ],
 };
 
 let electrumServers = {};
