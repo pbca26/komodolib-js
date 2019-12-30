@@ -14,6 +14,7 @@ let fees = {
   kmd: KMD_STD_FEE,
   chips: KMD_STD_FEE,
   // ext. coins
+  gzro: 100000,
   doge: 100000000,
   via: 100000,
   vtc: 100000,

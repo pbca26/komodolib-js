@@ -2524,6 +2524,17 @@ const networks = {
     pubKeyHash: 0x27,
     wif: 0xa7,
   },
+  gzro: {
+    messagePrefix: '\x18Gravity Signed Message:\n',
+    bip44: 50,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x38,
+    scriptHash: 0x85,
+    wif: 0xa6,
+  },
   hamradiocoin: {
     messagePrefix: '\u0018HamRadioCoin Signed Message:\n',
     pubKeyHash: 0x00,
