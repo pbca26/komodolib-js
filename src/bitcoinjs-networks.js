@@ -355,7 +355,7 @@ const networks = {
       1: 0x00,
       2: 0x00,
       3: 0x5ba81b19,
-      4: 0x76b809bb,
+      4: 0x2bb40e60,
     },
     dustThreshold: 1000,
     isZcash: true,
