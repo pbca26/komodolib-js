@@ -562,7 +562,7 @@ for (let key in _electrumServers) {
   }
 }
 
-const proxyServersHttps = ['el0.0x03.services', 'el1.0x03.services', 'el2.0x03.services'];
+const proxyServersHttps = ['el0.veruscoin.io', 'el1.veruscoin.io', 'el2.veruscoin.io'];
 const proxyServersHttp = ['94.130.225.86:80', '94.130.225.86:80'];
 
 module.exports = {
