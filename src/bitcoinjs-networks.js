@@ -124,7 +124,7 @@ const networks = {
     kmdInterest: true,
   },
   vrsc: {
-    messagePrefix: '\x19Komodo Signed Message:\n',
+    messagePrefix: '\x15Verus signed data:\n',
     bip44: 141,
     bip32: {
       public: 0x0488b21e,
