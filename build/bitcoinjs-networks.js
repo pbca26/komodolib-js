@@ -2062,25 +2062,6 @@ var networks = (_networks = {
   pubKeyHash: 0x66,
   scriptHash: 0x14,
   wif: 0xC3
-}), _defineProperty(_networks, "iln", {
-  messagePrefix: '\x19Komodo Signed Message:\n',
-  bip44: 141,
-  bip32: {
-    "public": 0x0488b21e,
-    "private": 0x0488ade4
-  },
-  pubKeyHash: 0x3c,
-  scriptHash: 0x55,
-  wif: 0xbc,
-  consensusBranchId: {
-    1: 0x00,
-    2: 0x00,
-    3: 0x5ba81b19,
-    4: 0x76b809bb
-  },
-  dustThreshold: 1000,
-  isZcash: true,
-  sapling: true
 }), _defineProperty(_networks, "goa", {
   messagePrefix: "\x18Goacoin Signed Message:\n",
   bip32: {

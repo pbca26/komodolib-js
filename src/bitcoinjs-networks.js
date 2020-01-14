@@ -2107,7 +2107,7 @@ const networks = {
     scriptHash: 0x14,
     wif: 0xC3,
   },
-  iln: {
+  /*iln: {
     messagePrefix: '\x19Komodo Signed Message:\n',
     bip44: 141,
     bip32: {
@@ -2126,7 +2126,7 @@ const networks = {
     dustThreshold: 1000,
     isZcash: true,
     sapling: true,
-  },
+  },*/
   goa: {
     messagePrefix: '\u0018Goacoin Signed Message:\n',
     bip32: {

@@ -44,7 +44,6 @@ const fees = {
   dion: KMD_STD_FEE,
   kmdice: KMD_STD_FEE,
   ptx: KMD_STD_FEE,
-  lumber: KMD_STD_FEE,
   ksb: KMD_STD_FEE,
   our: KMD_STD_FEE,
   koin: KMD_STD_FEE,
