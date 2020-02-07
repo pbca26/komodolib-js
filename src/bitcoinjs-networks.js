@@ -23,6 +23,27 @@ const networks = {
     wif: 0xb0,
     dustThreshold: 0, // https://github.com/litecoin-project/litecoin/blob/v0.8.7.2/src/main.cpp#L360-L365
   },
+  ccl: {
+    messagePrefix: '\x19Coin Collect Signed Message:\n',
+    bip44: 141,
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4,
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xbc,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb,
+    },
+    dustThreshold: 1000,
+    isZcash: true,
+    sapling: true,
+    saplingActivationTimestamp: 0,
+  },
   dnr: {
     messagePrefix: '\x19Denarius Signed Message:\n',
     bip44: 116,
