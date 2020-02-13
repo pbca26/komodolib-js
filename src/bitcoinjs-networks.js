@@ -8,8 +8,7 @@
 // this is an experimental option that can lead to key pair derivation errors
 const bitcoin = require('bitgo-utxo-lib');
 
-
-const networks = {
+let networks = {
   btc: bitcoin.networks.bitcoin,
   ltc: {
     messagePrefix: '\x19Litecoin Signed Message:\n',
@@ -2883,5 +2882,15 @@ const networks = {
     sapling: true,
   },
 };
+
+const { kmdAssetChains } = require('./coin-helpers');
+let acNetworkData = JSON.parse(JSON.stringify(networks.kmd));
+delete acNetworkData.kmdInterest;
+
+for (let i = 0; i < kmdAssetChains.length; i++) {
+  if (!networks[kmdAssetChains[i].toLowerCase()]) {
+    networks[kmdAssetChains[i].toLowerCase()] = acNetworkData;
+  }
+}
 
 module.exports = networks;
