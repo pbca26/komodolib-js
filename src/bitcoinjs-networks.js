@@ -2888,7 +2888,7 @@ let acNetworkData = JSON.parse(JSON.stringify(networks.kmd));
 delete acNetworkData.kmdInterest;
 
 for (let i = 0; i < kmdAssetChains.length; i++) {
-  if (!networks[kmdAssetChains[i].toLowerCase()]) {
+  if (!networks[kmdAssetChains[i].toLowerCase()] && kmdAssetChains[i].toLowerCase() !== 'pirate') {
     networks[kmdAssetChains[i].toLowerCase()] = acNetworkData;
   }
 }
