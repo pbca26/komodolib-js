@@ -19,6 +19,7 @@
 var bip39 = require('bip39');
 
 var _hasDuplicates = function _hasDuplicates(seed) {
+  if (!seed) throw new Error('seed is empty');
   seed = seed.split(' ');
   return new Set(seed).size !== seed.length;
 };
@@ -28,6 +29,7 @@ var passphraseGenerator = {
     return _hasDuplicates(seed);
   },
   generatePassPhrase: function generatePassPhrase(bitsval) {
+    if (!Number(bitsval)) throw new Error('bits is NaN');
     var seed = bip39.generateMnemonic(bitsval);
 
     while (_hasDuplicates(seed)) {
@@ -39,13 +41,16 @@ var passphraseGenerator = {
   // checks if it's possible that the pass phrase words supplied as the first parameter
   // were generated with the number of bits supplied as the second parameter
   isPassPhraseValid: function isPassPhraseValid(seed, bits) {
+    if (!seed) throw new Error('seed is empty');
+    if (!Number(bits)) throw new Error('bits is NaN');
     // the required number of words based on the number of bits
     // mirrors the generatePassPhrase function above
     var wordsCount = bits / 32 * 3;
     return seed && seed.split(' ').length === wordsCount;
   },
-  arePassPhraseWordsValid: function arePassPhraseWordsValid(passphrase) {
-    return bip39.validateMnemonic(passphrase);
+  arePassPhraseWordsValid: function arePassPhraseWordsValid(seed) {
+    if (!seed) throw new Error('seed is empty');
+    return bip39.validateMnemonic(seed);
   }
 };
 

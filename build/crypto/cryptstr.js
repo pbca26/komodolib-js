@@ -14,7 +14,7 @@ var encrypt = function encrypt(cipherKey, string, testPinStrength) {
     if (testPinStrength) {
       var passwdStrength = require('passwd-strength');
 
-      if (passwdStrength(_pin) < 29) {
+      if (passwdStrength(cipherKey) < 29) {
         resolve(-1);
       }
     } else {
@@ -39,7 +39,7 @@ var decrypt = function decrypt(cipherKey, string) {
       });
     } else {
       _decrypt(string, cipherKey).then(function (decryptedKey) {
-        resolve({ string: decryptedKey });
+        resolve(decryptedKey);
       }).catch(function (err) {
         resolve(false);
       });

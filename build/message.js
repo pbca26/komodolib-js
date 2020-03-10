@@ -6,6 +6,9 @@ var ethers = require('ethers');
 var bitcoreMessage = require('bitcore-message'); // zcash
 var bitcoreZcash = require('bitcore-lib-zcash'); // zcash
 
+// TODO: - consistent bitcore zec sig
+//       - merge btc and eth into one function(?)
+
 var signBTC = function signBTC(wifString, message, isZcash) {
   var signature = void 0;
 
