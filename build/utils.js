@@ -14,6 +14,7 @@ var sort = function sort(data, sortKey, desc) {
       return 0;
     });
   }
+
   return data.sort(function (b, a) {
     if (a[sortKey] < b[sortKey]) {
       return -1;
@@ -88,9 +89,9 @@ var formatValue = function formatValue(value) {
   var splitNum = str.split('.');
 
   if (Number(splitNum[0]) !== 0) {
-    return newVal.toFixed(4);
+    return Number(newVal.toFixed(4));
   }
-  return newVal;
+  return Number(newVal);
 };
 
 var formatBytes = function formatBytes(bytes, decimals) {
@@ -118,17 +119,34 @@ var maxSpendBalance = function maxSpendBalance(utxoList, fee) {
   }
 
   if (fee) {
-    return Number(maxSpendBalance) - Number(fee);
+    return Number((Number(maxSpendBalance) - Number(fee)).toFixed(8));
   }
-  return maxSpendBalance;
+
+  return Number(maxSpendBalance);
+};
+
+// ref: http://blog.davidjs.com/2018/07/convert-exponential-numbers-to-decimal-in-javascript/
+var convertExponentialToDecimal = function convertExponentialToDecimal(exponentialNumber) {
+  // sanity check - is it exponential number
+  var str = exponentialNumber.toString();
+  if (str.indexOf('e') !== -1) {
+    var exponent = parseInt(str.split('-')[1], 10);
+    // Unfortunately I can not return 1e-8 as 0.00000001, because even if I call parseFloat() on it,
+    // it will still return the exponential representation
+    // So I have to use .toFixed()
+    var result = exponentialNumber.toFixed(exponent);
+    return result;
+  } else {
+    return exponentialNumber;
+  }
 };
 
 var fromSats = function fromSats(value) {
-  return value * 0.00000001;
+  return convertExponentialToDecimal(Number(Number(value * 0.00000001).toFixed(8)));
 };
 
 var toSats = function toSats(value) {
-  return Number(value).toFixed(8) * 100000000;
+  return Number((Number(value).toFixed(8) * 100000000).toFixed(0));
 };
 
 // https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key
@@ -200,5 +218,6 @@ module.exports = {
   isNumber: isNumber,
   isPositiveNumber: isPositiveNumber,
   sortObject: sortObject,
-  parseBitcoinURL: parseBitcoinURL
+  parseBitcoinURL: parseBitcoinURL,
+  convertExponentialToDecimal: convertExponentialToDecimal
 };

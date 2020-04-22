@@ -8,13 +8,11 @@ var _komodoAssetChains = ['SUPERNET', 'REVS', 'PANGEA', 'PGT', 'DEX', 'JUMBLR', 
 
 var _komodoCoins = _komodoAssetChains.concat(['CHIPS', 'KMD', 'KOMODO']);
 
-var isKomodoCoin = function isKomodoCoin(coin, skipKMD) {
-  return _komodoCoins.find(function (element) {
-    if (skipKMD) {
-      return element === coin.toUpperCase() && coin.toUpperCase() !== 'KMD' && coin.toUpperCase() !== 'KOMODO';
-    }
-    return element === coin.toUpperCase();
+var isKomodoCoin = function isKomodoCoin(coin) {
+  var coins = _komodoCoins.filter(function (x) {
+    return x !== 'CHIPS';
   });
+  return coin && coins.indexOf(coin.toUpperCase()) > -1 ? true : false;
 };
 
 // TODO: add at least 2 explorers per coin

@@ -1,8 +1,10 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var transactionType = function transactionType(tx, targetAddress, isKomodo, options) {
+var transactionType = function transactionType(tx, targetAddress, options) {
   // TODO: - sum vins / sum vouts to the same address
   //       - multi vin multi vout
   //       - detect change address
@@ -25,14 +27,14 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
     outputs: []
   };
 
-  if (tx.format === 'cant parse') {
+  if (_typeof(tx.format) !== 'object' || tx.format === null) {
     return {
       type: 'unknown',
       amount: 'unknown',
       address: targetAddress,
-      timestamp: tx.timestamp,
-      txid: tx.format.txid,
-      confirmations: tx.confirmations
+      timestamp: tx.timestamp && Number(tx.timestamp) || 'unknown',
+      txid: tx.format && tx.format.txid || 'unknown',
+      confirmations: tx.confirmations && Number(tx.confirmations) || 'unknown'
     };
   }
 
@@ -85,91 +87,95 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
     if (isSelfSend.inputs && isSelfSend.outputs) {
       result = {
         type: 'self',
-        amount: _sum.inputs === _sum.outputs ? Number(_sum.outputs).toFixed(8) : Number(_sum.inputs - _sum.outputs).toFixed(8),
-        amountIn: Number(_sum.inputs).toFixed(8),
-        amountOut: Number(_sum.outputs).toFixed(8),
-        totalIn: Number(_total.inputs).toFixed(8),
-        totalOut: Number(_total.outputs).toFixed(8),
-        fee: Number(_total.inputs - _total.outputs).toFixed(8),
+        amount: _sum.inputs === _sum.outputs ? Number(Number(_sum.outputs).toFixed(8)) : Number(Number(_sum.inputs - _sum.outputs).toFixed(8)),
+        amountIn: Number(Number(_sum.inputs).toFixed(8)),
+        amountOut: Number(Number(_sum.outputs).toFixed(8)),
+        totalIn: Number(Number(_total.inputs).toFixed(8)),
+        totalOut: Number(Number(_total.outputs).toFixed(8)),
+        fee: Number(Number(_total.inputs - _total.outputs).toFixed(8)),
         address: targetAddress,
-        timestamp: tx.timestamp,
-        txid: tx.format.txid,
-        confirmations: tx.confirmations
+        timestamp: tx.timestamp && Number(tx.timestamp) || 'unknown',
+        txid: tx.format.txid || 'unknown',
+        confirmations: tx.confirmations && Number(tx.confirmations) || 'unknown'
       };
 
-      if (isKomodo) {
+      if (options && options.isKomodo) {
         // calc claimed interest amount
         var vinVoutDiff = _total.inputs - _total.outputs;
 
         if (vinVoutDiff < 0) {
-          result.interest = Number(vinVoutDiff.toFixed(8));
+          result.interest = Math.abs(Number(vinVoutDiff.toFixed(8)));
+
+          if (result.amount < 0) {
+            result.amount = Number(Number(_total.outputs).toFixed(8));
+          }
         }
       }
     } else {
       result = {
         type: 'sent',
-        amount: Number(isKomodo && _sum.inputs - _sum.outputs < 0 ? _total.outputs - _sum.outputs : _sum.inputs - _sum.outputs).toFixed(8),
-        amountIn: Number(_sum.inputs).toFixed(8),
-        amountOut: Number(_sum.outputs).toFixed(8),
-        totalIn: Number(_total.inputs).toFixed(8),
-        totalOut: Number(_total.outputs).toFixed(8),
-        fee: Number(_total.inputs - _total.outputs).toFixed(8),
+        amount: Number(Number(options && options.isKomodo && _sum.inputs - _sum.outputs < 0 ? _total.outputs - _sum.outputs : _sum.inputs - _sum.outputs).toFixed(8)),
+        amountIn: Number(Number(_sum.inputs).toFixed(8)),
+        amountOut: Number(Number(_sum.outputs).toFixed(8)),
+        totalIn: Number(Number(_total.inputs).toFixed(8)),
+        totalOut: Number(Number(_total.outputs).toFixed(8)),
+        fee: Number(Number(_total.inputs - _total.outputs).toFixed(8)),
         address: _addresses.outputs[0],
-        timestamp: tx.timestamp,
-        txid: tx.format.txid,
-        confirmations: tx.confirmations,
+        timestamp: tx.timestamp && Number(tx.timestamp) || 'unknown',
+        txid: tx.format.txid || 'unknown',
+        confirmations: tx.confirmations && Number(tx.confirmations) || 'unknown',
         from: _addresses.inputs,
         to: _addresses.outputs
       };
 
-      if (isKomodo) {
+      if (options && options.isKomodo) {
         // calc claimed interest amount
         var _vinVoutDiff = _total.inputs - _total.outputs;
 
         if (_vinVoutDiff < 0) {
-          result.interest = Number(_vinVoutDiff.toFixed(8));
+          result.interest = Math.abs(Number(_vinVoutDiff.toFixed(8)));
         }
       }
     }
   } else if (_sum.inputs === 0 && _sum.outputs > 0) {
     result = {
       type: 'received',
-      amount: Number(_sum.outputs).toFixed(8),
-      amountIn: Number(_sum.inputs).toFixed(8),
-      amountOut: Number(_sum.outputs).toFixed(8),
-      totalIn: Number(_total.inputs).toFixed(8),
-      totalOut: Number(_total.outputs).toFixed(8),
-      fee: Number(_total.inputs - _total.outputs).toFixed(8),
+      amount: Number(Number(_sum.outputs).toFixed(8)),
+      amountIn: Number(Number(_sum.inputs).toFixed(8)),
+      amountOut: Number(Number(_sum.outputs).toFixed(8)),
+      totalIn: Number(Number(_total.inputs).toFixed(8)),
+      totalOut: Number(Number(_total.outputs).toFixed(8)),
+      fee: Number(Number(_total.inputs - _total.outputs).toFixed(8)),
       address: targetAddress,
-      timestamp: tx.timestamp,
-      txid: tx.format.txid,
-      confirmations: tx.confirmations,
+      timestamp: tx.timestamp && Number(tx.timestamp) || 'unknown',
+      txid: tx.format.txid || 'unknown',
+      confirmations: tx.confirmations && Number(tx.confirmations) || 'unknown',
       inputAddresses: _addresses.inputs,
       outputAddresses: _addresses.outputs
     };
   } else if (_sum.inputs > 0 && _sum.outputs === 0) {
     result = {
       type: 'sent',
-      amount: Number(_sum.inputs).toFixed(8),
-      amountIn: Number(_sum.inputs).toFixed(8),
-      amountOut: Number(_sum.outputs).toFixed(8),
-      totalIn: Number(_total.inputs).toFixed(8),
-      totalOut: Number(_total.outputs).toFixed(8),
-      fee: Number(_total.inputs - _total.outputs).toFixed(8),
+      amount: Number(Number(_sum.inputs).toFixed(8)),
+      amountIn: Number(Number(_sum.inputs).toFixed(8)),
+      amountOut: Number(Number(_sum.outputs).toFixed(8)),
+      totalIn: Number(Number(_total.inputs).toFixed(8)),
+      totalOut: Number(Number(_total.outputs).toFixed(8)),
+      fee: Number(Number(_total.inputs - _total.outputs).toFixed(8)),
       address: isSelfSend.inputs && isSelfSend.outputs ? targetAddress : _addresses.outputs[0],
-      timestamp: tx.timestamp,
-      txid: tx.format.txid,
-      confirmations: tx.confirmations,
+      timestamp: tx.timestamp && Number(tx.timestamp) || 'unknown',
+      txid: tx.format.txid || 'unknown',
+      confirmations: tx.confirmations && Number(tx.confirmations) || 'unknown',
       inputAddresses: _addresses.inputs,
       outputAddresses: _addresses.outputs
     };
 
-    if (isKomodo) {
+    if (options && options.isKomodo) {
       // calc claimed interest amount
       var _vinVoutDiff2 = _total.inputs - _total.outputs;
 
       if (_vinVoutDiff2 < 0) {
-        result.interest = Number(_vinVoutDiff2.toFixed(8));
+        result.interest = Math.abs(Number(_vinVoutDiff2.toFixed(8)));
       }
     }
   } else {
@@ -178,9 +184,9 @@ var transactionType = function transactionType(tx, targetAddress, isKomodo, opti
       type: 'other',
       amount: 'unknown',
       address: 'unknown',
-      timestamp: tx.timestamp,
-      txid: tx.format.txid,
-      confirmations: tx.confirmations
+      timestamp: tx.timestamp && Number(tx.timestamp) || 'unknown',
+      txid: tx.format.txid || 'unknown',
+      confirmations: tx.confirmations && Number(tx.confirmations) || 'unknown'
     };
   }
 

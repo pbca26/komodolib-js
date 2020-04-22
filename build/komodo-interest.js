@@ -6,6 +6,7 @@ var LOCKTIME_THRESHOLD = 500000000;
 
 var komodoInterest = function komodoInterest(locktime, value, height, inSats) {
   // value in sats, inSats - return output in sats
+  if (inSats ? value < 10 * 100000000 : value < 10) return 0;
   var timestampDiff = Math.floor(Date.now() / 1000) - locktime - 777;
   var hoursPassed = Math.floor(timestampDiff / 3600);
   var minutesPassed = Math.floor((timestampDiff - hoursPassed * 3600) / 60);
@@ -34,7 +35,7 @@ var komodoInterest = function komodoInterest(locktime, value, height, inSats) {
     interest = Number((Math.floor(value / 10512000) * timestampDiffMinutes * (inSats ? 1 : 0.00000001)).toFixed(inSats ? 0 : 8));
   }
 
-  return interest;
+  return interest > 0 ? interest : 0;
 };
 
 module.exports = komodoInterest;
