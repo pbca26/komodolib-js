@@ -114,7 +114,7 @@ let _electrumServers = {
     'electrum1.cipig.net:10013:tcp',
     'electrum2.cipig.net:10013:tcp',
   ],
-  wlc: [
+  wlc21: [
     'electrum1.cipig.net:10014:tcp',
     'electrum2.cipig.net:10014:tcp',
   ],
@@ -237,7 +237,7 @@ let _electrumServers = {
     'electrum1.cipig.net:10058:tcp',
     'electrum2.cipig.net:10058:tcp',
   ],
-  hush: [
+  hush3: [
     'electrum1.cipig.net:10064:tcp',
     'electrum2.cipig.net:10064:tcp',
   ],
@@ -519,7 +519,7 @@ let _electrumServers = {
     'electrum2.cipig.net:10018:tcp',
     'electrum3.cipig.net:10018:tcp',
   ],
-  vote2019: [
+  vote2020: [
     'electrum1.cipig.net:10036:tcp',
     'electrum2.cipig.net:10036:tcp',
     'electrum3.cipig.net:10036:tcp',
@@ -543,6 +543,11 @@ let _electrumServers = {
     'electrum1.cipig.net:10022:tcp',
     'electrum2.cipig.net:10022:tcp',
     'electrum3.cipig.net:10022:tcp',
+  ],
+  mcl: [
+    'electrum1.cipig.net:10023:tcp',
+    'electrum2.cipig.net:10023:tcp',
+    'electrum3.cipig.net:10023:tcp',
   ],
 };
 _electrumServers.zexo = _electrumServers.zex;
