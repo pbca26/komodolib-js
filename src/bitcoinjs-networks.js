@@ -1981,14 +1981,14 @@ const networks = {
     wif: 0xB0,
   },
   aywa: {
-    messagePrefix: '\x19AywaCoin Signed Message:\n',
+    messagePrefix: '\x18AYWA Signed Message:\n',
     bip32: {
-      public: 0x0488B21E,
-      private: 0x0488ADE4,
+      public: 0x0488b21e,
+      private: 0x0488ade4,
     },
     pubKeyHash: 0x17,
-    scriptHash: 0x53,
-    wif: 0x96,
+    scriptHash: 0x5,
+    wif: 0xB0,
   },
   bitb: {
     messagePrefix: '\x19BitBean Signed Message:\n',
