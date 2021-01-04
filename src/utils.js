@@ -205,6 +205,16 @@ const sortTransactions = (transactions, sortBy) => {
   });
 }
 
+// dec to hex
+const convertKMDMagic = (num, reverse) => {
+  if (num < 0) {
+    num = 0xFFFFFFFF + num + 1;
+  }
+  
+  if (reverse) return Buffer.from(num.toString(16), 'hex').reverse().toString('hex');
+  else return num.toString(16);
+}
+
 module.exports = {
   formatValue,
   formatBytes,
@@ -221,4 +231,5 @@ module.exports = {
   sortObject,
   parseBitcoinURL,
   convertExponentialToDecimal,
+  convertKMDMagic,
 };
