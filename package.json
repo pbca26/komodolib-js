@@ -62,9 +62,13 @@
     "tape": "^4.9.1"
   },
   "dependencies": {
+    "@ledgerhq/hw-app-btc": "^5.34.1",
+    "@ledgerhq/hw-transport-web-ble": "^4.77.0",
+    "@ledgerhq/hw-transport-webusb": "^4.77.0",
     "bigi": "^1.4.2",
     "bip32": "^1.0.2",
     "bip39": "^2.4.0",
+    "bip32-path": "^0.4.2",
     "bitcoinforksjs-lib": "git+https://github.com/SuperNETorg/bitcoinjs-lib#opt-in-bitcoincash-sighash",
     "bitcoinjs-lib": "git+https://github.com/SuperNETorg/bitcoinjs-lib",
     "bitcoinjs-lib-pos": "git+https://github.com/KomodoPlatform/bitcoinjs-lib-pos",
@@ -75,6 +79,7 @@
     "bitgo-utxo-lib": "git+https://github.com/pbca26/bitgo-utxo-lib",
     "bitgo-utxo-lib-groestl": "git+https://github.com/SuperNETorg/bitgo-utxo-lib",
     "bluebird": "^3.4.7",
+    "bs58check": "^2.1.2",
     "buffer-reverse": "^1.0.1",
     "coinselect": "github:bitcoinjs/coinselect",
     "ethereumjs-util": "^6.0.0",
@@ -88,6 +93,7 @@
     "passwd-strength": "git+https://github.com/pbca26/passwd-strength",
     "sha256": "^0.2.0",
     "tx-decoder": "git+https://github.com/pbca26/tx-decoder",
+    "trezor-connect": "^8.1.3",
     "wif": "^2.0.6"
   }
 }
