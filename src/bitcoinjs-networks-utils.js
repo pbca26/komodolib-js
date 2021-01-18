@@ -1,3 +1,11 @@
+/**
+ *
+ * Functions to filter out BIP32/BIP44 networks from bitcoinjs-networks.js object
+ * 
+ * @param none
+ * @returns {array}
+ */
+
 const networks = require('./bitcoinjs-networks.js');
 
 const bip32Compatible = () => {

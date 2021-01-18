@@ -1,11 +1,11 @@
-/*
-  Bitcoinjs-lib network params file
-*/
+/**
+ *
+ * Blockchain network params in BitcoinJS network object format
+ * 
+ */
 
-// TODO: runtime extend for kmd assets
-//       use lib flag e.g. lib: 'bitcoinjs-lib'
-// wifAlt can be used for different coin versions that underwent major code base changes
-// this is an experimental option that can lead to key pair derivation errors
+// TODO: - use lib flag e.g. lib: 'bitcoinjs-lib'
+//       - get rid of wifAlt
 const bitcoin = require('bitcoinjs-lib');
 const bcrypto = require('bitgo-utxo-lib-groestl').crypto;
 

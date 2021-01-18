@@ -1,3 +1,10 @@
+/**
+ *
+ * Extend bitcoinjs-networks.js object to include all Komodo asset chains listed in coin-helpers.js
+ * Each asset chain is added as a separate property cloned from bitcoinjs-networks.js KMD entry
+ * 
+ */
+
 const networks = require('./bitcoinjs-networks');
 const { kmdAssetChains } = require('./coin-helpers');
 let _networks = JSON.parse(JSON.stringify(networks));
