@@ -1,5 +1,10 @@
-// ref: https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-
+/**
+ *
+ * A list of BIP44 constants
+ * 
+ * ref: ref: https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+ * 
+ */
 const bip44Const = {
   'BTC': 0,
   'LTC': 2,
