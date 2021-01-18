@@ -13,7 +13,7 @@ var komodoInterest = require('./komodo-interest');
 var transactionBuilder = require('./transaction-builder');
 var transactionType = require('./transaction-type');
 var getMerkleRoot = require('./transaction-merkle');
-var eth = require('./eth');
+var eth = require('./eth/eth');
 var btcnetworksUtils = require('./bitcoinjs-networks-utils');
 
 module.exports = {
@@ -30,5 +30,6 @@ module.exports = {
   transactionType: transactionType,
   getMerkleRoot: getMerkleRoot,
   keys: keys,
-  btcnetworksUtils: btcnetworksUtils
+  btcnetworksUtils: btcnetworksUtils,
+  eth: eth
 };

@@ -11,7 +11,9 @@ var utils = require('./utils');
 
 var _require = require('./keys'),
     multisig = _require.multisig,
-    stringToWif = _require.stringToWif;
+    stringToWif = _require.stringToWif,
+    addressVersionCheck = _require.addressVersionCheck,
+    isPrivKey = _require.isPrivKey;
 
 var ECPair = require('bitgo-utxo-lib/src/ecpair');
 var ECSignature = require('bitgo-utxo-lib/src/ecsignature');
@@ -21,12 +23,38 @@ var ECSignature = require('bitgo-utxo-lib/src/ecsignature');
 // current multisig limitations: no PoS, no btc forks
 // bitcoinjs multisig order doesn't matter
 var transaction = function transaction(sendTo, changeAddress, wif, network, utxo, changeValue, spendValue, options) {
+  if (!options && !isPrivKey(wif) || options && !options.unsigned && !isPrivKey(wif)) {
+    throw new Error('Invalid WIF format');
+  }
+
+  if (!options || options && options.multisig && options.multisig.creator) {
+    if (addressVersionCheck(network, sendTo) !== true) {
+      throw new Error('Invalid output address');
+    }
+
+    if (addressVersionCheck(network, changeAddress) !== true) {
+      throw new Error('Invalid change address');
+    }
+
+    if (!utils.isNumber(changeValue) || Number(changeValue) < 0 || !Number.isInteger(changeValue)) {
+      throw new Error('Wrong change value');
+    }
+
+    if (!utils.isNumber(spendValue) || Number(spendValue) < 0 || !Number.isInteger(spendValue)) {
+      throw new Error('Wrong spend value');
+    }
+  }
+
   if (options && options.multisig) {
+    if (!options.multisig.redeemScript) {
+      throw new Error('Missing reedeem script string');
+    }
+
     var decodedRedeemScript = multisig.decodeRedeemScript(options.multisig.redeemScript, { toHex: true });
     var signPubkey = stringToWif(wif, network, true).pubHex;
 
     if (decodedRedeemScript.pubKeys.indexOf(signPubkey) === -1) {
-      return { error: 'wrong multisig signing key' };
+      throw new Error('Wrong multisig signing key or redeem sript');
     }
   }
 
@@ -127,7 +155,11 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
           tx.sign(_i, key, '', null, Number(utxo[_i].value));
         }
       } else {
-        tx.sign(_i, key);
+        if (options && options.multisig) {
+          tx.sign(_i, key, new Buffer.from(options.multisig.redeemScript, 'hex'), null, Number(utxo[_i].value));
+        } else {
+          tx.sign(_i, key);
+        }
       }
     }
 
@@ -141,9 +173,33 @@ var transaction = function transaction(sendTo, changeAddress, wif, network, utxo
   }
 };
 
+var multisigSignTransaction = function multisigSignTransaction(wif, network, utxo, options) {
+  return transaction(null, null, wif, network, utxo, null, null, options);
+};
+
 // TODO: merge sendmany
 var data = function data(network, value, fee, outputAddress, changeAddress, utxoList) {
-  var btcFee = fee.perbyte ? fee.value : null; // TODO: coin non specific switch static/dynamic fee
+  if (addressVersionCheck(network, outputAddress) !== true) {
+    throw new Error('Invalid output address');
+  }
+
+  if (addressVersionCheck(network, changeAddress) !== true) {
+    throw new Error('Invalid change address');
+  }
+
+  if (!utils.isNumber(value) || !utils.isPositiveNumber(value) || !Number.isInteger(value)) {
+    throw new Error('Wrong value');
+  }
+
+  if (!fee.hasOwnProperty('perByte') && (!utils.isNumber(fee) || !utils.isPositiveNumber(fee) || !Number.isInteger(fee))) {
+    throw new Error('Wrong fee');
+  }
+
+  if (fee.hasOwnProperty('perByte') && (!utils.isNumber(fee.value) || !utils.isPositiveNumber(fee.value) || !Number.isInteger(fee.value))) {
+    throw new Error('Wrong fee');
+  }
+
+  var btcFee = fee.hasOwnProperty('perByte') ? fee.value : null; // TODO: coin non specific switch static/dynamic fee
   var inputValue = value;
 
   if (btcFee) {
@@ -183,7 +239,7 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     var _maxSpendBalance = Number(utils.maxSpendBalance(utxoListFormatted));
 
     if (value > _maxSpendBalance) {
-      return 'Spend value is too large or unconfirmed UTXO(S). Max available amount is ' + Number((_maxSpendBalance * 0.00000001).toFixed(8));
+      throw new Error('Spend value is too large');
     }
 
     var targets = [{
@@ -279,7 +335,7 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     }
 
     if (!inputs && !outputs) {
-      return 'Can\'t find best fit utxo. Try lower amount.';
+      throw new Error('Can\'t find best fit utxo. Try lower amount.');
     }
 
     var vinSum = 0;
@@ -309,12 +365,16 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
       _change = 0;
     }
 
+    if (vinSum === inputValue + fee && _change > 0) {
+      _change = 0;
+    }
+
     return {
       outputAddress: outputAddress,
       changeAddress: changeAddress,
       network: network,
       change: _change,
-      value: value,
+      value: inputValue <= _maxSpendBalance && totalInterest <= 0 ? inputValue : value,
       inputValue: inputValue,
       inputs: inputs,
       outputs: outputs,
@@ -327,42 +387,58 @@ var data = function data(network, value, fee, outputAddress, changeAddress, utxo
     };
   }
 
-  return 'no valid utxos';
+  throw new Error('No valid UTXO');
 };
 
-// TODO: extend support for other btc forks
+// sapling based coins require input value in order to calculate signature hash
 var checkSignatures = function checkSignatures(utxo, rawtx, redeemScript, network) {
   var txb = new bitcoinZcashSapling.TransactionBuilder.fromTransaction(bitcoinZcashSapling.Transaction.fromHex(rawtx, network), network);
 
   var pubKeySigCount = {};
   var pubKeySigComplete = [];
   var decodedRedeemScript = void 0;
-  var isRedeemScriptError = false;
 
   for (var i = 0; i < txb.inputs.length; i++) {
     var input = txb.inputs[i];
 
-    for (var j = 0; j < input.pubKeys.length; j++) {
-      if (input.signatures[j]) {
-        if (input.signScript.toString('hex') !== redeemScript) {
-          isRedeemScriptError = true;
-        }
-
-        decodedRedeemScript = multisig.decodeRedeemScript(input.signScript.toString('hex'), { toHex: true });
-
-        var parsedSig = ECSignature.parseScriptSignature(input.signatures[j]);
-        var keyPair = ECPair.fromPublicKeyBuffer(input.pubKeys[j]);
-        var hash = txb.tx.hashForZcashSignature(i, input.signScript, utxo[i].value, parsedSig.hashType);
-        var verifySig = keyPair.verify(hash, parsedSig.signature);
-
-        if (decodedRedeemScript.pubKeys.indexOf(input.pubKeys[j].toString('hex')) > -1 && verifySig) {
-          if (!pubKeySigCount[input.pubKeys[j].toString('hex')]) {
-            pubKeySigCount[input.pubKeys[j].toString('hex')] = 1;
-          } else {
-            pubKeySigCount[input.pubKeys[j].toString('hex')]++;
+    if (input.pubKeys && input.pubKeys.length) {
+      for (var j = 0; j < input.pubKeys.length; j++) {
+        if (input.signatures[j]) {
+          if (input.signScript.toString('hex') !== redeemScript) {
+            throw new Error('Wrong reedeem script value');
           }
+
+          decodedRedeemScript = multisig.decodeRedeemScript(input.signScript.toString('hex'), { toHex: true });
+
+          var parsedSig = ECSignature.parseScriptSignature(input.signatures[j]);
+          var keyPair = ECPair.fromPublicKeyBuffer(input.pubKeys[j]);
+          var hash = void 0;
+
+          if (network.isZcash) {
+            hash = txb.tx.hashForZcashSignature(i, input.signScript, utxo[i].value, parsedSig.hashType);
+          } else if (network.hasOwnProperty('forkName') && network.forkName === 'bch') {
+            hash = txb.tx.hashForCashSignature(i, input.signScript, utxo[i].value, parsedSig.hashType);
+          } else if (network.hasOwnProperty('forkName') && network.forkName === 'btg') {
+            hash = txb.tx.hashForGoldSignature(i, input.signScript, utxo[i].value, parsedSig.hashType);
+          } else {
+            hash = txb.tx.hashForSignature(i, input.signScript, parsedSig.hashType);
+          }
+
+          var verifySig = keyPair.verify(hash, parsedSig.signature);
+
+          if (decodedRedeemScript.pubKeys.indexOf(input.pubKeys[j].toString('hex')) > -1 && verifySig) {
+            if (!pubKeySigCount[input.pubKeys[j].toString('hex')]) {
+              pubKeySigCount[input.pubKeys[j].toString('hex')] = 1;
+            } else {
+              pubKeySigCount[input.pubKeys[j].toString('hex')]++;
+            }
+          }
+        } else {
+          decodedRedeemScript = multisig.decodeRedeemScript(redeemScript, { toHex: true });
         }
       }
+    } else {
+      decodedRedeemScript = multisig.decodeRedeemScript(redeemScript, { toHex: true });
     }
   }
 
@@ -372,7 +448,7 @@ var checkSignatures = function checkSignatures(utxo, rawtx, redeemScript, networ
     }
   }
 
-  return isRedeemScriptError ? { error: 'redeem script mismatch' } : {
+  return {
     signatures: {
       required: decodedRedeemScript.m,
       verified: Object.keys(pubKeySigCount).length
@@ -385,6 +461,7 @@ module.exports = {
   data: data,
   transaction: transaction,
   multisig: {
-    checkSignatures: checkSignatures
+    checkSignatures: checkSignatures,
+    sign: multisigSignTransaction
   }
 };

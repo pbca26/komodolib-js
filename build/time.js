@@ -66,7 +66,7 @@ var secondsElapsedToString = function secondsElapsedToString(timestamp, srcInSec
     }
   }
 
-  return str;
+  return str.trim(); // trim space chars
 };
 
 module.exports = {
