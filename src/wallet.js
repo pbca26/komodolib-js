@@ -1,8 +1,12 @@
-// TODO: - eth support, electrum/insight connect switch
-//       - fix transaction-type send to self case
+/* TODO: - eth support
+ *       - electrum/insight connect switch
+ *       - fix transaction-type send to self case
+ *       - add event based option
+ * This code is WIP
+ */ 
 
 const {
-  addressVersionCheck,
+  checkPublicAddress,
   wifToWif,
   seedToWif,
   stringToWif,
@@ -24,13 +28,25 @@ const keyPair = require('./keyPair');
 const keyPairMultisig = require('./keyPairMultisig');
 const connect = require('./connect');
 const transactionType = require('./transaction-type');
-const {
-  data,
-  transaction,
-  multisig,
-} = require('./transaction-builder');
+const transactionBuilder = require('./transaction-builder');
 const txDecoder = require('./transaction-decoder');
 const fees = require('./fees');
+
+/**
+ *
+ * Async/await synchronous loop
+ * 
+ * // ref: https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
+ * 
+ * @param {object} - input array
+ * @param {fn} - callback function
+ * @returns none
+ */
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
 
 const {
   toSats,
@@ -43,6 +59,15 @@ const isCoinActive = (name, wallet) => {
   }
 };
 
+/**
+ *
+ * A high level wallet class
+ * Bitcoin forks only
+ * BTC is currently unsupported due to a requirement to fetch fees which is yet to be implemented
+ * 
+ * @param none
+ * @returns {object} - instance of a class
+ */
 class wallet {
   constructor() {
     this.privKey = null;
@@ -50,6 +75,14 @@ class wallet {
     this.coins = {};
   }
 
+  /**
+   *
+   * Set main private key (signing key) method
+   * 
+   * @param {string} - WIF key
+   * @param {string} - WIF key
+   * @returns null
+   */
   setMainPrivKey(key, redeemScript) {
     this.privKey = key;
 
@@ -58,6 +91,19 @@ class wallet {
     }
   }
 
+  /**
+   *
+   * Add coin method
+   * 
+   * @param {string} - network name (bitcoinjs-networks.js)
+   * @throws {error}
+   *  
+   * errors:
+   *   (1) if network name is invalid
+   *   (2) if private key is not set
+   * 
+   * @returns null
+   */
   addCoin(name) {
     if (!name ||
         !networks[name] ||
@@ -78,18 +124,43 @@ class wallet {
     };
   }
 
+  /**
+   *
+   * Remove coin method
+   * 
+   * @param {string} - coin name
+   * @throws {error} - if coin is not added yet
+   * @returns null
+   */
   removeCoin(name) {
     isCoinActive(name, this);
     
     delete this.coins[name];
   }
 
-  // get general coin info
+  /**
+   *
+   * Get general coin info method
+   * 
+   * TODO: implement
+   * 
+   * @param {string} - coin name
+   * @throws {error} - if coin is not added yet
+   * @returns null
+   */
   getCoinInfo(name) {
     isCoinActive(name, this);
   }
 
-  // get tx history
+  /**
+   *
+   * Get transaction history method
+   * 
+   * @param {string} - coin name
+   * @param {number} - (optional) transaction history length
+   * @throws {error} - if coin is not added yet
+   * @returns {array} - data is returned in a fromat similar to Bitcoin full node listtransactions method response
+   */
   getHistory(coin, maxItems = 10) {
     isCoinActive(coin, this);
 
@@ -153,7 +224,14 @@ class wallet {
     });
   }
 
-  // get address balance
+  /**
+   *
+   * Get address balance method
+   * 
+   * @param {string} - coin name
+   * @throws {error} - if coin is not added yet
+   * @returns {object} - balance is returned in satoshis and in float
+   */
   getBalance(coin) {
     isCoinActive(coin, this);
     
@@ -168,8 +246,16 @@ class wallet {
     });
   }
 
-  // get transaction
-  getTransaction(coin, txid, maxVins = 64) {
+  /**
+   *
+   * Get transaction method
+   * 
+   * @param {string} - coin name
+   * @param {string} - transaction ID
+   * @throws {error} - if coin is not added yet
+   * @returns {promise} - array, data is returned in a fromat similar to Bitcoin full node gettransaction method response
+   */
+  getTransaction(coin, txid) {
     isCoinActive(coin, this);
     
     return new Promise((resolve, reject) => {
@@ -224,8 +310,20 @@ class wallet {
     });
   }
 
-  // create raw tx
-  createTransaction(coin, options) {
+  /**
+   *
+   * Create transaction method
+   * 
+   * @param {string} - coin name
+   * @param {number} - spend value in float
+   * @param {string} - public address
+   * @param {object}
+   *  options:
+   *   @param {bool}   estimate - return only calculated transaction input data
+   * @throws {error} - if coin is not added yet
+   * @returns {promise} - string, transaction ID
+   */
+  createTransaction(coin, value, address, options) {
     isCoinActive(coin, this);
     
     return new Promise((resolve, reject) => {
@@ -236,18 +334,18 @@ class wallet {
           utxo[i].value = utxo[i].satoshis;
         }
 
-        const estimate = data(
+        const estimate = transactionBuilder.data(
           networks[coin],
-          toSats(options.value),
+          toSats(value),
           fees[coin],
-          options.address,
+          address,
           this.coins[coin].keys.pub,
           utxo
         );
 
-        if (!options.estimate) {
-          const rawtx = transaction(
-            options.address,
+        if (!options || (options && !options.estimate)) {
+          const rawtx = transactionBuilder.transaction(
+            address,
             this.coins[coin].keys.pub,
             this.coins[coin].keys.wif,
             networks[coin],
@@ -258,6 +356,7 @@ class wallet {
               multisig: {
                 creator: true,
                 redeemScript: this.redeemScript,
+                incomplete: this.coins[coin].keys.redeemScript.decoded.m > 1,
               }
             }
           );
@@ -276,12 +375,83 @@ class wallet {
     });
   }
 
-  // sign raw tx
-  signTransaction(coin, txid) {
+  /**
+   *
+   * Sign multisignature transaction method
+   * 
+   * @param {string} - coin name
+   * @param {string} - transaction ID
+   * @throws {error} - if coin is not added yet or transaction ID is invalid/non-existent
+   * @returns {promise} - string, transaction ID
+   */
+  signMultisigTransaction(coin, txid) {
     isCoinActive(coin, this);
+
+    if (this.coins[coin].transactions[txid]) {
+      return new Promise((resolve, reject) => {
+        const decodedTx = txDecoder(this.coins[coin].transactions[txid], networks[coin]);
+        const that = this;
+        let utxo = [];
+
+        (async () => {
+          await asyncForEach(decodedTx.inputs, async (vin, index) => {
+            const utxoItem = await that.coins[coin].connect.getTransaction(vin.txid);
+            
+            if (utxoItem.hasOwnProperty('txid')) {              
+              utxo.push({
+                value: toSats(utxoItem.vout[vin.n].value),
+                txid: vin.txid,
+                height: utxoItem.height,
+                vout: vin.n,
+              });
+            } else {
+              reject(Error(`Unable to get input ${vin.txid}`));
+            }            
+          });
+
+          const signatures = transactionBuilder.multisig.checkSignatures(
+            utxo,
+            this.coins[coin].transactions[txid],
+            this.redeemScript,
+            networks[coin]
+          ).signatures;
+
+          if (signatures &&
+              signatures.verified) {
+            const rawtx = transactionBuilder.multisig.sign(
+              this.coins[coin].keys.wif,
+              networks[coin],
+              utxo,
+              !this.redeemScript ? null : {
+                multisig: {
+                  redeemScript: this.redeemScript,
+                  incomplete: signatures && signatures.verified !== signatures.required - 1,
+                  rawtx: this.coins[coin].transactions[txid],
+                },
+              }
+            );
+
+            this.coins[coin].transactions[txid] = rawtx;
+            resolve(txid);
+          } else {
+            throw new Error('Unable to parse signatures from rawtx');
+          }
+        })();
+      });
+    } else {
+      throw new Error('Wrong txid');
+    }
   }
 
-  // broadcast raw tx
+  /**
+   *
+   * Broadcast transaction from storage method
+   * 
+   * @param {string} - coin name
+   * @param {string} - transaction ID
+   * @throws {error} - if coin is not added yet or transaction ID is invalid/non-existent
+   * @returns {promise} - string, transaction ID
+   */
   broadcastTransaction(coin, txid) {
     isCoinActive(coin, this);
 
@@ -291,7 +461,7 @@ class wallet {
         .then((res) => {
           if (res.hasOwnProperty('txid')) {
             delete this.coins[coin].transactions[txid];
-            resolve(txid);
+            resolve(res.txid);
           } else {
             resolve(res);
           }
@@ -302,28 +472,97 @@ class wallet {
     }
   }
 
-  // return a list of transactions that are not yet broadcasted
+  /**
+   *
+   * Get transactions from storage method
+   * Returns a list of transactions that are not yet broadcasted
+   * 
+   * @param {string} - coin name
+   * @returns {array}
+   */
   storageTransactions(coin) {
     isCoinActive(coin, this);
 
     return this.coins[coin].transactions;
   }
 
+  /**
+   *
+   * Check transaction signature method
+   * 
+   * TODO: implement
+   * 
+   * @param {string} - coin name
+   * @param {string} - transaction ID
+   * @throws {error} - if coin is not added yet
+   * @returns null
+   */
   checkSignatures(coin, txid) {
     isCoinActive(coin, this);
   }
 
-  // add rawtx
+  /**
+   *
+   * Add transaction to storage from raw hex method
+   * 
+   * @param {string} - coin name
+   * @param {string} - raw transaction hex
+   * @throws {error} - if coin is not added yet
+   * @returns null
+   */
   addTransaction(coin, rawtx) {
     isCoinActive(coin, this);
+
+    if (rawtx) {
+      const decodedTx = txDecoder(rawtx, networks[coin]);
+
+      this.coins[coin].transactions[decodedTx.format.txid] = rawtx;
+      return decodedTx.format.txid;
+    } else {
+      throw new Error('Wrong txid');
+    }
   }
 
+  /**
+   *
+   * Dump wallet
+   * 
+   * @param none
+   * @returns {object}
+   */
   dumpToJSON() {
-
+    return JSON.stringify({
+      coins: this.coins,
+      privData: {
+        privKey: this.privKey,
+        redeemScript: this.redeemScript,
+      },
+    });
   }
 
-  loadFromJSON() {
+  /**
+   *
+   * Load wallet from JSON dump data
+   * 
+   * @param {string} - coin name
+   * @param {string} - raw transaction hex
+   * @throws {error} - if provided JSON is invalid or wallet format is invalid
+   * @returns null
+   */
+  loadFromJSON(json) {
+    try {
+      json = JSON.parse(json);
 
+      if (json.hasOwnProperty('coins') &&
+          json.hasOwnProperty('privData')) {
+        this.coins = json.coins;
+        this.setMainPrivKey(json.privData.privKey, json.privData.redeemScript);
+      } else {
+        throw new Error('Invalid wallet dump format');
+      }
+    } catch(e) {
+      throw new Error('Invalid JSON');
+    }
   }
 }
 
