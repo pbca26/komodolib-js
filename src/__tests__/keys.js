@@ -4,7 +4,7 @@ import test from 'tape';
 import fs from 'fs';
 import {
   bip39Search,
-  addressVersionCheck,
+  checkPublicAddress,
   wifToWif,
   seedToWif,
   stringToWif,
@@ -26,14 +26,14 @@ import {
 import networks from '../bitcoinjs-networks';
 const fixture = JSON.parse(fs.readFileSync(__dirname + '/fixtures/keys.json'));
 
-test('src - addressVersionCheck', async (t) => {  
-  const version = addressVersionCheck(networks.btc, 'RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd');
+test('src - checkPublicAddress', async (t) => {  
+  const version = checkPublicAddress(networks.btc, 'RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd');
   
   t.plan(4);
-  t.equal(addressVersionCheck(networks.btc, '123'), 'Invalid pub address', 'should return "Invalid pub address"');
-  t.equal(addressVersionCheck(networks.btc, 'RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd'), false, 'should invalidate RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd as BTC address');
-  t.equal(addressVersionCheck(networks.kmd, 'RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd'), true, 'should validate RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd as KMD address');
-  t.equal(addressVersionCheck(networks.btc, '15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe'), true, 'should validate 15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe as KMD address');
+  t.equal(checkPublicAddress(networks.btc, '123'), 'Invalid pub address', 'should return "Invalid pub address"');
+  t.equal(checkPublicAddress(networks.btc, 'RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd'), false, 'should invalidate RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd as BTC address');
+  t.equal(checkPublicAddress(networks.kmd, 'RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd'), true, 'should validate RDbGxL8QYdEp8sMULaVZS2E6XThcTKT9Jd as KMD address');
+  t.equal(checkPublicAddress(networks.btc, '15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe'), true, 'should validate 15K5spF7woSF4rzGsQWSLVttmCF1nGGDXe as KMD address');
 });
 
 test('src - bip39Search', async (t) => {

@@ -59,8 +59,56 @@ test('src - transaction - multisig error handling', async (t) => {
     }
   );
 
-  t.plan(1);
-  t.throws(tx, /Wrong multisig signing key or redeem sript/, 'should throw "Wrong multisig signing key or redeem sript"');
+  const tx1 = () => transaction(
+    '3DiDuRh8k4LfGW8MKVxaLd5gYBTuuokz5M',
+    '3DiDuRh8k4LfGW8MKVxaLd5gYBTuuokz5M',
+    wifKeysBTC[0],
+    networks.btc,
+    utxo,
+    toSats(0.9),
+    toSats(0.1),
+    {
+      multisig: {
+        creator: true,
+        redeemScript: '5121037fbd5d1fdc830f0aead6f86534631e666ebb49ccd4d0c05446ea05cda978536321025eb94873782906e8a058cd3e873b2471612e3a5ae2597a23f8113214e11b1b1452ae'
+      }
+    }
+  );
+
+  const tx2 = () => transaction(
+    '3DiDuRh8k4LfGW8MKVxaLd5gYBTuuokz5M',
+    '3DiDuRh8k4LfGW8MKVxaLd5gYBTuuokz5M',
+    wifKeysBTC[0],
+    networks.btc,
+    utxo,
+    toSats(0.9),
+    toSats(0.1),
+    {
+      multisig: {
+        creator: true,
+      }
+    }
+  );
+
+  const tx3 = () => transaction(
+    '3DiDuRh8k4LfGW8MKVxaLd5gYBTuuokz5M',
+    '3DiDuRh8k4LfGW8MKVxaLd5gYBTuuokz5M',
+    wifKeysBTC[0],
+    networks.btc,
+    utxo,
+    toSats(0.9),
+    toSats(0.1),
+    {
+      multisig: {
+        redeemScript: '5121037fbd5d1fdc830f0aead6f86534631e666ebb49ccd4d0c05446ea05cda978536321025eb94873782906e8a058cd3e873b2471612e3a5ae2597a23f8113214e11b1b1452ae',
+      }
+    }
+  );
+
+  t.plan(3);
+  t.throws(tx1, /Wrong multisig signing key or redeem sript/, 'should throw "Wrong multisig signing key or redeem sript"');
+  t.throws(tx2, /Missing reedeem script string/, 'should throw "Missing reedeem script string"');
+  t.throws(tx3, /Missing raw transaction hex/, 'should throw "Missing raw transaction hex"');  
 });
 
 test('src - transaction - BTC multisig 1 of 2 (signature 1)', async (t) => {

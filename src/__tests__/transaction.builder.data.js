@@ -5,7 +5,6 @@ import fs from 'fs';
 import {
   stringToWif,
   etherKeys,
-  multisig,
 } from '../keys';
 const { data } = require('../transaction-builder');
 const {
