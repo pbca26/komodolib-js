@@ -17,6 +17,7 @@ var fees = (_fees = {
   // kmd/chips/asset chains
   kmd: KMD_STD_FEE,
   chips: KMD_STD_FEE,
+  grms: KMD_STD_FEE,
   zilla: KMD_STD_FEE,
   prlpay: KMD_STD_FEE,
   kv: KMD_STD_FEE,

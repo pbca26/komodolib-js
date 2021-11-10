@@ -44,6 +44,7 @@ var _electrumServers = {
   ninja: ['electrum1.fund.ninja:50001:tcp', 'electrum2.fund.ninja:50001:tcp'],
   jumblr: ['electrum1.cipig.net:10004:tcp', 'electrum2.cipig.net:10004:tcp'],
   kmd: ['electrum1.cipig.net:10001:tcp', 'electrum2.cipig.net:10001:tcp'],
+  grms: ['electrum.grms.pw:17485:tcp', 'electrum1.grms.pw:17485:tcp', 'electrum2.grms.pw:17485:tcp'],
   doge: ['electrum1.cipig.net:10060:tcp', 'electrum2.cipig.net:10060:tcp'],
   via: ['viax1.bitops.me:50001:tcp', 'viax2.bitops.me:50001:tcp', 'viax3.bitops.me:50001.tcp'],
   vtc: ['fr1.vtconline.org:55001:tcp', 'uk1.vtconline.org:55001:tcp'],

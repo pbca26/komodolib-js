@@ -543,6 +543,11 @@ let _electrumServers = {
     'electrum2.cipig.net:10019:tcp',
     'electrum3.cipig.net:10019:tcp',
   ],
+  grms: [
+    'electrum.grms.pw:17485:tcp',
+    'electrum1.grms.pw:17485:tcp',
+    'electrum2.grms.pw:17485:tcp'
+  ],
 };
 _electrumServers.zexo = _electrumServers.zex;
 
