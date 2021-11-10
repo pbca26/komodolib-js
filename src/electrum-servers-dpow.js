@@ -48,7 +48,7 @@ const dpowCoins = [
   'HUSH3',
   'KOIN',
   'K64',
-  'GRMS',
+  'GRMS'
 ];
 
 module.exports = dpowCoins;
