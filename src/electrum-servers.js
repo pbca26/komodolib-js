@@ -546,7 +546,7 @@ let _electrumServers = {
   grms: [
     'electrum.grms.pw:17485:tcp',
     'electrum1.grms.pw:17485:tcp',
-    'electrum2.grms.pw:17485:tcp',
+    'electrum2.grms.pw:17485:tcp'
   ],
 };
 _electrumServers.zexo = _electrumServers.zex;
