@@ -55,7 +55,7 @@ const _komodoAssetChains = [
   'HUSH',
   'ZEXO',
   'LABS',
-  'GRMS',
+  'GRMS'
 ];
 
 const _komodoCoins = _komodoAssetChains.concat([
